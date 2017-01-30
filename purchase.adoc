@@ -42,7 +42,7 @@ Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation o
         "accuracyMeters": 65
       },
       "purchaseNumber": 1,
-      "userDisplayName": "Elna Westman",
+      "userDisplayName": "Ford Prefect",
       "userId": 1713921,
       "organizationId": 14184411,
       "products": [
@@ -97,7 +97,7 @@ Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation o
         "accuracyMeters": 65
       },
       "purchaseNumber": 2,
-      "userDisplayName": "Elna Westman",
+      "userDisplayName": "Ford Prefect",
       "userId": 1713921,
       "organizationId": 14184411,
       "products": [
@@ -153,7 +153,7 @@ Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation o
         "accuracyMeters": 65
       },
       "purchaseNumber": 9,
-      "userDisplayName": "Elna Westman",
+      "userDisplayName": "Ford Prefect",
       "userId": 1713921,
       "organizationId": 14184411,
       "products": [
@@ -224,7 +224,7 @@ Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation o
         "accuracyMeters": 65
       },
       "purchaseNumber": 10,
-      "userDisplayName": "Elna Westman",
+      "userDisplayName": "Ford Prefect",
       "userId": 1713921,
       "organizationId": 14184411,
       "products": [
@@ -272,7 +272,7 @@ Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation o
       "currency": "SEK",
       "timestamp": "2017-01-30T15:46:31.808+0000",
       "purchaseNumber": 77,
-      "userDisplayName": "Elna Westman",
+      "userDisplayName": "Ford Prefect",
       "userId": 1713921,
       "organizationId": 14184411,
       "products": [
