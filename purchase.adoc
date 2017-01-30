@@ -23,6 +23,100 @@ Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation o
 #### Permissions required
 `READ:PURCHASE`
 
+#### Discounts
+Discounts can exist both on a specific row of items in the shopping cart, as well as on the entire shopping cart. A discount can be set either as a percentage or as a fixed value.
+
+When applying the total discounts on the purchase price, the discounts set on rows will be calculated first and subtracted from the total price followed by any discount set on the entire chart.
+
+Row discounts are expressed using the following JSON structure in the `products` list, containing either `amount` for fixed discounts or `percentage` for percentage discounts:
+```json
+"discount": {
+    "quantity": 1,
+    "amount": 200
+}
+```
+
+Cart discounts are expressed using the following JSON structure in the root structure of the purchase. They can also contain either an `amount` or a `percentage` value:
+```json
+"discounts": [
+{
+    "name": "",
+    "percentage": 20,
+    "quantity": 1
+}
+```
+Currently, we only support one discount per cart, so the `discounts` list will only contain one item with `quantity` set to 1. This could potentially change in the future. See further below for a full response example containing discounts.
+
+##### Example
+Lets observe an example purchase, containing both discounts on rows as well as on the cart itself:
+[options="header"]
+|===
+| Product | Unit price | Amount | Discount
+| Foo | 20 | 1 | 5 
+| Bar | 10 | 5 | 10% 
+| Cart discount | | | 30% 
+|===
+To calculate the total discount, we start by calculating the discount per row. The first row contains one item and has a fixed discount of 5. 
+
+The second row contains five items and a percentage discount of 10%:
+
+*Row discounts* = 5 + 10 x 5 x 0.1 = 10.  
+
+Then we calculate the cart discount, based on the total price of the cart, minus the row discounts:
+
+*Total cart price* = 20 + 10 x 5 = 70.
+
+*Cart discount* = (70 - 10) x 0.3 = 18
+
+So the total discount on this purchase is: 10 + 18 = 28. And the total sum to pay is: 70 - 28 = 42.
+
+A discount can never be greater than the actual amount of the row or cart price.
+
+#### How to load all purchases for a user
+
+You should never retrieve all the purchases in one request, since that can potentially put too much load on the server causing the request to be rejected or time out.
+
+Instead, you should request the purchases splitted up into "pages", using the `limit` and `lastPurchaseHash` parameters.
+
+The `limit` parameter will set the page size, and the `lastPurchaseHash` parameter sets the starting point from where to retrieve purchases. Every response from the purchase service will contain a `lastPurchaseHash` field, which can be added to the new request to retrieve the next "page".
+
+In order to load all purchases, begin with an initial request without the `lastPurchaseHash` parameter being set, this will retrieve the first _n_ purchases (where _n_ is the page size defined by the `limit` parameter):
+
+```
+GET /purchases?limit=100
+```
+
+The result will contain the first _n_ number of purchases.
+```
+{
+  "purchases": [
+    ....
+  ],
+  "firstPurchaseHash": "14233908814696HbDrnUNRji5iniGikNLiQ",
+  "lastPurchaseHash": "1423390928355zj9yI1wyTvqP46AG8NEaYg"
+}
+```
+
+To retrieve the following pages, use the `lastPurchaseHash` field in the previous response to load the next page:
+```
+GET /purchases?limit=100&lastPurchaseHash=1423390928355zj9yI1wyTvqP46AG8NEaYg
+```
+
+The result will contain the next _n_ number of purchases:
+```
+{
+  "purchases": [
+    ....
+  ],
+  "firstPurchaseHash": "1423390928355zj9yI1wyTvqP46AG8NEaYg",
+  "lastPurchaseHash": "1426265546490RPXdoMmDEeSg5Gw_2s_ZrQ"
+}
+```
+
+Continue this process by using the `lastPurchaseHash` in the previous response as a request parameter in the following request until you receive an empty result.
+
+If you want to be able to load new purchases later on, then store the last used `lastPurchaseHash` and use that to continue retrieving new purchases at a later time.
+
 #### Example response 1
 `GET purchases?limit=10`
 ```json
@@ -153,9 +247,9 @@ Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation o
         "accuracyMeters": 65
       },
       "purchaseNumber": 9,
-      "userDisplayName": "Pär Svanström",
-      "userId": 5210,
-      "organizationId": 6927,
+      "userDisplayName": "Elna Westman",
+      "userId": 1713921,
+      "organizationId": 14184411,
       "products": [
         {
           "quantity": "1",
@@ -224,9 +318,9 @@ Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation o
         "accuracyMeters": 65
       },
       "purchaseNumber": 10,
-      "userDisplayName": "Pär Svanström",
-      "userId": 5210,
-      "organizationId": 6927,
+      "userDisplayName": "Elna Westman",
+      "userId": 1713921,
+      "organizationId": 14184411,
       "products": [
         {
           "quantity": "-1",
@@ -261,50 +355,79 @@ Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation o
 }
 ```
 
-#### How to load all purchases for a user
-
-You should never retrieve all the purchases in one request, since that can potentially put too much load on the server causing the request to be rejected or time out.
-
-Instead, you should request the purchases splitted up into "pages", using the `limit` and `lastPurchaseHash` parameters.
-
-The `limit` parameter will set the page size, and the `lastPurchaseHash` parameter sets the starting point from where to retrieve purchases. Every response from the purchase service will contain a `lastPurchaseHash` field, which can be added to the new request to retrieve the next "page".
-
-In order to load all purchases, begin with an initial request without the `lastPurchaseHash` parameter being set, this will retrieve the first _n_ purchases (where _n_ is the page size defined by the `limit` parameter):
-
-```
-GET /purchases?limit=100
-```
-
-The result will contain the first _n_ number of purchases.
+#### Example response 3 (discounts)
 ```
 {
   "purchases": [
-    ....
+    {
+      "purchaseUUID": "Qq74IOcDEeaJxS84XJ93-w",
+      "amount": 4200,
+      "country": "SE",
+      "currency": "SEK",
+      "timestamp": "2017-01-30T15:46:31.808+0000",
+      "purchaseNumber": 77,
+      "userDisplayName": "Elna Westman",
+      "userId": 1713921,
+      "organizationId": 14184411,
+      "products": [
+        {
+          "quantity": "1",
+          "productUuid": "521c47f0-e6fd-11e6-b387-39e9b871afb0",
+          "variantUuid": "4c86e7c8-e6fd-11e6-b387-39e9b871afb0",
+          "unitPrice": 2000,
+          "name": "Foo",
+          "variantName": "",
+          "discount": {
+            "quantity": 1,
+            "amount": 500
+          },
+          "discountValue": 500,
+          "autoGenerated": false,
+          "libraryProduct": true
+        },
+        {
+          "quantity": "5",
+          "productUuid": "5bab09be-e6fd-11e6-b387-39e9b871afb0",
+          "variantUuid": "54686296-e6fd-11e6-b387-39e9b871afb0",
+          "unitPrice": 1000,
+          "name": "Bar",
+          "variantName": "",
+          "discount": {
+            "quantity": 1,
+            "percentage": 10
+          },
+          "discountValue": 500,
+          "autoGenerated": false,
+          "libraryProduct": true
+        }
+      ],
+      "discounts": [
+        {
+          "name": "",
+          "percentage": 30,
+          "quantity": 1
+        }
+      ],
+      "cashPayments": [
+        {
+          "cashPaymentUUID": "457e44c0-e703-11e6-a350-ba4b93320a36",
+          "amount": 4200,
+          "handedAmount": 4200,
+          "cashPaymentUUID1": "457e44c0-e703-11e6-a350-ba4b93320a36"
+        }
+      ],
+      "receiptCopyAllowed": true,
+      "published": true,
+      "purchaseUUID1": "42aef820-e703-11e6-89c5-2f385c9f77fb",
+      "groupedVatAmounts": {},
+      "refund": false,
+      "refunded": false
+    }
   ],
-  "firstPurchaseHash": "14233908814696HbDrnUNRji5iniGikNLiQ",
-  "lastPurchaseHash": "1423390928355zj9yI1wyTvqP46AG8NEaYg"
+  "firstPurchaseHash": "1485787109529wXk0kOb5EeaElIl84iyLHg",
+  "lastPurchaseHash": "1485788787591qt9j4Ob9EeaEvmSHcH58vw"
 }
 ```
-
-To retrieve the following pages, use the `lastPurchaseHash` field in the previous response to load the next page:
-```
-GET /purchases?limit=100&lastPurchaseHash=1423390928355zj9yI1wyTvqP46AG8NEaYg
-```
-
-The result will contain the next _n_ number of purchases:
-```
-{
-  "purchases": [
-    ....
-  ],
-  "firstPurchaseHash": "1423390928355zj9yI1wyTvqP46AG8NEaYg",
-  "lastPurchaseHash": "1426265546490RPXdoMmDEeSg5Gw_2s_ZrQ"
-}
-```
-
-Continue this process by using the `lastPurchaseHash` in the previous response as a request parameter in the following request until you receive an empty result.
-
-If you want to be able to load new purchases later on, then store the last used `lastPurchaseHash` and use that to continue retrieving new purchases at a later time.
 
 ### Get purchase details
 
