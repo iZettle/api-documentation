@@ -408,14 +408,15 @@ purchaseUUID:: The UUID of the purchase
 ### Discounts
 Discounts can exist both on a specific row of items in the shopping cart, as well as on the entire shopping cart. A discount can be set either as a percentage or as a fixed value.
 
-When applying the total discounts on the purchase price, the discounts set on rows will be calculated first and subtracted from the total price followed by any discount set on the entire chart.
+When applying the total discounts on the purchase price, the row discounts will first be applied, followed by the cart discount which is then applied on the sum of the already discounted row prices.
 
-Row discounts are expressed using the following JSON structure in the `products` list, containing either `amount` for fixed discounts or `percentage` for percentage discounts:
+Row discounts are expressed using the following JSON structure in the `products` list, containing either `amount` for fixed discounts or `percentage` for percentage discounts. The `discountValue` field following the `discount` structure contains the total discount amount for the row:
 ```json
 "discount": {
-    "quantity": 1,
-    "amount": 200
-}
+  "quantity": 1,
+  "percentage": 10
+},
+"discountValue": 1000
 ```
 
 Cart discounts are expressed using the following JSON structure in the root structure of the purchase. They can also contain either an `amount` or a `percentage` value:
@@ -423,7 +424,7 @@ Cart discounts are expressed using the following JSON structure in the root stru
 "discounts": [
 {
     "name": "",
-    "percentage": 20,
+    "amount": 2000,
     "quantity": 1
 }
 ```
@@ -435,22 +436,22 @@ Lets observe an example purchase, containing both discounts on rows as well as o
 |===
 | Product | Unit price | Amount | Discount
 | Foo | 20 | 2 | 5 
-| Bar | 10 | 5 | 10% 
-| Cart discount | | | 30% 
+| Bar | 10 | 10 | 10% 
+| Cart discount | | | 20% 
 |===
-To calculate the total discount, we start by calculating the discount per row. The first row contains one item and has a fixed discount of 5. 
+To calculate the total discount, we start by calculating the discount per row. The first row contains 2 item and has a fixed discount amount of 5. 
 
-The second row contains five items and a percentage discount of 10%:
+The second row contains 10 items and a percentage discount of 10%:
 
-*Row discounts* = 5 + 10 x 5 x 0.1 = 10.  
+*Row discounts* = 5 + 10 x 10 x 0.1 = 15.  
 
-Then we calculate the cart discount, based on the total price of the cart, minus the row discounts:
+Then we calculate the cart discount, based on the sum of the previously discounted rows:
 
-*Total cart price* = 20 + 10 x 5 = 70.
+*Sum of discounted rows* = 20 x 2 + 10 x 10 - 15 = 125.
 
-*Cart discount* = (70 - 10) x 0.3 = 18
+*Cart discount* = 125 x 0.2 = 25
 
-So the total discount on this purchase is: 10 + 18 = 28. And the total sum to pay is: 70 - 28 = 42.
+So the total discount on this purchase is: 15 + 25 = 40. And the total sum to pay is: 140 - 40 = 100.
 
 A discount can never be greater than the actual amount of the row or cart price.
 
