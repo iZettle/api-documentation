@@ -266,20 +266,22 @@ Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation o
 {
   "purchases": [
     {
-      "purchaseUUID": "AOjsYOefEeax5pDdmnaGXw",
+      "purchaseUUID": "biqV4OiTEea6-larSAFA7w",
       "amount": 10000,
+      "vatAmount": 1331,
       "country": "SE",
       "currency": "SEK",
-      "timestamp": "2017-01-31T10:21:20.407+0000",
-      "purchaseNumber": 79,
-      "userDisplayName": "Pär Svanström",
-      "userId": 5210,
-      "organizationId": 6927,
+      "timestamp": "2017-02-01T15:31:00.648+0000",
+      "purchaseNumber": 1507,
+      "userDisplayName": "Ford Prefect",
+      "userId": 1713921,
+      "organizationId": 14184411,
       "products": [
         {
           "quantity": "2",
-          "productUuid": "521c47f0-e6fd-11e6-b387-39e9b871afb0",
-          "variantUuid": "4c86e7c8-e6fd-11e6-b387-39e9b871afb0",
+          "productUuid": "39cde734-e893-11e6-b8f1-2d3db21fba6a",
+          "variantUuid": "302b4d5c-e893-11e6-b8f1-2d3db21fba6a",
+          "vatPercentage": 25,
           "unitPrice": 2000,
           "name": "Foo",
           "variantName": "",
@@ -293,8 +295,9 @@ Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation o
         },
         {
           "quantity": "10",
-          "productUuid": "5bab09be-e6fd-11e6-b387-39e9b871afb0",
-          "variantUuid": "54686296-e6fd-11e6-b387-39e9b871afb0",
+          "productUuid": "4385c5ee-e893-11e6-b8f1-2d3db21fba6a",
+          "variantUuid": "3bdf6232-e893-11e6-b8f1-2d3db21fba6a",
+          "vatPercentage": 12,
           "unitPrice": 1000,
           "name": "Bar",
           "variantName": "",
@@ -315,20 +318,23 @@ Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation o
         }
       ],
       "cashPayments": [
-        {
-          "cashPaymentUUID": "0234a640-e79f-11e6-8800-160b57354122",
-          "amount": 10000,
-          "handedAmount": 10000,
-          "cashPaymentUUID1": "0234a640-e79f-11e6-8800-160b57354122"
-        }
-      ],
-      "receiptCopyAllowed": true,
-      "published": true,
-      "purchaseUUID1": "00e8ec60-e79f-11e6-b1e6-90dd9a76865f",
-      "groupedVatAmounts": {},
-      "refund": false,
-      "refunded": false
+    {
+      "cashPaymentUUID": "6f4e2e50-e893-11e6-a784-a603fda22c92",
+      "amount": 10000,
+      "handedAmount": 10000,
+      "cashPaymentUUID1": "6f4e2e50-e893-11e6-a784-a603fda22c92"
     }
+  ],
+  "receiptCopyAllowed": true,
+  "published": true,
+  "purchaseUUID1": "6e2a95e0-e893-11e6-bafa-56ab480140ef",
+  "groupedVatAmounts": {
+    "12.0": 7200,
+    "25.0": 2800
+  },
+  "refund": false,
+  "refunded": false
+}
   ],
   "firstPurchaseHash": "1485857753809PaSsMOeeEeawkeLVV_68nw",
   "lastPurchaseHash": "1485858080407AOjsYOefEeax5pDdmnaGXw"
@@ -410,6 +416,17 @@ Discounts can exist both on a specific row of items in the shopping cart, as wel
 
 When applying the total discounts on the purchase price, the row discounts will first be applied, followed by the cart discount which is then applied on the sum of the already discounted row prices.
 
+#### VAT calculation when discounts have been applied
+VAT is calculated after all the discounts have been applied. Since each row can have a separate VAT percentage the cart discount is evenly distributed over all row of items before the VAT per row of products can be calculated.
+
+If the cart discount is a fixed value then that value will be deducted from each row according the price of each row in relation to the total purchase price. 
+
+##### Examples 
+If the cart discount is 20%, then the price of each row of item will be deducted with 20% before calculating the VAT for each row.
+
+If a purchase has a total price of 100 and contains two rows with the first row priced at 40 and the second at 60, then 40% of the fixed cart discount will be deducted from the first row and 60% from the other row before calculating the VAT.
+
+#### Response structure
 Row discounts are expressed using the following JSON structure in the `products` list, containing either `amount` for fixed discounts or `percentage` for percentage discounts. The `discountValue` field following the `discount` structure contains the total discount amount for the row:
 ```json
 "discount": {
