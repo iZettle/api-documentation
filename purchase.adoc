@@ -10,7 +10,7 @@ Will include cash register information if possible.
 `GET purchases`
 
 lastPurchaseHash (optional):: A value from "lastPurchaseHash" from the result of a previous history query, to continue listing purchases from the next record after the previous query.
-startDate (optional):: Start date for purchases to be retrieved from, and including, this day until today or endDate. Can only be combined with endDate.
+startDate (optional):: Start date for purchases to be retrieved from, and including, this day until today or endDate. Can only be combined with endDate or limit.
 endDate (optional):: Last date, exclusive, for purchases to be retrieved until. Can only be combined with startDate.
 limit (optional):: The maximum number of records to return.
 descending (optional):: When true, returns purchases with the highest timestamp first.  When false, returns purchases with the lowest timestamp first. Defaults to false if not specified.
