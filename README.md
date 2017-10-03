@@ -1,7 +1,7 @@
 # iZettle HTTP API
- [Frequently Asked Questions](faq.adoc)
 
 ## APIs
+
  - [OAuth](authorization.adoc)
  - [Finance](finance.adoc)
  - [Purchase](purchase.adoc)
