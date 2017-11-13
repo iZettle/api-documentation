@@ -71,7 +71,31 @@ See https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[
 ===== More to come...
 '''
 === https://github.com/iZettle/api-documentation/blob/master/product-library.adoc[Product Library]
-===== More to come...
+====
+**I'm using your API to create Products on Izettle, i have a problem when assigning images to products, i used the image API to create an image and it's working, but how to assign this image to the product i'm creating?**
+[source]
+--
+ "imageLookupKeys": [
+    "string" what should i put here?
+  ],
+  "presentation": {
+    "imageUrl": "string", i should put the created image url?
+    "backgroundColor": "string",
+    "textColor": "string"
+  },
+--
+====
+The image api will return a imageUrl back which can be directly put into the _presentation.imageUrl_ field, however we just introduced this and is not fully supported by the portal and the apps yet.  
+
+So if you only want to use the information outside of the iZettle apps you might want to use  _presentation.imageUrl_, otherwise use  _imageLookupKeys_ and strip away everything except the last part of the imageUrl and place for example `Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEmQ.jpeg` in the imageLookupKeys to be able to see the image in the izettle-apps.
+
+Clarification examples:
+[source]
+--
+imageLookupKeys: ["Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEnQ.jpeg”]
+"presentation" : {
+      “imageUrl”: "https://image.izettle.com/v2/images/o/Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEnQ.jpeg"
+--
 '''
 === https://github.com/iZettle/api-documentation/blob/master/inventory.adoc[Inventory]
 ===== More to come...
