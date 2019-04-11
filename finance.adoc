@@ -66,7 +66,6 @@ CARD_PAYMENT_FEE::: References the commission part of a card payment.
 CARD_PAYMENT_FEE_REFUND::: References the commission part of a refund.
 ADVANCE::: References the cash advance given by iZettle to a merchant.
 A cash advance is a type of financing that is offered to merchant's based on their sales history. The advance is paid back with monthly down payments.
-ADVANCE_FEE::: References the fee that iZettle charges when giving a cash advance.
 ADVANCE_DOWNPAYMENT::: A down payment on a previously paid out cash advance.
 ADVANCE_FEE_DOWNPAYMENT::: References the netting of a cash advance fee.
 SUBSCRIPTION_CHARGE::: References a subscription charge (e.g. for the Kassaregister service).
