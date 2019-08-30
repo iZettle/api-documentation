@@ -13,7 +13,6 @@ https://finance.izettle.com/swagger
 The Finance API implements the following scopes:
 
 - `READ:FINANCE`
-- `WRITE:FINANCE`
 
 ---
 
