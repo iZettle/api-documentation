@@ -6,14 +6,10 @@ The purchase API provides information about purchases made through the iZettle p
 ### URL
 https://purchase.izettle.com
 
-### API Documentation
-https://purchase.izettle.com/swagger
-
 ### Scopes
 The Purchase API implements the following scopes:
 
 - `READ:PURCHASE`
-- `WRITE:PURCHASE`
 
 ---
 
