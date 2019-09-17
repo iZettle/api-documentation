@@ -348,7 +348,7 @@ Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation o
       "payments": [
         {
           "uuid": "6f4e2e50-e893-11e6-a784-a603fda22c92",
-          "amount": 10000
+          "amount": 10000,
           "type": "IZETTLE_CASH",
           "attributes": {
             "handedAmount": 10000
@@ -465,7 +465,7 @@ To be able to represent all types of payments it has an `attributes` map that co
 Other payments such as Swish, Vipps and MobilePay don't have attributes. They will only be represented by a `uuid`, an `amount` and a `type`.
 
 ._example of cash payment_
-----
+```json
 {
   "uuid": "ce90dc90-dcaa-11e6-87a4-0cd119752226",
   "amount": 1000,
@@ -474,10 +474,10 @@ Other payments such as Swish, Vipps and MobilePay don't have attributes. They wi
     "handedAmount": 1000
   }
 }
-----
+```
 
 ._example of card payment_
-----
+```json
 "purchaseUUID1": "fe8d0460-21c4-11e6-8ca8-3a4023ced819",
 "amount": 2000,
 "gratuityAmount": 0,
@@ -500,10 +500,10 @@ Other payments such as Swish, Vipps and MobilePay don't have attributes. They wi
     "applicationName": "Visa Credit"
   }
 }
-----
+```
 
 ._example of invoice payment_
-----
+```json
 {
   "uuid": "d65ebf50-979e-11e7-9f72-df4bb64e0df9",
   "amount": 2960,
@@ -514,7 +514,7 @@ Other payments such as Swish, Vipps and MobilePay don't have attributes. They wi
     "dueDate": "2017-10-12"
   }
 }
-----
+```
 
 _Note_: `gratuityAmount` corresponds to the tipping amount in the purchase. This
 feature is not available in all countries. When the `gratuityAmount` is set, the
@@ -600,7 +600,7 @@ GET /purchases/v2?limit=50
 ```
 
 The result will contain the first _n_ number of purchases.
-```
+```json
 {
   "purchases": [
     ....
@@ -619,7 +619,7 @@ GET https://purchase.izettle.com/purchases/v2?limit=10&descending=true&lastPurch
 ```
 
 The result will contain the next _n_ number of purchases:
-```
+```json
 {
   "purchases": [
     ....
