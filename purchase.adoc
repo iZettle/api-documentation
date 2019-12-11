@@ -475,7 +475,21 @@ A purchase has one or more payments represented in the `payments` list attribute
 === Payment attributes
 The `payment` data type only contain a few generic parameters such as `uuid`, `amount` and `type`.
 
-The currently available payment types are `IZETTLE_CARD`, `IZETTLE_CARD_ONLINE`, `IZETTLE_CASH`, `IZETTLE_INVOICE`, `SWISH`, `VIPPS`, `MOBILE_PAY`, `PAYPAL`, `STORE_CREDIT`, `GIFTCARD` and `CUSTOM`.
+The currently available payment types are:
+
+- `IZETTLE_CARD`
+- `IZETTLE_CARD_ONLINE`
+- `IZETTLE_CASH`
+- `IZETTLE_INVOICE`
+- `SWISH`
+- `VIPPS`
+- `MOBILE_PAY`
+- `PAYPAL`
+- `STORE_CREDIT`
+- `GIFTCARD`
+- `KLARNA`
+- `CUSTOM`
+
 Payment types are added when product offerings at iZettle changes, so for forwards-compatibility it is important that clients are tolerant of receiving payments of types that are not defined upfront.
 
 To be able to represent all types of payments it has an `attributes` map that contain all payment type specific data such as `maskedPan` or `cardType` for card payments or `handedAmount` for cash payments.
