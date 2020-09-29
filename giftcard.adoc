@@ -6,6 +6,9 @@ The Giftcard API provides extra information about purchases made through iZettle
 ### URL
 https://giftcard.izettle.com
 
+### API Documentation
+https://giftcard.izettle.com/swagger
+
 ### Scopes
 The Giftcard API implements the following scopes:
 
