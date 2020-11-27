@@ -6,27 +6,27 @@ If you want to apply to receive access to our APIs, please visit https://develop
 ====
 
 == General questions
-.**What TLS version is supported?**
+.*_What TLS version is supported?_*
 [%collapsible]
 ====
 We are using TLS 1.2 for the moment.
 ====
-.**How do I take payments through the iZettle API?**
+.*_How do I take payments through the iZettle API?_*
 [%collapsible]
 ====
 It is not possible to take payments through the API. However, we do have SDKs for both iOS (https://github.com/iZettle/sdk-ios) and Android (https://github.com/iZettle/sdk-android) which supports taking payments.
 ====
-.**Do you provide any test or sandbox environment?**
+.*_Do you provide any test or sandbox environment?_*
 [%collapsible]
 ====
 Unfortunately we do not at this time, This is something we are working on to improve.
 ====
-.**Does it cost anything to use your open APIs and is there some restriction on the API?**
+.*_Does it cost anything to use your open APIs and is there some restriction on the API?_*
 [%collapsible]
 ====
 No, its completely free to use our API and the only limitation is that some resources might have rate limiting enabled to ensure service stability.
 ====
-.**Why do i receive `HTTP 100 Continue`  responses sometimes?**
+.*_Why do i receive `HTTP 100 Continue`  responses sometimes?_*
 [%collapsible]
 ====
 This is something our framework sends when it has received the request headers and
@@ -37,14 +37,14 @@ and https://stackoverflow.com/questions/2964687/how-to-handle-100-continue-http-
 ====
 
 == OAuth
-.**Once I have a Access token, how do I use it to authenticate myself?**
+.*_Once I have a Access token, how do I use it to authenticate myself?_*
 [%collapsible]
 ====
 The Access token is passed through the `Authorization` header with the format:
 `Authorization: Bearer <Token>`. Also, note that on most services you can use the *_self_*
 filter instead of `{organizationUuid}`
 ====
-.**Do I need my organization uuid when accessing some of the apis?**
+.*_Do I need my organization uuid when accessing some of the apis?_*
 [%collapsible]
 ====
 You can either use the *_self_* filter: see this documentation for details on how, the other option is to call
@@ -66,7 +66,7 @@ See https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[
 
 ====
 == Product Library
-.**I'm using your API to create Products on iZettle, i have a problem when assigning images to products, i used the image API to create an image and it's working, but how to assign this image to the product i'm creating?**
+.*_I'm using your API to create Products on iZettle, i have a problem when assigning images to products, i used the image API to create an image and it's working, but how to assign this image to the product i'm creating?_*
 [%collapsible]
 ====
 [source,json]
@@ -100,7 +100,7 @@ Clarification examples:
 ====
 == Image Service
 
-.**I cannot upload images using byte arrays.**
+.*_I cannot upload images using byte arrays._*
 [%collapsible]
 ====
 In the Swagger documentation it specifies the data as a array of String, this is not true, make sure that
