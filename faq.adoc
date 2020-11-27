@@ -9,26 +9,32 @@ If you want to apply to receive access to our APIs, please visit https://develop
 .*_What TLS version is supported?_*
 [%collapsible]
 ====
+****
 We are using TLS 1.2 for the moment.
 ====
 .*_How do I take payments through the iZettle API?_*
 [%collapsible]
 ====
+****
 It is not possible to take payments through the API. However, we do have SDKs for both iOS (https://github.com/iZettle/sdk-ios) and Android (https://github.com/iZettle/sdk-android) which supports taking payments.
+
 ====
 .*_Do you provide any test or sandbox environment?_*
 [%collapsible]
 ====
+****
 Unfortunately we do not at this time, This is something we are working on to improve.
 ====
 .*_Does it cost anything to use your open APIs and is there some restriction on the API?_*
 [%collapsible]
 ====
+****
 No, its completely free to use our API and the only limitation is that some resources might have rate limiting enabled to ensure service stability.
 ====
 .*_Why do i receive `HTTP 100 Continue`  responses sometimes?_*
 [%collapsible]
 ====
+****
 This is something our framework sends when it has received the request headers and
 indicates that the client should proceed to send the request body. What you can do is investigate
  the reason why your code does this, or you could traverse the headers until
@@ -40,13 +46,15 @@ and https://stackoverflow.com/questions/2964687/how-to-handle-100-continue-http-
 .*_Once I have a Access token, how do I use it to authenticate myself?_*
 [%collapsible]
 ====
+****
 The Access token is passed through the `Authorization` header with the format:
 `Authorization: Bearer <Token>`. Also, note that on most services you can use the *_self_*
 filter instead of `{organizationUuid}`
 ====
-.*_Do I need my organization uuid when accessing some of the apis?_*
+.*_Do I need my organization uuid when accessing some of the APIs?_*
 [%collapsible]
 ====
+****
 You can either use the *_self_* filter: see this documentation for details on how, the other option is to call
 [source]
 --
@@ -63,12 +71,14 @@ Example response
 
 --
 See https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[OAuth] for more info.
-
 ====
+
 == Product Library
 .*_I'm using your API to create Products on iZettle, i have a problem when assigning images to products, i used the image API to create an image and it's working, but how to assign this image to the product i'm creating?_*
 [%collapsible]
 ====
+****
+
 [source,json]
 --
  "imageLookupKeys": [
@@ -95,16 +105,16 @@ Clarification examples:
       "imageUrl": "https://image.izettle.com/v2/images/o/Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEnQ.jpeg"
 }
 --
-
-
 ====
+
 == Image Service
 
-.*_I cannot upload images using byte arrays._*
+.*_I cannot upload images using byte arrays. Why?_*
 [%collapsible]
 ====
-In the Swagger documentation it specifies the data as a array of String, this is not true, make sure that
-The byte array is in the form:
+****
+In the Swagger documentation it specifies the data as an array of String, this is not true, make sure
+the byte array is in the following form:
 
 [source,json]
 --
