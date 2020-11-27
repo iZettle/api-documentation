@@ -1,78 +1,78 @@
-## Finance API
+= Finance API
 
-### Service Description
+== Service Description
 The Finance service contains information about monetary transactions where money has passed through iZettle, such transactions can be for example card payments, card fees and payouts to the customer. See the section "Account Transactions" below for details.
 
-### URL
+=== URL
 https://finance.izettle.com
 
-### API Documentation
+=== API Documentation
 https://finance.izettle.com/swagger
 
-### Scopes
+=== Scopes
 The Finance API implements the following scopes:
 
 - `READ:FINANCE`
 
----
-
-### Account Type Group
+=== Account Type Group
 The endpoints below can be called for either the `LIQUID` or `PRELIMINARY` account type groups. The `LIQUID` group contains transactions that has been cleared and is typically what is useful for an external integrator. The `PRELIMINARY` group contains transactions that are waiting to be cleared and there can exist several transactions for one single card payment in this group due to internal account movements.
 
-### Account Balance
+=== Account Balance
 `GET /organizations/us/accounts/{accountTypeGroup}/balance`
 
 accountTypeGroup:: Which accounts types to get data from. Either `LIQUID` or `PRELIMINARY`.
 until (optional):: used to get the balance at a specific point in history (ignoring any later transactions).
 
-#### Permissions Required
+==== Permissions Required
 `READ:FINANCE`
 
-#### Example Response
+==== Example Response
 `GET /organizations/us/accounts/PRELIMINARY/balance`
-
-```json
+[source,json]
 {
     "data": {
         "totalBalance": 106853,
         "currencyId": "SEK"
     }
 }
-```
 
-### Account Transactions
+=== Account Transactions
 `GET /organizations/us/accounts/{accountTypeGroup}/transactions`
 
 accountTypeGroup:: Which accounts types to get data from. Either `LIQUID` or `PRELIMINARY`.
-includeTransactionType:: Which transaction types to include. Multiple values allowed. Valid values:
-+
-CARD_PAYMENT::: References a card payment. Contains a reference to the card payment in the Purchase API.
-CARD_REFUND::: References a card refund. Will be accompanied by a CARD_PAYMENT_FEE_REFUND that will void the card fee. Contains a reference to the card payment refund in the Purchase API.
-BANK_ACCOUNT_VERIFICATION::: References a transaction which is a refund of the money transferred to the iZettle bank account as a verification of ownership of the nominated bank account, made by the merchant.
+includeTransactionType:: Which transaction types to include. Multiple values allowed.
+
+.Valid transaction types
+|===
+|Type |Description
+
+|CARD_PAYMENT |References a card payment. Contains a reference to the card payment in the Purchase API.
+|CARD_REFUND |References a card refund. Will be accompanied by a CARD_PAYMENT_FEE_REFUND that will void the card fee. Contains a reference to the card payment refund in the Purchase API.
+|BANK_ACCOUNT_VERIFICATION |References a transaction which is a refund of the money transferred to the iZettle bank account as a verification of ownership of the nominated bank account, made by the merchant.
 The transaction happens only when the merchant has nominated and verified a new bank account for payouts.
-PAYOUT::: A payout to the merchant's bank account.
-FAILED_PAYOUT::: A previous PAYOUT transaction has failed and is voided by this transaction (money going back to the merchant's liquid account at iZettle).
-CASHBACK::: Money given to a merchant to retroactively adjust the card payment fee rate.
-CASHBACK_PAYOUT::: (deprecated*) Direct payout of a cashback, effectively circumventing the normal flow via the liquid account.
-VOUCHER_ACTIVATION::: Used when activating a voucher (money is inserted to the merchant's fee discount account). These transactions will never appear in the `LIQUID` account.
-EMONEY_TRANSFER::: An internal transfer between two merchants' iZettle accounts. Only used in Sweden.
-TELL_FRIEND::: (deprecated*) Money given to a merchant for recommending iZettle.
-FROZEN_FUNDS::: In the event of a chargeback initiated by the issuing bank, funds will be removed from the merchant liquid account and marked as frozen, to cover the chargeback.
+|PAYOUT |A payout to the merchant's bank account.
+|FAILED_PAYOUT |A previous PAYOUT transaction has failed and is voided by this transaction (money going back to the merchant's liquid account at iZettle).
+|CASHBACK |Money given to a merchant to retroactively adjust the card payment fee rate.
+|CASHBACK_PAYOUT (deprecated*) |Direct payout of a cashback, effectively circumventing the normal flow via the liquid account.
+|VOUCHER_ACTIVATION |Used when activating a voucher (money is inserted to the merchant's fee discount account). These transactions will never appear in the `LIQUID` account.
+|EMONEY_TRANSFER |An internal transfer between two merchants' iZettle accounts. Only used in Sweden.
+|TELL_FRIEND (deprecated*) |Money given to a merchant for recommending iZettle.
+|FROZEN_FUNDS |In the event of a chargeback initiated by the issuing bank, funds will be removed from the merchant liquid account and marked as frozen, to cover the chargeback.
 If the chargeback is later revoked, the money will be returned to the merchants liquid account with a new, positive, transaction of the same type, effectively voiding the initial
 FROZEN_FUNDS transaction.
-FEE_DISCOUNT_REVOCATION::: An internal reclaim of outstanding fee discount money if the customer has not consumed the discount within a certain time frame. As these funds are reclaimed from a special fee discount account, the transaction will not be visible on the liquid account.
-CARD_PAYMENT_FEE::: References the commission part of a card payment.
-CARD_PAYMENT_FEE_REFUND::: References the commission part of a refund.
-ADVANCE::: References the cash advance given by iZettle to a merchant.
+|FEE_DISCOUNT_REVOCATION |An internal reclaim of outstanding fee discount money if the customer has not consumed the discount within a certain time frame. As these funds are reclaimed from a special fee discount account, the transaction will not be visible on the liquid account.
+|CARD_PAYMENT_FEE |References the commission part of a card payment.
+|CARD_PAYMENT_FEE_REFUND |References the commission part of a refund.
+|ADVANCE |References the cash advance given by iZettle to a merchant.
 A cash advance is a type of financing that is offered to merchant's based on their sales history. The advance is paid back with monthly down payments.
-ADVANCE_DOWNPAYMENT::: A down payment on a previously paid out cash advance.
-ADVANCE_FEE_DOWNPAYMENT::: References the netting of a cash advance fee.
-INVOICE_PAYMENT::: References an invoice payment.
-INVOICE_PAYMENT_FEE::: References an invoice payment fee.
-PAYMENT::: References an alternative, third-party, payment method where iZettle handles the funds.
-PAYMENT_FEE::: References the fee for a third-party payment method.
-ADJUSTMENT::: References a bookkeeping adjustment.
-
+|ADVANCE_DOWNPAYMENT |A down payment on a previously paid out cash advance.
+|ADVANCE_FEE_DOWNPAYMENT |References the netting of a cash advance fee.
+|INVOICE_PAYMENT |References an invoice payment.
+|INVOICE_PAYMENT_FEE |References an invoice payment fee.
+|PAYMENT |References an alternative, third-party, payment method where iZettle handles the funds.
+|PAYMENT_FEE |References the fee for a third-party payment method.
+|ADJUSTMENT |References a bookkeeping adjustment.
+|===
 deprecated* = These transaction types are no longer in use, but may appear in historic data.
 
 start:: A start point in time, limiting the result set (inclusive). Formatted as an ISO 8601 string.
@@ -81,13 +81,14 @@ limit (optional):: Limit the result set to X number of results.
 offset (optional):: Offset the result set by X number of results.
 
 
-#### Permissions Required
+==== Permissions Required
 `READ:FINANCE`
 
-#### Example Response
+==== Example Response
 `GET /organizations/us/accounts/LIQUID/transactions?start=2015-11-16&end=2015-11-17`
 
-```json
+[source,json]
+----
 {
     "data": [
         {
@@ -121,24 +122,26 @@ offset (optional):: Offset the result set by X number of results.
             "originatingTransactionUuid": "f4aa28a0-8c51-11e5-9b2e-94a4ee5f3593"
         }
         ...
-```
 
-### Link Finance Transactions With Card Purchases
+----
+
+=== Link Finance Transactions With Card Purchases
 Finance transactions of types `CARD_PAYMENT`, `CARD_PAYMENT_FEE`, `CARD_REFUND` and `CARD_PAYMENT_FEE_REFUND` can be linked using the field `originatingTransactionUuid` to a card purchase using the `cardPaymentUUID1` field of the payment if using the Purchase API v1 or the `uuid` field of the payment if using the Purchase API v2.
 
 In the case of other transaction types, the value of the `originatingTransactionUuid` is not linkable to a specific card purchase and is not useful for external integrators.
 
-### Payouts
+=== Payouts
 `GET /organizations/us/payout-info`
 
 at (optional):: Use to get payouts until a specific historic date. Formatted as an ISO 8601 string.
 
-#### Permissions Required
+=== Permissions Required
 `READ:FINANCE`
 
-#### Example Response
+=== Example Response
 `GET /organizations/us/payout-info`
-```json
+[source,json]
+----
 {
     "data": {
         "totalBalance": 475880,
@@ -148,4 +151,4 @@ at (optional):: Use to get payouts until a specific historic date. Formatted as 
         "periodicity": "DAILY"
     }
 }
-```
+----

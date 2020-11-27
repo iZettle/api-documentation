@@ -1,13 +1,13 @@
 == iZettle API Changelog
 
-.**2020-10-28** `documentation`
+.**Oct 28, 2020** `documentation`
 [%collapsible]
 ====
 **Apply a Beta label on any mention of API documentation**
 
 The current state of the API documentation leave plenty of room for improvement. We feel that in order to be transparent and set expectations right, we've applied a Beta label on any mention of the API documentation. In the meantime, we will be hard at work at improving the iZettle Developer Platform. Some examples of the ongoing work includes revisiting all OpenAPI (Swagger) specifications and making sure that no details are left out, and make more richer documentation available to the wider developer audience.
 ====
-.**2020-09-21** `documentation`
+.**Sep 21, 2020** `documentation`
 [%collapsible]
 ====
 Update documentation.
