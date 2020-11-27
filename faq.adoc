@@ -2,7 +2,7 @@
 
 
 ====
-If you want to apply to receive access to our APIs, please visit the https://developer.izettle.com/register[https://developer.izettle.com/register]
+If you want to apply to receive access to our APIs, please visit https://developer.izettle.com/register[https://developer.izettle.com/register]
 ====
 
 == General questions
@@ -14,7 +14,7 @@ We are using TLS 1.2 for the moment.
 .**How do I take payments through the iZettle API?**
 [%collapsible]
 ====
-It is not possible to take payments through the API. However we do have SDKs for both iOS (https://github.com/iZettle/sdk-ios) and Android (https://github.com/iZettle/sdk-android) which supports taking payments.
+It is not possible to take payments through the API. However, we do have SDKs for both iOS (https://github.com/iZettle/sdk-ios) and Android (https://github.com/iZettle/sdk-android) which supports taking payments.
 ====
 .**Do you provide any test or sandbox environment?**
 [%collapsible]
@@ -24,8 +24,7 @@ Unfortunately we do not at this time, This is something we are working on to imp
 .**Does it cost anything to use your open APIs and is there some restriction on the API?**
 [%collapsible]
 ====
-No, its completely free to use our API and the only limitation is that some resources and
-services might have rate-limiting enabled to prevent overload.
+No, its completely free to use our API and the only limitation is that some resources might have rate limiting enabled to ensure service stability.
 ====
 .**Why do i receive `HTTP 100 Continue`  responses sometimes?**
 [%collapsible]
@@ -42,7 +41,7 @@ and https://stackoverflow.com/questions/2964687/how-to-handle-100-continue-http-
 [%collapsible]
 ====
 The Access token is passed through the `Authorization` header with the format:
-`Authorization: Bearer <Token>`. Also note that on most services you can use the *_self_*
+`Authorization: Bearer <Token>`. Also, note that on most services you can use the *_self_*
 filter instead of `{organizationUuid}`
 ====
 .**Do I need my organization uuid when accessing some of the apis?**
