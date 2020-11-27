@@ -113,26 +113,3 @@ Clarification examples:
 --
 ****
 ====
-
-== Image Service
-
-.*_I cannot upload images using byte arrays. Why?_*
-[%collapsible]
-====
-****
-In the Swagger documentation it specifies the data as an array of String, this is not true, make sure
-the byte array is in the following form:
-
-[source,json]
---
-"imageData": [-1, -40, -1, -31, 0, 24, 69, 120, 105]
---
-
-and not:
-
-[source,json]
---
-"imageData": "[-1, -40, -1, -31, 0, 24, 69, 120, 105]"
---
-****
-====
