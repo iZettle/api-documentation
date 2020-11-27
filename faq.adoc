@@ -11,25 +11,28 @@ If you want to apply to receive access to our APIs, please visit https://develop
 ====
 ****
 We are using TLS 1.2 for the moment.
+****
 ====
 .*_How do I take payments through the iZettle API?_*
 [%collapsible]
 ====
 ****
 It is not possible to take payments through the API. However, we do have SDKs for both iOS (https://github.com/iZettle/sdk-ios) and Android (https://github.com/iZettle/sdk-android) which supports taking payments.
-
+****
 ====
 .*_Do you provide any test or sandbox environment?_*
 [%collapsible]
 ====
 ****
 Unfortunately we do not at this time, This is something we are working on to improve.
+****
 ====
 .*_Does it cost anything to use your open APIs and is there some restriction on the API?_*
 [%collapsible]
 ====
 ****
 No, its completely free to use our API and the only limitation is that some resources might have rate limiting enabled to ensure service stability.
+****
 ====
 .*_Why do i receive `HTTP 100 Continue`  responses sometimes?_*
 [%collapsible]
@@ -40,6 +43,7 @@ indicates that the client should proceed to send the request body. What you can 
  the reason why your code does this, or you could traverse the headers until
 you find a header with the intended response code, examples https://stackoverflow.com/questions/14526627/double-http-status-header-on-http-post-to-jersey[Here]
 and https://stackoverflow.com/questions/2964687/how-to-handle-100-continue-http-message[Here].
+****
 ====
 
 == OAuth
@@ -50,6 +54,7 @@ and https://stackoverflow.com/questions/2964687/how-to-handle-100-continue-http-
 The Access token is passed through the `Authorization` header with the format:
 `Authorization: Bearer <Token>`. Also, note that on most services you can use the *_self_*
 filter instead of `{organizationUuid}`
+****
 ====
 .*_Do I need my organization uuid when accessing some of the APIs?_*
 [%collapsible]
@@ -71,6 +76,7 @@ Example response
 
 --
 See https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[OAuth] for more info.
+****
 ====
 
 == Product Library
@@ -93,7 +99,7 @@ See https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[
 
 The image api will return a imageUrl back which can be directly put into the _presentation.imageUrl_ field, however we just introduced this and is not fully supported by the portal and the apps yet.  
 
-So if you only want to use the information outside of the iZettle apps you might want to use  _presentation.imageUrl_, otherwise use  _imageLookupKeys_ and strip away everything except the last part of the imageUrl and place for example `Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEmQ.jpeg` in the imageLookupKeys to be able to see the image in the izettle-apps.
+So if you only want to use the information outside of the iZettle apps you might want to use  _presentation.imageUrl_, otherwise use  _imageLookupKeys_ and strip away everything except the last part of the imageUrl and place for example `Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEmQ.jpeg` in the imageLookupKeys to be able to see the image in the iZettle apps.
 
 Clarification examples:
 [source,json]
@@ -105,6 +111,7 @@ Clarification examples:
       "imageUrl": "https://image.izettle.com/v2/images/o/Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEnQ.jpeg"
 }
 --
+****
 ====
 
 == Image Service
@@ -127,4 +134,5 @@ and not:
 --
 "imageData": "[-1, -40, -1, -31, 0, 24, 69, 120, 105]"
 --
+****
 ====
