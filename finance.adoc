@@ -25,7 +25,7 @@ https://finance.izettle.com
 
 |`organizationUUID`|_string_|_path_|_required_|Organization identifier as UUID or "self" to denote that the organization should be derived from the authenticated user.
 |`accountTypeGroup`|_string_|_path_|_required_|Which accounts types to get data from. Valid value `LIQUID` or `PRELIMINARY`.
-|`at`|_string_|_path_|_optional_|Used to get the balance at a specific point in history (ignoring any later transactions). Formatted as an ISO 8601 string.
+|`at`|_string_|_query_|_optional_|Used to get the balance at a specific point in history (ignoring any later transactions). Formatted as an ISO 8601 string.
 |===
 
 **Example responses:**
