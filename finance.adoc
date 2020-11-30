@@ -79,10 +79,10 @@ The transaction happens only when the merchant has nominated and verified a new 
 |PAYOUT |A payout to the merchant's bank account.
 |FAILED_PAYOUT |A previous PAYOUT transaction has failed and is voided by this transaction (money going back to the merchant's liquid account at iZettle).
 |CASHBACK |Money given to a merchant to retroactively adjust the card payment fee rate.
-|[.line-through]#CASHBACK_PAYOUT# |Direct payout of a cashback, effectively circumventing the normal flow via the liquid account *(Deprecated)*.
+|+++<s>CASHBACK_PAYOUT</s>+++ |Direct payout of a cashback, effectively circumventing the normal flow via the liquid account *(Deprecated)*.
 |VOUCHER_ACTIVATION |Used when activating a voucher (money is inserted to the merchant's fee discount account). These transactions will never appear in the `LIQUID` account.
 |EMONEY_TRANSFER |An internal transfer between two merchants' iZettle accounts. Only used in Sweden.
-|[.line-through]#TELL_FRIEND# |Money given to a merchant for recommending iZettle *(Deprecated)*.
+|+++<s>TELL_FRIEND</s>+++ |Money given to a merchant for recommending iZettle *(Deprecated)*.
 |FROZEN_FUNDS |In the event of a chargeback initiated by the issuing bank, funds will be removed from the merchant liquid account and marked as frozen, to cover the chargeback.
 If the chargeback is later revoked, the money will be returned to the merchants liquid account with a new, positive, transaction of the same type, effectively voiding the initial
 FROZEN_FUNDS transaction.
