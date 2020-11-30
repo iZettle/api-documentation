@@ -29,7 +29,7 @@ https://finance.izettle.com
 |===
 
 **Example responses:**
-
+`GET /organizations/self/accounts/LIQUID/balance`
 `Status: 200 OK`
 
 [source,json]
@@ -103,7 +103,7 @@ NOTE: _**Deprecated** transaction types are no longer in use, but may appear in 
 
 *Example responses:*
 
-`GET /organizations/{organizationUUID}/accounts/LIQUID/transactions?start=2015-11-16&end=2015-11-17`
+`GET /organizations/self/accounts/LIQUID/transactions?start=2015-11-16&end=2015-11-17`
 
 [source,json]
 ----
@@ -171,7 +171,7 @@ In the case of other transaction types, the value of the `originatingTransaction
 
 *Example responses:*
 
-`GET /organizations/{organizationUUID}/payout-info`
+`GET /organizations/self/payout-info`
 
 `Status:  200 OK`
 [source,json]
