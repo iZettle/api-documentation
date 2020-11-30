@@ -4,11 +4,11 @@
 == Description
 ====
 Image API allows upload of product images to be stored and used within iZettle applications.
-The service returns an `imageUrl` that can be added to a desired product using the Product Library API.
-The images can be uploaded using a byte array or a static URL, the image will be eventually available for lookup from
+The API returns an `imageUrl` that can be added to a desired product using the Product Library API.
+Images can be uploaded using a byte array or a static URL, the image will be eventually available for look up from
 within iZettle apps or via `imageUrls` returned by the API.
 
-NOTE: JPG does not exist as an imageFormat, you must use JPEG for .jpg images.
+NOTE: JPG does not exist as `imageFormat`, you must use "JPEG" for .jpg images.
 
 ====
 
@@ -16,7 +16,7 @@ NOTE: JPG does not exist as an imageFormat, you must use JPEG for .jpg images.
 https://image.izettle.com
 
 === OAuth scopes
-- `WRITE:PRODUT`
+- `WRITE:PRODUCT`
 
 *Parameters:*
 
@@ -26,8 +26,8 @@ https://image.izettle.com
 
 |`imageFormat`|_string_|_body_|*_required_*|Image format of the picture [BMP,GIF,JPEG,PNG,TIFF]`.
 |`imageData`|_string_|_body_|_optional_|The image as a byte array.
-|`imageUrl`|_string_|_body_|_optional_|URL to an existing image.
-|`imageLookupKey`|_string_|_body_|_optional_|Lookup key.
+|`imageUrl|_string_|_body_|_optional_|URL to an existing image.
+|`imageLookupKey`|_string_|_body_|_optional_|Image lookup key.
 |===
 
 NOTE: Either `imageData` or `imageUrl must be present, but not both.
@@ -41,7 +41,6 @@ NOTE: Either `imageData` or `imageUrl must be present, but not both.
 ----
 {
   "imageFormat": "JPEG",
-  "imageData": "",
   "imageUrl": "https://example.com/image.jpg"
 }
 ----
