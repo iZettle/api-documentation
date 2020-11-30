@@ -103,7 +103,7 @@ NOTE: _**Deprecated** transaction types are no longer in use, but may appear in 
 
 *Example responses:*
 
-`GET /organizations/us/accounts/LIQUID/transactions?start=2015-11-16&end=2015-11-17`
+`GET /organizations/{organizationUUID}/accounts/LIQUID/transactions?start=2015-11-16&end=2015-11-17`
 
 [source,json]
 ----
