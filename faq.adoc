@@ -24,14 +24,14 @@ It is not possible to take payments through the API. However, we do have SDKs fo
 [%collapsible]
 ====
 ****
-Unfortunately we do not at this time, This is something we are working on to improve.
+Unfortunately we do not at this time.
 ****
 ====
 .*_Does it cost anything to use your open APIs and is there some restriction on the API?_*
 [%collapsible]
 ====
 ****
-No, its completely free to use our API and the only limitation is that some resources might have rate limiting enabled to ensure service stability.
+No, it is completely free to use our API and the only limitation is that some resources might have rate limiting enabled to ensure service stability.
 ****
 ====
 .*_Why do i receive `HTTP 100 Continue`  responses sometimes?_*
@@ -41,8 +41,8 @@ No, its completely free to use our API and the only limitation is that some reso
 This is something our framework sends when it has received the request headers and
 indicates that the client should proceed to send the request body. What you can do is investigate
  the reason why your code does this, or you could traverse the headers until
-you find a header with the intended response code, examples https://stackoverflow.com/questions/14526627/double-http-status-header-on-http-post-to-jersey[Here]
-and https://stackoverflow.com/questions/2964687/how-to-handle-100-continue-http-message[Here].
+you find a header with the intended response code, examples https://stackoverflow.com/questions/14526627/double-http-status-header-on-http-post-to-jersey[here]
+and https://stackoverflow.com/questions/2964687/how-to-handle-100-continue-http-message[here].
 ****
 ====
 
@@ -56,7 +56,7 @@ The Access token is passed through the `Authorization` header with the format:
 filter instead of `{organizationUuid}`
 ****
 ====
-.*_Do I need my organization uuid when accessing some of the APIs?_*
+.*_Do I need my organization UUID when accessing some of the APIs?_*
 [%collapsible]
 ====
 ****
