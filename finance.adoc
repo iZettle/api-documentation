@@ -17,18 +17,19 @@ https://finance.izettle.com
 [%collapsible]
 ====
 
-**Parameters:**
+*Parameters:*
 
 [grid="none", frame="none", cols="20%,10%,10%,10%,50%"]
 |===
 |Name|Type|In|Required/Optional|Description
 
-|`organizationUUID`|_string_|_path_|_required_|Organization identifier as UUID or "self" to denote that the organization should be derived from the authenticated user.
-|`accountTypeGroup`|_string_|_path_|_required_|Which accounts types to get data from. Valid value `LIQUID` or `PRELIMINARY`.
+|`organizationUUID`|_string_|_path_|*_required_*|Organization identifier as UUID or "self" to denote that the organization should be derived from the authenticated user.
+|`accountTypeGroup`|_string_|_path_|*_required_*|Which accounts types to get data from. Valid value `LIQUID` or `PRELIMINARY`.
 |`at`|_string_|_query_|_optional_|Used to get the balance at a specific point in history (ignoring any later transactions). Formatted as an ISO 8601 string.
 |===
 
-**Example responses:**
+*Example responses:*
+
 `GET /organizations/self/accounts/LIQUID/balance`
 `Status: 200 OK`
 
@@ -51,16 +52,16 @@ https://finance.izettle.com
 [%collapsible]
 ====
 
-**Parameters:**
+*Parameters:*
 
 [grid="none", frame="none" cols="20%,10%,10%,10%,50%"]
 |===
 |Name|Type|In|Required/Optional|Description
 
-|`organizationUUID`|_string_|_path_|_required_|Organization identifier as UUID or "self" to denote that the organization should be derived from the authenticated user.
-|`accountTypeGroup`|_string_|_path_|_required_|Which accounts types to get data from. Either `LIQUID` or `PRELIMINARY`
-|`start`|_string_|_query_|_required_|A start point in time, limiting the result set (inclusive). Formatted as an ISO 8601 string.
-|`end`|_string_|_query_|_required_|An end point in time, limiting the result set (exclusive). Formatted as an ISO 8601 string.
+|`organizationUUID`|_string_|_path_|*_required_*|Organization identifier as UUID or "self" to denote that the organization should be derived from the authenticated user.
+|`accountTypeGroup`|_string_|_path_|*_required_*|Which accounts types to get data from. Either `LIQUID` or `PRELIMINARY`
+|`start`|_string_|_query_|*_required_*|A start point in time, limiting the result set (inclusive). Formatted as an ISO 8601 string.
+|`end`|_string_|_query_|*_required_*|An end point in time, limiting the result set (exclusive). Formatted as an ISO 8601 string.
 |`includeTransactionType`|_array_|_query_|_optional_|Which transaction types to include. Multiple values allowed. See table _"Valid transaction types"_ below.
 |`limit`|_integer_|query|optional|Limit the result set to X number of results.
 |`offset`|integer|query|optional|Offset the result set by X number of results.
@@ -99,7 +100,7 @@ A cash advance is a type of financing that is offered to merchants based on thei
 |PAYMENT_FEE |References the fee for a third-party payment method.
 |ADJUSTMENT |References a bookkeeping adjustment.
 |===
-NOTE: _**Deprecated** transaction types are no longer in use, but may appear in historic data._
+NOTE: *_Deprecated_* transaction types are no longer in use, but may appear in historic data._
 
 *Example responses:*
 
@@ -165,7 +166,7 @@ In the case of other transaction types, the value of the `originatingTransaction
 |===
 |Name|Type|In|Required/Optional|Description
 
-|`organizationUUID`|_string_|_path_|_required_|Organization identifier as UUID or "self" to denote that the organization should be derived from the authenticated user.
+|`organizationUUID`|_string_|_path_|*_required_*|Organization identifier as UUID or `self to denote that the organization should be derived from the authenticated user.
 |`at`|_string_|_query_|_optional_|Used to get payouts until a specific historic date. Formatted as an ISO 8601 string.
 |===
 

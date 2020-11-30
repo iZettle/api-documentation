@@ -1,35 +1,55 @@
-## Image Service API
 
-### Service Description
-Image Service API allows uploading of product images to be stored and used within the iZettle applications.
-The service returns a `imageUrl` that can be added to a desired product using the Product Library API.
+= Image API
+
+== Description
+====
+Image API allows upload of product images to be stored and used within iZettle applications.
+The service returns an `imageUrl` that can be added to a desired product using the Product Library API.
 The images can be uploaded using a byte array or a static URL, the image will be eventually available for lookup from
-within the iZettle apps or via the `imageUrls` returned by the service (See Swagger documentation for upload restrictions).
+within iZettle apps or via `imageUrls` returned by the API.
 
-`NOTE: JPG does not exist as an imageFormat, you must use JPEG for .jpg images`
+NOTE: JPG does not exist as an imageFormat, you must use JPEG for .jpg images.
 
-### URL
-https://image.izettle.com/v2/images
+====
 
-### API Documentation
-https://image.izettle.com/swagger
+=== URL
+https://image.izettle.com
 
----
+=== OAuth scopes
+- `WRITE:PRODUT`
 
-### Example Request
+*Parameters:*
 
-`POST https://image.izettle.com/v2/images/organizations/{organizationUuid}/products`
-```json
+[grid="none", frame="none", cols="20%,10%,10%,10%,50%"]
+|===
+|Name|Type|In|Required/Optional|Description
+
+|`imageFormat`|_string_|_body_|*_required_*|Image format of the picture [BMP,GIF,JPEG,PNG,TIFF]`.
+|`imageData`|_string_|_body_|_optional_|The image as a byte array.
+|`imageUrl`|_string_|_body_|_optional_|URL to an existing image.
+|`imageLookupKey`|_string_|_body_|_optional_|Lookup key.
+|===
+
+NOTE: Either `imageData` or `imageUrl must be present, but not both.
+
+=== Examples:
+
+*Request:*
+
+`POST /v2/images/organizations/{organizationUuid}/products`
+[source, json]
+----
 {
   "imageFormat": "JPEG",
-  "imageData": null,
+  "imageData": "",
   "imageUrl": "https://example.com/image.jpg"
 }
-```
+----
 
-### Example Response
+*Response:*
 
-```json
+[source, json]
+----
 {
   "imageLookupKey": "0SFqIEwSEeWQb_kt6ixqNQ-10TukFTMEaekExOP02bdsw.jpeg",
   "imageUrls": [
@@ -37,7 +57,7 @@ https://image.izettle.com/swagger
     "https://image.izettle.com/productimage/L/0SFqIEwSEeWQb_kt6ixqNQ-10TukFTMEaekExOP02bdsw.jpeg"
   ]
 }
-```
+----
 Where `o` is a `2000*2000px` and `L` is a `560*560px` image.
 
 To apply this uploaded image on a product, use the first URL provided in the `imageUrls` array.
