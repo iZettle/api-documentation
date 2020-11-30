@@ -66,7 +66,8 @@ https://finance.izettle.com
 |`offset`|integer|query|optional|Offset the result set by X number of results.
 
 |===
-.Valid transaction types
+
+._Valid transaction types_
 [grid="none", frame="none" cols="30%,70%"]
 |===
 |Type|Description
@@ -98,7 +99,7 @@ A cash advance is a type of financing that is offered to merchants based on thei
 |PAYMENT_FEE |References the fee for a third-party payment method.
 |ADJUSTMENT |References a bookkeeping adjustment.
 |===
-NOTE: *Deprecated* transaction types are no longer in use, but may appear in historic data._
+NOTE: _**Deprecated** transaction types are no longer in use, but may appear in historic data._
 
 *Example responses:*
 
