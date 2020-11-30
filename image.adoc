@@ -26,11 +26,11 @@ https://image.izettle.com
 
 |`imageFormat`|_string_|_body_|*_required_*|Image format of the picture [BMP,GIF,JPEG,PNG,TIFF]`.
 |`imageData`|_string_|_body_|_optional_|The image as a byte array.
-|`imageUrl|_string_|_body_|_optional_|URL to an existing image.
+|`imageUrl`|_string_|_body_|_optional_|URL to an existing image.
 |`imageLookupKey`|_string_|_body_|_optional_|Image lookup key.
 |===
 
-NOTE: Either `imageData` or `imageUrl` must be present, but not both.
+NOTE: Either `imageData` or `imageUrl must be present, but not both.
 
 === Examples:
 
