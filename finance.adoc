@@ -59,9 +59,9 @@ https://finance.izettle.com
 
 |`organizationUUID`|_string_|_path_|_required_|Organization identifier as UUID or "self" to denote that the organization should be derived from the authenticated user.
 |`accountTypeGroup`|_string_|_path_|_required_|Which accounts types to get data from. Either `LIQUID` or `PRELIMINARY`
-|`includeTransactionType`|_array_|_query_|_optional_|Which transaction types to include. Multiple values allowed. See table _"Valid transaction types"_ below.
 |`start`|_string_|_query_|_required_|A start point in time, limiting the result set (inclusive). Formatted as an ISO 8601 string.
 |`end`|_string_|_query_|_required_|An end point in time, limiting the result set (exclusive). Formatted as an ISO 8601 string.
+|`includeTransactionType`|_array_|_query_|_optional_|Which transaction types to include. Multiple values allowed. See table _"Valid transaction types"_ below.
 |`limit`|_integer_|query|optional|Limit the result set to X number of results.
 |`offset`|integer|query|optional|Offset the result set by X number of results.
 
