@@ -30,7 +30,7 @@ https://image.izettle.com
 |`imageLookupKey`|_string_|_body_|_optional_|Image lookup key.
 |===
 
-NOTE: Either `imageData` or `imageUrl must be present, but not both.
+NOTE: Either `imageData` or `imageUrl` must be present, but not both.
 
 === Examples:
 
