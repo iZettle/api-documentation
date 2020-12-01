@@ -31,6 +31,7 @@ https://finance.izettle.com
 *Example responses:*
 
 `GET /organizations/self/accounts/LIQUID/balance`
+
 `Status: 200 OK`
 
 [source,json]
@@ -100,7 +101,7 @@ A cash advance is a type of financing that is offered to merchants based on thei
 |PAYMENT_FEE |References the fee for a third-party payment method.
 |ADJUSTMENT |References a bookkeeping adjustment.
 |===
-NOTE: *_Deprecated_* transaction types are no longer in use, but may appear in historic data._
+NOTE: *_Deprecated_* transaction types are no longer in use, but may appear in historic data.
 
 *Example responses:*
 
