@@ -1,31 +1,42 @@
-## Giftcard API
+== Giftcard API
 
-### Service Description
-The Giftcard API provides extra information about purchases made through iZettle with a giftcard.
+=== Description
+====
+Giftcard API provides extra information about purchases made through iZettle with a gift card.
+====
 
-### URL
+=== URL
 https://giftcard.izettle.com
 
-### Scopes
-The Giftcard API implements the following scopes:
-
+=== OAuth Scopes
 - `READ:PURCHASE`
 
-### Get Giftcard details
+==== Fetch gift card
 
 `GET organizations/self/giftcards/external/{uuid}`
 
-#### Permissions required
-`READ:PURCHASE`
+|===
+|Name|Type|In|Required/Optional|Description
 
-uuid:: The UUID of the giftcard
+|`uuid`|string|path|required|Unique id as `UUID`.
+|===
 
-#### Errors
-404:: Giftcard not found
 
-#### Example response
+*Examples*
+
+1. Fetch gift card information by uuid.
++
+====
+_Request:_
+
 `GET /organizations/self/giftcards/external/e876c3ae-750d-4638-b98a-78868a434b89`
-```json
+
+_Response:_
+
+`Status: 200 OK`
+
+[source, json]
+--
 {
   "uuid": "e876c3ae-750d-4638-b98a-78868a434b89",
   "created": "2015-02-08",
@@ -33,14 +44,29 @@ uuid:: The UUID of the giftcard
   "initialAmount": 1500,
   "remainingAmount": 900
 }
-```
 
-### Giftcards
+--
+====
 
-=== Giftcard attributes
-The `giftcards` data type only contain a few generic parameters such as `uuid`, `amount` and `dates`.
+2. Gift card with given uuid is not found.
++
+====
+_Request:_
 
-- `created` the date that the giftcard was created
-- `validTo` once this date has passed the giftcard will be expired and can no longer be used. If the value is null, giftcard will never expire.
-- `initialAmount` the amount that the giftcard was initially loaded with
-- `remainingAmount` current balance of the giftcard
+`GET /organizations/self/giftcards/external/e876c3ae-750d-4638-b98a-78868a434b89`
+
+_Response:_
+
+`Status: 404 Not found`
+====
+
+
+===== Gift card attributes
+|===
+|Name|Type|Description
+
+|`created`|string|The date that the gift card was created.
+|`validTo`|string|Once this date has passed the gift card will be expired and can no longer be used. If the value is `null`, gift card will never expire.
+|`initialAmount`|integer|The amount that the gift card was initially loaded with in minors(cents).
+|`remainingAmount`|integer|Current balance of the gift card in minors(cents).
+|===
