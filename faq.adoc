@@ -6,35 +6,35 @@ If you want to apply to receive access to our APIs, please visit https://develop
 ====
 
 == General questions
-.*_What TLS version is supported?_*
+.*What TLS version is supported?*
 [%collapsible]
 ====
 ****
 We are using TLS 1.2 for the moment.
 ****
 ====
-.*_How do I take payments through the iZettle API?_*
+.*How do I take payments through the iZettle API?*
 [%collapsible]
 ====
 ****
 It is not possible to take payments through the API. However, we do have SDKs for both iOS (https://github.com/iZettle/sdk-ios) and Android (https://github.com/iZettle/sdk-android) which supports taking payments.
 ****
 ====
-.*_Do you provide any test or sandbox environment?_*
+.*Do you provide any test or sandbox environment?*
 [%collapsible]
 ====
 ****
 Unfortunately we do not at this time.
 ****
 ====
-.*_Does it cost anything to use your open APIs and is there some restriction on the API?_*
+.*Does it cost anything to use your open APIs and is there some restriction on the API?*
 [%collapsible]
 ====
 ****
 No, it is completely free to use our API and the only limitation is that some resources might have rate limiting enabled to ensure service stability.
 ****
 ====
-.*_Why do i receive `HTTP 100 Continue`  responses sometimes?_*
+.*Why do i receive `HTTP 100 Continue`  responses sometimes?*
 [%collapsible]
 ====
 ****
@@ -47,7 +47,7 @@ and https://stackoverflow.com/questions/2964687/how-to-handle-100-continue-http-
 ====
 
 == OAuth
-.*_Once I have a Access token, how do I use it to authenticate myself?_*
+.*Once I have a Access token, how do I use it to authenticate myself?*
 [%collapsible]
 ====
 ****
@@ -56,7 +56,7 @@ The Access token is passed through the `Authorization` header with the format:
 filter instead of `{organizationUuid}`
 ****
 ====
-.*_Do I need my organization UUID when accessing some of the APIs?_*
+.*Do I need my organization UUID when accessing some of the APIs?*
 [%collapsible]
 ====
 ****
@@ -80,7 +80,7 @@ See https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[
 ====
 
 == Product Library
-.*_I'm using your API to create Products on iZettle, i have a problem when assigning images to products, i used the image API to create an image and it's working, but how to assign this image to the product i'm creating?_*
+.*I'm using your API to create Products on iZettle, i have a problem when assigning images to products, i used the image API to create an image and it's working, but how to assign this image to the product i'm creating?*
 [%collapsible]
 ====
 ****
