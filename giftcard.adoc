@@ -11,6 +11,8 @@ https://giftcard.izettle.com
 === OAuth Scopes
 - `READ:PURCHASE`
 
+'''
+
 ==== Fetch gift card
 
 `GET organizations/self/giftcards/external/{uuid}`
