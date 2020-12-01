@@ -103,7 +103,7 @@ A cash advance is a type of financing that is offered to merchants based on thei
 |===
 NOTE: _**Deprecated** transaction types are no longer in use, but may appear in historic data._
 
-*Examples:*
+*Examples*
 
 1. Fetching all transactions for `LIQUID` account.
 +
@@ -182,7 +182,7 @@ In the case of other transaction types, the value of the `originatingTransaction
 |`at`|_string_|_query_|_optional_|Used to get payouts until a specific historic date. Formatted as an ISO 8601 string.
 |===
 
-*Examples:*
+*Examples*
 
 1. Fetching payout info.
 +
