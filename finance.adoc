@@ -12,7 +12,7 @@ https://finance.izettle.com
 
 '''
 
-=== Account balance
+==== Account balance
 `GET /organizations/{organizationUUID}/accounts/{accountTypeGroup}/balance`
 [%collapsible]
 ====
@@ -56,7 +56,7 @@ _Example response:_
 
 ====
 
-=== Account transactions
+==== Account transactions
 `GET /organizations/{organizationUUID}/accounts/{accountTypeGroup}/transactions`
 [%collapsible]
 ====
@@ -110,8 +110,8 @@ A cash advance is a type of financing that is offered to merchants based on thei
 |ADJUSTMENT |References a bookkeeping adjustment.
 |===
 
-[NOTE]
-**Deprecated** transaction types are no longer in use, but may appear in historic data.
+
+Note: **Deprecated** transaction types are no longer in use, but may appear in historic data.
 
 *Examples*
 
@@ -177,7 +177,7 @@ In the case of other transaction types, the value of the `originatingTransaction
 
 ====
 
-=== Payouts
+==== Payouts
 `GET /organizations/{organizationUUID}/payout-info`
 
 [%collapsible]
