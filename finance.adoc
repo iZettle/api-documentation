@@ -28,9 +28,16 @@ https://finance.izettle.com
 |`at`|_string_|_query_|_optional_|Used to get the balance at a specific point in history (ignoring any later transactions). Formatted as an ISO 8601 string.
 |===
 
-*Example responses:*
+*Examples*
+
+1. Fetching balance for `LIQUID` account.
++
+--
+_Example request:_
 
 `GET /organizations/self/accounts/LIQUID/balance`
+
+_Example response:_
 
 `Status: 200 OK`
 
