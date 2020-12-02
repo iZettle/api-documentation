@@ -11,15 +11,25 @@ https://finance.izettle.com
 - `READ:FINANCE`
 
 '''
+==== Account type group
 
-==== Account balance
+[grid="none", frame="none", cols="30%,70%"]
+
+|===
+|Account type group |Description
+
+|`LIQUID`|Contains transactions that has been cleared and is typically what is useful for an external integrator.
+|`PRELIMINARY`|Contains transactions that are waiting to be cleared and there can exist several transactions for one single card payment in this group due to internal account movements.
+|===
+
+==== Fetch account balance
 `GET /organizations/{organizationUUID}/accounts/{accountTypeGroup}/balance`
 [%collapsible]
 ====
 
 *Parameters*
 
-[grid="none", frame="none", cols="20%,10%,10%,10%,50%"]
+[grid="none", border="none", cols="20%,10%,10%,10%,50%"]
 |===
 |Name|Type|In|Required/Optional|Description
 
@@ -56,7 +66,7 @@ _Example response:_
 
 ====
 
-==== Account transactions
+==== Fetch account transactions
 `GET /organizations/{organizationUUID}/accounts/{accountTypeGroup}/transactions`
 [%collapsible]
 ====
@@ -77,17 +87,17 @@ _Example response:_
 
 |===
 
-._Valid transaction types_
+*Valid transaction types*
 [grid="none", frame="none" cols="30%,70%"]
 |===
 |Type|Description
 
 |CARD_PAYMENT|References a card payment. Contains a reference to the card payment in the Purchase API.
-|CARD_REFUND |References a card refund. Will be accompanied by a CARD_PAYMENT_FEE_REFUND that will void the card fee. Contains a reference to the card payment refund in the Purchase API.
+|CARD_REFUND |References a card refund. Will be accompanied by a `CARD_PAYMENT_FEE_REFUND` that will void the card fee. Contains a reference to the card payment refund in the Purchase API.
 |BANK_ACCOUNT_VERIFICATION |References a transaction which is a refund of the money transferred to the iZettle bank account as a verification of ownership of the nominated bank account, made by the merchant.
 The transaction happens only when the merchant has nominated and verified a new bank account for payouts.
 |PAYOUT |A payout to the merchant's bank account.
-|FAILED_PAYOUT |A previous PAYOUT transaction has failed and is voided by this transaction (money going back to the merchant's liquid account at iZettle).
+|FAILED_PAYOUT |A previous `PAYOUT` transaction has failed and is voided by this transaction (money going back to the merchant's liquid account at iZettle).
 |CASHBACK |Money given to a merchant to retroactively adjust the card payment fee rate.
 |+++<s>CASHBACK_PAYOUT</s>+++ |Direct payout of a cashback, effectively circumventing the normal flow via the liquid account *(Deprecated)*.
 |VOUCHER_ACTIVATION |Used when activating a voucher (money is inserted to the merchant's fee discount account). These transactions will never appear in the `LIQUID` account.
@@ -105,13 +115,19 @@ A cash advance is a type of financing that is offered to merchants based on thei
 |ADVANCE_FEE_DOWNPAYMENT |References the netting of a cash advance fee.
 |INVOICE_PAYMENT |References an invoice payment.
 |INVOICE_PAYMENT_FEE |References an invoice payment fee.
-|PAYMENT |References an alternative, third-party, payment method where iZettle handles the funds.
-|PAYMENT_FEE |References the fee for a third-party payment method.
+|PAYMENT |References an alternative, third-party, payment method where iZettle handles the funds e.g `Klarna QR code`(Sweden).
+|PAYMENT_FEE |References the fee for a third-party payment method e.g `PayPal QR code`(only DE and FR).
 |ADJUSTMENT |References a bookkeeping adjustment.
 |===
 
 
 Note: **Deprecated** transaction types are no longer in use, but may appear in historic data.
+
+*Link transactions with card purchases.*
+
+Finance transactions of types `CARD_PAYMENT`, `CARD_PAYMENT_FEE`, `CARD_REFUND` and `CARD_PAYMENT_FEE_REFUND` can be linked using the field `originatingTransactionUuid` to a card purchase using the `cardPaymentUUID1` field of the payment if using the Purchase API v1 or the `uuid` field of the payment if using the Purchase API v2.
+In the case of other transaction types, the value of the `originatingTransactionUuid` is not linkable to a specific card purchase and is not useful for external integrators.
+
 
 *Examples*
 
@@ -120,7 +136,7 @@ Note: **Deprecated** transaction types are no longer in use, but may appear in h
 --
 _Example request:_
 
-`GET /organizations/self/accounts/LIQUID/transactions?start=2015-11-16&end=2015-11-17`
+`GET /organizations/self/accounts/LIQUID/transactions?start=2020-01-01&end=2020-12-01`
 
 
 _Example response:_
@@ -128,56 +144,55 @@ _Example response:_
 [source,json]
 ----
 {
-    "data": [
-        {
-            "timestamp": "2015-11-16T23:47:31.305Z",
-            "amount": -96,
-            "originatorTransactionType": "CARD_PAYMENT_FEE",
-            "originatingTransactionUuid": "488fcee0-8c73-11e5-8ae2-edcaeca65169"
-        },
-        {
-            "timestamp": "2015-11-16T23:47:31.272Z",
-            "amount": 3500,
-            "originatorTransactionType": "CARD_PAYMENT",
-            "originatingTransactionUuid": "488fcee0-8c73-11e5-8ae2-edcaeca65169"
-        },
-        {
-            "timestamp": "2015-11-16T23:47:31.256Z",
-            "amount": -220,
-            "originatorTransactionType": "CARD_PAYMENT_FEE",
-            "originatingTransactionUuid": "29646380-8c52-11e5-8341-b55acee48cd7"
-        },
-        {
-            "timestamp": "2015-11-16T23:47:31.232Z",
-            "amount": 8000,
-            "originatorTransactionType": "CARD_PAYMENT",
-            "originatingTransactionUuid": "29646380-8c52-11e5-8341-b55acee48cd7"
-        },
-        {
-            "timestamp": "2015-11-16T23:47:31.219Z",
-            "amount": -275,
-            "originatorTransactionType": "CARD_PAYMENT_FEE",
-            "originatingTransactionUuid": "f4aa28a0-8c51-11e5-9b2e-94a4ee5f3593"
-        }
-    ]
+  "data": [
+    {
+      "timestamp": "2020-11-29T03:10:02.194+0000",
+      "amount": 225,
+      "originatorTransactionType": "PAYMENT_FEE",
+      "originatingTransactionUuid": "68fafe9a-309f-11eb-aafa-22dcd4200d78"
+    },
+    {
+      "timestamp": "2020-11-29T03:10:02.191+0000",
+      "amount": -22540,
+      "originatorTransactionType": "PAYMENT",
+      "originatingTransactionUuid": "68fafe9a-309f-11eb-aafa-22dcd4200d78"
+    },
+    {
+      "timestamp": "2020-05-16T22:11:35.065+0000",
+      "amount": -1511,
+      "originatorTransactionType": "CARD_REFUND",
+      "originatingTransactionUuid": "eea515fe-9751-11ea-ab0b-700ecd436e96"
+    },
+    {
+      "timestamp": "2020-05-16T22:11:35.065+0000",
+      "amount": 42,
+      "originatorTransactionType": "CARD_PAYMENT_FEE_REFUND",
+      "originatingTransactionUuid": "eea515fe-9751-11ea-ab0b-700ecd436e96"
+    },
+    {
+      "timestamp": "2020-04-08T15:10:12.950+0000",
+      "amount": 1600,
+      "originatorTransactionType": "CARD_PAYMENT",
+      "originatingTransactionUuid": "0a0b8188-7584-11ea-9d37-448925a0280d"
+    },
+    {
+      "timestamp": "2020-04-08T15:10:12.967+0000",
+      "amount": -44,
+      "originatorTransactionType": "CARD_PAYMENT_FEE",
+      "originatingTransactionUuid": "0a0b8188-7584-11ea-9d37-448925a0280d"
+    }
+  ]
 }
 
 ----
 --
 +
 
-
-*Link transactions with card purchases.*
-
-Finance transactions of types `CARD_PAYMENT`, `CARD_PAYMENT_FEE`, `CARD_REFUND` and `CARD_PAYMENT_FEE_REFUND` can be linked using the field `originatingTransactionUuid` to a card purchase using the `cardPaymentUUID1` field of the payment if using the Purchase API v1 or the `uuid` field of the payment if using the Purchase API v2.
-
-In the case of other transaction types, the value of the `originatingTransactionUuid` is not linkable to a specific card purchase and is not useful for external integrators.
-
 '''
 
 ====
 
-==== Payouts
+==== Fetch payout information
 `GET /organizations/{organizationUUID}/payout-info`
 
 [%collapsible]
