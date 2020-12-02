@@ -2,9 +2,9 @@
 
 == Description
 ====
-Finance APIs return information about monetary transactions where money has passed through iZettle, such transactions can be e.g. card payments, card fees and payouts to the merchant.
+Finance API return information about monetary transactions where money has passed through iZettle, such transactions can be e.g. card payments, card fees and payouts to the merchant.
 ====
-=== URL
+=== Base URL
 https://finance.izettle.com
 
 === OAuth scopes
@@ -18,8 +18,8 @@ https://finance.izettle.com
 |===
 |Account type group|Description
 
-|`LIQUID`|Contains transactions that has been cleared and is typically what is useful for an external integrator.
-|`PRELIMINARY`|Contains transactions that are waiting to be cleared and there can exist several transactions for one single card payment in this group due to internal account movements.
+|LIQUID|Contains transactions that has been cleared and is typically what is useful for an external integrator.
+|PRELIMINARY|Contains transactions that are waiting to be cleared and there can exist several transactions for one single card payment in this group due to internal account movements.
 |===
 
 ==== Fetch account balance
@@ -33,21 +33,21 @@ https://finance.izettle.com
 |===
 |Name|Type|In|Required/Optional|Description
 
-|`organizationUUID`|string|path|required|Organization identifier as UUID or "self" to denote that the organization should be derived from the authenticated user.
-|`accountTypeGroup`|string|path|required|Which accounts types to get data from. Valid value `LIQUID` or `PRELIMINARY`.
-|`at`|string|query|optional|Used to get the balance at a specific point in history (ignoring any later transactions). Formatted as an `ISO 8601` string.
+|organizationUUID|string|path|required|Organization identifier as UUID or "self" to denote that the organization should be derived from the authenticated user.
+|accountTypeGroup|string|path|required|Which accounts types to get data from. Valid value `LIQUID` or `PRELIMINARY`.
+|at|string|query|optional|Used to get the balance at a specific point in history (ignoring any later transactions). Formatted as an `ISO 8601` string.
 |===
 
 *Examples*
 
-1. Fetching balance for `LIQUID` account.
+* Fetching balance for `LIQUID` account.
 +
 --
-_Example request:_
+_Request:_
 
 `GET /organizations/self/accounts/LIQUID/balance`
 
-_Example response:_
+_Response:_
 
 `Status: 200 OK`
 
@@ -77,13 +77,13 @@ _Example response:_
 |===
 |Name|Type|In|Required/Optional|Description
 
-|`organizationUUID`|string|path|required|Organization identifier as UUID or "self" to denote that the organization should be derived from the authenticated user.
-|`accountTypeGroup`|string|path|required|Which accounts types to get data from. Either `LIQUID` or `PRELIMINARY`
-|`start`|string|query|required|A start point in time, limiting the result set (inclusive). Formatted as an `ISO 8601` string.
-|`end`|string|query|required|An end point in time, limiting the result set (exclusive). Formatted as an `ISO 8601` string.
-|`includeTransactionType`|array|query|optional|Which transaction types to include. Multiple values allowed. See table _"Valid transaction types"_ below.
-|`limit`|integer|query|optional|Limit the result set to X number of results.
-|`offset`|integer|query|optional|Offset the result set by X number of results.
+|organizationUUID|string|path|required|Organization identifier as UUID or "self" to denote that the organization should be derived from the authenticated user.
+|accountTypeGroup|string|path|required|Which accounts types to get data from. Either `LIQUID` or `PRELIMINARY`
+|start|string|query|required|A start point in time, limiting the result set (inclusive). Formatted as an `ISO 8601` string.
+|end|string|query|required|An end point in time, limiting the result set (exclusive). Formatted as an `ISO 8601` string.
+|includeTransactionType|string|query|optional|Which transaction types to include. Multiple values allowed. See table _"Valid transaction types"_ below.
+|limit|integer|query|optional|Limit the result set to X number of results.
+|offset|integer|query|optional|Offset the result set by X number of results.
 
 |===
 
@@ -131,17 +131,16 @@ In the case of other transaction types, the value of the `originatingTransaction
 
 *Examples*
 
-1. Fetching all transactions for `LIQUID` account.
+* Fetching all transactions from `LIQUID` account.
 +
 --
-_Example request:_
+_Request:_
 
 `GET /organizations/self/accounts/LIQUID/transactions?start=2020-01-01&end=2020-12-01`
 
+_Response:_
 
-_Example response:_
-
-[source,json,max-height=200]
+[source,json]
 ----
 {
   "data": [
@@ -229,6 +228,65 @@ _Example response:_
 ----
 --
 
+* Fetching list of `CARD_PAYMENT` and CARD_ `PAYMENT_FEE` transactions from `LIQUID` account.
++
+--
+_Request:_
+
+`GET /organizations/self/accounts/LIQUID/transactions?start=2019-01-11&end=2020-11-25&includeTransactionType=CARD_PAYMENT&includeTransactionType=CARD_PAYMENT_FEE`
+
+_Response:_
+
+[source,json]
+----
+{
+  "data": [
+    {
+      "timestamp": "2020-04-08T15:10:12.967+0000",
+      "amount": -44,
+      "originatorTransactionType": "CARD_PAYMENT_FEE",
+      "originatingTransactionUuid": "0a0b8188-7584-11ea-9d37-448925a0280d"
+    },
+    {
+      "timestamp": "2020-04-08T15:10:12.950+0000",
+      "amount": 1600,
+      "originatorTransactionType": "CARD_PAYMENT",
+      "originatingTransactionUuid": "0a0b8188-7584-11ea-9d37-448925a0280d"
+    }
+  ]
+}
+----
+--
+
+* Fetching a list of refunded transactions from `LIQUID` account – `CARD_REFUND` and `CARD_PAYMENT_FEE_REFUND`
++
+--
+_Request:_
+
+`GET /organizations/self/accounts/LIQUID/transactions?start=2019-01-11&end=2020-11-25&includeTransactionType=CARD_REFUND&includeTransactionType=CARD_PAYMENT_FEE_REFUND`
+
+_Response:_
+
+[source,json]
+----
+{
+  "data": [
+    {
+      "timestamp": "2020-04-08T15:10:12.967+0000",
+      "amount": -44,
+      "originatorTransactionType": "CARD_PAYMENT_FEE",
+      "originatingTransactionUuid": "0a0b8188-7584-11ea-9d37-448925a0280d"
+    },
+    {
+      "timestamp": "2020-04-08T15:10:12.950+0000",
+      "amount": 1600,
+      "originatorTransactionType": "CARD_PAYMENT",
+      "originatingTransactionUuid": "0a0b8188-7584-11ea-9d37-448925a0280d"
+    }
+  ]
+}
+----
+--
 '''
 
 ====
@@ -244,21 +302,21 @@ _Example response:_
 |===
 |Name|Type|In|Required/Optional|Description
 
-|`organizationUUID`|string|path|required|Organization identifier as UUID or `self` to denote that the organization should be derived from the authenticated user.
-|`at`|string|query|optional|Used to get payouts until a specific historic date. Formatted as an `ISO 8601` string.
+|organizationUUID|string|path|required|Organization identifier as UUID or `self` to denote that the organization should be derived from the authenticated user.
+|at|string|query|optional|Used to get payouts until a specific historic date. Formatted as an `ISO 8601` string.
 |===
 
 *Examples*
 
-1. Fetching payout info.
+* Fetching payout info.
 +
 --
 
-_Example request:_
+_Request:_
 
 `GET /organizations/self/payout-info`
 
-_Example response:_
+_Response:_
 
 `Status:  200 OK`
 [source,json]
