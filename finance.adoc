@@ -170,16 +170,27 @@ _Example response:_
       "originatingTransactionUuid": "eea515fe-9751-11ea-ab0b-700ecd436e96"
     },
     {
-      "timestamp": "2020-04-08T15:10:12.950+0000",
-      "amount": 1600,
-      "originatorTransactionType": "CARD_PAYMENT",
-      "originatingTransactionUuid": "0a0b8188-7584-11ea-9d37-448925a0280d"
-    },
-    {
       "timestamp": "2020-04-08T15:10:12.967+0000",
       "amount": -44,
       "originatorTransactionType": "CARD_PAYMENT_FEE",
       "originatingTransactionUuid": "0a0b8188-7584-11ea-9d37-448925a0280d"
+    },
+    {
+      "timestamp": "2020-04-08T15:10:12.950+0000",
+      "amount": 1600,
+      "originatorTransactionType": "CARD_PAYMENT",
+      "originatingTransactionUuid": "0a0b8188-7584-11ea-9d37-448925a0280d"
+    {
+      "timestamp": "2020-04-07T15:27:03.282+0000",
+      "amount": -636493,
+      "originatorTransactionType": "PAYOUT",
+      "originatingTransactionUuid": "8eb5df48-7f2d-11ea-ab7a-ca9e37524733"
+    },
+    {
+      "timestamp": "2019-11-20T10:24:48.827+0000",
+      "amount": 993472,
+      "originatorTransactionType": "FAILED_PAYOUT",
+      "originatingTransactionUuid": "3bfa02d2-0531-11ea-845a-0168c424b6fc"
     }
   ]
 }
