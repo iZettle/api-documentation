@@ -13,7 +13,7 @@ https://finance.izettle.com
 '''
 ==== Account type group
 
-[grid="none", frame="none", cols="30%,70%"]
+[grid="none", frame="none", cols="40%,60%"]
 
 |===
 |Account type group |Description
