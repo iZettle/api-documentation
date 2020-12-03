@@ -71,6 +71,8 @@ _Response:_
 ====
 
 ==== Fetch account transactions
+Returns a list of transactions for given account and period.
+
 `GET /organizations/{organizationUUID}/accounts/{accountTypeGroup}/transactions`
 [%collapsible]
 ====
@@ -297,6 +299,8 @@ _Response:_
 ====
 
 ==== Fetch payout information
+Returns payout related information for an organization.
+
 `GET /organizations/{organizationUUID}/payout-info`
 
 [%collapsible]
