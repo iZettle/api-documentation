@@ -13,7 +13,7 @@ https://finance.izettle.com
 '''
 ==== Account type group
 
-[grid="none", frame="none", cols="40%,60%"]
+[cols="40%,60%"]
 
 |===
 |Account type group|Description
@@ -33,7 +33,7 @@ If not, it will return the amount that is still due in merchant's iZettle accoun
 
 *Parameters*
 
-[grid="none", border="none", cols="20%,10%,10%,10%,50%"]
+[cols="20%,10%,10%,10%,50%"]
 |===
 |Name|Type|In|Required/Optional|Description
 
@@ -79,7 +79,7 @@ Returns a list of transactions for given account and period.
 
 *Parameters*
 
-[grid="none", frame="none" cols="20%,10%,10%,10%,50%"]
+[cols="20%,10%,10%,10%,50%"]
 |===
 |Name|Type|In|Required/Optional|Description
 
@@ -94,7 +94,7 @@ Returns a list of transactions for given account and period.
 |===
 
 *Valid transaction types*
-[grid="none", frame="none" cols="30%,70%"]
+[cols="30%,70%"]
 |===
 |Type|Description
 
