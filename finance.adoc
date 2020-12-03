@@ -39,7 +39,7 @@ If not, it will return the amount that is still due in merchant's iZettle accoun
 
 |organizationUUID|string|path|required|Organization identifier as UUID or "self" to denote that the organization should be derived from the authenticated user.
 |accountTypeGroup|string|path|required|Which accounts types to get data from. Valid value `LIQUID` or `PRELIMINARY`.
-|at|string|query|optional|Used to get the balance at a specific point in history (ignoring any later transactions). Formatted as an `ISO 8601` string (e.g. `2020-11-29T03:10:02`, `2020-08-14`).
+|at|string|query|optional|Used to get the balance at a specific point in history (ignoring any later transactions). Formatted as an `ISO 8601` string e.g. _"2020-11-29T03:10:02"_ or _"2020-08-14"_).
 |===
 
 *Examples*
@@ -129,7 +129,7 @@ A cash advance is a type of financing that is offered to merchants based on thei
 |===
 
 
-Note: **Deprecated** transaction types are no longer in use, but may appear in historic data.
+Note: *Deprecated* transaction types are no longer in use, but may appear in historic data.
 
 *Link transactions with card purchases.*
 
@@ -325,7 +325,7 @@ _Response:_ `Status: 200 OK`
 ----
 --
 
-* Fetching a list of all payments from `LIQUID` account – `CARD_PAYMENT`, `INVOICE_PAYMENT` and `PAYMENT`
+* Fetching a list of all payments from `LIQUID` account (`CARD_PAYMENT`, `INVOICE_PAYMENT` and `PAYMENT`)
 +
 --
 _Request:_
@@ -361,6 +361,43 @@ _Response:_ `Status: 200 OK`
 ----
 --
 
+* Fetching a list of fees from the `LIQUID` account (`CARD_PAYMENT_FEE`, `INVOICE_PAYMENT_FEE` and `PAYMENT_FEE`)
++
+--
+_Request:_
+
+`GET /organizations/self/accounts/LIQUID/transactions?start=2019-01-11&end=2020-12-01&includeTransactionType=CARD_PAYMENT_FEE&includeTransactionType=INVOICE_PAYMENT_FEE&includeTransactionType=PAYMENT_FEE`
+
+_Response:_ `Status: 200 OK`
+
+[source,json]
+----
+{
+  "data": [
+    {
+      "timestamp": "2020-11-29T03:10:02.194+0000",
+      "amount": 225,
+      "originatorTransactionType": "PAYMENT_FEE",
+      "originatingTransactionUuid": "68fafe9a-309f-11eb-aafa-22dcd4200d78"
+    },
+    {
+      "timestamp": "2020-04-08T15:10:12.967+0000",
+      "amount": -44,
+      "originatorTransactionType": "CARD_PAYMENT_FEE",
+      "originatingTransactionUuid": "0a0b8188-7584-11ea-9d37-448925a0280d"
+    },
+    {
+      "timestamp": "2019-10-16T07:51:36.294+0000",
+      "amount": -300,
+      "originatorTransactionType": "INVOICE_PAYMENT_FEE",
+      "originatingTransactionUuid": "c743ee96-efe9-11e9-aa77-6f6dfce38150"
+    }
+  ]
+}
+----
+--
+
+
 '''
 
 ====
@@ -379,7 +416,7 @@ Returns payout related information for an organization.
 |Name|Type|In|Required/Optional|Description
 
 |organizationUUID|string|path|required|Organization identifier as UUID or `self` to denote that the organization should be derived from the authenticated user.
-|at|string|query|optional|Used to get payouts until a specific historic date. Formatted as an `ISO 8601` string.
+|at|string|query|optional|Used to get payouts until a specific historic date. Formatted as an `ISO 8601` string e.g. _"2020-11-29T03:10:02"_ or _"2020-08-14"_.
 |===
 
 *Examples*
@@ -392,7 +429,7 @@ _Request:_
 
 `GET /organizations/self/payout-info`
 
-_Response:_`Status:  200 OK`
+_Response:_ `Status:  200 OK`
 [source,json]
 ----
 {
