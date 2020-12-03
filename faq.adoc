@@ -97,9 +97,9 @@ See https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[
   },
 --
 
-The image api will return a imageUrl back which can be directly put into the _presentation.imageUrl_ field, however we just introduced this and is not fully supported by the portal and the apps yet.  
+The image api will return a imageUrl back which can be directly put into the `presentation.imageUrl` field, however we just introduced this and is not fully supported by the portal and the apps yet.
 
-So if you only want to use the information outside of the iZettle apps you might want to use  _presentation.imageUrl_, otherwise use  _imageLookupKeys_ and strip away everything except the last part of the imageUrl and place for example `Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEmQ.jpeg` in the imageLookupKeys to be able to see the image in the iZettle apps.
+So if you only want to use the information outside of the iZettle apps you might want to use  `presentation.imageUrl`, otherwise use  `imageLookupKeys` and strip away everything except the last part of the imageUrl and place for example `Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEmQ.jpeg` in the imageLookupKeys to be able to see the image in the iZettle apps.
 
 Clarification examples:
 [source,json]
@@ -112,4 +112,12 @@ Clarification examples:
 }
 --
 ****
+====
+
+== Finance
+.*How do i get sum of all payments, fees, refunds, invoices?*
+[%collapsible]
+====
+Use `includeTransactionType` parameter in query for relevant transaction type/types, +
+traverse the list of transactions returned and sum up the amounts.
 ====

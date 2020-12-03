@@ -39,7 +39,7 @@ If not, it will return the amount that is still due in merchant's iZettle accoun
 
 |organizationUUID|string|path|required|Organization identifier as UUID or "self" to denote that the organization should be derived from the authenticated user.
 |accountTypeGroup|string|path|required|Which accounts types to get data from. Valid value `LIQUID` or `PRELIMINARY`.
-|at|string|query|optional|Used to get the balance at a specific point in history (ignoring any later transactions). Formatted as an `ISO 8601` string e.g. _"2020-11-29T03:10:02"_ or _"2020-08-14"_).
+|at|string|query|optional|Used to get the balance at a specific point in history (ignoring any later transactions). Formatted as an `ISO 8601` string e.g. "2020-11-29T03:10:02" or "2020-08-14").
 |===
 
 *Examples*
@@ -86,9 +86,9 @@ Returns a list of transactions for given account and period.
 |organizationUUID|string|path|required|Organization identifier as UUID or "self" to denote that the organization should be derived from the authenticated user.
 |accountTypeGroup|string|path|required|Which accounts types to get data from. Either `LIQUID` or `PRELIMINARY`
 |start|string|query|required|A start point in time, limiting the result set (inclusive). Formatted as an `ISO 8601` string +
-e.g. _"2020-11-29T03:10:02"_ or _"2020-08-14"_.
+e.g. "2020-11-29T03:10:02" or "2020-08-14".
 |end|string|query|required|An end point in time, limiting the result set (exclusive). Formatted as an `ISO 8601` string +
-e.g. _"2020-11-29T03:10:02"_ or _"2020-08-14"_.
+e.g. "2020-11-29T03:10:02" or "2020-08-14".
 |includeTransactionType|string|query|optional|Which transaction types to include. Multiple values allowed. See table _"Valid transaction types"_ below.
 |limit|integer|query|optional|Limit the result set to X number of results.
 |offset|integer|query|optional|Offset the result set by X number of results.
@@ -416,7 +416,7 @@ Returns payout related information for an organization.
 |Name|Type|In|Required/Optional|Description
 
 |organizationUUID|string|path|required|Organization identifier as UUID or `self` to denote that the organization should be derived from the authenticated user.
-|at|string|query|optional|Used to get payouts until a specific historic date. Formatted as an `ISO 8601` string e.g. _"2020-11-29T03:10:02"_ or _"2020-08-14"_.
+|at|string|query|optional|Used to get payouts until a specific historic date. Formatted as an `ISO 8601` string e.g. "2020-11-29T03:10:02" or "2020-08-14".
 |===
 
 *Examples*
