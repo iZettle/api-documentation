@@ -85,8 +85,10 @@ Returns a list of transactions for given account and period.
 
 |organizationUUID|string|path|required|Organization identifier as UUID or "self" to denote that the organization should be derived from the authenticated user.
 |accountTypeGroup|string|path|required|Which accounts types to get data from. Either `LIQUID` or `PRELIMINARY`
-|start|string|query|required|A start point in time, limiting the result set (inclusive). Formatted as an `ISO 8601` string (e.g. `2020-11-29T03:10:02`, `2020-08-14`).
-|end|string|query|required|An end point in time, limiting the result set (exclusive). Formatted as an `ISO 8601` string (e.g. `2020-11-29T03:10:02`, `2020-08-14`).
+|start|string|query|required|A start point in time, limiting the result set (inclusive). Formatted as an `ISO 8601` string +
+e.g. _2020-11-29T03:10:02_ or _2020-08-14_.
+|end|string|query|required|An end point in time, limiting the result set (exclusive). Formatted as an `ISO 8601` string +
+e.g. _2020-11-29T03:10:02_ or _2020-08-14_.
 |includeTransactionType|string|query|optional|Which transaction types to include. Multiple values allowed. See table _"Valid transaction types"_ below.
 |limit|integer|query|optional|Limit the result set to X number of results.
 |offset|integer|query|optional|Offset the result set by X number of results.
