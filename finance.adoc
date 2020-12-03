@@ -13,7 +13,7 @@ https://finance.izettle.com
 '''
 ==== Account type group
 
-[cols="40%,60%"]
+[cols="30%,70%"]
 
 |===
 |Account type group|Description
@@ -86,9 +86,9 @@ Returns a list of transactions for given account and period.
 |organizationUUID|string|path|required|Organization identifier as UUID or "self" to denote that the organization should be derived from the authenticated user.
 |accountTypeGroup|string|path|required|Which accounts types to get data from. Either `LIQUID` or `PRELIMINARY`
 |start|string|query|required|A start point in time, limiting the result set (inclusive). Formatted as an `ISO 8601` string +
-e.g. _2020-11-29T03:10:02_ or _2020-08-14_.
+e.g. _"2020-11-29T03:10:02"_ or _"2020-08-14"_.
 |end|string|query|required|An end point in time, limiting the result set (exclusive). Formatted as an `ISO 8601` string +
-e.g. _2020-11-29T03:10:02_ or _2020-08-14_.
+e.g. _"2020-11-29T03:10:02"_ or _"2020-08-14"_.
 |includeTransactionType|string|query|optional|Which transaction types to include. Multiple values allowed. See table _"Valid transaction types"_ below.
 |limit|integer|query|optional|Limit the result set to X number of results.
 |offset|integer|query|optional|Offset the result set by X number of results.
@@ -144,9 +144,9 @@ In the case of other transaction types, the value of the `originatingTransaction
 --
 _Request:_
 
-`GET /organizations/self/accounts/LIQUID/transactions?start=2020-01-01&end=2020-12-01`
+`GET /organizations/self/accounts/LIQUID/transactions?start=2019-01-01&end=2020-12-01`
 
-_Response:_
+_Response:_ `Status: 200 OK`
 
 [source,json]
 ----
@@ -243,7 +243,7 @@ _Request:_
 
 `GET /organizations/self/accounts/LIQUID/transactions?start=2019-01-11&end=2020-11-25&includeTransactionType=CARD_PAYMENT&includeTransactionType=CARD_PAYMENT_FEE`
 
-_Response:_
+_Response:_ `Status: 200 OK`
 
 [source,json]
 ----
@@ -273,7 +273,7 @@ _Request:_
 
 `GET /organizations/self/accounts/LIQUID/transactions?start=2019-01-11&end=2020-11-25&includeTransactionType=CARD_REFUND&includeTransactionType=CARD_PAYMENT_FEE_REFUND`
 
-_Response:_
+_Response:_ `Status: 200 OK`
 
 [source,json]
 ----
@@ -295,6 +295,71 @@ _Response:_
 }
 ----
 --
+* Fetching a list of all `INVOICE_PAYMENT` and `INVOICE_PAYMENT_FEE` from `LIQUID` account
++
+--
+_Request:_
+
+`GET/organizations/self/accounts/LIQUID/transactions?start=2019-01-11&end=2020-01-25&includeTransactionType=INVOICE_PAYMENT&includeTransactionType=INVOICE_PAYMENT_FEE`
+
+_Response:_ `Status: 200 OK`
+
+[source,json]
+----
+{
+  "data": [
+    {
+      "timestamp": "2019-10-16T07:51:36.294+0000",
+      "amount": -300,
+      "originatorTransactionType": "INVOICE_PAYMENT_FEE",
+      "originatingTransactionUuid": "c743ee96-efe9-11e9-aa77-6f6dfce38150"
+    },
+    {
+      "timestamp": "2019-10-16T07:51:36.291+0000",
+      "amount": 10000,
+      "originatorTransactionType": "INVOICE_PAYMENT",
+      "originatingTransactionUuid": "c743ee96-efe9-11e9-aa77-6f6dfce38150"
+    }
+  ]
+}
+----
+--
+
+* Fetching a list of all payments from `LIQUID` account – `CARD_PAYMENT`, `INVOICE_PAYMENT` and `PAYMENT`
++
+--
+_Request:_
+
+`GET /organizations/self/accounts/LIQUID/transactions?start=2019-01-11&end=2020-12-01&includeTransactionType=CARD_PAYMENT&includeTransactionType=INVOICE_PAYMENT&includeTransactionType=PAYMENT`
+
+_Response:_ `Status: 200 OK`
+
+[source,json]
+----
+{
+  "data": [
+    {
+      "timestamp": "2020-11-29T03:10:02.191+0000",
+      "amount": -22540,
+      "originatorTransactionType": "PAYMENT",
+      "originatingTransactionUuid": "68fafe9a-309f-11eb-aafa-22dcd4200d78"
+    },
+    {
+      "timestamp": "2020-04-08T15:10:12.950+0000",
+      "amount": 1600,
+      "originatorTransactionType": "CARD_PAYMENT",
+      "originatingTransactionUuid": "0a0b8188-7584-11ea-9d37-448925a0280d"
+    },
+    {
+      "timestamp": "2019-10-16T07:51:36.291+0000",
+      "amount": 10000,
+      "originatorTransactionType": "INVOICE_PAYMENT",
+      "originatingTransactionUuid": "c743ee96-efe9-11e9-aa77-6f6dfce38150"
+    }
+  ]
+}
+----
+--
 
 '''
 
@@ -309,7 +374,7 @@ Returns payout related information for an organization.
 ====
 **Parameters**
 
-[grid="none", frame="none" cols="20%,10%,10%,10%,50%"]
+[cols="20%,10%,10%,10%,50%"]
 |===
 |Name|Type|In|Required/Optional|Description
 
@@ -327,9 +392,7 @@ _Request:_
 
 `GET /organizations/self/payout-info`
 
-_Response:_
-
-`Status:  200 OK`
+_Response:_`Status:  200 OK`
 [source,json]
 ----
 {

@@ -47,9 +47,7 @@ _Request:_
 
 `GET /organizations/self/giftcards/external/e876c3ae-750d-4638-b98a-78868a434b89`
 
-_Response:_
-
-`Status: 200 OK`
+_Response:_ `Status: 200 OK`
 
 [source, json]
 --
@@ -71,7 +69,5 @@ _Request:_
 
 `GET /organizations/self/giftcards/external/e876c3ae-750d-4638-b98a-78868a434b89`
 
-_Response:_
-
-`Status: 404 Not found`
+_Response:_ `Status: 404 Not found`
 ====
