@@ -1,11 +1,11 @@
-== Giftcard API
+== Gift Card API
 
 === Description
 ====
-Giftcard API provides extra information about purchases made through iZettle with a gift card.
+Gift Card API provides extra information about purchases made through iZettle with a gift card.
 ====
 
-=== URL
+=== Base URL
 https://giftcard.izettle.com
 
 === OAuth Scopes
@@ -17,16 +17,30 @@ https://giftcard.izettle.com
 
 `GET organizations/self/giftcards/external/{uuid}`
 
+*Parameters*
+
+[cols="15%,10%,10%,10%,55%"]
 |===
 |Name|Type|In|Required/Optional|Description
 
-|`uuid`|string|path|required|Unique id as `UUID`.
+|uuid|string|path|required|Unique id in `UUID` format.
 |===
 
+===== Gift card attributes
+
+[cols="20%,10%,70%"]
+|===
+|Name|Type|Description
+
+|created|string|The date that the gift card was created.
+|validTo|string|Once this date has passed the gift card will be expired and can no longer be used. If the value is `null`, gift card will never expire.
+|initialAmount|integer|The amount that the gift card was initially loaded with in minors(cents).
+|remainingAmount|integer|Current balance of the gift card in minors(cents).
+|===
 
 *Examples*
 
-1. Fetch gift card information by uuid.
+* Fetch gift card information.
 +
 ====
 _Request:_
@@ -50,7 +64,7 @@ _Response:_
 --
 ====
 
-2. Gift card with given uuid is not found.
+* Gift card with given `uuid` is not found.
 +
 ====
 _Request:_
@@ -61,14 +75,3 @@ _Response:_
 
 `Status: 404 Not found`
 ====
-
-
-===== Gift card attributes
-|===
-|Name|Type|Description
-
-|`created`|string|The date that the gift card was created.
-|`validTo`|string|Once this date has passed the gift card will be expired and can no longer be used. If the value is `null`, gift card will never expire.
-|`initialAmount`|integer|The amount that the gift card was initially loaded with in minors(cents).
-|`remainingAmount`|integer|Current balance of the gift card in minors(cents).
-|===
