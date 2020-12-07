@@ -2,7 +2,7 @@
 
 == Description
 ====
-Finance API return information about monetary transactions where money has passed through iZettle, such transactions can be e.g. card payments, card fees and payouts to the merchant.
+Finance APIs return information about monetary transactions where money has passed through iZettle, such transactions can be e.g. card payments, card fees and payouts to the merchant.
 ====
 === Base URL
 https://finance.izettle.com
