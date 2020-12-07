@@ -266,7 +266,7 @@ _Response:_ `Status: 200 OK`
 ----
 --
 
-* Fetching a list of refunded transactions from `LIQUID` account – `CARD_REFUND` and `CARD_PAYMENT_FEE_REFUND`
+* Fetching a list of refunded transactions from `LIQUID` account – `CARD_REFUND` and `CARD_PAYMENT_FEE_REFUND`.
 +
 --
 _Request:_
@@ -295,7 +295,7 @@ _Response:_ `Status: 200 OK`
 }
 ----
 --
-* Fetching a list of all `INVOICE_PAYMENT` and `INVOICE_PAYMENT_FEE` from `LIQUID` account
+* Fetching a list of all `INVOICE_PAYMENT` and `INVOICE_PAYMENT_FEE` from `LIQUID` account.
 +
 --
 _Request:_
@@ -325,7 +325,7 @@ _Response:_ `Status: 200 OK`
 ----
 --
 
-* Fetching a list of all payments from `LIQUID` account (`CARD_PAYMENT`, `INVOICE_PAYMENT` and `PAYMENT`)
+* Fetching a list of all payments from `LIQUID` account (`CARD_PAYMENT`, `INVOICE_PAYMENT` and `PAYMENT`).
 +
 --
 _Request:_
@@ -361,7 +361,7 @@ _Response:_ `Status: 200 OK`
 ----
 --
 
-* Fetching a list of fees from the `LIQUID` account (`CARD_PAYMENT_FEE`, `INVOICE_PAYMENT_FEE` and `PAYMENT_FEE`)
+* Fetching a list of fees from the `LIQUID` account (`CARD_PAYMENT_FEE`, `INVOICE_PAYMENT_FEE` and `PAYMENT_FEE`).
 +
 --
 _Request:_
