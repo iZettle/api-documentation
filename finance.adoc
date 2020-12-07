@@ -18,7 +18,7 @@ https://finance.izettle.com
 |===
 |Account type group|Description
 
-|LIQUID|Contains transactions that has been cleared and is typically what is useful for an external integrator.
+|LIQUID|Contains transactions that have been cleared and is typically what is useful for an external integrator.
 |PRELIMINARY|Contains transactions that are waiting to be cleared and there can exist several transactions for one single card payment in this group due to internal account movements.
 |===
 
