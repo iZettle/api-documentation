@@ -133,7 +133,7 @@ Note: *Deprecated* transaction types are no longer in use, but may appear in his
 
 *Link transactions with card purchases.*
 
-Finance transactions of types `CARD_PAYMENT`, `CARD_PAYMENT_FEE`, `CARD_REFUND` and `CARD_PAYMENT_FEE_REFUND` can be linked using the field `originatingTransactionUuid` to a card purchase using the `cardPaymentUUID1` field of the payment if using the Purchase API v1 or the `uuid` field of the payment if using the Purchase API v2.
+Transactions of types `CARD_PAYMENT`, `CARD_PAYMENT_FEE`, `CARD_REFUND` and `CARD_PAYMENT_FEE_REFUND` can be linked using the field `originatingTransactionUuid` to a card purchase using the `cardPaymentUUID1` field of the payment if using the `Purchase API v1` or the `uuid` field of the payment if using the `Purchase API v2`.
 In the case of other transaction types, the value of the `originatingTransactionUuid` is not linkable to a specific card purchase and is not useful for external integrators.
 
 
