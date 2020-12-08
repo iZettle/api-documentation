@@ -1,35 +1,47 @@
-## Purchase API
+= Purchase API
 
-### Service Description
-The purchase API provides information about purchases made through iZettle.
+== Description
+====
+Provides information about purchases made through iZettle.
+====
 
-### URL
+=== Base URL
 https://purchase.izettle.com
 
-### Scopes
-The Purchase API implements the following scopes:
-
+=== OAuth scopes
 - `READ:PURCHASE`
 
-=== Get purchase history
-Will include cash register information if applicable. Purchases up to three years old are available to fetch.
+'''
+
+==== Fetch purchase history
+Returns a list of purchases for organization.
+Will include cash register information if applicable. +
+Purchases up to three years old are available to fetch.
 
 `GET /purchases/v2`
+[%collapsible]
+====
+*Parameters*
 
-lastPurchaseHash (optional):: A value from "lastPurchaseHash" from the result of a previous history query, to continue listing purchases from the next record after the previous query.
-startDate (optional):: The start date (inclusive) for purchases to be retrieved from until today or endDate. By default startDate is resolved to three years back.
-endDate (optional):: The last date (exclusive) for purchases to be retrieved until.
-limit (optional):: The maximum number of records to return. Max value of limit is 1000.
-descending (optional):: When true, returns purchases with the highest timestamp first.  When false, returns purchases with the lowest timestamp first. Defaults to false if not specified.
+[cols="15%,10%,10%,10%,55%"]
+|===
+|Name|Type|In|Required/Optional|Description
 
-Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation of the UUID fields.  The "UUID" fields are Base64 encoded UUID.
+|lastPurchaseHash|string|query|optional|A value from "lastPurchaseHash" from the result of a previous history query, to continue listing purchases from the next record after the previous query.
+|startDate|string|query|optional|The start date (inclusive) for purchases to be retrieved from until today or endDate. By default `startDate` is resolved to three years back.
+|endDate|string|query|optional|The last date (exclusive) for purchases to be retrieved until.
+|limit|string|query|optional|The maximum number of records to return. Max value of limit is 1000.
+|descending|string|query|optional|When true, returns purchases with the highest timestamp first.  When false, returns purchases with the lowest timestamp first. Defaults to false if not specified.
+|===
 
-#### Permissions required
-`READ:PURCHASE`
+*Examples*
 
-#### Example response 1
-`GET /purchases/v2?limit=10`
-```json
+* Fetching limited number of purchases in descending order(most recent first).
+
+`GET /purchases/v2?limit=2&descending=true`
+
+[source, json]
+----
 {
   "purchases": [
     {
@@ -164,11 +176,12 @@ Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation o
         "<https://purchase.izettle.com/purchases/v2?limit=10&descending=true&lastPurchaseHash=1423390928355zj9yI1wyTvqP46AG8NEaYg>; rel=\"next\""
   ]
 }
-```
+----
 
-#### Example response 2 (partial refund)
+* Fetching purchases with partial refund.
 
-```json
+[source,json]
+----
 {
   "purchases": [
     {
@@ -297,10 +310,11 @@ Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation o
         "<https://purchase.izettle.com/purchases/v2?limit=10&descending=true&lastPurchaseHash=1476088362675HKXEKo7EEeaq_0GG8pcFtg>; rel=\"next\""
   ]
 }
-```
+----
 
-#### Example response 3 (discounts)
-```json
+* Example response 3 (discounts)
+[source,json]
+----
 {
   "purchases": [
     {
@@ -388,23 +402,31 @@ Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation o
         "<https://purchase.izettle.com/purchases/v2?limit=10&descending=true&lastPurchaseHash=1485858080407AOjsYOefEeax5pDdmnaGXw>; rel=\"next\""
   ]
 }
-```
+----
+====
 
-### Get purchase details
+==== Fetch purchase details
 
 `GET /purchase/v2/{purchaseUUID}`
+[%collapsible]
+====
 
-#### Permissions required
-`READ:PURCHASE`
+*Parameters*
 
-purchaseUUID:: The UUID of the purchase
+[cols="15%,10%,10%,10%,55%"]
+|===
+|Name|Type|In|Required/Optional|Description
+|purchaseUUID|string|path|required|Unique id of the purchase as UUID.
+|===
 
-#### Errors
-404:: Purchase not found
+*Errors*
 
-#### Example response
+404 Not found :: Purchase not found
+
+*Example response*
 `GET /purchase/v2/e876c3ae-750d-4638-b98a-78868a434b89`
-```json
+[source,json]
+----
 {
   "purchaseUUID": "6HbDrnUNRji5iniGikNLiQ",
   "purchaseUUID1": "e876c3ae-750d-4638-b98a-78868a434b89",
@@ -466,139 +488,163 @@ purchaseUUID:: The UUID of the purchase
   },
   "refunded": false
 }
-```
+----
+====
 
-### Products
+==== Models
 
-A purchase has one or more item lines represented in the `products` list attribute. The `type` attribute indicates what
+*Products*
+
+A purchase has one or more item lines represented in the `products` array. The `type` attribute indicates what
 kind of item line the entity represent, with `PRODUCT`, `CUSTOM_AMOUNT` and `GIFTCARD` being the currently available types.
 
-In parallell to the `type` attribute there is an optional `details` attribute that may contain information related to the specific type,
-for example item lines of type `GIFTCARD` will have a `giftcardUuid` attribute pointing out what giftcard that was sold/returned as part of purchases
+In parallel to the `type` attribute there is an optional `details` attribute that may contain information related to the specific type,
+for example item lines of type `GIFTCARD` will have a `giftcardUuid` attribute pointing out what gift card that was sold/returned as part of purchases.
 
-### Payments
+*Payments*
 
-A purchase has one or more payments represented in the `payments` list attribute.
+A purchase has one or more payments present in the `payments` array.
+For instance one purchase can be partially paid with cash and the rest with card.
 
-=== Payment attributes
-The `payment` data type only contain a few generic parameters such as `uuid`, `amount` and `type`.
+._Payment attributes_
+[cols="10%,10%,80%"]
+|===
+|Name|Type |Description
 
-The currently available payment types are:
+|uuid|string|Unique id of the payment in UUID format.
+|amount|integer|Amount in minors(cents).
+|type|string|Payment type used when making a purchase.
+|attributes|object|Additional information about the payment. Different attributes are included depending on payment type.
+|===
 
-- `IZETTLE_CARD`
-- `IZETTLE_CARD_ONLINE`
-- `IZETTLE_CASH`
-- `IZETTLE_INVOICE`
-- `SWISH`
-- `VIPPS`
-- `MOBILE_PAY`
-- `PAYPAL`
-- `STORE_CREDIT`
-- `GIFTCARD`
-- `KLARNA`
+._Payment types_
+[cols="30%,70%"]
+|===
+|Payment type |Description
 
-Payment types are added when product offerings at iZettle changes, so for forwards-compatibility it is important that clients are tolerant of receiving payments of types that are not defined upfront.
-
-To be able to represent all types of payments it has an `attributes` map that contain all payment type specific data such as `maskedPan` or `cardType` for card payments or `handedAmount` for cash payments.
-Other payments such as Swish, Vipps and MobilePay don't have attributes. They will only be represented by a `uuid`, an `amount` and a `type`.
-
-._example of cash payment_
-```json
-{
-  "uuid": "ce90dc90-dcaa-11e6-87a4-0cd119752226",
-  "amount": 1000,
-  "type": "IZETTLE_CASH",
-  "attributes": {
-    "handedAmount": 1000
-  }
-}
-```
-
-._example of card payment_
-```json
-"purchaseUUID1": "fe8d0460-21c4-11e6-8ca8-3a4023ced819",
-"amount": 2000,
-"gratuityAmount": 0,
-...
+|IZETTLE_CARD a|Payment taken with iZettle card reader. +
+Attributes example:
+[source, json]
+----
 {
   "uuid": "165b88a0-07a3-11e6-9dae-43c30f1bff5b",
   "amount": 2000,
   "gratuityAmount": 0,
   "type": "IZETTLE_CARD",
   "attributes": {
-    "transactionStatusInformation": "EC00",
-    "cardPaymentEntryMode": "EMV",
-    "maskedPan": "476173******0119",
-    "installmentAmount": null,
-    "referenceNumber": "AU54FYHW7X",
-    "nrOfInstallments": 0,
-    "cardType": "VISA",
-    "terminalVerificationResults": "0080088000",
-    "applicationIdentifier": "A0000000031010",
-    "applicationName": "Visa Credit"
+    "cardHolderVerificationMethod": "None",
+    "maskedPan": "535583******2441",
+    "cardPaymentEntryMode": "CONTACTLESS_EMV",
+    "referenceNumber": "B6MFKZTMKP",
+    "authorizationCode": "429579",
+    "cardType": "MASTERCARD",
+    "terminalVerificationResults": "0000008001",
+    "applicationIdentifier": "A0000000041010",
+    "applicationName": "Debit MasterCard"
   }
 }
-```
-
-._example of invoice payment_
-```json
+----
+|IZETTLE_CARD_ONLINE|Payment taken with iZettle online e.g. with payment link.
+|IZETTLE_CASH a|Cash payment registered with iZettle. +
+Example:
+[source,json]
+----
 {
-  "uuid": "d65ebf50-979e-11e7-9f72-df4bb64e0df9",
-  "amount": 2960,
-  "type": "IZETTLE_INVOICE",
+  "uuid": "ce90dc90-dcaa-11e6-87a4-0cd119752226",
+  "amount": 1000,
+  "type": "IZETTLE_CASH",
   "attributes": {
-    "orderUUID": "d5b126c4-979e-11e7-9af0-a3d2806c42a1",
-    "invoiceNr": "iz37",
-    "dueDate": "2017-10-12"
+    "handedAmount": 17000
   }
 }
-```
+----
+|IZETTLE_INVOICE a|iZettle invoice is issued for a purchase with this payment type.
+[source,json]
+----
+    {
+      "amount": 92250,
+      "attributes": {
+        "orderUUID": "52201c9a-1234-11eb-9909-5960351f9426",
+        "invoiceNr": "iz18",
+        "dueDate": "2020-10-29"
+      },
+      "type": "IZETTLE_INVOICE",
+      "uuid": "52372638-1223-11eb-85a4-e6977798fc1e"
+    }
+----
+|SWISH|APM footnote:apm[APM - Alternative Payment Method used to refer to anything that wasn't cash or a credit/debit card.]
+available in Sweden. No attributes present.
+|VIPPS|APM footnote:apm[] available in Norway. No attributes present.
+|MOBILE_PAY|APM footnote:apm[] available in Denmark. No attributes present.
+|PAYPAL a| Payment made with PayPal wallet, available in France and Germany.
+Example:
+[source,json]
+----
+ {
+      "uuid": "74d528f1-1bd1-11eb-afd0-27740sse6511",
+      "amount": 1200,
+      "type": "PAYPAL",
+      "attributes": {
+        "paypalId": "5TW66818TP956035F"
+      }
+ }
+----
+|STORE_CREDIT|Store credit is usually a document offered by a store to a customer who returns an item not eligible for a refund or when a customer doesn't want to get chargeback on credit card that was used. It can be used to buy other goods at the same store.
+|GIFTCARD|Payment made with a gift card(certificate/voucher) issued by the merchant.
+|KLARNA|APM footnote:apm[] available in Sweden, Denmark, Finland and Germany.
+|===
+
+*Note:* Since product offerings at iZettle change, more payment types could be added. For forward compatibility it is important that API consumers are implemented in a tolerant way so receiving payments of types that are not yet defined doesn't break integration.
 
 _Note_: `gratuityAmount` corresponds to the tipping amount in the purchase. This
 feature is not available in all countries. When the `gratuityAmount` is set, the
 card payment amount will include the gratuity amount.
 
 
-### Discounts
+* Discounts
 Discounts can exist both on a specific row of items in the shopping cart, as well as on the entire shopping cart. Discounts on a row of items is applied on the whole amount of the row. A discount can be set either as a percentage or as a fixed value.
 
-When applying the total discounts on the purchase price, the row discounts will first be applied, followed by the cart discount which is then applied on the sum of the already discounted row prices.
+When applying the total discounts on the purchase price, the row discounts will first be applied, followed by the discount which is then applied on the sum of the already discounted row prices.
 
-#### VAT calculation when discounts have been applied
-VAT is calculated after all the discounts have been applied. Since each row can have a separate VAT percentage the cart discount is evenly distributed over all row of items before the VAT per row of products can be calculated.
+* VAT calculation on purchase with discounts
+VAT is calculated after all the discounts have been applied. Since each row can have a separate VAT percentage the discount is evenly distributed over all purchased items before the VAT per row of products can be calculated.
 
 If the cart discount is a fixed value then that value will be deducted from each row according the price of each row in relation to the total purchase price.
 
-##### Examples
+* Examples
 If the cart discount is 20%, then the price of each row of item will be deducted with 20% before calculating the VAT for each row.
 
 If a purchase has a total price of 100 and contains two rows with the first row priced at 40 and the second at 60, then 40% of the fixed cart discount will be deducted from the first row and 60% from the other row before calculating the VAT.
 
-#### Response structure
+* Response structure
 Row discounts are expressed using the following JSON structure in the `products` list, containing either `amount` for fixed discounts or `percentage` for percentage discounts. The `discountValue` field following the `discount` structure contains the total discount amount for the row:
-```json
+[source,json]
+----
 "discount": {
   "quantity": 1,
   "percentage": 10
 },
 "discountValue": 1000
-```
+----
+
 *Note:* Currently, we only support one discount per row of items, so the `quantity` field will always be set to 1. This could potentially change in the future.
 
-Cart discounts are expressed using the following JSON structure in the root structure of the purchase. They can also contain either an `amount` or a `percentage` value:
-```json
+Discounts are represented by using the following JSON structure in the root of the purchase. They can contain either `amount` or `percentage` value.
+[source,json]
+----
 "discounts": [
 {
     "name": "",
     "amount": 2000,
     "quantity": 1
 }
-```
+----
+
 *Note:* Currently, we only support one discount per cart, so the `discounts` list will only contain one item with `quantity` set to 1. This could potentially change in the future.
 
 See further below for a full response example containing discounts.
 
-#### Example
+* Example
 Lets observe an example purchase, containing both discounts on rows as well as on the cart itself:
 [options="header"]
 |===
@@ -623,7 +669,7 @@ So the total discount on this purchase is: 15 + 25 = 40. And the total sum to pa
 
 A discount can never be greater than the actual amount of the row or cart price.
 
-### How to load all purchases for a user
+* How to load all purchases for a user
 
 You should never retrieve all the purchases in one request, since that can potentially put too much load on the server causing the request to be rejected or time out.
 
@@ -633,12 +679,12 @@ The `limit` parameter will set the page size, and the `lastPurchaseHash` paramet
 
 In order to load all purchases, begin with an initial request without the `lastPurchaseHash` parameter being set, this will retrieve the first _n_ purchases (where _n_ is the page size defined by the `limit` parameter):
 
-```
-GET /purchases/v2?limit=50
-```
+
+`GET /purchases/v2?limit=50`
 
 The result will contain the first _n_ number of purchases.
-```json
+[source,json]
+----
 {
   "purchases": [
     ....
@@ -646,18 +692,19 @@ The result will contain the first _n_ number of purchases.
   "firstPurchaseHash": "14233908814696HbDrnUNRji5iniGikNLiQ",
   "lastPurchaseHash": "1423390928355zj9yI1wyTvqP46AG8NEaYg",
   "linkUrls": [
-        "<https://purchase.izettle.com/purchases/v2?limit=10&descending=true&lastPurchaseHash=1423390928355zj9yI1wyTvqP46AG8NEaYg>; rel=\"next\""
+        "<https://purchase.izettle.com/purchases/v2?limit=50&descending=true&lastPurchaseHash=1423390928355zj9yI1wyTvqP46AG8NEaYg>; rel=\"next\""
   ]
 }
-```
+----
 
 To retrieve the following pages, use the value of `linkUrls` in the previous response to load the next page:
-```
-GET https://purchase.izettle.com/purchases/v2?limit=10&descending=true&lastPurchaseHash=1423390928355zj9yI1wyTvqP46AG8NEaYg
-```
+
+`GET https://purchase.izettle.com/purchases/v2?limit=50&descending=true&lastPurchaseHash=1423390928355zj9yI1wyTvqP46AG8NEaYg`
+
 
 The result will contain the next _n_ number of purchases:
-```json
+[source,json]
+----
 {
   "purchases": [
     ....
@@ -665,10 +712,10 @@ The result will contain the next _n_ number of purchases:
   "firstPurchaseHash": "1423390928355zj9yI1wyTvqP46AG8NEaYg",
   "lastPurchaseHash": "1426265546490RPXdoMmDEeSg5Gw_2s_ZrQ",
   "linkUrls": [
-        "<https://purchase.izettle.com/purchases/v2?limit=10&descending=true&lastPurchaseHash=1426265546490RPXdoMmDEeSg5Gw_2s_ZrQ; rel=\"next\""
+        "<https://purchase.izettle.com/purchases/v2?limit=50&descending=true&lastPurchaseHash=1426265546490RPXdoMmDEeSg5Gw_2s_ZrQ; rel=\"next\""
   ]
 }
-```
+----
 
 Continue this process by using the `linkUrls` in the previous response as a request parameter in the following request until you receive an empty result.
 
