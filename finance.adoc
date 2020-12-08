@@ -129,7 +129,7 @@ A cash advance is a type of financing that is offered to merchants based on thei
 |===
 
 
-Note: *Deprecated* transaction types are no longer in use, but may appear in historic data.
+*Note:* Deprecated transaction types are no longer in use, but may appear in historic data.
 
 *Link transactions with card purchases.*
 
