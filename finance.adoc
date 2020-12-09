@@ -2,7 +2,7 @@
 
 == Description
 ====
-Finance APIs return information about monetary transactions where money has passed through iZettle, such transactions can be e.g. card payments, card fees and payouts to the merchant.
+Finance APIs return information about monetary transactions where money has passed through iZettle, such transactions can be e.g. card payments, card fees, payouts to the merchant etc.
 ====
 === Base URL
 https://finance.izettle.com
@@ -27,7 +27,7 @@ Returns accumulated balance at a specific point in time. +
 After a deposit has been made from `LIQUID` account to merchant's bank account (daily, monthly or weekly), the balance is usually zero.
 If not, it will return the amount that is still due in merchant's iZettle account.
 
-`GET /organizations/{organizationUUID}/accounts/{accountTypeGroup}/balance`
+`GET /organizations/{organizationUuid}/accounts/{accountTypeGroup}/balance`
 [%collapsible]
 ====
 
@@ -37,9 +37,9 @@ If not, it will return the amount that is still due in merchant's iZettle accoun
 |===
 |Name|Type|In|Required/Optional|Description
 
-|organizationUUID|string|path|required|Organization identifier as UUID or "self" to denote that the organization should be derived from the authenticated user.
+|organizationUuid|string|path|required|Organization identifier as UUID or "self" to denote that the organization should be derived from the authenticated user.
 |accountTypeGroup|string|path|required|Which accounts types to get data from. Valid value `LIQUID` or `PRELIMINARY`.
-|at|string|query|optional|Used to get the balance at a specific point in history (ignoring any later transactions). Formatted as an `ISO 8601` string e.g. "2020-11-29T03:10:02" or "2020-08-14").
+|at|string|query|optional|Used to get the balance at a specific point in history (ignoring any later transactions). Formatted as an ISO 8601 string e.g. "2020-11-29T03:10:02" or "2020-08-14").
 |===
 
 *Examples*
@@ -73,7 +73,7 @@ _Response:_
 ==== Fetch account transactions
 Returns a list of transactions for given account and period.
 
-`GET /organizations/{organizationUUID}/accounts/{accountTypeGroup}/transactions`
+`GET /organizations/{organizationUuid}/accounts/{accountTypeGroup}/transactions`
 [%collapsible]
 ====
 
@@ -83,11 +83,11 @@ Returns a list of transactions for given account and period.
 |===
 |Name|Type|In|Required/Optional|Description
 
-|organizationUUID|string|path|required|Organization identifier as UUID or "self" to denote that the organization should be derived from the authenticated user.
+|organizationUuid|string|path|required|Unique id of organization as UUID or "self" to denote that the organization should be derived from the authenticated user.
 |accountTypeGroup|string|path|required|Which accounts types to get data from. Either `LIQUID` or `PRELIMINARY`
-|start|string|query|required|A start point in time, limiting the result set (inclusive). Formatted as an `ISO 8601` string +
+|start|string|query|required|A start point in time, limiting the result set (inclusive). Formatted as an ISO 8601 string +
 e.g. "2020-11-29T03:10:02" or "2020-08-14".
-|end|string|query|required|An end point in time, limiting the result set (exclusive). Formatted as an `ISO 8601` string +
+|end|string|query|required|An end point in time, limiting the result set (exclusive). Formatted as an ISO 8601 string +
 e.g. "2020-11-29T03:10:02" or "2020-08-14".
 |includeTransactionType|string|query|optional|Which transaction types to include. Multiple values allowed. See table _"Valid transaction types"_ below.
 |limit|integer|query|optional|Limit the result set to X number of results.
@@ -120,7 +120,7 @@ FROZEN_FUNDS transaction.
 |ADVANCE |References the cash advance given by iZettle to a merchant.
 A cash advance is a type of financing that is offered to merchants based on their sales history. The advance is paid back with monthly down payments.
 |ADVANCE_DOWNPAYMENT |A down payment on a previously paid out cash advance.
-|ADVANCE_FEE_DOWNPAYMENT |References the netting of a cash advance fee.
+|ADVANCE_FEE_DOWNPAYMENT|References the netting of a cash advance fee.
 |INVOICE_PAYMENT |References an invoice payment.
 |INVOICE_PAYMENT_FEE |References an invoice payment fee.
 |PAYMENT |References an alternative, third-party, payment method where iZettle handles the funds e.g. `PayPal QR code`(only DE and FR).
@@ -405,18 +405,18 @@ _Response:_ `Status: 200 OK`
 ==== Fetch payout information
 Returns payout related information for an organization.
 
-`GET /organizations/{organizationUUID}/payout-info`
+`GET /organizations/{organizationUuid}/payout-info`
 
 [%collapsible]
 ====
-**Parameters**
+*Parameters*
 
 [cols="20%,10%,10%,10%,50%"]
 |===
 |Name|Type|In|Required/Optional|Description
 
-|organizationUUID|string|path|required|Organization identifier as UUID or `self` to denote that the organization should be derived from the authenticated user.
-|at|string|query|optional|Used to get payouts until a specific historic date. Formatted as an `ISO 8601` string e.g. "2020-11-29T03:10:02" or "2020-08-14".
+|organizationUuid|string|path|required|Organization identifier as UUID or `self` to denote that the organization should be derived from the authenticated user.
+|at|string|query|optional|Used to get payouts until a specific historic date. Formatted as an ISO 8601 string e.g. "2020-11-29T03:10:02" or "2020-08-14".
 |===
 
 *Examples*
