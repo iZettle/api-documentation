@@ -1,57 +1,73 @@
 = Frequently Asked Questions
 
 
-****
-If you want to apply to receive access to our APIs, please visit the https://developer.izettle.com/register[iZettle Developer Portal].
-****
-'''
+====
+If you want to apply to receive access to our APIs, please visit https://developer.izettle.com/register[https://developer.izettle.com/register]
+====
 
-=== General questions
-**What TLS version is supported?**
+== General questions
+.*What TLS version is supported?*
+[%collapsible]
 ====
+****
 We are using TLS 1.2 for the moment.
+****
 ====
-**How do I take payments through the iZettle API?**
+.*How do I take payments through the iZettle API?*
+[%collapsible]
 ====
-It is not possible to take payments through the API. However we do have SDKs for both iOS (https://github.com/iZettle/sdk-ios) and Android (https://github.com/iZettle/sdk-android) which supports taking payments.
+****
+It is not possible to take payments through the API. However, we do have SDKs for both iOS (https://github.com/iZettle/sdk-ios) and Android (https://github.com/iZettle/sdk-android) which supports taking payments.
+****
 ====
-**Do you provide any test or sandbox environment?**
+.*Do you provide any test or sandbox environment?*
+[%collapsible]
 ====
-Unfortunately we do not at this time, This is something we are working on to improve.
+****
+Unfortunately we do not at this time.
+****
 ====
-'''
-**Does it cost anything to use your open APIs and is there some restriction on the API?**
+.*Does it cost anything to use your open APIs and is there some restriction on the API?*
+[%collapsible]
 ====
-No, its completely free to use our API and the only limitation is that some resources and
-services might have rate-limiting enabled to prevent overload.
+****
+No, it is completely free to use our API and the only limitation is that some resources might have rate limiting enabled to ensure service stability.
+****
 ====
-'''
-**Why do i receive `HTTP 100 Continue`  responses sometimes?**
+.*Why do i receive `HTTP 100 Continue`  responses sometimes?*
+[%collapsible]
 ====
+****
 This is something our framework sends when it has received the request headers and
 indicates that the client should proceed to send the request body. What you can do is investigate
- the reason why your code does this, or you could traverse the headers until
-you find a header with the intended response code, examples https://stackoverflow.com/questions/14526627/double-http-status-header-on-http-post-to-jersey[Here]
-and https://stackoverflow.com/questions/2964687/how-to-handle-100-continue-http-message[Here].
+the reason why your code does this, or you could traverse the headers until
+you find a header with the intended response code, examples https://stackoverflow.com/questions/14526627/double-http-status-header-on-http-post-to-jersey[here]
+and https://stackoverflow.com/questions/2964687/how-to-handle-100-continue-http-message[here].
+****
 ====
 
-'''
-=== https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[OAuth]
-**Once I have a Access token, how do I use it to authenticate myself?**
+== OAuth
+.*Once I have a Access token, how do I use it to authenticate myself?*
+[%collapsible]
 ====
+****
 The Access token is passed through the `Authorization` header with the format:
-`Authorization: Bearer <Token>`. Also note that on most services you can use the *_self_*
+`Authorization: Bearer <Token>`. Also, note that on most services you can use the *_self_*
 filter instead of `{organizationUuid}`
+****
 ====
-'''
+.*Do I need my organization UUID when accessing some of the APIs?*
+[%collapsible]
 ====
-**Do I need my organization uuid when accessing some of the apis?**
-====
+****
 You can either use the *_self_* filter: see this documentation for details on how, the other option is to call
 [source]
 --
 GET https://oauth.izettle.com/users/me
+--
 Example response
+[source,json]
+--
 
 {
     "uuid": "de305d54-75b4-431b-adb2-eb6b9e546014",
@@ -60,13 +76,16 @@ Example response
 
 --
 See https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[OAuth] for more info.
-
-'''
-
-=== https://github.com/iZettle/api-documentation/blob/master/product-library.adoc[Product Library]
+****
 ====
-**I'm using your API to create Products on Izettle, i have a problem when assigning images to products, i used the image API to create an image and it's working, but how to assign this image to the product i'm creating?**
-[source]
+
+== Product Library
+.*I'm using your API to create Products on iZettle, i have a problem when assigning images to products, i used the image API to create an image and it's working, but how to assign this image to the product i'm creating?*
+[%collapsible]
+====
+****
+
+[source,json]
 --
  "imageLookupKeys": [
     "string" what should i put here?
@@ -77,35 +96,28 @@ See https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[
     "textColor": "string"
   },
 --
-====
-The image api will return a imageUrl back which can be directly put into the _presentation.imageUrl_ field, however we just introduced this and is not fully supported by the portal and the apps yet.  
 
-So if you only want to use the information outside of the iZettle apps you might want to use  _presentation.imageUrl_, otherwise use  _imageLookupKeys_ and strip away everything except the last part of the imageUrl and place for example `Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEmQ.jpeg` in the imageLookupKeys to be able to see the image in the izettle-apps.
+The image api will return a imageUrl back which can be directly put into the `presentation.imageUrl` field, however we just introduced this and is not fully supported by the portal and the apps yet.
+
+So if you only want to use the information outside of the iZettle apps you might want to use  `presentation.imageUrl`, otherwise use  `imageLookupKeys` and strip away everything except the last part of the imageUrl and place for example `Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEmQ.jpeg` in the imageLookupKeys to be able to see the image in the iZettle apps.
 
 Clarification examples:
-[source]
+[source,json]
 --
-imageLookupKeys: ["Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEnQ.jpeg”]
+"imageLookupKeys": [
+      "Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEnQ.jpeg"
+]
 "presentation" : {
-      “imageUrl”: "https://image.izettle.com/v2/images/o/Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEnQ.jpeg"
+      "imageUrl": "https://image.izettle.com/v2/images/o/Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEnQ.jpeg"
+}
 --
-'''
-
-=== https://github.com/iZettle/api-documentation/blob/master/image.adoc[Image Service]
-**I cannot upload images using byte arrays.**
+****
 ====
-In the Swagger documentation it specifies the data as a array of String, this is not true, make sure that
-The byte array is in the form:
 
-[source]
---
-"imageData": [-1, -40, -1, -31, 0, 24, 69, 120, 105]
---
-
-and not:
-
-[source]
---
-"imageData": "[-1, -40, -1, -31, 0, 24, 69, 120, 105]"
---
+== Finance
+.*How do i get sum of all payments, fees, refunds, invoices?*
+[%collapsible]
+====
+Use `includeTransactionType` parameter in query for relevant transaction type/types, +
+traverse the list of transactions returned and sum up the amounts.
 ====
