@@ -1,8 +1,8 @@
 ## Pusher service API
 
 ### Service Description
-Pusher is a service that pushes information to other services, currently only supporting _Webhooks_.
-Webhooks allows you to build or set up integrations which subscribe to certain events.
+Pusher is a service that pushes information to other services, currently supporting _webhooks_ and _AWS SQS_.footnote:[Only for selected partners].
+It allows an integrator to subscribe to selected data events that happens on data owned by the organization.
 
 ### URL
 https://pusher.izettle.com
@@ -11,6 +11,8 @@ https://pusher.izettle.com
 https://pusher.izettle.com/swagger
 
 ---
+### Permissions
+You can only create or update an event subscription for which you have been authorized the corresponding scope.footnote:[Except the ApplicationConnectionRemoved event which can be subscribed to with any scope]. For example, the `PurchaseCreated` event requires the `READ:PURCHASE` scope and so on.
 
 ### Create a Webhook Subscription
 
@@ -31,18 +33,7 @@ https://pusher.izettle.com/swagger
 
 `transportName`: only `WEBHOOK` is available at the moment.
 
-`eventNames`: _[]_ subscribes to all events. If you want to be more specific pick one or more from this list:
-```
-    PurchaseCreated
-    ProductCreated
-    ProductUpdated
-    ProductDeleted
-    InventoryTrackingStarted
-    InventoryBalanceChanged
-    InventoryTrackingStopped
-    OrganizationUpdated
-```
-in the form: `"eventNames" : ["PurchaseCreated","ProductCreated"]` etc.
+`eventNames` (list): An empty list (`[]`) subscribes to all events. If you want to be more specific pick one or more from the *Event types* table below, in the form: `"eventNames" : ["PurchaseCreated","ProductCreated"]` etc.
 
 `destination` : The destination of the messages. Must be HTTPS.
 
@@ -79,6 +70,95 @@ The created subscription will be returned in the response:
 Please note the `signingKey` in the response. This is the key used to sign all webhook
 requests and should be stored so that you can verify the validity of the webhook request.
 See <<Webhook Verification>> for more info.
+
+https://oauth.izettletest.com/authorize?client_id=c86a2e96-88b9-4838-ab92-ea4320b20347&response_type=code&state=asdasd&redirect_uri=https://pstest.ngrok.io/&scope=READ:PURCHASE+READ:PRODUCT
+
+### Event types
+
+|===
+|Event name |Required scope |Description 
+
+|PurchaseCreated
+|READ:PURCHASE
+|New purchase created
+
+|InvoiceCreated
+|READ:FINANCE
+|New invoice created
+
+|OrganizationUpdated
+|READ:USERINFO
+|The organization information has been updated
+
+|OrganizationFeatureUpdated
+|READ:USERINFO
+|The organization feature set has been updated
+
+|PaymentInitiated
+|READ:FINANCE
+|A new payment was initiated
+
+|PaymentCreated
+|READ:FINANCE
+|A payment was created
+
+|PaymentCanceled
+|READ:FINANCE
+|A payment was canceled
+
+|CardPaymentAuthorized
+|READ:FINANCE
+|A card payment was authorized
+
+|CardPaymentInvalid
+|READ:FINANCE
+|A card payment was marked as invalid
+
+|ProductCreated
+|READ:PRODUCT
+|A new product was created in the product library
+
+|ProductUpdated
+|READ:PRODUCT
+|A product was updated in the product library
+
+|ProductDeleted
+|READ:PRODUCT
+|A product was deleted in the product library
+
+|InventoryBalanceChanged
+|READ:PRODUCT
+|Inventory balance changed for one product
+
+|InventoryTrackingStarted
+|READ:PRODUCT
+|Inventory was enabled for one product
+
+|InventoryTrackingStopped
+|READ:PRODUCT
+|Inventory was disabled for one product
+
+|ApplicationConnectionRemoved
+|any scope
+|The application was disconnected from the organization.footnote:[See separate section about ApplicationConnectionRemoved the event ]
+|===
+
+#### ApplicationConnectionRemoved event
+The `ApplicationConnectionRemoved` event is a special event that is only published to the application for which it occured (if subscribed to). It informs the integrator that the application has been disconnected from the iZettle organization and that the OAuth refresh token has been invalidated and gives the integrator a possibility to do cleanup on their side, if necessary.
+
+From the data published the integrator can retrieve the `organizationUuid` as well as the type of disconnect from the `payload.type` field. `ApplicationConnectionRemoved` means that this was an OAuth application that was disconnected and `PersonalAssertionDeleted` means that it was an API key that was deleted.
+```json
+{
+    "organizationUuid": "a3931584-82b2-4873-a32f-12b254d43539",
+    "messageUuid": "a2921485-83b3-4972-a22e-13b355d53438",
+    "eventName": "ApplicationConnectionRemoved",
+    "messageId": "30d547d2-3bbc-11eb-89c2-f91d896c8b75",
+    "payload": {
+      "type": "ApplicationConnectionRemoved"
+    },
+    "timestamp": "2020-12-11T14:21:42.410679Z"
+}
+```
 
 ### Managing Webhook Subscriptions
 
