@@ -139,7 +139,7 @@ In the case of other transaction types, the value of the `originatingTransaction
 
 *Examples*
 
-* Fetching all transactions from `LIQUID` account.
+* Fetching all types of transactions from `LIQUID` account.
 +
 --
 _Request:_
@@ -238,7 +238,7 @@ _Response:_
 ----
 --
 
-* Fetching list of `CARD_PAYMENT` and CARD_ `PAYMENT_FEE` transactions from `LIQUID` account.
+* Fetching list of `CARD_PAYMENT` and `CARD_PAYMENT_FEE` transactions from `LIQUID` account.
 +
 --
 _Request:_
@@ -247,7 +247,7 @@ _Request:_
 
 _Response:_
 
- `Status: 200 OK`
+`Status: 200 OK`
 
 [source,json]
 ----
@@ -270,7 +270,7 @@ _Response:_
 ----
 --
 
-* Fetching a list of refunded transactions from `LIQUID` account – `CARD_REFUND` and `CARD_PAYMENT_FEE_REFUND`.
+* Fetching a list of refunded transactions from `LIQUID` account (`CARD_REFUND` and `CARD_PAYMENT_FEE_REFUND`).
 +
 --
 _Request:_
@@ -301,14 +301,16 @@ _Response:_
 }
 ----
 --
-* Fetching a list of all `INVOICE_PAYMENT` and `INVOICE_PAYMENT_FEE` from `LIQUID` account.
+* Fetching a list of `INVOICE_PAYMENT` and `INVOICE_PAYMENT_FEE` from `LIQUID` account.
 +
 --
 _Request:_
 
 `GET/organizations/self/accounts/LIQUID/transactions?start=2019-01-11&end=2020-01-25&includeTransactionType=INVOICE_PAYMENT&includeTransactionType=INVOICE_PAYMENT_FEE`
 
-_Response:_ `Status: 200 OK`
+_Response:_
+
+`Status: 200 OK`
 
 [source,json]
 ----
