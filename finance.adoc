@@ -39,7 +39,7 @@ If not, it will return the amount that is still due in merchant's iZettle accoun
 
 |organizationUuid|string|path|required|Organization identifier as UUID or "self" to denote that the organization should be derived from the authenticated user.
 |accountTypeGroup|string|path|required|Which accounts types to get data from. Valid value `LIQUID` or `PRELIMINARY`.
-|at|string|query|optional|Used to get the balance at a specific point in history (ignoring any later transactions). Formatted as an ISO 8601 string e.g. "2020-11-29T03:10:02" or "2020-08-14").
+|at|string|query|optional|Used to get the balance at a specific point in history (ignoring any later transactions). Formatted as an ISO 8601 string e.g. "2020-11-29T03:10:02" or "2020-08-14".
 |===
 
 *Examples*
@@ -146,7 +146,9 @@ _Request:_
 
 `GET /organizations/self/accounts/LIQUID/transactions?start=2019-01-01&end=2020-12-01`
 
-_Response:_ `Status: 200 OK`
+_Response:_ 
+
+`Status: 200 OK`
 
 [source,json]
 ----
@@ -243,7 +245,9 @@ _Request:_
 
 `GET /organizations/self/accounts/LIQUID/transactions?start=2019-01-11&end=2020-11-25&includeTransactionType=CARD_PAYMENT&includeTransactionType=CARD_PAYMENT_FEE`
 
-_Response:_ `Status: 200 OK`
+_Response:_
+
+ `Status: 200 OK`
 
 [source,json]
 ----
@@ -273,7 +277,9 @@ _Request:_
 
 `GET /organizations/self/accounts/LIQUID/transactions?start=2019-01-11&end=2020-11-25&includeTransactionType=CARD_REFUND&includeTransactionType=CARD_PAYMENT_FEE_REFUND`
 
-_Response:_ `Status: 200 OK`
+_Response:_ 
+
+`Status: 200 OK`
 
 [source,json]
 ----
@@ -332,7 +338,9 @@ _Request:_
 
 `GET /organizations/self/accounts/LIQUID/transactions?start=2019-01-11&end=2020-12-01&includeTransactionType=CARD_PAYMENT&includeTransactionType=INVOICE_PAYMENT&includeTransactionType=PAYMENT`
 
-_Response:_ `Status: 200 OK`
+_Response:_
+
+`Status: 200 OK`
 
 [source,json]
 ----
@@ -368,7 +376,9 @@ _Request:_
 
 `GET /organizations/self/accounts/LIQUID/transactions?start=2019-01-11&end=2020-12-01&includeTransactionType=CARD_PAYMENT_FEE&includeTransactionType=INVOICE_PAYMENT_FEE&includeTransactionType=PAYMENT_FEE`
 
-_Response:_ `Status: 200 OK`
+_Response:_ 
+
+`Status: 200 OK`
 
 [source,json]
 ----
@@ -429,7 +439,9 @@ _Request:_
 
 `GET /organizations/self/payout-info`
 
-_Response:_ `Status:  200 OK`
+_Response:_ 
+
+`Status:  200 OK`
 [source,json]
 ----
 {
