@@ -28,7 +28,7 @@ Purchases up to three years old are available to fetch.
 |Name|Type|In|Required/Optional|Description
 
 |lastPurchaseHash|string|query|optional|A value from "lastPurchaseHash" from the result of a previous history query, to continue listing purchases from the next record after the previous query.
-|startDate|string|query|optional|The start date (inclusive) for purchases to be retrieved from until today or endDate. By default `startDate` is resolved to three years back.
+|startDate|string|query|optional|The start date (inclusive) for purchases to be retrieved from until today or endDate if provided. By default `startDate` is resolved to three years back.
 |endDate|string|query|optional|The last date (exclusive) for purchases to be retrieved until.
 |limit|string|query|optional|The maximum number of records to return. Max value of limit is 1000.
 |descending|string|query|optional|When true, returns purchases with the highest timestamp first.  When false, returns purchases with the lowest timestamp first. Defaults to false if not specified.
@@ -37,9 +37,15 @@ Purchases up to three years old are available to fetch.
 *Examples*
 
 * Fetching limited number of purchases in descending order(most recent first).
++
+--
+_Request:_
 
 `GET /purchases/v2?limit=2&descending=true`
 
+_Response:_
+
+`Status: 200 OK`
 [source, json]
 ----
 {
@@ -204,22 +210,7 @@ Purchases up to three years old are available to fetch.
       ],
       "discounts": [],
       "payments": [
-        {
-          "uuid": "08f8f648-3589-11eb-9222-c2bc561a4086",
-          "amount": 3500,
-          "type": "IZETTLE_CARD",
-          "createdAt": "2020-12-03T17:00:20.000+0000",
-          "attributes": {
-            "cardHolderVerificationMethod": "None",
-            "maskedPan": "535583******2441",
-            "cardPaymentEntryMode": "CONTACTLESS_EMV",
-            "referenceNumber": "B6MFKZTMKP",
-            "authorizationCode": "429579",
-            "cardType": "MASTERCARD",
-            "terminalVerificationResults": "0000008001",
-            "applicationIdentifier": "A0000000041010",
-            "applicationName": "Debit MasterCard"
-          }
+        ...
         }
       ],
       "cashRegister": {
@@ -236,12 +227,7 @@ Purchases up to three years old are available to fetch.
       "refunded": false,
       "purchaseUUID1": "066e52a6-3589-11eb-a896-5af628c16a84",
       "taxValues": [
-        {
-          "label": null,
-          "taxValue": 12,
-          "taxAmount": 375,
-          "totalAmount": 3500
-        }
+        ...
       ],
       "groupedVatAmounts": {
         "12.0": 3500
@@ -256,8 +242,17 @@ Purchases up to three years old are available to fetch.
   ]
 }
 ----
-
+--
 * Fetching purchases with partial refund.
++
+--
+_Request:_
+
+`GET /purchases/v2?&descending=true`
+
+_Response:_
+
+`Status: 200 OK`
 
 [source,json]
 ----
@@ -390,8 +385,17 @@ Purchases up to three years old are available to fetch.
   ]
 }
 ----
+--
 
-**Example response 3 (discounts)**
+* Response contains a purchase with discounts*
++
+--
+
+_Request:_
+
+_Response:_
+
+`Status: 200 OK`
 
 [source,json]
 ----
@@ -406,8 +410,7 @@ Purchases up to three years old are available to fetch.
       "timestamp": "2017-02-01T15:31:00.648+0000",
       "purchaseNumber": 1507,
       "userDisplayName": "Ford Prefect",
-      "userId": 1713921,
-      "organizationId": 14184411,
+      ...
       "products": [
         {
           "quantity": "2",
@@ -456,24 +459,15 @@ Purchases up to three years old are available to fetch.
         }
       ],
       "payments": [
-        {
-          "uuid": "6f4e2e50-e893-11e6-a784-a603fda22c92",
-          "amount": 10000,
-          "type": "IZETTLE_CASH",
-          "attributes": {
-            "handedAmount": 10000
-          }
-        }
+        ...
       ],
-      "receiptCopyAllowed": true,
-      "published": true,
+      ...
       "purchaseUUID1": "6e2a95e0-e893-11e6-bafa-56ab480140ef",
       "groupedVatAmounts": {
         "12.0": 7200,
         "25.0": 2800
       },
-      "refund": false,
-      "refunded": false
+      ...
     }
   ],
   "firstPurchaseHash": "1485857753809PaSsMOeeEeawkeLVV_68nw",
@@ -483,6 +477,7 @@ Purchases up to three years old are available to fetch.
   ]
 }
 ----
+--
 ====
 
 ==== Fetch purchase details
@@ -501,80 +496,98 @@ Purchases up to three years old are available to fetch.
 
 *Errors*
 
-404 Not found :: Purchase not found
+`Status: 404 Not found` - Purchase with given uuid not found.
 
-*Example response*
+*Examples*
 
-`GET /purchase/v2/e876c3ae-750d-4638-b98a-78868a434b89`
+_Request:_
+
+`GET /purchase/v2/589c2de6-3ee4-11eb-9e70-a2ac075b17fd`
+
+_Response:_
 [source,json]
 ----
 {
-  "purchaseUUID": "6HbDrnUNRji5iniGikNLiQ",
-  "purchaseUUID1": "e876c3ae-750d-4638-b98a-78868a434b89",
-  "amount": 1500,
-  "vatAmount": 161,
+  "source": "POS",
+  "purchaseUUID": "WJwt5j7kEeuecKKsB1sX_Q",
+  "purchaseUUID1": "589c2de6-3ee4-11eb-9e70-a2ac075b17fd",
+  "amount": 70000,
+  "vatAmount": 14000,
+  "taxAmount": 14000,
   "country": "SE",
   "currency": "SEK",
-  "timestamp": "2015-02-08T10:21:21.469+0000",
+  "timestamp": "2020-12-15T14:46:43.592+0000",
   "gpsCoordinates": {
-    "longitude": -73.99845698202617,
-    "latitude": 40.734215418008596,
-    "accuracyMeters": 65
+    "longitude": 19.80452501310729,
+    "latitude": 66.609375,
+    "accuracyMeters": 165
   },
-  "purchaseNumber": 1,
-  "userDisplayName": "Stig Haraldsson",
+  "purchaseNumber": 1366,
+  "globalPurchaseNumber": 1366,
+  "userDisplayName": "Sara Johansson",
+  "userId": 11111,
+  "organizationId": 11111,
   "products": [
     {
       "quantity": "1",
-      "vatPercentage": 12,
-      "unitPrice": 1500,
-      "rowTaxableAmount": 1339,
-      "name": "Enkel espresso",
-      "productUuid": "32986b58-0753-11e8-bd3c-f5639f19b561",
-      "variantUuid": "32986db0-0753-11e8-bd3c-f5639f19b561",
-      "type": "PRODUCT",
-      "id": "32986db0-0753-11e8-bd3c-f5639f19b567_28000001",
+      "productUuid": "2f2a8d60-9c76-11e5-8a3b-82916dc77adc",
+      "variantUuid": "234ee5f0-b188-11e5-aa17-721c907d3875",
+      "vatPercentage": 25,
+      "taxRates": [
+        {
+          "percentage": 25
+        }
+      ],
+      "taxExempt": false,
+      "unitPrice": 70000,
+      "rowTaxableAmount": 56000,
+      "name": "Haircut",
+      "variantName": "1 hour",
+      "fromLocationUuid": "4c03eec0-183c-11e7-a3f8-037fdcd360ec",
+      "toLocationUuid": "4c03eec0-183c-11e7-a15a-cda93ab15db3",
       "autoGenerated": false,
+      "id": "0",
+      "type": "PRODUCT",
+      "details": {},
       "libraryProduct": true
     }
   ],
+  "discounts": [],
   "payments": [
     {
-      "uuid": "165b88a0-07a3-11e6-9dae-43c30f1bff5b",
-      "amount": 1500,
-      "gratuityAmount": 0,
-      "type": "IZETTLE_CARD",
-      "attributes": {
-        "transactionStatusInformation": "EC00",
-        "cardPaymentEntryMode": "EMV",
-        "maskedPan": "476173******0119",
-        "installmentAmount": null,
-        "referenceNumber": "AU54FYHW7X",
-        "nrOfInstallments": 0,
-        "cardType": "VISA",
-        "terminalVerificationResults": "0080088000",
-        "applicationIdentifier": "A0000000031010",
-        "applicationName": "Visa Credit"
-      }
+      "uuid": "592b82f2-3ee4-11eb-9f71-a3ad065a16fc",
+      "amount": 70000,
+      "type": "SWISH",
+      "attributes": {}
     }
   ],
-  "cashRegister": {
-    "uuid": "r_dBcr6tT2ypC1jlMuUUzg",
-    "displayName": "Kassa 1"
-  },
   "receiptCopyAllowed": true,
-  "refund": false,
-  "groupedVatAmounts": {
-    "12.0": 1500
+  "references": {
+    "checkoutUUID": "589c2de6-3ee4-11eb-9f71-a3ad065a16fc"
   },
-  "refunded": false
+  "taxationMode": "INCLUSIVE",
+  "taxationType": "VAT",
+  "created": "2020-12-15T14:46:43.592+0000",
+  "refunded": false,
+  "taxValues": [
+    {
+      "label": null,
+      "taxValue": 25,
+      "taxAmount": 14000,
+      "totalAmount": 70000
+    }
+  ],
+  "groupedVatAmounts": {
+    "25.0": 70000
+  },
+  "refund": false
 }
 ----
 ====
 
-==== Response
-Purchase object contains different parts as products, discounts, payments etc
-These parts are described below in details.
+==== Purchase Model
+Purchase json includes different sections such as products, discounts, payments etc
+These sections are described below in details.
 
 *Products*
 
@@ -609,7 +622,8 @@ card payment amount will include the gratuity amount.
 |Payment type |Description
 
 |IZETTLE_CARD a|Payment taken with iZettle card reader. +
-Attributes example:
+
+Example:
 [source, json]
 ----
 {
@@ -631,6 +645,8 @@ Attributes example:
 }
 ----
 |IZETTLE_CARD_ONLINE a|Payment taken with iZettle online e.g. with payment link.
+
+Example:
 [source, json]
 ----
 {
@@ -647,6 +663,7 @@ Attributes example:
 }
 ----
 |IZETTLE_CASH a|Cash payment registered with iZettle. +
+
 Example:
 [source,json]
 ----
@@ -660,39 +677,76 @@ Example:
 }
 ----
 |IZETTLE_INVOICE a|iZettle invoice is issued for a purchase with this payment type.
-[source,json]
-----
-    {
-      "amount": 92250,
-      "attributes": {
-        "orderUUID": "52201c9a-1234-11eb-9909-5960351f9426",
-        "invoiceNr": "iz18",
-        "dueDate": "2020-10-29"
-      },
-      "type": "IZETTLE_INVOICE",
-      "uuid": "52372638-1223-11eb-85a4-e6977798fc1e"
-    }
-----
-|SWISH|APM footnote:apm[APM - Alternative Payment Method used to refer to anything that wasn't cash or a credit/debit card.]
-available in Sweden. No attributes present.
-|VIPPS|APM footnote:apm[] available in Norway. No attributes present.
-|MOBILE_PAY|APM footnote:apm[] available in Denmark. No attributes present.
-|PAYPAL a| Payment made with PayPal wallet, available in France and Germany.
+
 Example:
 [source,json]
 ----
- {
-      "uuid": "74d528f1-1bd1-11eb-afd0-27740sse6511",
-      "amount": 1200,
-      "type": "PAYPAL",
-      "attributes": {
-        "paypalId": "5TW66818TP956035F"
-      }
- }
+{
+  "amount": 92250,
+  "attributes": {
+    "orderUUID": "52201c9a-1234-11eb-9909-5960351f9426",
+    "invoiceNr": "iz18",
+    "dueDate": "2020-10-29"
+  },
+  "type": "IZETTLE_INVOICE",
+  "uuid": "52372638-1223-11eb-85a4-e6977798fc1e"
+}
+----
+|SWISH|APM footnote:apm[APM - Alternative Payment Method used to refer to anything that wasn't cash or a credit/debit card.]
+available in Sweden, has no additional attributes.
+|VIPPS|APM footnote:apm[] available in Norway, has no additional attributes.
+|MOBILE_PAY|APM footnote:apm[] available in Denmark, has no additional attributes.
+|PAYPAL a| Payment made with PayPal wallet, available in FR and DE.
+
+Example:
+[source,json]
+----
+{
+  "uuid": "74d528f1-1bd1-11ed-afd0-27740sse6511",
+  "amount": 1200,
+  "type": "PAYPAL",
+  "attributes": {
+    "paypalId": "5TW66818TP9560FFF"
+  }
+}
 ----
 |STORE_CREDIT|Store credit is usually a document offered by a store to a customer who returns an item not eligible for a refund or when a customer doesn't want to get chargeback on credit card that was used. It can be used to buy other goods at the same store.
 |GIFTCARD|Payment made with a gift card(certificate/voucher) issued by the merchant.
-|KLARNA|APM footnote:apm[] available in Sweden, Denmark, Finland and Germany.
+|KLARNA a|APM footnote:apm[] available in SE, DK, FI and DE.
+Example:
+[source, json]
+----
+{
+      "uuid": "fab90e28-c666-4f60-a96b-1515deb88300",
+      "receiverOrganization": "1b94d860-6e87-11e8-8345-37e231be703d",
+      "amount": 180319,
+      "type": "KLARNA",
+      "currency": "SEK",
+      "country": "SE",
+      "referenceNumber": "6B2MFVVDXXX",
+      "references": {
+        "checkoutUUID": "3431ad48-3ba4-11eb-bc4c-f3c0af76e000"
+      },
+      "commission": {
+        "totalAmount": 5621,
+        "vatAmount": 0,
+        "vatRate": 17.0,
+        "modelId": "4656dbf8-5161-11e9-b86f-74970dafc264",
+        "model": {
+          "fixed": 590,
+          "percentage": 2.79
+        }
+      },
+      "createdAt": "2020-12-11T11:32:14.000+0000",
+      "details": {
+        "klarnaOrderId": "f7abd5be-04bd-1565-b557-df865f5ba7a0",
+        "klarnaProduct": "PAY_LATER",
+        "klarnaReference": "029TN5TTT",
+        "acquiringChannel": "IN_STORE"
+      },
+      "attributes": {}
+    }
+----
 |===
 
 *Note:* Since product offerings at iZettle change, more payment types could be added. For forward compatibility it is important that API consumers are implemented in a tolerant way so receiving payments of types that are not yet defined doesn't break integration.
