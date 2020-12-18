@@ -1,24 +1,29 @@
 = Purchase API
 
 == Description
+
 ====
 Provides information about purchases made through iZettle.
 ====
 
 === Base URL
+
 https://purchase.izettle.com
 
 === OAuth scopes
+
 - `READ:PURCHASE`
 
 '''
 
 ==== Fetch purchase history
+
 Returns a list of purchases for organization.
 Will include cash register information if applicable. +
 Purchases up to three years old are available to fetch.
 
 `GET /purchases/v2`
+
 [%collapsible]
 ====
 *Parameters*
@@ -46,7 +51,8 @@ _Request:_
 _Response:_
 
 `Status: 200 OK`
-[source, json]
+
+[source,json]
 ----
 {
   "purchases": [
@@ -243,6 +249,65 @@ _Response:_
 }
 ----
 --
+
+* Fetching all purchases for a merchant.
++
+--
+API consumer should never retrieve all the purchases in one request, since it potentially can put too much load on the server causing request timeout.
+
+Instead, it should request paginated result, using the `limit` and `lastPurchaseHash` parameters.
+
+The `limit` parameter will set the page size, and the `lastPurchaseHash` parameter sets the starting point from where to retrieve purchases.
+Every response will contain a `lastPurchaseHash` attribute, which should added to request for the next page.
+A prepared URL is also provided in attribute `linkUrls`, if more purchases are to be fetched.
+
+In order to load all purchases, begin with an initial request without the `lastPurchaseHash` parameter, this will retrieve the first _n_ purchases , `limit` parameter should be used to define page size.
+
+
+`GET /purchases/v2?limit=50`
+
+The result will contain the first _n_ number of purchases.
+
+[source,json]
+----
+{
+  "purchases": [
+    ....
+  ],
+  "firstPurchaseHash": "14233908814696HbDrnUNRji5iniGikNLiQ",
+  "lastPurchaseHash": "1423390928355zj9yI1wyTvqP46AG8NEaYg",
+  "linkUrls": [
+        "<https://purchase.izettle.com/purchases/v2?limit=50&descending=true&lastPurchaseHash=1423390928355zj9yI1wyTvqP46AG8NEaYg>; rel=\"next\""
+  ]
+}
+----
+
+To retrieve the next page, use the value of `linkUrls` in the response.
+
+`GET https://purchase.izettle.com/purchases/v2?limit=50&descending=true&lastPurchaseHash=1423390928355zj9yI1wyTvqP46AG8NEaYg`
+
+
+The result will contain the next _n_ number of purchases:
+
+[source,json]
+----
+{
+  "purchases": [
+    ....
+  ],
+  "firstPurchaseHash": "1423390928355zj9yI1wyTvqP46AG8NEaYg",
+  "lastPurchaseHash": "1426265546490RPXdoMmDEeSg5Gw_2s_ZrQ",
+  "linkUrls": [
+        "<https://purchase.izettle.com/purchases/v2?limit=50&descending=true&lastPurchaseHash=1426265546490RPXdoMmDEeSg5Gw_2s_ZrQ; rel=\"next\""
+  ]
+}
+----
+
+Continue this process by using the `linkUrls` in the previous response as a request parameter in the following request until you receive an empty result.
+
+If you want to be able to load new purchases later on, then store the last used `linkUrls` and use that to continue retrieving new purchases at a later time.
+--
+
 * Fetching purchases with partial refund.
 +
 --
@@ -387,11 +452,13 @@ _Response:_
 ----
 --
 
-* Response contains a purchase with discounts*
+* Fetching purchases with discounts
 +
 --
 
 _Request:_
+
+`GET /purchases/v2?&descending=true`
 
 _Response:_
 
@@ -483,6 +550,7 @@ _Response:_
 ==== Fetch purchase details
 
 `GET /purchase/v2/{purchaseUuid}`
+
 [%collapsible]
 ====
 
@@ -505,6 +573,7 @@ _Request:_
 `GET /purchase/v2/589c2de6-3ee4-11eb-9e70-a2ac075b17fd`
 
 _Response:_
+
 [source,json]
 ----
 {
@@ -585,22 +654,102 @@ _Response:_
 ----
 ====
 
-==== Purchase Model
-Purchase json includes different sections such as products, discounts, payments etc
-These sections are described below in details.
+==== Response Model
 
-*Products*
+Purchase represents a receipt, it's immutable and contains information about items that were purchased, one or several payments received, discounts applied, taxes etc.
+Refunds are represented by the same model but with negative amounts and refund related flags/fields. +
+*Note*: More attributes can potentially be added, please make sure your integration is build in a tolerant way.
 
-A purchase has one or more item lines represented in the `products` array. The `type` attribute indicates what
-kind of item line the entity represent, with `PRODUCT`, `CUSTOM_AMOUNT` and `GIFTCARD` being the currently available types.
+*Attributes*
 
-In parallel to the `type` attribute there is an optional `details` attribute that may contain information related to the specific type,
-for example item lines of type `GIFTCARD` will have a `giftcardUuid` attribute pointing out what gift card that was sold/returned as part of purchases.
+[cols="15%,10%,75%"]
+|===
 
-*Payments*
+|Name|Type|Description
 
-A purchase has one or more payments present in the `payments` array.
-For instance one purchase can be partially paid with cash and the rest with card.
+|source|string a|Source of purchase, value can be one of the following
+
+* "POS" - purchase made with iZettle GO app
+* "WEB_SHOP" - purchase made online
+|created|string|Timestamp as string in ISO 8601 format GTM, e.g. "2001-12-03T03:05:06.123+0000".
+|purchaseUUID|string|Unique id of a purchase within iZettle system.
+|purchaseUUID1|string|Unique id of a purchase within iZettle system as UUID v1.
+|purchaseNumber|integer|Incremental receipt number visible for merchants.
+|globalPurchaseNumber|integer| TODO: add info!
+|amount|integer|Purchase amount in minor units footnote:minorunits[Minor units - minor currency unit e.g  €9.95 EUR, amount will be 995]. Is negative in case of refund.
+|vatAmount|integer|VAT amount for the whole purchase in minor units footnote:minorunits[].
+|country|string|Two-letter country code for country the merchant operates in.
+|currency|string|Currency code.
+|products|object|Describes items that were sold. See section "Products" for more information.
+|payments|object|Describes payments that were processed/received. See section "Payments" for more information.
+|discounts|object a|Describes discounts that were applied for the whole purchase.
+
+Example:
+[source,json]
+----
+"discounts": [
+        {
+            "name": "4 for £12",
+            "amount": 200,
+            "quantity": 1
+        }
+    ]
+or
+"discounts": [
+        {
+            "name": "Personal",
+            "percentage": 50,
+            "quantity": 1
+        }
+    ]
+
+
+----
+`name` attribute is optional, not always present.
+For more information see section "Discounts".
+|refund|boolean|Indicates if given purchase is a refund. See
+|refunded|boolean|Indicates if given purchase has been refunded.
+|refundsPurchaseUUID|string|Unique id of the purchase that was refunded as string.
+|refundsPurchaseUUID1|string|Unique id of the purchase that was refunded as UUID v1.
+|groupedVatAmounts|object a|Contains VAT amounts grouped by percentage. +
+Example:
+[source, json]
+----
+"groupedVatAmounts": {
+    "25.0": 70000,
+    "12.0": 5000
+  }
+----
+|userDisplayName|string|Name of the user that took the payment  .
+|gpsCoordinates|object a|Contains GPS coordinates of the location where purchase was made. +
+Example:
+[source,json]
+----
+"gpsCoordinates": {
+    "longitude": 19.80452501310729,
+    "latitude": 66.609375,
+    "accuracyMeters": 165
+  }
+----
+|userId|integer|Unique id for user within iZettle system.
+|organizationId|integer|Unique id for organization within iZettle system.
+|receiptCopyAllowed|boolean|Indicates if receipt copy is allowed to be printed.
+|===
+
+* Products
+// TODO: to be improved
+====
+A purchase has one or more item lines represented in the `products` array.
+The `type` attribute indicates what kind of item line the entity represent, with `PRODUCT`, `CUSTOM_AMOUNT` and `GIFTCARD` being the currently available types.
+
+In parallel to the `type` attribute there is an optional `details` attribute that may contain information related to the specific type, for example item lines of type `GIFTCARD` will have a `giftcardUuid` attribute pointing out what gift card that was sold/returned as part of purchases.
+====
+
+* Payments
+
+====
+A purchase has one or more payments present in the `payments` array e.g. purchase can be partially paid with cash and the rest with card.
+There a several types of payments supported, each of them is described in this section.
 
 ._Payment attributes_
 [cols="10%,10%,80%"]
@@ -608,7 +757,7 @@ For instance one purchase can be partially paid with cash and the rest with card
 |Name|Type |Description
 
 |uuid|string|Unique id of the payment in UUID format.
-|amount|integer|Amount in minors(cents).
+|amount|integer|Amount in minor units footnote:minorunits[].
 |type|string|Payment type used when making a purchase.
 |gratuityAmount|integer|Corresponds to the tipping amount in the purchase. This
 feature is not available in all countries. When the `gratuityAmount` is set, the
@@ -624,7 +773,7 @@ card payment amount will include the gratuity amount.
 |IZETTLE_CARD a|Payment taken with iZettle card reader. +
 
 Example:
-[source, json]
+[source,json]
 ----
 {
   "uuid": "165b88a0-07a3-11e6-9dae-43c30f1bff5b",
@@ -633,7 +782,7 @@ Example:
   "type": "IZETTLE_CARD",
   "attributes": {
     "cardHolderVerificationMethod": "None",
-    "maskedPan": "535583******2441",
+    "maskedPan": "535583******0000",
     "cardPaymentEntryMode": "CONTACTLESS_EMV",
     "referenceNumber": "B6MFKZTMKP",
     "authorizationCode": "429579",
@@ -647,7 +796,7 @@ Example:
 |IZETTLE_CARD_ONLINE a|Payment taken with iZettle online e.g. with payment link.
 
 Example:
-[source, json]
+[source,json]
 ----
 {
   "uuid": "3d38a2b4-3a02-11eb-bdbf-9f47e7b17f57",
@@ -713,8 +862,9 @@ Example:
 |STORE_CREDIT|Store credit is usually a document offered by a store to a customer who returns an item not eligible for a refund or when a customer doesn't want to get chargeback on credit card that was used. It can be used to buy other goods at the same store.
 |GIFTCARD|Payment made with a gift card(certificate/voucher) issued by the merchant.
 |KLARNA a|APM footnote:apm[] available in SE, DK, FI and DE.
+
 Example:
-[source, json]
+[source,json]
 ----
 {
       "uuid": "fab90e28-c666-4f60-a96b-1515deb88300",
@@ -749,31 +899,39 @@ Example:
 ----
 |===
 
-*Note:* Since product offerings at iZettle change, more payment types could be added. For forward compatibility it is important that API consumers are implemented in a tolerant way so receiving payments of types that are not yet defined doesn't break integration.
+*Note:* Since product offerings at iZettle change, more payment types could be added.
+For forward compatibility it is important that API consumers are implemented in a tolerant way so receiving payments of types that are not yet defined doesn't break integration.
 
-*Note:* `gratuityAmount` corresponds to the tipping amount in the purchase. This
-feature is not available in all countries. When the `gratuityAmount` is set, the
-card payment amount will include the gratuity amount.
+*Note:* `gratuityAmount` corresponds to the tipping amount in the purchase.
+This feature is not available in all countries.
+When the `gratuityAmount` is set, the card payment amount will include the gratuity amount.
 
+====
 
-*Discounts*
-
-Discounts can exist both on a specific row of items in the shopping cart, as well as on the entire shopping cart. Discounts on a row of items is applied on the whole amount of the row. A discount can be set either as a percentage or as a fixed value.
+* Discounts
+// TODO: to be improved
+====
+Discounts can exist both on a specific row of items in the shopping cart, as well as on the entire shopping cart.
+Discounts on a row of items is applied on the whole amount of the row.
+A discount can be set either as a percentage or as a fixed value.
 
 When applying the total discounts on the purchase price, the row discounts will first be applied, followed by the discount which is then applied on the sum of the already discounted row prices.
 
 *VAT calculation on purchase with discounts*
-VAT is calculated after all the discounts have been applied. Since each row can have a separate VAT percentage the discount is evenly distributed over all purchased items before the VAT per row of products can be calculated.
+
+VAT is calculated after all the discounts have been applied.
+Since each row can have a separate VAT percentage the discount is evenly distributed over all purchased items before the VAT per row of products can be calculated.
 
 If the cart discount is a fixed value then that value will be deducted from each row according the price of each row in relation to the total purchase price.
-
 *Examples*
+
 If the cart discount is 20%, then the price of each row of item will be deducted with 20% before calculating the VAT for each row.
 
 If a purchase has a total price of 100 and contains two rows with the first row priced at 40 and the second at 60, then 40% of the fixed cart discount will be deducted from the first row and 60% from the other row before calculating the VAT.
 
-* Response structure
-Row discounts are expressed using the following JSON structure in the `products` list, containing either `amount` for fixed discounts or `percentage` for percentage discounts. The `discountValue` field following the `discount` structure contains the total discount amount for the row:
+* Response structure Row discounts are expressed using the following JSON structure in the `products` list, containing either `amount` for fixed discounts or `percentage` for percentage discounts.
+The `discountValue` field following the `discount` structure contains the total discount amount for the row:
+
 [source,json]
 ----
 "discount": {
@@ -785,7 +943,9 @@ Row discounts are expressed using the following JSON structure in the `products`
 
 *Note:* Currently, we only support one discount per row of items, so the `quantity` field will always be set to 1. This could potentially change in the future.
 
-Discounts are represented by using the following JSON structure in the root of the purchase. They can contain either `amount` or `percentage` value.
+Discounts are represented by using the following JSON structure in the root of the purchase.
+They can contain either `amount` or `percentage` value.
+
 [source,json]
 ----
 "discounts": [
@@ -801,7 +961,9 @@ Discounts are represented by using the following JSON structure in the root of t
 See further below for a full response example containing discounts.
 
 *Example*
+
 Lets observe an example purchase, containing both discounts on rows as well as on the cart itself:
+
 [options="header"]
 |===
 | Product | Unit price | Amount | Discount
@@ -809,7 +971,9 @@ Lets observe an example purchase, containing both discounts on rows as well as o
 | Bar | 10 | 10 | 10%
 | Cart discount | | | 20%
 |===
-To calculate the total discount, we start by calculating the discount per row. The first row contains 2 item and has a fixed discount amount of 5.
+
+To calculate the total discount, we start by calculating the discount per row.
+The first row contains 2 item and has a fixed discount amount of 5.
 
 The second row contains 10 items and a percentage discount of 10%:
 
@@ -824,55 +988,17 @@ Then we calculate the cart discount, based on the sum of the previously discount
 So the total discount on this purchase is: 15 + 25 = 40. And the total sum to pay is: 140 - 40 = 100.
 
 A discount can never be greater than the actual amount of the row or cart price.
+====
 
-* How to load all purchases for a user*
+* Refunds
+====
+As previously mentioned refunds at iZettle are represented by same model as purchases but with negative amounts and refund related references.
+Let's observe some examples of refunds.
 
-You should never retrieve all the purchases in one request, since that can potentially put too much load on the server causing the request to be rejected or time out.
+// TODO: add content here
 
-Instead, you should request the purchases splitted up into "pages", using the `limit` and `lastPurchaseHash` parameters, with `limit` set to maximum 1000.
-
-The `limit` parameter will set the page size, and the `lastPurchaseHash` parameter sets the starting point from where to retrieve purchases. Every response from the purchase service will contain a `lastPurchaseHash` field, which can be added to the new request to retrieve the next "page". A prepared URL is also provided in attribute `linkUrls`, if more purchases are to be fetched.
-
-In order to load all purchases, begin with an initial request without the `lastPurchaseHash` parameter being set, this will retrieve the first _n_ purchases (where _n_ is the page size defined by the `limit` parameter):
-
-
-`GET /purchases/v2?limit=50`
-
-The result will contain the first _n_ number of purchases.
-[source,json]
-----
-{
-  "purchases": [
-    ....
-  ],
-  "firstPurchaseHash": "14233908814696HbDrnUNRji5iniGikNLiQ",
-  "lastPurchaseHash": "1423390928355zj9yI1wyTvqP46AG8NEaYg",
-  "linkUrls": [
-        "<https://purchase.izettle.com/purchases/v2?limit=50&descending=true&lastPurchaseHash=1423390928355zj9yI1wyTvqP46AG8NEaYg>; rel=\"next\""
-  ]
-}
-----
-
-To retrieve the next page, use the value of `linkUrls` in the response.
-
-`GET https://purchase.izettle.com/purchases/v2?limit=50&descending=true&lastPurchaseHash=1423390928355zj9yI1wyTvqP46AG8NEaYg`
+====
 
 
-The result will contain the next _n_ number of purchases:
-[source,json]
-----
-{
-  "purchases": [
-    ....
-  ],
-  "firstPurchaseHash": "1423390928355zj9yI1wyTvqP46AG8NEaYg",
-  "lastPurchaseHash": "1426265546490RPXdoMmDEeSg5Gw_2s_ZrQ",
-  "linkUrls": [
-        "<https://purchase.izettle.com/purchases/v2?limit=50&descending=true&lastPurchaseHash=1426265546490RPXdoMmDEeSg5Gw_2s_ZrQ; rel=\"next\""
-  ]
-}
-----
 
-Continue this process by using the `linkUrls` in the previous response as a request parameter in the following request until you receive an empty result.
 
-If you want to be able to load new purchases later on, then store the last used `linkUrls` and use that to continue retrieving new purchases at a later time.
