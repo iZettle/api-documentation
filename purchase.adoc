@@ -545,6 +545,9 @@ _Response:_
 }
 ----
 --
+
+'''
+
 ====
 
 ==== Fetch purchase details
@@ -553,6 +556,7 @@ _Response:_
 
 [%collapsible]
 ====
+Returns a purchase with given UUID.
 
 *Parameters*
 
@@ -562,17 +566,23 @@ _Response:_
 |purchaseUuid|string|path|required|Unique id of the purchase as UUID.
 |===
 
-*Errors*
+*Responses*
 
+`Status: 200 OK` - Succesful, response json is returned. +
 `Status: 404 Not found` - Purchase with given uuid not found.
 
 *Examples*
 
+* Fetching a specific purchase.
++
+--
 _Request:_
 
 `GET /purchase/v2/589c2de6-3ee4-11eb-9e70-a2ac075b17fd`
 
 _Response:_
+
+`Status: 200 OK`
 
 [source,json]
 ----
@@ -652,6 +662,9 @@ _Response:_
   "refund": false
 }
 ----
+--
+
+'''
 ====
 
 ==== Response Model
@@ -671,7 +684,7 @@ Refunds are represented by the same model but with negative amounts and refund r
 
 * "POS" - purchase made with iZettle GO app
 * "WEB_SHOP" - purchase made online
-|created|string|Timestamp as string in ISO 8601 format GTM, e.g. "2001-12-03T03:05:06.123+0000".
+|created|string|Timestamp as string in ISO 8601 format GTM e.g. "2019-12-03T17:05:06.123+0000".
 |purchaseUUID|string|Unique id of a purchase within iZettle system.
 |purchaseUUID1|string|Unique id of a purchase within iZettle system as UUID v1.
 |purchaseNumber|integer|Incremental receipt number visible for merchants.
@@ -681,9 +694,8 @@ Refunds are represented by the same model but with negative amounts and refund r
 |country|string|Two-letter country code for country the merchant operates in.
 |currency|string|Currency code.
 |products|object|Describes items that were sold. See section "Products" for more information.
-|payments|object|Describes payments that were processed/received. See section "Payments" for more information.
-|discounts|object a|Describes discounts that were applied for the whole purchase.
-
+|payments|object|Payments that were processed/received. See section "Payments" for more information.
+|discounts|object a|Discounts applied on the whole purchase.
 Example:
 [source,json]
 ----
@@ -707,6 +719,23 @@ or
 ----
 `name` attribute is optional, not always present.
 For more information see section "Discounts".
+|serviceCharge|object a|Service charge added to a purchase e.g. delivery charge.
+Example:
+[source,json]
+----
+ "serviceCharge": {
+    "amount": 499,
+    "taxRates": [
+      {
+        "percentage": "16.0"
+      }
+    ],
+    "title": "Standard Shipping",
+    "vatPercentage": 16.0,
+    "quantity": "1"
+  }
+----
+
 |refund|boolean|Indicates if given purchase is a refund. See
 |refunded|boolean|Indicates if given purchase has been refunded.
 |refundsPurchaseUUID|string|Unique id of the purchase that was refunded as string.
@@ -732,24 +761,34 @@ Example:
   }
 ----
 |userId|integer|Unique id for user within iZettle system.
+|cashRegister|object a|Cash register details. +
+Example:
+[source,json]
+----
+"cashRegister": {
+    "displayName": "Kassa 2",
+    "uuid": "YdVwSn4i111DZepjFuVBw"
+}
+----
 |organizationId|integer|Unique id for organization within iZettle system.
 |receiptCopyAllowed|boolean|Indicates if receipt copy is allowed to be printed.
 |===
 
-* Products
+*Products*
 // TODO: to be improved
-====
+
+--
 A purchase has one or more item lines represented in the `products` array.
 The `type` attribute indicates what kind of item line the entity represent, with `PRODUCT`, `CUSTOM_AMOUNT` and `GIFTCARD` being the currently available types.
 
 In parallel to the `type` attribute there is an optional `details` attribute that may contain information related to the specific type, for example item lines of type `GIFTCARD` will have a `giftcardUuid` attribute pointing out what gift card that was sold/returned as part of purchases.
-====
+--
 
-* Payments
+*Payments*
+--
+A purchase has one or more payments present in the `payments` array e.g. purchase can be partially paid in cash and the rest with credit card.
+There are several types of payments supported, each of them is described in table _Payment types_.
 
-====
-A purchase has one or more payments present in the `payments` array e.g. purchase can be partially paid with cash and the rest with card.
-There a several types of payments supported, each of them is described in this section.
 
 ._Payment attributes_
 [cols="10%,10%,80%"]
@@ -761,7 +800,7 @@ There a several types of payments supported, each of them is described in this s
 |type|string|Payment type used when making a purchase.
 |gratuityAmount|integer|Corresponds to the tipping amount in the purchase. This
 feature is not available in all countries. When the `gratuityAmount` is set, the
-card payment amount will include the gratuity amount.
+payment amount will include the gratuity amount.
 |attributes|object|Additional information about the payment. Different attributes are included depending on payment type.
 |===
 
@@ -861,7 +900,7 @@ Example:
 ----
 |STORE_CREDIT|Store credit is usually a document offered by a store to a customer who returns an item not eligible for a refund or when a customer doesn't want to get chargeback on credit card that was used. It can be used to buy other goods at the same store.
 |GIFTCARD|Payment made with a gift card(certificate/voucher) issued by the merchant.
-|KLARNA a|APM footnote:apm[] available in SE, DK, FI and DE.
+|KLARNA a|APM available in SE, DK, FI and DE.
 
 Example:
 [source,json]
@@ -905,12 +944,12 @@ For forward compatibility it is important that API consumers are implemented in 
 *Note:* `gratuityAmount` corresponds to the tipping amount in the purchase.
 This feature is not available in all countries.
 When the `gratuityAmount` is set, the card payment amount will include the gratuity amount.
+--
 
-====
-
-* Discounts
+*Discounts*
 // TODO: to be improved
-====
+
+--
 Discounts can exist both on a specific row of items in the shopping cart, as well as on the entire shopping cart.
 Discounts on a row of items is applied on the whole amount of the row.
 A discount can be set either as a percentage or as a fixed value.
@@ -988,17 +1027,16 @@ Then we calculate the cart discount, based on the sum of the previously discount
 So the total discount on this purchase is: 15 + 25 = 40. And the total sum to pay is: 140 - 40 = 100.
 
 A discount can never be greater than the actual amount of the row or cart price.
-====
+--
 
-* Refunds
-====
+*Refunds*
+
+--
 As previously mentioned refunds at iZettle are represented by same model as purchases but with negative amounts and refund related references.
 Let's observe some examples of refunds.
 
 // TODO: add content here
 
-====
-
-
+--
 
 
