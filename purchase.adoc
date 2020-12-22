@@ -19,7 +19,6 @@ https://purchase.izettle.com
 ==== Fetch purchase history
 
 Returns a list of purchases for organization.
-Will include cash register information if applicable. +
 Purchases up to three years old are available to fetch.
 
 `GET /purchases/v2`
@@ -563,7 +562,7 @@ Returns a purchase with given UUID.
 [cols="15%,10%,10%,10%,55%"]
 |===
 |Name|Type|In|Required/Optional|Description
-|purchaseUuid|string|path|required|Unique id of the purchase as UUID.
+|purchaseUuid|string|path|required|Unique id of the purchase as UUID within iZettle system.
 |===
 
 *Responses*
@@ -684,15 +683,15 @@ Refunds are represented by the same model but with negative amounts and refund r
 
 * "POS" - purchase made with iZettle GO app
 * "WEB_SHOP" - purchase made online
-|created|string|Timestamp as string in ISO 8601 format GTM e.g. "2019-12-03T17:05:06.123+0000".
+|created|string|Timestamp as string in ISO 8601 format e.g. "2019-12-03T17:05:06.123+0000".
 |purchaseUUID|string|Unique id of a purchase within iZettle system.
 |purchaseUUID1|string|Unique id of a purchase within iZettle system as UUID v1.
 |purchaseNumber|integer|Incremental receipt number visible for merchants.
 |globalPurchaseNumber|integer| TODO: add info!
-|amount|integer|Purchase amount in minor units footnote:minorunits[Minor units - minor currency unit e.g  €9.95 EUR, amount will be 995]. Is negative in case of refund.
-|vatAmount|integer|VAT amount for the whole purchase in minor units footnote:minorunits[].
+|amount|integer|Gross amount (inc VAT) in minor currency units e.g  €9.95 EUR, amount will be 995. Is negative in case of refund.
+|vatAmount|integer|VAT amount for the whole purchase in minor currency units e.g €5 EUR, amount will be 500.
 |country|string|Two-letter country code for country the merchant operates in.
-|currency|string|Currency code.
+|currency|string|Currency code (ISO 4217).
 |products|object|Describes items that were sold. See section "Products" for more information.
 |payments|object|Payments that were processed/received. See section "Payments" for more information.
 |discounts|object a|Discounts applied on the whole purchase.
@@ -736,7 +735,7 @@ Example:
   }
 ----
 
-|refund|boolean|Indicates if given purchase is a refund. See
+|refund|boolean|Indicates if given purchase is a refund.
 |refunded|boolean|Indicates if given purchase has been refunded.
 |refundsPurchaseUUID|string|Unique id of the purchase that was refunded as string.
 |refundsPurchaseUUID1|string|Unique id of the purchase that was refunded as UUID v1.
@@ -749,7 +748,7 @@ Example:
     "12.0": 5000
   }
 ----
-|userDisplayName|string|Name of the user that took the payment  .
+|userDisplayName|string|Name of the user that took the payment.
 |gpsCoordinates|object a|Contains GPS coordinates of the location where purchase was made. +
 Example:
 [source,json]
@@ -761,7 +760,7 @@ Example:
   }
 ----
 |userId|integer|Unique id for user within iZettle system.
-|cashRegister|object a|Cash register details. +
+|cashRegister|object a|Cash register reference. Cash register is a service provided by iZettle and used by merchant in order to comply with requirements coming from the tax authority. +
 Example:
 [source,json]
 ----
@@ -775,19 +774,22 @@ Example:
 |===
 
 *Products*
-// TODO: to be improved
 
---
-A purchase has one or more item lines represented in the `products` array.
+A purchase has one or more item lines represented in `products` array.
 The `type` attribute indicates what kind of item line the entity represent, with `PRODUCT`, `CUSTOM_AMOUNT` and `GIFTCARD` being the currently available types.
 
 In parallel to the `type` attribute there is an optional `details` attribute that may contain information related to the specific type, for example item lines of type `GIFTCARD` will have a `giftcardUuid` attribute pointing out what gift card that was sold/returned as part of purchases.
---
+
+'''
 
 *Payments*
---
-A purchase has one or more payments present in the `payments` array e.g. purchase can be partially paid in cash and the rest with credit card.
+
+
+A purchase has one or more payments present in `payments` array e.g. purchase can be partially paid in cash and the rest with credit card.
 There are several types of payments supported, each of them is described in table _Payment types_.
+
+*Note:* Since product offerings at iZettle change, more payment types could be added.
+For forward compatibility it is important that API consumers are implemented in a tolerant way so receiving payments of types that are not yet defined doesn't break integration.
 
 
 ._Payment attributes_
@@ -795,11 +797,11 @@ There are several types of payments supported, each of them is described in tabl
 |===
 |Name|Type |Description
 
-|uuid|string|Unique id of the payment in UUID format.
-|amount|integer|Amount in minor units footnote:minorunits[].
+|uuid|string|Unique id of the payment in UUID format. Can be linked to
+|amount|integer|Amount in minor currency units e.g. £30.50 GBP, amount will be 3050.
 |type|string|Payment type used when making a purchase.
 |gratuityAmount|integer|Corresponds to the tipping amount in the purchase. This
-feature is not available in all countries. When the `gratuityAmount` is set, the
+feature is not available in all supported by iZettle countries. When the `gratuityAmount` is set, the
 payment amount will include the gratuity amount.
 |attributes|object|Additional information about the payment. Different attributes are included depending on payment type.
 |===
@@ -880,10 +882,10 @@ Example:
   "uuid": "52372638-1223-11eb-85a4-e6977798fc1e"
 }
 ----
-|SWISH|APM footnote:apm[APM - Alternative Payment Method used to refer to anything that wasn't cash or a credit/debit card.]
-available in Sweden, has no additional attributes.
-|VIPPS|APM footnote:apm[] available in Norway, has no additional attributes.
-|MOBILE_PAY|APM footnote:apm[] available in Denmark, has no additional attributes.
+|SWISH|Alternative payment method footnote:apm[APM - Alternative Payment Method used to refer to anything that wasn't cash or a credit/debit card.]
+available in SE, has no additional attributes.
+|VIPPS|Alternative payment method  available in NO, has no additional attributes.
+|MOBILE_PAY|Alternative payment method available in DK, has no additional attributes.
 |PAYPAL a| Payment made with PayPal wallet, available in FR and DE.
 
 Example:
@@ -938,30 +940,23 @@ Example:
 ----
 |===
 
-*Note:* Since product offerings at iZettle change, more payment types could be added.
-For forward compatibility it is important that API consumers are implemented in a tolerant way so receiving payments of types that are not yet defined doesn't break integration.
-
-*Note:* `gratuityAmount` corresponds to the tipping amount in the purchase.
-This feature is not available in all countries.
-When the `gratuityAmount` is set, the card payment amount will include the gratuity amount.
---
+'''
 
 *Discounts*
-// TODO: to be improved
 
---
-Discounts can exist both on a specific row of items in the shopping cart, as well as on the entire shopping cart.
-Discounts on a row of items is applied on the whole amount of the row.
-A discount can be set either as a percentage or as a fixed value.
+Discounts can exist both on a specific row of items(products), as well as on the entire purchase.
+Discount on a row of items is applied on the whole amount of the row, can be set either as a percentage or as a fixed amount.
 
-When applying the total discounts on the purchase price, the row discounts will first be applied, followed by the discount which is then applied on the sum of the already discounted row prices.
+Items row discounts will be applied first, followed by the discount on the sum of the already discounted row prices.
 
 *VAT calculation on purchase with discounts*
 
-VAT is calculated after all the discounts have been applied.
-Since each row can have a separate VAT percentage the discount is evenly distributed over all purchased items before the VAT per row of products can be calculated.
+Since each row of items can have a separate VAT percentage the discount
+for the whole purchase is evenly distributed over all purchased items.
+VAT is calculated after all the discounts are deducted.
 
-If the cart discount is a fixed value then that value will be deducted from each row according the price of each row in relation to the total purchase price.
+If the cart discount is a fixed amount then that amount  will be deducted from each row according the price of each row in relation to the total purchase price.
+
 *Examples*
 
 If the cart discount is 20%, then the price of each row of item will be deducted with 20% before calculating the VAT for each row.
@@ -1027,16 +1022,12 @@ Then we calculate the cart discount, based on the sum of the previously discount
 So the total discount on this purchase is: 15 + 25 = 40. And the total sum to pay is: 140 - 40 = 100.
 
 A discount can never be greater than the actual amount of the row or cart price.
---
 
 *Refunds*
 
---
 As previously mentioned refunds at iZettle are represented by same model as purchases but with negative amounts and refund related references.
 Let's observe some examples of refunds.
 
 // TODO: add content here
-
---
 
 
