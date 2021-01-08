@@ -38,6 +38,13 @@ Purchases up to three years old are available to fetch.
 |descending|string|query|optional|When true, returns purchases with the highest timestamp first.  When false, returns purchases with the lowest timestamp first. Defaults to false if not specified.
 |===
 
+
+*Responses*
+
+`Status: 200 OK` - Successful, response json is returned. +
+`Status: 401 Unauthorized` - Authorization token is invalid. +
+`Status: 429 Too Many Requests` - Hit rate limit. Retry request later.
+
 *Examples*
 
 * Fetching limited number of purchases in descending order(most recent first).
@@ -252,7 +259,7 @@ _Response:_
 * Fetching all purchases for a merchant.
 +
 --
-API consumer should never retrieve all the purchases in one request, since it potentially can put too much load on the server causing request timeout.
+*Note:* API consumer should never retrieve all the purchases in one request, since it potentially can put too much load on the server causing request timeout.
 
 Instead, it should request paginated result, using the `limit` and `lastPurchaseHash` parameters.
 
@@ -558,7 +565,7 @@ _Response:_
 Returns a purchase with given UUID.
 
 *Parameters*
-
+[options="header"]
 [cols="15%,10%,10%,10%,55%"]
 |===
 |Name|Type|In|Required/Optional|Description
@@ -673,7 +680,7 @@ Refunds are represented by the same model but with negative amounts and refund r
 *Note*: More attributes can potentially be added, please make sure your integration is build in a tolerant way.
 
 *Attributes*
-
+[options="header"]
 [cols="15%,10%,75%"]
 |===
 
@@ -692,8 +699,8 @@ Refunds are represented by the same model but with negative amounts and refund r
 |vatAmount|integer|VAT amount for the whole purchase in minor currency units e.g €5 EUR, amount will be 500.
 |country|string|Two-letter country code for country the merchant operates in.
 |currency|string|Currency code (ISO 4217).
-|products|object|Describes items that were sold. See section "Products" for more information.
-|payments|object|Payments that were processed/received. See section "Payments" for more information.
+|products|array|Describes items that were sold. See section "Products" for more information.
+|payments|array|Payments that were processed/received. See section "Payments" for more information.
 |discounts|object a|Discounts applied on the whole purchase.
 Example:
 [source,json]
@@ -718,7 +725,7 @@ or
 ----
 `name` attribute is optional, not always present.
 For more information see section "Discounts".
-|serviceCharge|object a|Service charge added to a purchase e.g. delivery charge.
+|serviceCharge|object a|Service charge added to a purchase e.g. delivery charge. +
 Example:
 [source,json]
 ----
@@ -760,7 +767,9 @@ Example:
   }
 ----
 |userId|integer|Unique id for user within iZettle system.
-|cashRegister|object a|Cash register reference. Cash register is a service provided by iZettle and used by merchant in order to comply with requirements coming from the tax authority. +
+|cashRegister|object a|Cash register reference. Cash register is a service provided by iZettle and used by merchant in order to comply with requirements coming from the tax authority(only available in SE, NO, DE and FR). +
+For now no public API is available for cash register.
+
 Example:
 [source,json]
 ----
@@ -775,24 +784,48 @@ Example:
 
 *Products*
 
-A purchase has one or more item lines represented in `products` array.
-The `type` attribute indicates what kind of item line the entity represent, with `PRODUCT`, `CUSTOM_AMOUNT` and `GIFTCARD` being the currently available types.
+A purchase has one or more item rows represented in `products` array.
+
+._Product attributes_
+[options="header"]
+[cols="10%,10%,80%"]
+|===
+|Name|Type |Description
+
+|quantity|string|Quantity of items. Can be a whole number or a decimal number, and negative in case of refund.
+|type|string a|Describes the kind of item that was purchased. +
+Enumeration values:
+
+* "PRODUCT" - Indicates that the item sold was predefined in product library.
+* "CUSTOM_AMOUNT" - Indicates that the item sold was a custom amount entered in the app at the time of purchase.
+* "GIFTCARD" - Indicates that the item sold was a gift card.
 
 In parallel to the `type` attribute there is an optional `details` attribute that may contain information related to the specific type, for example item lines of type `GIFTCARD` will have a `giftcardUuid` attribute pointing out what gift card that was sold/returned as part of purchases.
+
+|productUuid|string|Unique id of product in product library as UUID.
+|name|string|Name of the product sold.
+|variantUuid|string|Unique id of variant in product library as UUID.
+|variantName|string|Name of variant.
+|vatPercentage|number|VAT percentage of the item.
+|rowTaxableAmount|integer|Amount on which VAT is chargeable, in minor currency units e.g. £12.5 GBP will be 1250.
+|unitPrice|integer|Unit price of the item in minor currency units e.g. €10 EUR will be 1000.
+|unitName|string|Name of unit e.g. "kg", "hour".
+|comment|string|Comment for the row.
+|===
 
 '''
 
 *Payments*
 
-
 A purchase has one or more payments present in `payments` array e.g. purchase can be partially paid in cash and the rest with credit card.
-There are several types of payments supported, each of them is described in table _Payment types_.
+There are several types of payments supported, each of them is described in table "Payment types".
 
-*Note:* Since product offerings at iZettle change, more payment types could be added.
+*Note:* Since the product offerings at iZettle change, more payment types could be added.
 For forward compatibility it is important that API consumers are implemented in a tolerant way so receiving payments of types that are not yet defined doesn't break integration.
 
 
 ._Payment attributes_
+[options="header"]
 [cols="10%,10%,80%"]
 |===
 |Name|Type |Description
@@ -807,6 +840,7 @@ payment amount will include the gratuity amount.
 |===
 
 ._Payment types_
+[options="header"]
 [cols="30%,70%"]
 |===
 |Payment type |Description
@@ -955,13 +989,13 @@ Since each row of items can have a separate VAT percentage the discount
 for the whole purchase is evenly distributed over all purchased items.
 VAT is calculated after all the discounts are deducted.
 
-If the cart discount is a fixed amount then that amount  will be deducted from each row according the price of each row in relation to the total purchase price.
+If the purchase discount is a fixed amount then that amount  will be deducted from each row according the price of each row in relation to the total purchase price.
 
 *Examples*
 
-If the cart discount is 20%, then the price of each row of item will be deducted with 20% before calculating the VAT for each row.
+If the purchase discount is 20%, then the price of each row of item will be deducted with 20% before calculating the VAT for each row.
 
-If a purchase has a total price of 100 and contains two rows with the first row priced at 40 and the second at 60, then 40% of the fixed cart discount will be deducted from the first row and 60% from the other row before calculating the VAT.
+If a purchase has a total price of 100 and contains two rows with the first row priced at 40 and the second at 60, then 40% of the fixed purchase discount will be deducted from the first row and 60% from the other row before calculating the VAT.
 
 * Response structure Row discounts are expressed using the following JSON structure in the `products` list, containing either `amount` for fixed discounts or `percentage` for percentage discounts.
 The `discountValue` field following the `discount` structure contains the total discount amount for the row:
@@ -990,38 +1024,43 @@ They can contain either `amount` or `percentage` value.
 }
 ----
 
-*Note:* Currently, we only support one discount per cart, so the `discounts` list will only contain one item with `quantity` set to 1. This could potentially change in the future.
+*Note:* Currently, we only support one discount for the whole, so the `discounts` list will only contain one item with `quantity` set to 1. This could potentially change in the future.
 
 See further below for a full response example containing discounts.
 
 *Example*
 
-Lets observe an example purchase, containing both discounts on rows as well as on the cart itself:
+Let's observe an example purchase, containing both discounts on rows as well as on the purchase itself.
 
 [options="header"]
+[cols="3%,20%,20%,20%,27%"]
 |===
-| Product | Unit price | Amount | Discount
-| Foo | 20 | 2 | 5
-| Bar | 10 | 10 | 10%
-| Cart discount | | | 20%
+|Nr|Product|Unit price|Amount|Discount
+|1|Foo|20|2|5
+|2|Bar|10|10|10%
+4+|Purchase discount| 20%
 |===
 
-To calculate the total discount, we start by calculating the discount per row.
-The first row contains 2 item and has a fixed discount amount of 5.
+1. To calculate the total discount we start by calculating the discount per row:
++
+--
+1 st row contains 2 items and a fixed discount amount of 5.
 
-The second row contains 10 items and a percentage discount of 10%:
+2nd row contains 10 items and a percentage discount of 10%.
 
 *Row discounts* = 5 + 10 x 10 x 0.1 = 15.
+--
+2. Then we calculate the purchase discount, based on the sum of the previously discounted rows:
++
+--
+*Sum of discounted rows* = 20 x 2 + 10 x 10 - 15 = 125
 
-Then we calculate the cart discount, based on the sum of the previously discounted rows:
+*Purchase discount* = 125 x 0.2 = 25
 
-*Sum of discounted rows* = 20 x 2 + 10 x 10 - 15 = 125.
+So the total discount on this purchase is 15 + 25 = 40 and the total sum to pay is 140 - 40 = 100.
 
-*Cart discount* = 125 x 0.2 = 25
-
-So the total discount on this purchase is: 15 + 25 = 40. And the total sum to pay is: 140 - 40 = 100.
-
-A discount can never be greater than the actual amount of the row or cart price.
+A discount can never be greater than the actual amount of the row or purchase price.
+--
 
 *Refunds*
 
