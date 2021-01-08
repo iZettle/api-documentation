@@ -767,7 +767,7 @@ Example:
   }
 ----
 |userId|integer|Unique id for user within iZettle system.
-|cashRegister|object a|Cash register reference. Cash register is a service provided by iZettle and used by merchant in order to comply with requirements coming from the tax authority(only available in SE, NO, DE and FR). +
+|cashRegister|object a|Cash register reference. Cash register is a service provided by iZettle and used by merchant in order to comply with requirements coming from the tax authority(only available in Sweden, Norway, Germany and France). +
 For now no public API is available for cash register.
 
 Example:
@@ -916,11 +916,10 @@ Example:
   "uuid": "52372638-1223-11eb-85a4-e6977798fc1e"
 }
 ----
-|SWISH|Alternative payment method footnote:apm[APM - Alternative Payment Method used to refer to anything that wasn't cash or a credit/debit card.]
-available in SE, has no additional attributes.
-|VIPPS|Alternative payment method  available in NO, has no additional attributes.
-|MOBILE_PAY|Alternative payment method available in DK, has no additional attributes.
-|PAYPAL a| Payment made with PayPal wallet, available in FR and DE.
+|SWISH|Alternative payment method available in Sweden, has no additional attributes.
+|VIPPS|Alternative payment method  available in Norway, has no additional attributes.
+|MOBILE_PAY|Alternative payment method available in Denmark, has no additional attributes.
+|PAYPAL a| Payment made with PayPal wallet, available in France and Germany.
 
 Example:
 [source,json]
@@ -936,7 +935,7 @@ Example:
 ----
 |STORE_CREDIT|Store credit is usually a document offered by a store to a customer who returns an item not eligible for a refund or when a customer doesn't want to get chargeback on credit card that was used. It can be used to buy other goods at the same store.
 |GIFTCARD|Payment made with a gift card(certificate/voucher) issued by the merchant.
-|KLARNA a|APM available in SE, DK, FI and DE.
+|KLARNA a|Alternative payment method available in Sweden, Denmark, Finland and Germany.
 
 Example:
 [source,json]
