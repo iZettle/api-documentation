@@ -42,8 +42,8 @@ Purchases up to three years old are available to fetch.
 *Responses*
 
 `Status: 200 OK` - Successful, response json is returned. +
-`Status: 401 Unauthorized` - Authorization token is invalid. +
-`Status: 429 Too Many Requests` - Hit rate limit. Retry request later.
+`Status: 401 Unauthorized` - You were not authorized to execute this operation. +
+`Status: 429 Too Many Requests` - You hit the rate limit. Retry request later.
 
 *Examples*
 
@@ -458,7 +458,7 @@ _Response:_
 ----
 --
 
-* Fetching purchases with discounts
+* Purchases with discounts returned.
 +
 --
 
@@ -526,7 +526,7 @@ _Response:_
       ],
       "discounts": [
         {
-          "name": "",
+          "name": "20% off",
           "percentage": 20,
           "quantity": 1
         }
@@ -690,15 +690,15 @@ Refunds are represented by the same model but with negative amounts and refund r
 
 * "POS" - purchase made with iZettle GO app
 * "WEB_SHOP" - purchase made online
-|created|string|Timestamp as string in ISO 8601 format e.g. "2019-12-03T17:05:06.123+0000".
 |purchaseUUID|string|Unique id of a purchase within iZettle system.
-|purchaseUUID1|string|Unique id of a purchase within iZettle system as UUID v1.
-|purchaseNumber|integer|Incremental receipt number visible for merchants.
-|globalPurchaseNumber|integer| TODO: add info!
+|purchaseUUID1|string|Unique id of a purchase within iZettle system as UUID version 1.
+|timestamp|string|Created timestamp according to the https://en.wikipedia.org/wiki/ISO_8601[ISO 8601] format, e.g. "2019-12-03T17:05:06.123+0000".
+|purchaseNumber|integer|Incremental receipt number.
+|globalPurchaseNumber|integer|Incremental receipt number, only different from `purchaseNumber` if several cash registers are used by the merchant.
 |amount|integer|Gross amount (inc VAT) in minor currency units e.g  €9.95 EUR, amount will be 995. Is negative in case of refund.
 |vatAmount|integer|VAT amount for the whole purchase in minor currency units e.g €5 EUR, amount will be 500.
 |country|string|Two-letter country code for country the merchant operates in.
-|currency|string|Currency code (ISO 4217).
+|currency|string|Currency code https://en.wikipedia.org/wiki/ISO_4217[ISO 4217]. Examples "SEK", "GBP", "EUR".
 |products|array|Describes items that were sold. See section "Products" for more information.
 |payments|array|Payments that were processed/received. See section "Payments" for more information.
 |discounts|object a|Discounts applied on the whole purchase.
@@ -742,10 +742,11 @@ Example:
   }
 ----
 
+|created|string|Created timestamp according to the https://en.wikipedia.org/wiki/ISO_8601[ISO 8601] format e.g. "2019-12-03T17:05:06.123+0000".
 |refund|boolean|Indicates if given purchase is a refund.
 |refunded|boolean|Indicates if given purchase has been refunded.
 |refundsPurchaseUUID|string|Unique id of the purchase that was refunded as string.
-|refundsPurchaseUUID1|string|Unique id of the purchase that was refunded as UUID v1.
+|refundsPurchaseUUID1|string|Unique id of the purchase that was refunded as UUID version 1.
 |groupedVatAmounts|object a|Contains VAT amounts grouped by percentage. +
 Example:
 [source, json]
@@ -807,10 +808,13 @@ In parallel to the `type` attribute there is an optional `details` attribute tha
 |variantUuid|string|Unique id of variant in product library as UUID.
 |variantName|string|Name of variant.
 |vatPercentage|number|VAT percentage of the item.
-|rowTaxableAmount|integer|Amount on which VAT is chargeable, in minor currency units e.g. £12.5 GBP will be 1250.
+|rowTaxableAmount|integer|Amount on which VAT is chargeable in minor currency units e.g. £12.5 GBP will be 1250.
 |unitPrice|integer|Unit price of the item in minor currency units e.g. €10 EUR will be 1000.
 |unitName|string|Name of unit e.g. "kg", "hour".
-|comment|string|Comment for the row.
+|comment|string|Comment for the item row.
+|libraryProduct|boolean|Indicates if product registered in merchant's product library.
+|sku|string|SKU of product in inventory.
+|barcode|string|Barcode of the product in inventory.
 |===
 
 '''
@@ -892,11 +896,12 @@ Example:
 [source,json]
 ----
 {
-  "uuid": "ce90dc90-dcaa-11e6-87a4-0cd119752226",
-  "amount": 1000,
+  "uuid": "ec138d2e-8e29-41c0-a4c4-17b2b4ab7f8b",
+  "amount": 2000,
   "type": "IZETTLE_CASH",
   "attributes": {
-    "handedAmount": 17000
+    "changeAmount": 3000,
+    "handedAmount": 5000
   }
 }
 ----
@@ -1002,6 +1007,7 @@ The `discountValue` field following the `discount` structure contains the total 
 [source,json]
 ----
 "discount": {
+  "name": "10% off",
   "quantity": 1,
   "percentage": 10
 },
@@ -1017,7 +1023,6 @@ They can contain either `amount` or `percentage` value.
 ----
 "discounts": [
 {
-    "name": "",
     "amount": 2000,
     "quantity": 1
 }
@@ -1060,12 +1065,4 @@ So the total discount on this purchase is 15 + 25 = 40 and the total sum to pay 
 
 A discount can never be greater than the actual amount of the row or purchase price.
 --
-
-*Refunds*
-
-As previously mentioned refunds at iZettle are represented by same model as purchases but with negative amounts and refund related references.
-Let's observe some examples of refunds.
-
-// TODO: add content here
-
 
