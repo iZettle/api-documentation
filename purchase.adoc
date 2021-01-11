@@ -67,7 +67,6 @@ _Response:_
       "purchaseUUID": "Odi3BjWLEeuollr2KMFqhA",
       "amount": 5000,
       "vatAmount": 535,
-      "taxAmount": 535,
       "country": "SE",
       "currency": "SEK",
       "timestamp": "2020-12-02T17:16:20.028+0000",
@@ -157,7 +156,6 @@ _Response:_
       "purchaseUUID": "Bm5SpjWJEeuollr2KMFqhA",
       "amount": 3500,
       "vatAmount": 375,
-      "taxAmount": 375,
       "country": "SE",
       "currency": "SEK",
       "timestamp": "2020-12-03T17:00:24.879+0000",
@@ -203,8 +201,6 @@ _Response:_
       "references": {
         "checkoutUUID": "066e52a6-3589-11eb-a997-5bf729c06b85"
       },
-      "taxationMode": "INCLUSIVE",
-      "taxationType": "VAT",
       "created": "2020-12-03T17:00:24.879+0000",
       "refunded": false,
       "purchaseUUID1": "066e52a6-3589-11eb-a896-5af628c16a84",
@@ -528,7 +524,7 @@ _Response:_
 
 ====
 
-==== Fetch purchase details
+==== Fetch purchase by id
 
 `GET /purchase/v2/{purchaseUuid}`
 
@@ -541,13 +537,16 @@ Returns a purchase with given UUID.
 [cols="15%,10%,10%,10%,55%"]
 |===
 |Name|Type|In|Required/Optional|Description
+
 |purchaseUuid|string|path|required|Unique id of the purchase as UUID within iZettle system.
 |===
 
 *Responses*
 
-`Status: 200 OK` - Succesful, response json is returned. +
-`Status: 404 Not found` - Purchase with given uuid not found.
+`Status: 200 OK` - Successful, response json is returned. +
+`Status: 404 Not found` - Purchase with given id not found. +
+`Status: 401 Unauthorized` - You were not authorized to execute this operation. +
+`Status: 429 Too Many Requests` - You hit the rate limit. Retry request later.
 
 *Examples*
 
@@ -570,7 +569,6 @@ _Response:_
   "purchaseUUID1": "589c2de6-3ee4-11eb-9e70-a2ac075b17fd",
   "amount": 70000,
   "vatAmount": 14000,
-  "taxAmount": 14000,
   "country": "SE",
   "currency": "SEK",
   "timestamp": "2020-12-15T14:46:43.592+0000",
@@ -615,18 +613,8 @@ _Response:_
   "references": {
     "checkoutUUID": "589c2de6-3ee4-11eb-9f71-a3ad065a16fc"
   },
-  "taxationMode": "INCLUSIVE",
-  "taxationType": "VAT",
   "created": "2020-12-15T14:46:43.592+0000",
   "refunded": false,
-  "taxValues": [
-    {
-      "label": null,
-      "taxValue": 25,
-      "taxAmount": 14000,
-      "totalAmount": 70000
-    }
-  ],
   "groupedVatAmounts": {
     "25.0": 70000
   },
@@ -640,6 +628,7 @@ _Response:_
 
 ==== Response Model
 
+===== Purchase
 Purchase represents a receipt, it's immutable and contains information about items that were purchased, one or several payments received, discounts applied etc.
 Refunds are represented by the same model but with negative amounts and refund related flags/fields. +
 *Note*: More attributes can potentially be added, please make sure your integration is build in a tolerant way.
@@ -662,8 +651,8 @@ Refunds are represented by the same model but with negative amounts and refund r
 |globalPurchaseNumber|integer|Incremental receipt number, only different from `purchaseNumber` if several cash registers are used by the merchant.
 |amount|integer|Gross amount (inc VAT) in minor currency units e.g  €9.95 EUR, amount will be 995. Is negative in case of refund.
 |vatAmount|integer|VAT amount for the whole purchase in minor currency units e.g €5 EUR, amount will be 500.
-|country|string|Two-letter country code for country the merchant operates in.
-|currency|string|Currency code https://en.wikipedia.org/wiki/ISO_4217[ISO 4217]. Examples "SEK", "GBP", "EUR".
+|country|string|Two-letter country code for country the merchant operates in. Examples "SE", "NO", "GB", "FR", "DE", "DK".
+|currency|string|Currency code https://en.wikipedia.org/wiki/ISO_4217[ISO 4217]. Examples "SEK", "NOK", "GBP", "EUR".
 |products|array|Describes items that were sold. See section "Products" for more information.
 |payments|array|Payments that were processed/received. See section "Payments" for more information.
 |discounts|object a|Discounts applied on the whole purchase.
@@ -707,6 +696,22 @@ Example:
 |refunded|boolean|Indicates if given purchase has been refunded.
 |refundsPurchaseUUID|string|Unique id of the purchase that was refunded as string.
 |refundsPurchaseUUID1|string|Unique id of the purchase that was refunded as UUID version 1.
+|refundedByPurchaseUUIDs|array a|List with ids of purchases that refunded this particular one. +
+[source, json]
+----
+"refundedByPurchaseUUIDs": [
+    "PSITZxySSY2elO9cxPRdYQ",
+    "431jwpevS-y2rBzyEvl9kA"
+]
+----
+|refundedByPurchaseUUIDs|array a|List with ids of purchases that refunded this particular one as UUIDs. +
+[source, json]
+----
+"refundedByPurchaseUUIDs1": [
+    "3d221367-1c92-498d-9e94-ef5cc4f45d61",
+    "e37d63c2-97af-4bec-b6ac-1cf212f97d90"
+]
+----
 |groupedVatAmounts|object a|Contains VAT amounts grouped by percentage. +
 Example:
 [source, json]
@@ -727,7 +732,7 @@ Example:
     "accuracyMeters": 165
   }
 ----
-|userId|integer|Unique id for user within iZettle system.
+|userId|integer|Unique id for user within iZettle system. Internal use.
 |cashRegister|object a|Cash register reference. Cash register is a service provided by iZettle and used by merchant in order to comply with requirements coming from the tax authority(only available in Sweden, Norway, Germany and France). +
 For now no public API is available for cash register.
 
@@ -739,8 +744,8 @@ Example:
     "uuid": "YdVwSn4i111DZepjFuVBw"
 }
 ----
-|organizationId|integer|Unique id for organization within iZettle system.
-|receiptCopyAllowed|boolean|Indicates if receipt copy is allowed to be printed.
+|organizationId|integer|Unique id for organization within iZettle system. Internal use.
+|receiptCopyAllowed|boolean|Indicates if receipt copy is allowed to be printed. Internal use.
 |===
 
 *Products*
@@ -802,6 +807,14 @@ For forward compatibility it is important that API consumers are implemented in 
 |gratuityAmount|integer|Corresponds to the tipping amount in the purchase. This
 feature is not available in all supported by iZettle countries. When the `gratuityAmount` is set, the
 payment amount will include the gratuity amount.
+|attributes|object a|Other references. +
+Example:
+[source, json]
+----
+"references": {
+    "refundsPayment": "4647cd58-ebc6-4ef8-9572-559811c90b11" // UUID of original payment that was refunded or partially refunded.
+}
+----
 |attributes|object|Additional information about the payment. Different attributes are included depending on payment type.
 |===
 
@@ -969,9 +982,9 @@ The `discountValue` field following the `discount` structure contains the total 
 [source,json]
 ----
 "discount": {
-  "name": "10% off",
-  "quantity": 1,
-  "percentage": 10
+    "name": "10% off",
+    "quantity": 1,
+    "percentage": 10
 },
 "discountValue": 1000
 ----
