@@ -732,7 +732,7 @@ Example:
 ----
 |userId|integer|Unique id for user within iZettle system. Internal use.
 |cashRegister|object a|Cash register reference. Cash register is a service provided by iZettle and used by merchant in order to comply with requirements coming from the tax authority(only available in Sweden, Norway, Germany and France). +
-For now no public API is available for cash register.
+For now no public API is available for cash register. Mostly for internal use.
 
 Example:
 [source,json]
@@ -762,8 +762,15 @@ Enumeration values:
 * "PRODUCT" - Indicates that the item sold was predefined in product library.
 * "CUSTOM_AMOUNT" - Indicates that the item sold was a custom amount entered in the app at the time of purchase.
 * "GIFTCARD" - Indicates that the item sold was a gift card.
-
-In parallel to the `type` attribute there is an optional `details` attribute that may contain information related to the specific type, for example item lines of type `GIFTCARD` will have a `giftcardUuid` attribute pointing out what gift card that was sold/returned as part of purchases.
+|details|object a|May contain information related to the specific type, for example item lines of type `GIFTCARD` will have a `giftcardUuid` attribute pointing out what gift card that was sold/returned as part of purchases.
+Example:
+[source,json]
+----
+"details": {
+    "giftcardUuid": "290371f0-a8a5-11e5-b862-d6cb9f787e88"
+}
+----
+Gift card details can be fetched through https://github.com/iZettle/api-documentation/blob/master/giftcard.adoc#get-giftcard-details[Gift Card API]. +
 
 |productUuid|string|Unique id of product in product library as UUID.
 |name|string|Name of the product sold.
@@ -777,8 +784,8 @@ In parallel to the `type` attribute there is an optional `details` attribute tha
 |libraryProduct|boolean|Indicates if product registered in merchant's product library.
 |sku|string|SKU of product in inventory.
 |barcode|string|Barcode of the product in inventory.
-|fromLocationUuid|string|Supplier location id as UUID (inventory).
-|toLocationUuid|string|Store location id as UUID (inventory).
+|fromLocationUuid|string|Supplier location id as UUID (inventory context).
+|toLocationUuid|string|Store location id as UUID (inventory context).
 |===
 
 '''
