@@ -924,7 +924,7 @@ Example:
 ----
 {
       "uuid": "fab90e28-c666-4f60-a96b-1515deb88300",
-      "receiverOrganization": "1b94d860-6e87-11e8-8345-37e231be703d",
+      "receiverOrganization": "59ef0f5a-5416-11eb-ae93-0242ac130002",
       "amount": 180319,
       "type": "KLARNA",
       "currency": "SEK",
