@@ -976,9 +976,10 @@ If the purchase discount is 20%, then the price of each row of item will be dedu
 
 If a purchase has a total price of 100 and contains two rows with the first row priced at 40 and the second at 60, then 40% of the fixed purchase discount will be deducted from the first row and 60% from the other row before calculating the VAT.
 
-* Response structure Row discounts are expressed using the following JSON structure in the `products` list, containing either `amount` for fixed discounts or `percentage` for percentage discounts.
+* Row discounts are expressed using the following JSON structure in the `products` list, containing either `amount` for fixed discounts or `percentage` for percentage discounts.
 The `discountValue` field following the `discount` structure contains the total discount amount for the row:
-
++
+--
 [source,json]
 ----
 "discount": {
@@ -990,8 +991,11 @@ The `discountValue` field following the `discount` structure contains the total 
 ----
 
 *Note:* Currently, we only support one discount per row of items, so the `quantity` field will always be set to 1. This could potentially change in the future.
+--
 
-Discounts are represented by using the following JSON structure in the root of the purchase.
+* Discounts for the whole purchase are expressed using the following JSON structure.
++
+--
 They can contain either `amount` or `percentage` value.
 
 [source,json]
@@ -1006,10 +1010,11 @@ They can contain either `amount` or `percentage` value.
 *Note:* Currently, we only support one discount for the whole, so the `discounts` list will only contain one item with `quantity` set to 1. This could potentially change in the future.
 
 See further below for a full response example containing discounts.
+--
 
-*Example*
+*Discount calculation example*
 
-Let's observe an example purchase, containing both discounts on rows as well as on the purchase itself.
+Let's observe an example purchase containing both discounts on rows as well as on the purchase itself.
 
 [options="header"]
 [cols="3%,20%,20%,20%,27%"]
