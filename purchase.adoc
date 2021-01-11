@@ -533,7 +533,6 @@ _Response:_
 Returns a purchase with given UUID.
 
 *Parameters*
-[options="header"]
 [cols="15%,10%,10%,10%,55%"]
 |===
 |Name|Type|In|Required/Optional|Description
@@ -634,7 +633,6 @@ Refunds are represented by the same model but with negative amounts and refund r
 *Note*: More attributes can potentially be added, please make sure your integration is build in a tolerant way.
 
 *Attributes*
-[options="header"]
 [cols="15%,10%,75%"]
 |===
 
@@ -753,7 +751,6 @@ Example:
 A purchase has one or more item rows represented in `products` array.
 
 ._Product attributes_
-[options="header"]
 [cols="10%,10%,80%"]
 |===
 |Name|Type |Description
@@ -800,8 +797,7 @@ For forward compatibility it is important that API consumers are implemented in 
 |===
 |Name|Type |Description
 
-|uuid|string|Unique id of the payment in UUID format. Can be linked to
-|amount|integer|Amount in minor currency units e.g. £30.50 GBP, amount will be 3050.
+|uuid|string|Unique id of the payment as UUID. Can be linked to transactions in https://github.com/iZettle/api-documentation/blob/master/finance.adoc#fetch-account-transactions[Finance API].
 |type|string|Payment type used when making a purchase.
 |gratuityAmount|integer|Corresponds to the tipping amount in the purchase. This
 feature is not available in all supported by iZettle countries. When the `gratuityAmount` is set, the
@@ -819,7 +815,6 @@ Example:
 |===
 
 ._Payment types_
-[options="header"]
 [cols="30%,70%"]
 |===
 |Payment type |Description
@@ -1016,7 +1011,6 @@ See further below for a full response example containing discounts.
 
 Let's observe an example purchase containing both discounts on rows as well as on the purchase itself.
 
-[options="header"]
 [cols="3%,20%,20%,20%,27%"]
 |===
 |Nr|Product|Unit price|Amount|Discount
