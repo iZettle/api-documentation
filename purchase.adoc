@@ -796,7 +796,6 @@ For forward compatibility it is important that API consumers are implemented in 
 
 
 ._Payment attributes_
-[options="header"]
 [cols="10%,10%,80%"]
 |===
 |Name|Type |Description
