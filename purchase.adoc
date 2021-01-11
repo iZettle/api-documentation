@@ -704,7 +704,7 @@ Example:
     "431jwpevS-y2rBzyEvl9kA"
 ]
 ----
-|refundedByPurchaseUUIDs|array a|List with ids of purchases that refunded this particular one as UUIDs. +
+|refundedByPurchaseUUIDs1|array a|List with ids of purchases that refunded this particular one as UUIDs version 1. +
 [source, json]
 ----
 "refundedByPurchaseUUIDs1": [
@@ -812,7 +812,8 @@ Example:
 [source, json]
 ----
 "references": {
-    "refundsPayment": "4647cd58-ebc6-4ef8-9572-559811c90b11" // UUID of original payment that was refunded or partially refunded.
+    "refundsPayment": "4647cd58-ebc6-4ef8-9572-559811c90b11"
+    // UUID of original payment that was refunded or partially refunded.
 }
 ----
 |attributes|object|Additional information about the payment. Different attributes are included depending on payment type.
