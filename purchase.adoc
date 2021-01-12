@@ -227,8 +227,8 @@ _Response:_
 
 Instead, it should request paginated result, using the `limit` and `lastPurchaseHash` parameters.
 
-The `limit` parameter will set the page size, and the `lastPurchaseHash` parameter sets the starting point from where to retrieve purchases.
-Every response will contain a `lastPurchaseHash` attribute, which should added to request for the next page.
+The `limit` parameter sets the page size, and the `lastPurchaseHash` parameter sets the starting point from where to retrieve purchases.
+Every response will contain `lastPurchaseHash` attribute, which should be added to the request for the next page.
 A prepared URL is also provided in attribute `linkUrls`, if more purchases are to be fetched.
 
 In order to load all purchases, begin with an initial request without the `lastPurchaseHash` parameter, this will retrieve the first _n_ purchases , `limit` parameter should be used to define page size.
