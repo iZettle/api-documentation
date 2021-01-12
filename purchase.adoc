@@ -18,7 +18,7 @@ https://purchase.izettle.com
 
 ==== Fetch purchase history
 
-Returns a list of purchases for organization.
+Returns a list of purchases for a merchant.
 Purchases up to three years old are available to fetch.
 
 `GET /purchases/v2`
@@ -34,8 +34,8 @@ Purchases up to three years old are available to fetch.
 |lastPurchaseHash|string|query|optional|A value from "lastPurchaseHash" from the result of a previous history query, to continue listing purchases from the next record after the previous query.
 |startDate|string|query|optional|The start date (inclusive) for purchases to be retrieved from until today or endDate if provided. By default `startDate` is resolved to three years back.
 |endDate|string|query|optional|The last date (exclusive) for purchases to be retrieved until.
-|limit|string|query|optional|The maximum number of records to return. Max value of limit is 1000.
-|descending|string|query|optional|When true, returns purchases with the highest timestamp first.  When false, returns purchases with the lowest timestamp first. Defaults to false if not specified.
+|limit|integer|query|optional|The maximum number of records to return. Value rage: 1–1000.
+|descending|boolean|query|optional|When true, returns purchases with the highest timestamp first.  When false, returns purchases with the lowest timestamp first. Defaults to false if not specified.
 |===
 
 
@@ -223,7 +223,7 @@ _Response:_
 * Fetching all purchases for a merchant.
 +
 --
-*Note:* API consumer should never retrieve all the purchases in one request, since it potentially can put too much load on the server causing request timeout.
+*Note:* API consumer should never retrieve all the purchases in one request, since it can potentially put too much load on the server causing request timeout.
 
 Instead, it should request paginated result, using the `limit` and `lastPurchaseHash` parameters.
 
