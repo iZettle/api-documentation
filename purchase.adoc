@@ -41,7 +41,7 @@ Purchases up to three years old are available to fetch.
 
 *Responses*
 
-`Status: 200 OK` - Successful, response json is returned. +
+`Status: 200 OK` - Successful. +
 `Status: 401 Unauthorized` - You were not authorized to execute this operation. +
 `Status: 429 Too Many Requests` - You hit the rate limit. Retry request later.
 
