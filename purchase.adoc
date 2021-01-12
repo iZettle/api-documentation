@@ -34,7 +34,7 @@ Purchases up to three years old are available to fetch.
 |lastPurchaseHash|string|query|optional|A value from "lastPurchaseHash" from the result of a previous history query, to continue listing purchases from the next record after the previous query.
 |startDate|string|query|optional|The start date (inclusive) for purchases to be retrieved from until today or endDate if provided. By default `startDate` is resolved to three years back.
 |endDate|string|query|optional|The last date (exclusive) for purchases to be retrieved until.
-|limit|integer|query|optional|The maximum number of records to return. Value rage: 1–1000.
+|limit|integer|query|optional|The maximum number of records to return. Value range 1–1000.
 |descending|boolean|query|optional|When true, returns purchases with the highest timestamp first.  When false, returns purchases with the lowest timestamp first. Defaults to false if not specified.
 |===
 
