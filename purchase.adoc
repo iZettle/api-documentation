@@ -742,7 +742,7 @@ Example:
     "uuid": "YdVwSn4i111DZepjFuVBw"
 }
 ----
-|organizationId|integer|Unique id for organization within iZettle system. Internal use.
+|organizationId|integer|Unique id for organisation within iZettle system. Internal use.
 |receiptCopyAllowed|boolean|Indicates if receipt copy is allowed to be printed. Internal use.
 |===
 
