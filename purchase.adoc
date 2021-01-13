@@ -642,8 +642,8 @@ Refunds are represented by the same model but with negative amounts and refund r
 
 * "POS" - purchase made with iZettle GO app
 * "WEB_SHOP" - purchase made online
-|purchaseUUID|string|Unique id of a purchase within iZettle system. *Deprecated*.
-|purchaseUUID1|string|Unique id of a purchase within iZettle system as UUID version 1.
+|[.line-through]#purchaseUUID#|string|Unique id of a purchase. *Deprecated*.
+|purchaseUUID1|string|Unique id of a purchase as UUID version 1.
 |timestamp|string|Created timestamp according to the https://en.wikipedia.org/wiki/ISO_8601[ISO 8601] format, e.g. "2019-12-03T17:05:06.123+0000".
 |purchaseNumber|integer|Incremental receipt number.
 |globalPurchaseNumber|integer|Incremental receipt number, only different from `purchaseNumber` if several cash registers are used by the merchant.
@@ -692,16 +692,9 @@ Example:
 |created|string|Created timestamp according to the https://en.wikipedia.org/wiki/ISO_8601[ISO 8601] format e.g. "2019-12-03T17:05:06.123+0000".
 |refund|boolean|Indicates if given purchase is a refund.
 |refunded|boolean|Indicates if given purchase has been refunded.
-|refundsPurchaseUUID|string|Unique id of the purchase that was refunded as string.
+|[.line-through]#refundsPurchaseUUID#|string|Unique id of the purchase that was refunded as string. *Deprecated*.
 |refundsPurchaseUUID1|string|Unique id of the purchase that was refunded as UUID version 1.
-|refundedByPurchaseUUIDs|array a|List with ids of purchases that refunded this particular one. +
-[source, json]
-----
-"refundedByPurchaseUUIDs": [
-    "PSITZxySSY2elO9cxPRdYQ",
-    "431jwpevS-y2rBzyEvl9kA"
-]
-----
+|[.line-through]#refundedByPurchaseUUIDs#|array a|List with ids of purchases that refunded this particular one. *Deprecated*.
 |refundedByPurchaseUUIDs1|array a|List with ids of purchases that refunded this particular one as UUIDs version 1. +
 [source, json]
 ----
@@ -1009,7 +1002,7 @@ The `discountValue` field following the `discount` structure contains the total 
 "discountValue": 1000
 ----
 
-*Note:* Currently, we only support one discount per row of items, so the `quantity` field will always be set to 1. This could potentially change in the future.
+*Note:* Currently only one discount per row of items is supported so the `quantity` field will always be set to 1. This could potentially change in the future.
 --
 
 * Discounts for the whole purchase are expressed using the following JSON structure.
@@ -1026,14 +1019,14 @@ They can contain either `amount` or `percentage` value.
 }
 ----
 
-*Note:* Currently, we only support one discount for the whole, so the `discounts` list will only contain one item with `quantity` set to 1. This could potentially change in the future.
+*Note:* Currently only one discount for the whole purchase is supported, so the `discounts` list will only contain one item with `quantity` set to 1. This could potentially change in the future.
 
 See further below for a full response example containing discounts.
 --
 
 *Discount calculation example*
 
-Let's observe an example purchase containing both discounts on rows as well as on the purchase itself.
+This example purchase contains both discounts on rows and on the whole purchase.
 
 [cols="3%,20%,20%,20%,27%"]
 |===
@@ -1046,11 +1039,11 @@ Let's observe an example purchase containing both discounts on rows as well as o
 1. To calculate the total discount we start by calculating the discount per row:
 +
 --
-First row contains 2 items and a fixed discount amount of 5.
+First row contains two items and a fixed discount amount of 5.
 
 Second row contains 10 items and a percentage discount of 10%.
 
-*Row discounts* = 5 + 10  10 × 0.1 = 15.
+*Row discounts* = 5 + 10  10 × 0.1 = 15
 --
 2. Then we calculate the purchase discount, based on the sum of the previously discounted rows:
 +
