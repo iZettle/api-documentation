@@ -16,7 +16,7 @@ https://purchase.izettle.com
 
 '''
 
-==== Fetch purchase history
+==== Fetch a list of purchases
 
 Returns a list of purchases for a merchant.
 Purchases up to three years old are available to fetch.
@@ -524,7 +524,7 @@ _Response:_
 
 ====
 
-==== Fetch purchase by id
+==== Fetch a purchase
 
 `GET /purchase/v2/{purchaseUuid}`
 
