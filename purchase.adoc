@@ -986,7 +986,7 @@ If the purchase discount is a fixed amount then that amount  will be deducted fr
 
 If the purchase discount is 20%, then the price of each row of item will be deducted with 20% before calculating the VAT for each row.
 
-If a purchase has a total price of 100 and contains two rows with the first row priced at 40 and the second at 60, then 40% of the fixed purchase discount will be deducted from the first row and 60% from the other row before calculating the VAT.
+If a purchase has a total price of 100 and contains 2 rows with the first row priced at 40 and the second at 60, then 40% of the fixed purchase discount will be deducted from the first row and 60% from the other row before calculating the VAT.
 
 * Row discounts are expressed using the following JSON structure in the `products` list, containing either `amount` for fixed discounts or `percentage` for percentage discounts.
 The `discountValue` field following the `discount` structure contains the total discount amount for the row:
@@ -1039,7 +1039,7 @@ This example purchase contains both discounts on rows and on the whole purchase.
 1. To calculate the total discount we start by calculating the discount per row:
 +
 --
-First row contains two items and a fixed discount amount of 5.
+First row contains 2 items and a fixed discount amount of 5.
 
 Second row contains 10 items and a percentage discount of 10%.
 
