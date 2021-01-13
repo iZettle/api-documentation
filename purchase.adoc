@@ -630,7 +630,7 @@ _Response:_
 ===== Purchase
 Purchase represents a receipt, it's immutable and contains information about items that were purchased, one or several payments received, discounts applied etc.
 Refunds are represented by the same model but with negative amounts and refund related flags/fields. +
-*Note*: More attributes can potentially be added, please make sure your integration is build in a tolerant way.
+*Note*: More attributes can potentially be added, please make sure your integration is built in a tolerant way.
 
 *Attributes*
 [cols="15%,10%,75%"]
