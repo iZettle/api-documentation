@@ -1,44 +1,46 @@
-## iZettle API Changelog
+== iZettle API Changelog
 
-### 2020-10-28
-
-#### Apply a Beta label on any mention of API documentation
+.**Oct 28, 2020** `Editorial changes`
+[%collapsible]
+====
+**Apply a Beta label on any mention of API documentation**
 
 The current state of the API documentation leave plenty of room for improvement. We feel that in order to be transparent and set expectations right, we've applied a Beta label on any mention of the API documentation. In the meantime, we will be hard at work at improving the iZettle Developer Platform. Some examples of the ongoing work includes revisiting all OpenAPI (Swagger) specifications and making sure that no details are left out, and make more richer documentation available to the wider developer audience.
-
-### 2020-09-21
-
+====
+.**Sep 21, 2020** `Finance` `Product library` `Image`
+[%collapsible]
+====
 Update documentation.
 
-#### Finance API
+**Finance API**
 
-- Remove the `SUBSCRIPTION_CHARGE` transaction type. This transaction was incorrectly added to the documentation.
-- Clarify that `VOUCHER_ACTIVATION` does not appear on the liquid account.
-- Mark the `TELL_FRIEND` transaction type as deprecated. This transaction type was removed in late 2018, but may show up in transactions prior to that.
-
-#### Purchase API
-
+- Remove transaction type `SUBSCRIPTION_CHARGE` since it was incorrectly added to the documentation.
+- Clarify that `VOUCHER_ACTIVATION` does not appear on the `LIQUID` account.
+- Mark the `TELL_FRIEND` transaction type as *deprecated*. This transaction type was removed in late 2018, but may show up in transactions prior to that.
+**Purchase API**
 - Remove the `CUSTOM` payment type. This payment type does not exist anymore and has not been in use.
 
-#### Product Library API
+**Product Library API**
 
 - Update example request under the "Create product" section to reflect the new `category` & `variantOptionDefinitions` fields.
 
 The `category` field replaces the old `categories` field. Now, a product may only have one category assigned to it. To create a new product category, simply provide a new UUID (v1) value on the `category.uuid` field when creating or updating a product, for example:
 
-```json
+[source,json]
+--
 {
     "category": {
         "uuid": "1ee20a82-fb8a-11ea-adc1-0242ac120002",
         "name": "New Category"
     }
 }
-```
+--
 
 - The `imageLookupKeys` field has been deprecated in favour of `presentation.imageUrl`.
 - Add example request under the "Update product" section.
 - Add docs about Product Categories.
 
-#### Image API
+**Image API**
 
 - Replace usage of `imageLookupKey` with `imageUrls` in the docs. The `imageLookupKey` has been deprecated, and instead the fully qualified URLs should be used.
+====

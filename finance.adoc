@@ -1,144 +1,451 @@
-## Finance API
+= Finance API
 
-### Service Description
-The Finance service contains information about monetary transactions where money has passed through iZettle, such transactions can be for example card payments, card fees and payouts to the customer. See the section "Account Transactions" below for details.
-
-### URL
+== Description
+====
+Finance APIs return information about monetary transactions where money has passed through iZettle, such transactions can be e.g. card payments, card fees, payouts to the merchant etc.
+====
+=== Base URL
 https://finance.izettle.com
 
-### API Documentation
-https://finance.izettle.com/swagger
-
-### Scopes
-The Finance API implements the following scopes:
-
+=== OAuth scopes
 - `READ:FINANCE`
 
----
+'''
+==== Account type group
 
-### Account Type Group
-The endpoints below can be called for either the `LIQUID` or `PRELIMINARY` account type groups. The `LIQUID` group contains transactions that has been cleared and is typically what is useful for an external integrator. The `PRELIMINARY` group contains transactions that are waiting to be cleared and there can exist several transactions for one single card payment in this group due to internal account movements.
+[cols="30%,70%"]
 
-### Account Balance
-`GET /organizations/us/accounts/{accountTypeGroup}/balance`
+|===
+|Account type group|Description
 
-accountTypeGroup:: Which accounts types to get data from. Either `LIQUID` or `PRELIMINARY`.
-until (optional):: used to get the balance at a specific point in history (ignoring any later transactions).
+|LIQUID|Contains transactions that have been cleared and is typically what is useful for an external integrator.
+|PRELIMINARY|Contains transactions that are waiting to be cleared and there can exist several transactions for one single card payment in this group due to internal account movements.
+|===
 
-#### Permissions Required
-`READ:FINANCE`
+==== Fetch account balance
+Returns accumulated balance at a specific point in time. +
+After a deposit has been made from `LIQUID` account to merchant's bank account (daily, monthly or weekly), the balance is usually zero.
+If not, it will return the amount that is still due in merchant's iZettle account.
 
-#### Example Response
-`GET /organizations/us/accounts/PRELIMINARY/balance`
+`GET /organizations/{organizationUuid}/accounts/{accountTypeGroup}/balance`
+[%collapsible]
+====
 
-```json
+*Parameters*
+
+[cols="20%,10%,10%,10%,50%"]
+|===
+|Name|Type|In|Required/Optional|Description
+
+|organizationUuid|string|path|required|Organization identifier as UUID or "self" to denote that the organization should be derived from the authenticated user.
+|accountTypeGroup|string|path|required|Which accounts types to get data from. Valid value `LIQUID` or `PRELIMINARY`.
+|at|string|query|optional|Used to get the balance at a specific point in history (ignoring any later transactions). Formatted as an ISO 8601 string e.g. "2020-11-29T03:10:02" or "2020-08-14".
+|===
+
+*Examples*
+
+* Fetching balance for `LIQUID` account.
++
+--
+_Request:_
+
+`GET /organizations/self/accounts/LIQUID/balance`
+
+_Response:_
+
+`Status: 200 OK`
+
+[source,json]
+----
 {
     "data": {
         "totalBalance": 106853,
         "currencyId": "SEK"
     }
 }
-```
+----
+--
 
-### Account Transactions
-`GET /organizations/us/accounts/{accountTypeGroup}/transactions`
+'''
 
-accountTypeGroup:: Which accounts types to get data from. Either `LIQUID` or `PRELIMINARY`.
-includeTransactionType:: Which transaction types to include. Multiple values allowed. Valid values:
-+
-CARD_PAYMENT::: References a card payment. Contains a reference to the card payment in the Purchase API.
-CARD_REFUND::: References a card refund. Will be accompanied by a CARD_PAYMENT_FEE_REFUND that will void the card fee. Contains a reference to the card payment refund in the Purchase API.
-BANK_ACCOUNT_VERIFICATION::: References a transaction which is a refund of the money transferred to the iZettle bank account as a verification of ownership of the nominated bank account, made by the merchant.
+====
+
+==== Fetch account transactions
+Returns a list of transactions for given account and period.
+
+`GET /organizations/{organizationUuid}/accounts/{accountTypeGroup}/transactions`
+[%collapsible]
+====
+
+*Parameters*
+
+[cols="20%,10%,10%,10%,50%"]
+|===
+|Name|Type|In|Required/Optional|Description
+
+|organizationUuid|string|path|required|Unique id of organization as UUID or "self" to denote that the organization should be derived from the authenticated user.
+|accountTypeGroup|string|path|required|Which accounts types to get data from. Either `LIQUID` or `PRELIMINARY`
+|start|string|query|required|A start point in time, limiting the result set (inclusive). Formatted as an ISO 8601 string +
+e.g. "2020-11-29T03:10:02" or "2020-08-14".
+|end|string|query|required|An end point in time, limiting the result set (exclusive). Formatted as an ISO 8601 string +
+e.g. "2020-11-29T03:10:02" or "2020-08-14".
+|includeTransactionType|string|query|optional|Which transaction types to include. Multiple values allowed. See table _"Valid transaction types"_ below.
+|limit|integer|query|optional|Limit the result set to X number of results.
+|offset|integer|query|optional|Offset the result set by X number of results.
+
+|===
+
+*Valid transaction types*
+[cols="30%,70%"]
+|===
+|Type|Description
+
+|CARD_PAYMENT|References a card payment. Contains a reference to the card payment in the Purchase API.
+|CARD_REFUND |References a card refund. Will be accompanied by a `CARD_PAYMENT_FEE_REFUND` that will void the card fee. Contains a reference to the card payment refund in the Purchase API.
+|BANK_ACCOUNT_VERIFICATION |References a transaction which is a refund of the money transferred to the iZettle bank account as a verification of ownership of the nominated bank account, made by the merchant.
 The transaction happens only when the merchant has nominated and verified a new bank account for payouts.
-PAYOUT::: A payout to the merchant's bank account.
-FAILED_PAYOUT::: A previous PAYOUT transaction has failed and is voided by this transaction (money going back to the merchant's liquid account at iZettle).
-CASHBACK::: Money given to a merchant to retroactively adjust the card payment fee rate.
-CASHBACK_PAYOUT::: (deprecated*) Direct payout of a cashback, effectively circumventing the normal flow via the liquid account.
-VOUCHER_ACTIVATION::: Used when activating a voucher (money is inserted to the merchant's fee discount account). These transactions will never appear in the `LIQUID` account.
-EMONEY_TRANSFER::: An internal transfer between two merchants' iZettle accounts. Only used in Sweden.
-TELL_FRIEND::: (deprecated*) Money given to a merchant for recommending iZettle.
-FROZEN_FUNDS::: In the event of a chargeback initiated by the issuing bank, funds will be removed from the merchant liquid account and marked as frozen, to cover the chargeback.
+|PAYOUT |A payout to the merchant's bank account.
+|FAILED_PAYOUT |A previous `PAYOUT` transaction has failed and is voided by this transaction (money going back to the merchant's liquid account at iZettle).
+|CASHBACK |Money given to a merchant to retroactively adjust the card payment fee rate.
+|+++<s>CASHBACK_PAYOUT</s>+++ |Direct payout of a cashback, effectively circumventing the normal flow via the liquid account *(Deprecated)*.
+|VOUCHER_ACTIVATION |Used when activating a voucher (money is inserted to the merchant's fee discount account). These transactions will never appear in the `LIQUID` account.
+|EMONEY_TRANSFER |An internal transfer between two merchants' iZettle accounts. Only used in Sweden.
+|+++<s>TELL_FRIEND</s>+++ |Money given to a merchant for recommending iZettle *(Deprecated)*.
+|FROZEN_FUNDS |In the event of a chargeback initiated by the issuing bank, funds will be removed from the merchant liquid account and marked as frozen, to cover the chargeback.
 If the chargeback is later revoked, the money will be returned to the merchants liquid account with a new, positive, transaction of the same type, effectively voiding the initial
 FROZEN_FUNDS transaction.
-FEE_DISCOUNT_REVOCATION::: An internal reclaim of outstanding fee discount money if the customer has not consumed the discount within a certain time frame. As these funds are reclaimed from a special fee discount account, the transaction will not be visible on the liquid account.
-CARD_PAYMENT_FEE::: References the commission part of a card payment.
-CARD_PAYMENT_FEE_REFUND::: References the commission part of a refund.
-ADVANCE::: References the cash advance given by iZettle to a merchant.
-A cash advance is a type of financing that is offered to merchant's based on their sales history. The advance is paid back with monthly down payments.
-ADVANCE_DOWNPAYMENT::: A down payment on a previously paid out cash advance.
-ADVANCE_FEE_DOWNPAYMENT::: References the netting of a cash advance fee.
-INVOICE_PAYMENT::: References an invoice payment.
-INVOICE_PAYMENT_FEE::: References an invoice payment fee.
-PAYMENT::: References an alternative, third-party, payment method where iZettle handles the funds.
-PAYMENT_FEE::: References the fee for a third-party payment method.
-ADJUSTMENT::: References a bookkeeping adjustment.
-
-deprecated* = These transaction types are no longer in use, but may appear in historic data.
-
-start:: A start point in time, limiting the result set (inclusive). Formatted as an ISO 8601 string.
-end:: An end point in time, limiting the result set (exclusive). Formatted as an ISO 8601 string.
-limit (optional):: Limit the result set to X number of results.
-offset (optional):: Offset the result set by X number of results.
+|FEE_DISCOUNT_REVOCATION |An internal reclaim of outstanding fee discount money if the customer has not consumed the discount within a certain time frame. As these funds are reclaimed from a special fee discount account, the transaction will not be visible on the liquid account.
+|CARD_PAYMENT_FEE |References the commission part of a card payment.
+|CARD_PAYMENT_FEE_REFUND |References the commission part of a refund.
+|ADVANCE |References the cash advance given by iZettle to a merchant.
+A cash advance is a type of financing that is offered to merchants based on their sales history. The advance is paid back with monthly down payments.
+|ADVANCE_DOWNPAYMENT |A down payment on a previously paid out cash advance.
+|ADVANCE_FEE_DOWNPAYMENT|References the netting of a cash advance fee.
+|INVOICE_PAYMENT |References an invoice payment.
+|INVOICE_PAYMENT_FEE |References an invoice payment fee.
+|PAYMENT |References an alternative, third-party, payment method where iZettle handles the funds e.g. PayPal QR code(only DE and FR), Klarna QR code(only SE, FI and DK).
+|PAYMENT_FEE |References the fee for a third-party payment method e.g PayPal QR code(only DE and FR), Klarna QR code(only SE, FI and DK).
+|ADJUSTMENT |References a bookkeeping adjustment.
+|===
 
 
-#### Permissions Required
-`READ:FINANCE`
+*Note:* Deprecated transaction types are no longer in use, but may appear in historic data.
 
-#### Example Response
-`GET /organizations/us/accounts/LIQUID/transactions?start=2015-11-16&end=2015-11-17`
+*Link transactions with card purchases.*
 
-```json
-{
-    "data": [
-        {
-            "timestamp": "2015-11-16T23:47:31.305Z",
-            "amount": -96,
-            "originatorTransactionType": "CARD_PAYMENT_FEE",
-            "originatingTransactionUuid": "488fcee0-8c73-11e5-8ae2-edcaeca65169"
-        },
-        {
-            "timestamp": "2015-11-16T23:47:31.272Z",
-            "amount": 3500,
-            "originatorTransactionType": "CARD_PAYMENT",
-            "originatingTransactionUuid": "488fcee0-8c73-11e5-8ae2-edcaeca65169"
-        },
-        {
-            "timestamp": "2015-11-16T23:47:31.256Z",
-            "amount": -220,
-            "originatorTransactionType": "CARD_PAYMENT_FEE",
-            "originatingTransactionUuid": "29646380-8c52-11e5-8341-b55acee48cd7"
-        },
-        {
-            "timestamp": "2015-11-16T23:47:31.232Z",
-            "amount": 8000,
-            "originatorTransactionType": "CARD_PAYMENT",
-            "originatingTransactionUuid": "29646380-8c52-11e5-8341-b55acee48cd7"
-        },
-        {
-            "timestamp": "2015-11-16T23:47:31.219Z",
-            "amount": -275,
-            "originatorTransactionType": "CARD_PAYMENT_FEE",
-            "originatingTransactionUuid": "f4aa28a0-8c51-11e5-9b2e-94a4ee5f3593"
-        }
-        ...
-```
-
-### Link Finance Transactions With Card Purchases
-Finance transactions of types `CARD_PAYMENT`, `CARD_PAYMENT_FEE`, `CARD_REFUND` and `CARD_PAYMENT_FEE_REFUND` can be linked using the field `originatingTransactionUuid` to a card purchase using the `cardPaymentUUID1` field of the payment if using the Purchase API v1 or the `uuid` field of the payment if using the Purchase API v2.
-
+Transactions of types `CARD_PAYMENT`, `CARD_PAYMENT_FEE`, `CARD_REFUND` and `CARD_PAYMENT_FEE_REFUND` can be linked using the field `originatingTransactionUuid` to a card purchase using the `cardPaymentUUID1` field of the payment if using the `Purchase API v1` or the `uuid` field of the payment if using the `Purchase API v2`.
 In the case of other transaction types, the value of the `originatingTransactionUuid` is not linkable to a specific card purchase and is not useful for external integrators.
 
-### Payouts
-`GET /organizations/us/payout-info`
 
-at (optional):: Use to get payouts until a specific historic date. Formatted as an ISO 8601 string.
+*Examples*
 
-#### Permissions Required
-`READ:FINANCE`
+* Fetching all types of transactions from `LIQUID` account.
++
+--
+_Request:_
 
-#### Example Response
-`GET /organizations/us/payout-info`
-```json
+`GET /organizations/self/accounts/LIQUID/transactions?start=2019-01-01&end=2020-12-01`
+
+_Response:_ 
+
+`Status: 200 OK`
+
+[source,json]
+----
+{
+  "data": [
+    {
+      "timestamp": "2020-11-29T03:10:02.194+0000",
+      "amount": 225,
+      "originatorTransactionType": "PAYMENT_FEE",
+      "originatingTransactionUuid": "68fafe9a-309f-11eb-aafa-22dcd4200d78"
+    },
+    {
+      "timestamp": "2020-11-29T03:10:02.191+0000",
+      "amount": -22540,
+      "originatorTransactionType": "PAYMENT",
+      "originatingTransactionUuid": "68fafe9a-309f-11eb-aafa-22dcd4200d78"
+    },
+    {
+      "timestamp": "2020-05-16T22:11:35.065+0000",
+      "amount": -1511,
+      "originatorTransactionType": "CARD_REFUND",
+      "originatingTransactionUuid": "eea515fe-9751-11ea-ab0b-700ecd436e96"
+    },
+    {
+      "timestamp": "2020-05-16T22:11:35.065+0000",
+      "amount": 42,
+      "originatorTransactionType": "CARD_PAYMENT_FEE_REFUND",
+      "originatingTransactionUuid": "eea515fe-9751-11ea-ab0b-700ecd436e96"
+    },
+    {
+      "timestamp": "2020-04-08T15:10:12.967+0000",
+      "amount": -44,
+      "originatorTransactionType": "CARD_PAYMENT_FEE",
+      "originatingTransactionUuid": "0a0b8188-7584-11ea-9d37-448925a0280d"
+    },
+    {
+      "timestamp": "2020-04-08T15:14:42.371+0000",
+      "amount": -181,
+      "originatorTransactionType": "ADVANCE_FEE_DOWNPAYMENT",
+      "originatingTransactionUuid": "ac2fa644-79ab-11ea-9cd2-30f49c833281"
+    },
+    {
+      "timestamp": "2020-04-08T15:14:42.326+0000",
+      "amount": -721,
+      "originatorTransactionType": "ADVANCE_DOWNPAYMENT",
+      "originatingTransactionUuid": "ac29e9b6-79ab-11ea-84aa-d6d1993e45d5"
+    },
+    {
+      "timestamp": "2020-04-08T15:10:12.950+0000",
+      "amount": 1600,
+      "originatorTransactionType": "CARD_PAYMENT",
+      "originatingTransactionUuid": "0a0b8188-7584-11ea-9d37-448925a0280d"
+    },
+    {
+      "timestamp": "2020-04-07T15:27:03.282+0000",
+      "amount": -636493,
+      "originatorTransactionType": "PAYOUT",
+      "originatingTransactionUuid": "8eb5df48-7f2d-11ea-ab7a-ca9e37524733"
+    },
+    {
+      "timestamp": "2020-04-01T06:00:07.536+0000",
+      "amount": 600000,
+      "originatorTransactionType": "ADVANCE",
+      "originatingTransactionUuid": "6dab983e-7360-11ea-9ee7-33abbcb04187"
+    },
+    {
+      "timestamp": "2019-11-20T10:24:48.827+0000",
+      "amount": 993472,
+      "originatorTransactionType": "FAILED_PAYOUT",
+      "originatingTransactionUuid": "3bfa02d2-0531-11ea-845a-0168c424b6fc"
+    },
+    {
+      "timestamp": "2019-10-16T07:51:36.294+0000",
+      "amount": -300,
+      "originatorTransactionType": "INVOICE_PAYMENT_FEE",
+      "originatingTransactionUuid": "c743ee96-efe9-11e9-aa77-6f6dfce38150"
+    },
+    {
+      "timestamp": "2019-10-16T07:51:36.291+0000",
+      "amount": 10000,
+      "originatorTransactionType": "INVOICE_PAYMENT",
+      "originatingTransactionUuid": "c743ee96-efe9-11e9-aa77-6f6dfce38150"
+    }
+  ]
+}
+
+----
+--
+
+* Fetching list of `CARD_PAYMENT` and `CARD_PAYMENT_FEE` transactions from `LIQUID` account.
++
+--
+_Request:_
+
+`GET /organizations/self/accounts/LIQUID/transactions?start=2019-01-11&end=2020-11-25&includeTransactionType=CARD_PAYMENT&includeTransactionType=CARD_PAYMENT_FEE`
+
+_Response:_
+
+`Status: 200 OK`
+
+[source,json]
+----
+{
+  "data": [
+    {
+      "timestamp": "2020-04-08T15:10:12.967+0000",
+      "amount": -44,
+      "originatorTransactionType": "CARD_PAYMENT_FEE",
+      "originatingTransactionUuid": "0a0b8188-7584-11ea-9d37-448925a0280d"
+    },
+    {
+      "timestamp": "2020-04-08T15:10:12.950+0000",
+      "amount": 1600,
+      "originatorTransactionType": "CARD_PAYMENT",
+      "originatingTransactionUuid": "0a0b8188-7584-11ea-9d37-448925a0280d"
+    }
+  ]
+}
+----
+--
+
+* Fetching a list of refunded transactions from `LIQUID` account (`CARD_REFUND` and `CARD_PAYMENT_FEE_REFUND`).
++
+--
+_Request:_
+
+`GET /organizations/self/accounts/LIQUID/transactions?start=2019-01-11&end=2020-11-25&includeTransactionType=CARD_REFUND&includeTransactionType=CARD_PAYMENT_FEE_REFUND`
+
+_Response:_ 
+
+`Status: 200 OK`
+
+[source,json]
+----
+{
+  "data": [
+    {
+      "timestamp": "2020-04-08T15:10:12.967+0000",
+      "amount": -44,
+      "originatorTransactionType": "CARD_PAYMENT_FEE",
+      "originatingTransactionUuid": "0a0b8188-7584-11ea-9d37-448925a0280d"
+    },
+    {
+      "timestamp": "2020-04-08T15:10:12.950+0000",
+      "amount": 1600,
+      "originatorTransactionType": "CARD_PAYMENT",
+      "originatingTransactionUuid": "0a0b8188-7584-11ea-9d37-448925a0280d"
+    }
+  ]
+}
+----
+--
+* Fetching a list of `INVOICE_PAYMENT` and `INVOICE_PAYMENT_FEE` from `LIQUID` account.
++
+--
+_Request:_
+
+`GET/organizations/self/accounts/LIQUID/transactions?start=2019-01-11&end=2020-01-25&includeTransactionType=INVOICE_PAYMENT&includeTransactionType=INVOICE_PAYMENT_FEE`
+
+_Response:_
+
+`Status: 200 OK`
+
+[source,json]
+----
+{
+  "data": [
+    {
+      "timestamp": "2019-10-16T07:51:36.294+0000",
+      "amount": -300,
+      "originatorTransactionType": "INVOICE_PAYMENT_FEE",
+      "originatingTransactionUuid": "c743ee96-efe9-11e9-aa77-6f6dfce38150"
+    },
+    {
+      "timestamp": "2019-10-16T07:51:36.291+0000",
+      "amount": 10000,
+      "originatorTransactionType": "INVOICE_PAYMENT",
+      "originatingTransactionUuid": "c743ee96-efe9-11e9-aa77-6f6dfce38150"
+    }
+  ]
+}
+----
+--
+
+* Fetching a list of all payments from `LIQUID` account (`CARD_PAYMENT`, `INVOICE_PAYMENT` and `PAYMENT`).
++
+--
+_Request:_
+
+`GET /organizations/self/accounts/LIQUID/transactions?start=2019-01-11&end=2020-12-01&includeTransactionType=CARD_PAYMENT&includeTransactionType=INVOICE_PAYMENT&includeTransactionType=PAYMENT`
+
+_Response:_
+
+`Status: 200 OK`
+
+[source,json]
+----
+{
+  "data": [
+    {
+      "timestamp": "2020-11-29T03:10:02.191+0000",
+      "amount": -22540,
+      "originatorTransactionType": "PAYMENT",
+      "originatingTransactionUuid": "68fafe9a-309f-11eb-aafa-22dcd4200d78"
+    },
+    {
+      "timestamp": "2020-04-08T15:10:12.950+0000",
+      "amount": 1600,
+      "originatorTransactionType": "CARD_PAYMENT",
+      "originatingTransactionUuid": "0a0b8188-7584-11ea-9d37-448925a0280d"
+    },
+    {
+      "timestamp": "2019-10-16T07:51:36.291+0000",
+      "amount": 10000,
+      "originatorTransactionType": "INVOICE_PAYMENT",
+      "originatingTransactionUuid": "c743ee96-efe9-11e9-aa77-6f6dfce38150"
+    }
+  ]
+}
+----
+--
+
+* Fetching a list of fees from the `LIQUID` account (`CARD_PAYMENT_FEE`, `INVOICE_PAYMENT_FEE` and `PAYMENT_FEE`).
++
+--
+_Request:_
+
+`GET /organizations/self/accounts/LIQUID/transactions?start=2019-01-11&end=2020-12-01&includeTransactionType=CARD_PAYMENT_FEE&includeTransactionType=INVOICE_PAYMENT_FEE&includeTransactionType=PAYMENT_FEE`
+
+_Response:_ 
+
+`Status: 200 OK`
+
+[source,json]
+----
+{
+  "data": [
+    {
+      "timestamp": "2020-11-29T03:10:02.194+0000",
+      "amount": 225,
+      "originatorTransactionType": "PAYMENT_FEE",
+      "originatingTransactionUuid": "68fafe9a-309f-11eb-aafa-22dcd4200d78"
+    },
+    {
+      "timestamp": "2020-04-08T15:10:12.967+0000",
+      "amount": -44,
+      "originatorTransactionType": "CARD_PAYMENT_FEE",
+      "originatingTransactionUuid": "0a0b8188-7584-11ea-9d37-448925a0280d"
+    },
+    {
+      "timestamp": "2019-10-16T07:51:36.294+0000",
+      "amount": -300,
+      "originatorTransactionType": "INVOICE_PAYMENT_FEE",
+      "originatingTransactionUuid": "c743ee96-efe9-11e9-aa77-6f6dfce38150"
+    }
+  ]
+}
+----
+--
+
+
+'''
+
+====
+
+==== Fetch payout information
+Returns payout related information for an organization.
+
+`GET /organizations/{organizationUuid}/payout-info`
+
+[%collapsible]
+====
+*Parameters*
+
+[cols="20%,10%,10%,10%,50%"]
+|===
+|Name|Type|In|Required/Optional|Description
+
+|organizationUuid|string|path|required|Organization identifier as UUID or `self` to denote that the organization should be derived from the authenticated user.
+|at|string|query|optional|Used to get payouts until a specific historic date. Formatted as an ISO 8601 string e.g. "2020-11-29T03:10:02" or "2020-08-14".
+|===
+
+*Examples*
+
+* Fetching payout info.
++
+--
+
+_Request:_
+
+`GET /organizations/self/payout-info`
+
+_Response:_ 
+
+`Status:  200 OK`
+[source,json]
+----
 {
     "data": {
         "totalBalance": 475880,
@@ -148,4 +455,6 @@ at (optional):: Use to get payouts until a specific historic date. Formatted as 
         "periodicity": "DAILY"
     }
 }
-```
+----
+--
+====

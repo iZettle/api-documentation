@@ -147,7 +147,7 @@ The Authorization OAuth2 API will return errors when retrieving and refreshing a
 ```
 HTTP 400 Bad Request
 {
-    "error": "invalid_request",
+    "error": "invalid_grant",
     "error_description": "invalid refresh_token"
 }
 ```
@@ -182,3 +182,14 @@ Note: Not all services are not currently using the error code `ACCESS_TOKEN_EXPI
     "organizationUuid": "ab305d54-75b4-431b-adb2-eb6b9e546013"
 }
 ```
+
+#### Disconnect application from organization
+An external integration that want to disconnect its connection to an iZettle organization can do so by calling the following endpoint, providing the issued access token for that organization. This can be useful when a user disconnects outside of iZettle, to clean up registered webhooks and remove access for the external integration.
+
+```
+DELETE /application-connections/self
+Authorization: Bearer <access token>
+```
+
+##### Response
+This endpoint will respond with a `204 No Content` HTTP code.
