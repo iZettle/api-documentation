@@ -436,7 +436,7 @@ _Response:_
   "firstPurchaseHash": "16105736620691x6BTNcFQ-esnIMUSdX8mQ",
   "lastPurchaseHash": "1610573650968an16nO_YSpOw_0XVXSEndA",
   "linkUrls": [
-    "<https://purchase.izettletest.com/purchases/v2?limit=2&descending=true&lastPurchaseHash=1610573650968an16nO_YSpOw_0XVXSEndA>; rel=\"next\""
+    "<https://purchase.izettle.com/purchases/v2?limit=2&descending=true&lastPurchaseHash=1610573650968an16nO_YSpOw_0XVXSEndA>; rel=\"next\""
   ]
 }
 ----
