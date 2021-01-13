@@ -35,7 +35,7 @@ Purchases up to three years old are available to fetch.
 |startDate|string|query|optional|The start date (inclusive) for purchases to be retrieved from until today or endDate if provided. By default `startDate` is resolved to three years back.
 |endDate|string|query|optional|The last date (exclusive) for purchases to be retrieved until.
 |limit|integer|query|optional|The maximum number of records to return. Value range 1–1000.
-|descending|boolean|query|optional|When true, returns purchases with the highest timestamp first.  When false, returns purchases with the lowest timestamp first. Defaults to false if not specified.
+|descending|boolean|query|optional|When true, returns purchases with the highest timestamp first. When false, returns purchases with the lowest timestamp first. Defaults to false if not specified.
 |===
 
 
@@ -625,9 +625,9 @@ _Response:_
 '''
 ====
 
-==== Response Model
+== Response Model
 
-===== Purchase
+=== Purchase
 Purchase represents a receipt, it's immutable and contains information about items that were purchased, one or several payments received, discounts applied etc.
 Refunds are represented by the same model but with negative amounts and refund related flags/fields. +
 *Note*: More attributes can potentially be added, please make sure your integration is built in a tolerant way.
@@ -642,7 +642,7 @@ Refunds are represented by the same model but with negative amounts and refund r
 
 * "POS" - purchase made with iZettle GO app
 * "WEB_SHOP" - purchase made online
-|purchaseUUID|string|Unique id of a purchase within iZettle system.
+|purchaseUUID|string|Unique id of a purchase within iZettle system. *Deprecated*.
 |purchaseUUID1|string|Unique id of a purchase within iZettle system as UUID version 1.
 |timestamp|string|Created timestamp according to the https://en.wikipedia.org/wiki/ISO_8601[ISO 8601] format, e.g. "2019-12-03T17:05:06.123+0000".
 |purchaseNumber|integer|Incremental receipt number.
@@ -651,9 +651,9 @@ Refunds are represented by the same model but with negative amounts and refund r
 |vatAmount|integer|VAT amount for the whole purchase in minor currency units e.g €5 EUR, amount will be 500.
 |country|string|Two-letter country code for country the merchant operates in. Examples "SE", "NO", "GB", "FR", "DE", "DK".
 |currency|string|Currency code https://en.wikipedia.org/wiki/ISO_4217[ISO 4217]. Examples "SEK", "NOK", "GBP", "EUR".
-|products|array|Describes items that were sold. See section "Products" for more information.
-|payments|array|Payments that were processed/received. See section "Payments" for more information.
-|discounts|object a|Discounts applied on the whole purchase.
+|products|array|Describes items that were sold. See section <<Products>> for more information.
+|payments|array|Payments that were processed/received. See section <<Payments>> for more information.
+|discounts|object a|Discounts applied on the whole purchase. See section <<Discounts>> for more information.
 Example:
 [source,json]
 ----
@@ -746,7 +746,7 @@ Example:
 |receiptCopyAllowed|boolean|Indicates if receipt copy is allowed to be printed. Internal use.
 |===
 
-*Products*
+==== Products
 
 A purchase has one or more item rows represented in `products` array.
 
@@ -781,6 +781,23 @@ Gift card details can be fetched through https://github.com/iZettle/api-document
 |unitPrice|integer|Unit price of the item in minor currency units e.g. €10 EUR will be 1000.
 |unitName|string|Name of unit e.g. "kg", "hour".
 |comment|string|Comment for the item row.
+|discount|object a|Discount for the item row. +
+Example:
+
+[source,json]
+----
+ "discount": {
+    "percentage": 20,
+    "quantity": 1
+}
+or
+"discount": {
+    "amount": 1000,
+    "quantity": 1
+}
+----
+See section <<Discounts>> for more information.
+|discountValue|integer|Discount amount in minor currency units e.g. €5 EUR will be 500.
 |libraryProduct|boolean|Indicates if product registered in merchant's product library.
 |sku|string|SKU of product in inventory.
 |barcode|string|Barcode of the product in inventory.
@@ -790,7 +807,7 @@ Gift card details can be fetched through https://github.com/iZettle/api-document
 
 '''
 
-*Payments*
+==== Payments
 
 A purchase has one or more payments present in `payments` array e.g. purchase can be partially paid in cash and the rest with credit card.
 There are several types of payments supported, each of them is described in table "Payment types".
@@ -957,7 +974,7 @@ Example:
 
 '''
 
-*Discounts*
+==== Discounts
 
 Discounts can exist both on a specific row of items(products), as well as on the entire purchase.
 Discount on a row of items is applied on the whole amount of the row, can be set either as a percentage or as a fixed amount.
@@ -1029,18 +1046,18 @@ Let's observe an example purchase containing both discounts on rows as well as o
 1. To calculate the total discount we start by calculating the discount per row:
 +
 --
-1 st row contains 2 items and a fixed discount amount of 5.
+First row contains 2 items and a fixed discount amount of 5.
 
-2nd row contains 10 items and a percentage discount of 10%.
+Second row contains 10 items and a percentage discount of 10%.
 
-*Row discounts* = 5 + 10 x 10 x 0.1 = 15.
+*Row discounts* = 5 + 10  10 × 0.1 = 15.
 --
 2. Then we calculate the purchase discount, based on the sum of the previously discounted rows:
 +
 --
-*Sum of discounted rows* = 20 x 2 + 10 x 10 - 15 = 125
+*Sum of discounted rows* = 20 × 2 + 10 × 10 - 15 = 125
 
-*Purchase discount* = 125 x 0.2 = 25
+*Purchase discount* = 125 × 0.2 = 25
 
 So the total discount on this purchase is 15 + 25 = 40 and the total sum to pay is 140 - 40 = 100.
 
