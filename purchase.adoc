@@ -221,7 +221,7 @@ _Response:_
 ----
 --
 
-* Fetching all purchases for a merchant.
+* Fetch all purchases for a merchant.
 +
 --
 *Note:* API consumer should never retrieve all the purchases in one request, since it can potentially put too much load on the server causing request timeout.
