@@ -31,12 +31,12 @@ Purchases up to three years old are available to fetch.
 |===
 |Name|Type|In|Required/Optional|Description
 
-|lastPurchaseHash|string|query|optional|A value from "lastPurchaseHash" from the result of a previous history query, to continue listing purchases from the next record after the previous query.
-|startDate|string|query|optional|The start date UTC(inclusive) for purchases to be retrieved from until today or endDate if provided e.g. "2020-01-01", "2020-01-01T17:00". +
+|lastPurchaseHash|string|query|optional|A value from "lastPurchaseHash" from the result of a previous request to retrieve next page of purchases.
+|startDate|string|query|optional|The start date UTC(inclusive) for purchases to be retrieved from until today or `endDate` if provided e.g. "2020-01-01", "2020-01-01T17:00". +
 By default `startDate` is resolved to three years back.
 |endDate|string|query|optional|The last date UTC(exclusive) for purchases to be retrieved until e.g. "2021-01-13", "2021-01-13T12:30".
 |limit|integer|query|optional|The maximum number of records to return. Value range 1–1000.
-|descending|boolean|query|optional|When true, returns purchases with the highest timestamp first. When false, returns purchases with the lowest timestamp first. Defaults to false if not specified.
+|descending|boolean|query|optional|When set to true, most recent purchases are returned first. Defaults to false if not specified.
 |===
 
 
@@ -45,6 +45,25 @@ By default `startDate` is resolved to three years back.
 `Status: 200 OK` - Successful. +
 `Status: 401 Unauthorized` - You were not authorized to execute this operation. +
 `Status: 429 Too Many Requests` - You hit the rate limit. Retry request later.
+
+Response model
+[cols="20%,15%,65%"]
+|===
+|Name|Type|Description
+
+|purchases|array|List of purchases. See section <<Purchase>> for more information.
+|firstPurchaseHash|string|Reference to the first purchase in the list returned.
+|lastPurchaseHash|string|Reference to the last purchase in the list returned. Use it as parameter for the next page of purchases.
+|linkUrls|array a|List of links to pages. +
+Example:
+[source,json]
+----
+"linkUrls": [
+    "<https://purchase.izettle.com/purchases/v2?limit=4&startDate=2021-01-01T00%3A00%3A00.000Z&descending=true&lastPurchaseHash=1610019370783OWXebOK1QKmwcwSyhCQkzA>; rel=\"next\""
+]
+----
+
+|===
 
 *Examples*
 
@@ -224,25 +243,12 @@ _Response:_
 * Fetch all purchases for a merchant.
 +
 --
-*Note:* API consumer should never retrieve all the purchases in one request, since it can potentially put too much load on the server causing request timeout.
+To load all purchases in paginated results:
 
-Instead, it should request paginated result, using the `limit` and `lastPurchaseHash` parameters.
-
-The `limit` parameter sets the page size, and the `lastPurchaseHash` parameter sets the starting point from where to retrieve purchases.
-Every response will contain `lastPurchaseHash` attribute, which should be added to the request for the next page.
-A prepared URL is also provided in attribute `linkUrls`, if more purchases are to be fetched.
-
-In order to load all purchases, begin with an initial request without the `lastPurchaseHash` parameter, this will retrieve the first _n_ purchases , `limit` parameter should be used to define page size.
-
-
+*Step 1:* Send a request with the limit parameter to define the number of purchases to retrieve. +
 `GET /purchases/v2?limit=50&descending=true`
 
-_Response:_
-
-`Status: 200 OK`
-
-Response will contain the first _n_ number of purchases.
-
+*Step 2:* In the bottom of the response, find the values of the lastPurchaseHash.
 [source,json]
 ----
 {
@@ -256,31 +262,11 @@ Response will contain the first _n_ number of purchases.
   ]
 }
 ----
+*Step 3:* Send another request that has the `limit` parameter set the same as in the initial request and the `lastPurchaseHash` set with the value from the previous response. +
+`GET /purchases/v2?limit=50&descending=true&lastPurchaseHash=1423390928355zj9yI1wyTvqP46AG8NEaYg`
 
-To retrieve the next page, use the value of `linkUrls` in the response.
+*Step 4:* Repeat step 2 and step 3 until the response is empty.
 
-`GET https://purchase.izettle.com/purchases/v2?limit=50&descending=true&lastPurchaseHash=1423390928355zj9yI1wyTvqP46AG8NEaYg`
-
-
-Response will contain the next _n_ number of purchases.
-
-[source,json]
-----
-{
-  "purchases": [
-    ....
-  ],
-  "firstPurchaseHash": "1423390928355zj9yI1wyTvqP46AG8NEaYg",
-  "lastPurchaseHash": "1426265546490RPXdoMmDEeSg5Gw_2s_ZrQ",
-  "linkUrls": [
-        "<https://purchase.izettle.com/purchases/v2?limit=50&descending=true&lastPurchaseHash=1426265546490RPXdoMmDEeSg5Gw_2s_ZrQ; rel=\"next\""
-  ]
-}
-----
-
-Continue this process by using the `linkUrls` in the previous response as a request parameter in the following request until you receive an empty result.
-
-If you want to be able to load new purchases later on, then store the last used `linkUrls` and use that to continue retrieving new purchases at a later time.
 --
 
 * Purchases with partial refund.
