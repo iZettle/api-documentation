@@ -48,7 +48,7 @@ By default `startDate` is resolved to three years back.
 
 *Examples*
 
-* Fetching limited number of purchases in descending order(most recent first).
+* Fetch limited number of purchases in descending order(most recent first).
 +
 --
 _Request:_
@@ -565,7 +565,7 @@ Returns a purchase with given UUID.
 
 *Examples*
 
-* Fetching a specific purchase.
+* Fetch a specific purchase.
 +
 --
 _Request:_
