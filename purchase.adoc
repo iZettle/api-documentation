@@ -740,17 +740,7 @@ Example:
   }
 ----
 |userId|integer|Unique id for user within iZettle system. Internal use.
-|cashRegister|object a|Cash register reference. Cash register is a service provided by iZettle and used by merchant in order to comply with requirements coming from the tax authority(only available in Sweden, Norway, Germany and France). +
-For now no public API is available for cash register. Mostly for internal use.
-
-Example:
-[source,json]
-----
-"cashRegister": {
-    "displayName": "Kassa 2",
-    "uuid": "YdVwSn4i111DZepjFuVBw"
-}
-----
+|cashRegister|object a|For internal use only. There is no public API available for cash register.
 |organizationId|integer|Unique id for organisation within iZettle system. Internal use.
 |receiptCopyAllowed|boolean|Indicates if receipt copy is allowed to be printed. Internal use.
 |===
