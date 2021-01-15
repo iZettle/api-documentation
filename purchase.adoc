@@ -782,7 +782,7 @@ __Status: 200 OK__
 --
 ====
 
-=== [[Discounts]]__Discounts__
+=== [[Discounts]]__Discounts explained__
 ====
 Discounts can exist both on a specific row of items(products), as well as on the entire purchase.
 Discount on a row of items is applied on the whole amount of the row, can be set either as a percentage or as a fixed amount.
