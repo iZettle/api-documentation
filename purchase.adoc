@@ -157,7 +157,7 @@ or
 
 ----
 `name` attribute is optional, not always present.
-For more information see section "Discounts".
+For more information see section <<Discounts>>.
 |serviceCharge|object a|Service charge added to a purchase e.g. delivery charge. +
 Example:
 [source,json]
