@@ -870,7 +870,7 @@ First row contains 2 items and a fixed discount amount of 5.
 
 Second row contains 10 items and a percentage discount of 10%.
 
-*Row discounts* = 5 + 10  10 × 0.1 = 15
+*Row discounts* = 5 + 10 × 10 × 0.1 = 15
 --
 2. Then we calculate the purchase discount, based on the sum of the previously discounted rows:
 +
