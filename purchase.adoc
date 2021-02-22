@@ -3,7 +3,7 @@
 :imagesdir: assets/images
 
 == About Purchase API
-Provides read only information about purchases made through iZettle.
+Provides read only information about purchases made through Zettle.
 Purchase represents a receipt, it's immutable and contains information about items that were sold, one or several payments received, taxes, discounts etc.
 Refunds are represented by the same model but with negative amounts and refund related flags/fields.
 
@@ -91,7 +91,7 @@ See <<example4>>.
 |===
 |Name|Type|In|Required/Optional|Description
 
-|purchaseUuid|string|path|required|Unique id of the purchase as UUID within iZettle system.
+|purchaseUuid|string|path|required|Unique id of the purchase as UUID within Zettle system.
 |===
 ====
 
@@ -121,8 +121,9 @@ See <<example4>>.
 
 |source|string a|Source of purchase, value can be one of the following
 
-* "POS" - purchase made with iZettle GO app
+* "POS" - purchase made with Zettle Go app
 * "WEB_SHOP" - purchase made online
+* "SDK" - purchase made through  SDK
 |[.line-through]#purchaseUUID#|string|Unique id of a purchase. *Deprecated*.
 |purchaseUUID1|string|Unique id of a purchase as UUID version 1.
 |timestamp|string|Created timestamp according to the https://en.wikipedia.org/wiki/ISO_8601[ISO 8601] format, e.g. "2019-12-03T17:05:06.123+0000".
@@ -204,9 +205,7 @@ Example:
     "accuracyMeters": 165
   }
 ----
-|userId|integer|Unique id for user within iZettle system. Internal use.
 |cashRegister|object a|For internal use only. There is no public API available for cash register.
-|organizationId|integer|Unique id for organisation within iZettle system. Internal use.
 |receiptCopyAllowed|boolean|Indicates if receipt copy is allowed to be printed. Internal use.
 |===
 
@@ -219,7 +218,7 @@ Example:
 |Name|Type |Description
 
 |quantity|string|Quantity of items. Can be a whole number or a decimal number, and negative in case of refund.
-|type|string a|Describes the kind of item that was purchased. +
+|type|string a|Describes the type of item that was purchased. +
 Enumeration values:
 
 * "PRODUCT" - Indicates that the item sold was predefined in product library.
@@ -277,7 +276,7 @@ See section <<Discounts>> for more information.
 |uuid|string|Unique id of the payment as UUID. Can be linked to transactions in https://github.com/iZettle/api-documentation/blob/master/finance.adoc#fetch-account-transactions[Finance API].
 |type|string|Payment type used when making a purchase. See <<Payment_types>> for more information.
 |gratuityAmount|integer|Corresponds to the tipping amount in the purchase. This
-feature is not available in all supported by iZettle countries. When the `gratuityAmount` is set, the
+feature is not available in all supported by Zettle countries. When the `gratuityAmount` is set, the
 payment amount will include the gratuity amount.
 |attributes|object a|Other references. +
 Example:
@@ -297,7 +296,7 @@ Example:
 |===
 |Payment type |Description
 
-|IZETTLE_CARD a|Payment taken with iZettle card reader. +
+|IZETTLE_CARD a|Payment taken with Zettle card reader. +
 
 Example:
 [source,json]
@@ -320,7 +319,7 @@ Example:
   }
 }
 ----
-|IZETTLE_CARD_ONLINE a|Payment taken with iZettle online e.g. with payment link.
+|IZETTLE_CARD_ONLINE a|Payment taken with Zettle online e.g. with payment link.
 
 Example:
 [source,json]
@@ -338,7 +337,7 @@ Example:
   }
 }
 ----
-|IZETTLE_CASH a|Cash payment registered with iZettle. +
+|IZETTLE_CASH a|Cash payment registered with Zettle. +
 
 Example:
 [source,json]
@@ -353,7 +352,7 @@ Example:
   }
 }
 ----
-|IZETTLE_INVOICE a|iZettle invoice is issued for a purchase with this payment type.
+|IZETTLE_INVOICE a|Zettle invoice is issued for a purchase with this payment type.
 
 Example:
 [source,json]
