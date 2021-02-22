@@ -1,6 +1,6 @@
-# iZettle Go API Beta Documentation
+# Zettle Go API Beta Documentation
 
-These are the beta documentation pages for the iZettle Go APIs.
+These are the beta documentation pages for the Zettle Go APIs.
 
 -   [Changelog](CHANGELOG.adoc)
 -   [Frequently Asked Questions](faq.adoc)
