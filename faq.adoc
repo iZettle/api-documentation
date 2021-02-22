@@ -2,7 +2,7 @@
 
 
 ====
-If you want to apply to receive access to our APIs, please visit https://developer.izettle.com/register[https://developer.izettle.com/register]
+If you want to apply to receive access to our APIs, please visit https://developer.zettle.com/register[https://developer.zettle.com/register]
 ====
 
 == General questions
