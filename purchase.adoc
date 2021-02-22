@@ -13,7 +13,7 @@ https://purchase.izettle.com
 === OAuth Scope
 - `READ:PURCHASE`
 
-See https://github.com/iZettle/api-documentation/blob/improve-purchase-api-docs/authorization.adoc[OAuth2 API] for more information about access tokens.
+See https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[OAuth2 API] for more information about access tokens.
 
 == __Fetch a list of purchases__
 __Returns a list of purchases for a merchant. Purchases up to three years old are available to fetch.__
