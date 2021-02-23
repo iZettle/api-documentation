@@ -194,7 +194,7 @@ Example:
     "12.0": 5000
   }
 ----
-|userDisplayName|string|Name of the user that took the payment.
+|userDisplayName|string|Name of the merchant/employee that took the payment.
 |gpsCoordinates|object a|Contains GPS coordinates of the location where purchase was made. +
 Example:
 [source,json]
