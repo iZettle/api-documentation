@@ -205,7 +205,7 @@ Example:
     "accuracyMeters": 165
   }
 ----
-|cashRegister|object a|For internal use only. There is no public API available for cash register.
+|cashRegister|object|Mostly for internal use. There is no public API available for cash register.
 |===
 
 *Note*: {nbsp}More attributes can potentially be added, please make sure your integration is built in a tolerant way.
@@ -277,7 +277,7 @@ See section <<Discounts>> for more information.
 |gratuityAmount|integer|Corresponds to the tipping amount in the purchase. This
 feature is not available in all supported by Zettle countries. When the `gratuityAmount` is set, the
 payment amount will include the gratuity amount.
-|attributes|object a|Other references. +
+|references|object a|Other references. +
 Example:
 [source, json]
 ----
