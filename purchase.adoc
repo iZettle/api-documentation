@@ -61,15 +61,7 @@ By default `startDate` is resolved to three years back.
 |===
 |Name|Type|Description
 
-|purchases|array|List of purchases. See +++<a onClick='openAndScrollTo("Purchase")'>Purchase attributes</a>
-<script>
-function openAndScrollTo(id) {
-    location.hash = "";
-    document.getElementById(id).open = true;
-    location.hash = "#" + id;
-}
-</script>+++ for more information.
-
+|purchases|array|List of purchases. See <<Purchase>> in "Fetch a purchase" section for more information.
 |firstPurchaseHash|string|Reference to the first purchase in the list returned.
 |lastPurchaseHash|string|Reference to the last purchase in the list returned. Use it as parameter for the next page of purchases.
 |linkUrls|array a|List of links to pages. +
