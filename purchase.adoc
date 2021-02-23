@@ -206,7 +206,6 @@ Example:
   }
 ----
 |cashRegister|object a|For internal use only. There is no public API available for cash register.
-|receiptCopyAllowed|boolean|Indicates if receipt copy is allowed to be printed. Internal use.
 |===
 
 *Note*: {nbsp}More attributes can potentially be added, please make sure your integration is built in a tolerant way.
