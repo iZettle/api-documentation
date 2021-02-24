@@ -5,7 +5,7 @@
 == About Purchase API
 Provides read only information about purchases made through Zettle.
 Purchase represents a receipt, it's immutable and contains information about items that were sold, one or several payments received, taxes, discounts etc.
-Refunds are represented by the same model but with negative amounts and refund related flags/fields.
+Refunds are represented by the same model but with negative quantity and refund related flags/fields.
 
 === Base URL
 https://purchase.izettle.com
@@ -855,7 +855,7 @@ This example purchase contains both discounts on rows and on the whole purchase.
 
 [cols="3%,20%,20%,20%,27%"]
 |===
-|Nr|Product|Unit price|Amount|Discount
+|Nr|Product|Unit price|Quantity|Discount
 |1|Foo|20|2|5
 |2|Bar|10|10|10%
 4+|Purchase discount| 20%
