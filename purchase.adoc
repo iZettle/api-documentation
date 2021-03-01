@@ -143,7 +143,8 @@ Example:
         {
             "name": "4 for £12",
             "amount": 200,
-            "quantity": 1
+            "quantity": 1,
+            "value": 200
         }
     ]
 or
@@ -151,7 +152,8 @@ or
         {
             "name": "Staff",
             "percentage": 50,
-            "quantity": 1
+            "quantity": 1,
+            "value": 2000
         }
     ]
 
@@ -614,7 +616,7 @@ __Status: 200 OK__
 ----
 ====
 
-=== [[example3]]__Purchase with discounts returned.__
+=== [[example3]]__Purchase with discounts.__
 ====
 --
 
@@ -688,7 +690,8 @@ __Status: 200 OK__
       "discounts": [
         {
           "percentage": 5,
-          "quantity": 1
+          "quantity": 1,
+          "value": 800
         }
       ],
       "payments": [
@@ -833,14 +836,15 @@ The `discountValue` field following the `discount` structure contains the total 
 * Discounts for the whole purchase are expressed using the following JSON structure.
 +
 --
-They can contain either `amount` or `percentage` value.
+They can contain either `amount` or `percentage`.
 
 [source,json]
 ----
 "discounts": [
 {
     "amount": 2000,
-    "quantity": 1
+    "quantity": 1,
+    "value": 2000
 }
 ----
 
