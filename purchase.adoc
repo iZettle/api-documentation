@@ -388,7 +388,7 @@ Example:
 ----
 |STORE_CREDIT|Store credit is usually a document offered by a store to a customer who returns an item not eligible for a refund or when a customer doesn't want to get chargeback on credit card that was used. It can be used to buy other goods at the same store.
 |GIFTCARD|Payment made with a gift card(certificate/voucher) issued by the merchant.
-|KLARNA a|Alternative payment method available in Sweden, Denmark, Finland and Germany.
+|KLARNA a|Alternative payment method available in Sweden, Denmark, Finland, Norway and Germany.
 
 Example:
 [source,json]
