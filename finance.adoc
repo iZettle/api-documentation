@@ -124,7 +124,7 @@ A cash advance is a type of financing that is offered to merchants based on thei
 |INVOICE_PAYMENT |References an invoice payment.
 |INVOICE_PAYMENT_FEE |References an invoice payment fee.
 |PAYMENT |References an alternative, third-party, payment method where iZettle handles the funds e.g. PayPal QR code(only DE and FR), Klarna QR code(only SE, FI, DK and NO).
-|PAYMENT_FEE |References the fee for a third-party payment method e.g PayPal QR code(only DE and FR), Klarna QR code(only SE, FI and DK).
+|PAYMENT_FEE |References the fee for a third-party payment method e.g PayPal QR code(only DE and FR), Klarna QR code(only SE, FI, DK and NO).
 |ADJUSTMENT |References a bookkeeping adjustment.
 |===
 
