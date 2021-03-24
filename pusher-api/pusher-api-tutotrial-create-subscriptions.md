@@ -32,11 +32,7 @@ Before creating event subscriptions to the HTTPS endpoint on your app, test the 
 2. Follow [Step 3: Create an event subscription](#step-3-create-an-event-subscription) to test the events and check the payloads.
 
 ## Step 3: Create a webhook event subscription
-You can subscribe to one or more events in one subscription request. To get started, you may want to subscribe to the following events:
-
-* To monitor inventory changes in Zettle POS: `InventoryBalanceChanged`, `InventoryTrackingStarted`, and `InventoryTrackingStopped`
-* To monitor product library changes: `ProductCreated`, `ProductUpdated`, and `ProductDeleted`
-* To monitor purchases: `PurchaseCreated`
+You can subscribe to one or more events in one subscription request.
 
 1. Send a `POST` request to create event subscriptions.
     
