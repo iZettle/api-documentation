@@ -8,7 +8,7 @@ You can make changes on existing event subscriptions.
 * [Related API reference](#related-api-reference)
 
 ## Prerequisites
-* None.
+None
 <!-- to be continued if any -->
 
 ## Step 1: Retrieve the subscription UUID
@@ -20,6 +20,7 @@ You can make changes on existing event subscriptions.
     ```
 
 2. Copy and save the UUID. It will be used for updating event subscription.
+
 
 ## Step 2: Update a webhook event subscription
 

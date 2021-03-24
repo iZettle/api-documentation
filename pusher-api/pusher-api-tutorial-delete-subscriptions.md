@@ -1,4 +1,4 @@
-# Delete event subscriptions with the pusher API
+# Delete webhook event subscriptions
 You can delete event subscriptions that are no longer needed.
 
 * [Prerequisites](#prerequisites)
@@ -8,7 +8,7 @@ You can delete event subscriptions that are no longer needed.
 * [Related API reference](#related-api-reference)
 
 ## Prerequisites
-* None.
+None
 <!-- to be continued if any -->
 
 ## Step 1: Retrieve the subscription UUID
@@ -22,6 +22,7 @@ You can delete event subscriptions that are no longer needed.
 2. Copy and save the UUID. It will be used for updating event subscription.
 
 ## Step 2: Delete a webhook event subscription
+=======
 
 1. Send a `DELETE` request to create event subscriptions.
     

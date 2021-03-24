@@ -37,7 +37,6 @@ You can subscribe to one or more events in one subscription request. To get star
 * To monitor inventory changes in Zettle POS: `InventoryBalanceChanged`, `InventoryTrackingStarted`, and `InventoryTrackingStopped`
 * To monitor product library changes: `ProductCreated`, `ProductUpdated`, and `ProductDeleted`
 * To monitor purchases: `PurchaseCreated`
-    
 
 1. Send a `POST` request to create event subscriptions.
     
@@ -184,6 +183,7 @@ To verify that events come from Zettle, calculate a signature and compare it wit
     ```
  
 <!-- can we add a code line for comparing the signature? -->
+
 
 ## Related task
 * [Delete webhook event subscriptions](pusher-api-tutorial-delete-subscriptions.md)
