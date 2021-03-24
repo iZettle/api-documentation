@@ -117,43 +117,43 @@ To verify that events come from Zettle, calculate a signature and compare it wit
     <details>
       <summary>Python 2</summary>
         
-        ```python
+      ```python
         import hmac
         import hashlib
         ...
         payload_to_sign = '{}.{}'.format(timestamp, payload)
         signature = hmac.new(bytes(signing_key), msg = bytes(payload_to_sign), digestmod = hashlib.sha256).hexdigest()
         //`signing_key` is the `signingKey` that you saved in Step 2: Create event subscriptions.`
-        ```
+      ```
        
     </details>
        
     <details>
       <summary>Python 3</summary>
            
-        ```python
+      ```python
         import hmac
         import hashlib
         ...
         payload_to_sign = '{}.{}'.format(timestamp, payload)
         signature = hmac.new(bytes(signing_key, 'UTF-8'), msg = bytes(payload
-          
+      ```    
     </details>
         
     <details>
       <summary>PHP</summary>
            
-        ```php
+      ```php
         $payloadToSign = stripslashes($timestamp . '.' . $payloadStr);
         $signature = hash_hmac('sha256', $payloadToSign, $signingKey);
-        ```
+      ```
           
     </details> 
     
     <details>
       <summary>Java</summary>
            
-        ```java
+      ```java
         import javax.crypto.Mac;
         import javax.crypto.spec.SecretKeySpec;
         import org.apache.commons.codec.Charsets;
@@ -163,7 +163,7 @@ To verify that events come from Zettle, calculate a signature and compare it wit
         Mac hmacSHA256 = Mac.getInstance("HmacSHA256");
         hmacSHA256.init(new SecretKeySpec(signingKey.getBytes(Charsets.UTF_8), "HmacSHA256"));
         String signature = Hex.encodeHexString(hmacSHA256.doFinal(payloadToSign.getBytes(Charsets.UTF_8)));
-        ```
+      ``
           
     </details> 
 

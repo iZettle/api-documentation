@@ -1,4 +1,9 @@
 # Troubleshoot Errors in the pusher API
+* [Failing webhooks](#failing-webhooks)
+    * [Root cause](#root-cause)
+    * [Fix 404 DESTINATION_RESPONDED_WITH_ERROR_CODE](#fix-404-destination_responded_with_error_code)
+    * [Fix 400 DESTINATION_NOT_ACCESSIBLE](#fix-400-destination_not_accessible)
+* [Related API reference](#related-api-reference)
 
 ## Failing webhooks
 When the webhook destination URL does not reply with a successful HTTP status code (2xx), the pusher API will mark the webhook as failing. 
@@ -49,7 +54,7 @@ This error usually returns when the destination URL is wrong.
     ```
     
 3. Does the failing event subscription have the correct destination URL?
-    * Yes: [Fix 400 DESTINATION_NOT_ACCESSIBLE](#fix-400-destination_not_accessible).
+    * Yes: Check the destination URL is up and running by following [Fix 400 DESTINATION_NOT_ACCESSIBLE](#fix-400-destination_not_accessible).
     * No: [Update event subscriptions with the pusher API](pusher-api-tutorial-update-subscriptions.md).
  
     
