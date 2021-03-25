@@ -11,7 +11,7 @@ Subscribe to webhook events to get notified of changes on your Zettle Go.
 
 ## Prerequisites
 * Authorization is set up using [Authorization OAuth2 API](../authorization.adoc).
-* Make sure that you have registered an HTTPS endpoint on your app for receiving event notifications. The endpoint must correctly process event payloads. For events payloads, see [Pusher API Reference](#pusher-api-reference.md). 
+* Make sure that you have an HTTPS endpoint on your server for receiving event notifications. The endpoint must correctly process event payloads. For events payloads, see [Pusher API Reference](#pusher-api-reference.md).  <!-- should this endpoint be publicly accessible -->
 * Make sure that you understand the events that are supported by the pusher API. For events that are supported by the pusher API, see [Pusher API Reference](#pusher-api-reference.md).
 <!-- to be continued if any -->
 
