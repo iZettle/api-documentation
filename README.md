@@ -5,6 +5,21 @@ These are the beta documentation pages for the Zettle Go APIs.
 -   [Changelog](CHANGELOG.adoc)
 -   [Frequently Asked Questions](faq.adoc)
 
+## Zettle API offering
+Zettle currently offers API services in the following countries:
+-   Great Britain
+-   Norway
+-   Denmark
+-   France
+-   Sweden
+-   Brazil
+-   Finland
+-   Germany
+-   Italy
+-   Mexico
+-   Spain
+-   The Netherlands
+
 ## APIs
 
 -   [OAuth](authorization.adoc)

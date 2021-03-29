@@ -21,7 +21,7 @@ During the attempts, when the destination URL starts responding with a successfu
 After all attempts, if the destination URL still doesn't reply with a 2xx code, the event subscription will be deleted.
 
 ### Root cause
-Failing webhooks can be caused that the HTTPS endpoint is faulty. One of the following error codes may return:
+Failing webhooks may be caused by faulty HTTPS endpoints. One of the following error codes may return:
 
 * `HTTP 400 DESTINATION_NOT_ACCESSIBLE`  
  
