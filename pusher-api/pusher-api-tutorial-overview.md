@@ -57,7 +57,7 @@ To get started, you may want to subscribe to the following events:
 
 For more webhooks events that you can subscribe, see [Pusher API reference](api-reference-template-manual.md).
 
-## Manage event subscriptions
+## Manage webhook event subscriptions
 With the pusher API, you can create, update, and delete webhook event subscriptions as needed.
 
 * [Create webhook event subscriptions](pusher-api-tutotrial-create-subscriptions.md)
