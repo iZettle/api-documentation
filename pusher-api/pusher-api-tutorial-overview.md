@@ -3,8 +3,8 @@ Using the Zetle Go pusher API, you can subscribe to webhook events toward other 
 
 * [Understand how webhook events work](#understand-how-webhook-events-work)
     * [Payloads](#payloads)
-* [Start with webhook event subscriptions](#start-with-webhook-event-subscriptions)
-* [Manage event subscriptions](#manage-event-subscriptions)
+* [Plan webhook event subscriptions](#plan-webhook-event-subscriptions)
+* [Manage webhook event subscriptions](#manage-webhook-event-subscriptions)
 
 ## Understand how webhook events work
 The pusher API provides webhooks events for you to listen to activities of the Zettle Go app at a working HTTPS endpoint on your server.
