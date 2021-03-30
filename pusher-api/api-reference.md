@@ -27,10 +27,10 @@ Replace anything like <__text__> with a text in regular font. Do not use italic.
   * [Responses](#responses)
 * [Supported events](#supported-events)
 * [Examples](#examples)
-  * [example use scenario 1](#example-use-scenario-1)
-  * [example use scenario 2](#example-use-scenario-2)
-  * [example use scenario 3](#example-use-scenario-3)
-  * [example use scenario 4](#example-use-scenario-4)
+  * [Create a subscription](#create-a-subscription)
+  * [Get subscriptions](#get-subscriptions)
+  * [Update a subscription](#update-a-subscription)
+  * [Delete a subscription](#delete-a-subscription)
 
 ## About Pusher API
 Pusher is a service that publishes information to the integrator's service. This information is data related to products, purchases, inventory etc. The purpose of this service is to ensure that integrators do not have to poll for data related to specific events. <br/> 
@@ -283,7 +283,7 @@ See [example use scenario 4](#_example-use-scenario-4_).
 
 ## Examples
 
-### <_example use scenario 1_>
+### Create a subscription
 _Request_ ```POST /organizations/{organizationUuid}/subscriptions```
 ```
 {
@@ -311,7 +311,7 @@ _Response_
 ```
 
 
-### <_example use scenario 2_>
+### Get subscriptions
 _Request_ ```GET /organizations/self/subscriptions``` 
 
 _Response_
@@ -357,13 +357,13 @@ _Response_
 ]
 ```
 
-### <_example use scenario 3_>
+### Update a subscription
 _Request_ ```PUT /organizations/self/subscriptions/df209936-8f31-11eb-8dcd-0242ac130003```
 
 _Response_ <br/>
 ```200 OK```
 
-### <_example use scenario 4_>
+### Delete a subscription
 
 ```DELETE /organizations/self/subscriptions/uuid/f02f80f8-8f35-11eb-8dcd-0242ac130003```
 
