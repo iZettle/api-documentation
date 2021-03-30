@@ -47,5 +47,5 @@ None
 * [Update webhook event subscriptions](pusher-api-tutorial-update-subscriptions.md)
 
 ## Related API reference
-* [Pusher API reference](api-reference-template-manual.md)
+* [Pusher API reference](api-reference.md)
 <!-- Add more references if needed. -->

@@ -11,8 +11,8 @@ Subscribe to webhook events to get notified of changes on your Zettle Go.
 
 ## Prerequisites
 * Authorization is set up using [Authorization OAuth2 API](../authorization.adoc).
-* Make sure that you have an HTTPS endpoint as the destination URL on your server for receiving event notifications. The endpoint must correctly process event payloads. For events payloads, see [Pusher API Reference](#pusher-api-reference.md).  <!-- should this endpoint be publicly accessible -->
-* Make sure that you understand the events that are supported by the pusher API. For events that are supported by the pusher API, see [Pusher API Reference](#pusher-api-reference.md).
+* Make sure that you have an HTTPS endpoint as the destination URL on your server for receiving event notifications. The endpoint must be publicly accessible and correctly process event payloads. For events payloads, see [Payloads](pusher-api-tutorial-overview.md/#payloads).
+* Make sure that you understand the events that are supported by the pusher API. For events that are supported by the pusher API, see [Pusher API reference](pusher-api-reference.md).
 <!-- to be continued if any -->
 
 ## Step 1: Generate a version 1 UUID

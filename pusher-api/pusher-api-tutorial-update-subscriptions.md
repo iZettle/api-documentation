@@ -61,5 +61,5 @@ None
 * [Delete event subscriptions with the pusher API](pusher-api-tutorial-delete-subscriptions.md)
 
 ## Related API reference
-* [Pusher API reference](api-reference-template-manual.md)
+* [Pusher API reference](api-reference.md)
 <!-- Add more references if needed. -->

@@ -74,5 +74,5 @@ This error usually returns when the destination URL is not up and running.
     <!--If still no, does it mean that subscription itself can be faulty? Or should the integrators contact technical partner support? -->    
 
 ## Related API reference
-* [API Reference Template](api-reference-template-manual.md)
+* [Pusher API reference](api-reference.md)
 <!-- Add more references if needed. -->
