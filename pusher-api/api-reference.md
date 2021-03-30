@@ -62,7 +62,7 @@ Creates a webhook subscription to a specific event.
 POST /organizations/{organizationUuid}/subscriptions
 ```
 
-See [example use scenario 1](#_example-use-scenario-1_).
+See [example use scenario 1](#create-a-subscription).
 
 
 ### Parameters
@@ -127,7 +127,7 @@ Gets all the webhook subscriptions for an integrator.
 GET /organizations/{organizationUuid}/subscriptions
 ```
 
-See [example use scenario 2](#_example-use-scenario-2_).
+See [example use scenario 2](#get-subscriptions).
 
 ### Parameters
 
@@ -177,7 +177,7 @@ Updates an existing webhook subscription.
 PUT /organizations/organizationUuid}/subscriptions/{subscriptionUuid}
 ```
 
-See [example use scenario 3](#_example-use-scenario-3_).
+See [example use scenario 3](#update-a-subscription).
 
 ### Parameters
 
@@ -222,7 +222,7 @@ Deletes an existing webhook subscription.
 DELETE /organizations/{organizationUuid}/subscriptions/{subscriptionUuid}
 ```
 
-See [example use scenario 4](#_example-use-scenario-4_).
+See [example use scenario 4](#delete-a-subscription).
 
 ### Parameters
 
