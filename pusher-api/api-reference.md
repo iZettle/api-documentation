@@ -10,27 +10,27 @@ author: DevX Team <devx@paypal.com> # Replace it with your team email alias.
 Use as few as acronyms and abbreviations as possible. If you need to use an acronym, make sure spell it out at its first occurrence.
 Replace anything like <__text__> with a text in regular font. Do not use italic. For syntax reference, see https://www.markdownguide.org/extended-syntax/.
 -->
-* [About Pusher API](#about-_service-name_-api)
+* [About Pusher API](#about-pusher-api)
   * [Base URL](#base-url)
   * [OAuth scope](#oauth-scope)
-* [Create a webhook subscription](#_request-1_)
+* [Create a webhook subscription](#create-a-webhook-subscription)
   * [Parameters](#parameters)
   * [Responses](#responses)
-* [Get all the webhook subscriptions](#_request-2_)
+* [Get all the webhook subscriptions](#get-all-the-webhook-subscriptions)
   * [Parameters](#parameters)
   * [Responses](#responses)
-* [Update a webhook subscription](#_request-3_)
+* [Update a webhook subscription](#update-a-webhook-subscription)
   * [Parameters](#parameters)
   * [Responses](#responses)
-* [Delete a webhook subscription](#_request-4_)
+* [Delete a webhook subscription](#delete-a-webhook-subscription)
   * [Parameters](#parameters)
   * [Responses](#responses)
-* [Supported events](#_supported-events_)
+* [Supported events](#supported-events)
 * [Examples](#examples)
-  * [example use scenario 1](#_example-use-scenario-1_)
-  * [example use scenario 2](#_example-use-scenario-2_)
-  * [example use scenario 3](#_example-use-scenario-3_)
-  * [example use scenario 4](#_example-use-scenario-4_)
+  * [example use scenario 1](#example-use-scenario-1)
+  * [example use scenario 2](#example-use-scenario-2)
+  * [example use scenario 3](#example-use-scenario-3)
+  * [example use scenario 4](#example-use-scenario-4)
 
 ## About Pusher API
 Pusher is a service that publishes information to the integrator's service. This information is data related to products, purchases, inventory etc. The purpose of this service is to ensure that integrators do not have to poll for data related to specific events. <br/> 
