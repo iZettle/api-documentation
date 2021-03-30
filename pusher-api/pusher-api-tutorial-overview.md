@@ -49,9 +49,9 @@ For more information on payloads, see references of other APIs.
 > **Note:** As payloads can be updated due to changes of the other APIs, you can ignore unknown fields.
 
 ## Start with webhook event subscriptions
-To get started, you may want to subscribe to the following events:
+To get started, you may want to [create webhook event subscriptions](pusher-api-tutotrial-create-subscriptions.md) to the following events:
 
-* To monitor inventory changes in Zettle POS: `InventoryBalanceChanged`, `InventoryTrackingStarted`, and `InventoryTrackingStopped`
+* To monitor inventory changes in Zettle Point of Sales (POS): `InventoryBalanceChanged`, `InventoryTrackingStarted`, and `InventoryTrackingStopped`
 * To monitor product library changes: `ProductCreated`, `ProductUpdated`, and `ProductDeleted`
 * To monitor purchases: `PurchaseCreated`
 
