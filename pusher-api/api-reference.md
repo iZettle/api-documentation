@@ -75,7 +75,7 @@ See [example use scenario 1](#_example-use-scenario-1_).
 |organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li><li> Use "self" as the value. This will retrieve your organizationUuid through the authentication information in the request.</li></ul> 
 |uuid |string |query |required | Unique identifier for the subscription as UUID version 1.
 |transportName |string |query |required | The message option used by Pusher service. Currently only `WEBHOOK` is supported. `SQS` is available only to certain clients based on the use case.
-|eventNames |array |query |required | Events that you want to create subscription for. The events are specified in an array. If you pass an empty array, you will subscribe to all events that the service supports.
+|eventNames |array |query |required | Events that you want to create subscription for. The events are specified in an array. If you pass an empty array, you will subscribe to all events that the service supports. See the list of [supported events](#supported-events).
 |destination |string |query |required | The public url exposed by the integrator where the Pusher service will publish messages for subscribed events.
 |contactEmail |string |query |required | The email address used to notify in case of any errors in subscription or the destination. <br/> The email must be a valid email address and should not exceed 512 characters.
 </details><!-- end tag of the Parameters section-->
