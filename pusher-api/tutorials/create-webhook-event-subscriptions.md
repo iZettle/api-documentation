@@ -1,5 +1,6 @@
-# Create webhook event subscriptions
-Subscribe to webhook events to get notified of changes on your Zettle Go.  
+Create webhook event subscriptions
+=====================
+Subscribe to webhook events to get notified of activities about your Zettle Go in real time.  
 
 * [Prerequisites](#prerequisites)
 * [Step 1: Generate a version 1 UUID](#step-1-generate-a-version-1-uuid)
@@ -10,9 +11,9 @@ Subscribe to webhook events to get notified of changes on your Zettle Go.
 * [Related API reference](#related-api-reference)
 
 ## Prerequisites
-* Authorization is set up using [Authorization OAuth2 API](../authorization.adoc).
-* Make sure that you have an HTTPS endpoint as the destination URL on your server for receiving event notifications. The endpoint must be publicly accessible and correctly process event payloads. For events payloads, see [Payloads](pusher-api-tutorial-overview.md/#payloads).
-* Make sure that you understand the events that are supported by the pusher API. For events that are supported by the pusher API, see [Pusher API reference](pusher-api-reference.md).
+* Authorization is set up using [Authorization OAuth2 API](../../authorization.adoc).
+* Make sure that you have an HTTPS endpoint as the destination URL on your server for receiving event notifications. The endpoint must be publicly accessible and correctly process event payloads. For events payloads, see [Payloads](webhook-event-subscriptions.md/#payloads).
+* Make sure that you understand the events that are supported by the pusher API. For events that are supported by the pusher API, see [Pusher API reference](../api-reference.md).
 <!-- to be continued if any -->
 
 ## Step 1: Generate a version 1 UUID
@@ -182,9 +183,9 @@ To verify that events come from Zettle, calculate a signature and compare it wit
 
 
 ## Related task
-* [Delete webhook event subscriptions](pusher-api-tutorial-delete-subscriptions.md)
-* [Update webhook event subscriptions](pusher-api-tutorial-update-subscriptions.md)
+* [Delete webhook event subscriptions](delete-webhook-event-subscriptions.md)
+* [Update webhook event subscriptions](update-webhook-event-subscriptions.md)
 
 ## Related API reference
-* [Pusher API reference](api-reference-template-manual.md)
+* [Pusher API reference](../api-reference.md)
 <!-- Add more references if needed. -->

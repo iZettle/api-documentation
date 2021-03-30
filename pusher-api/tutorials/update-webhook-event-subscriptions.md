@@ -1,4 +1,5 @@
-# Update event subscriptions with the pusher API
+Update event subscriptions with the pusher API
+=====================
 You can make changes on existing event subscriptions.
 
 * [Prerequisites](#prerequisites)
@@ -57,9 +58,9 @@ None
     ```
     
 ## Related task
-* [Create event subscriptions with the pusher API](pusher-api-tutorial-create-subscriptions.md)
-* [Delete event subscriptions with the pusher API](pusher-api-tutorial-delete-subscriptions.md)
+* [Create event subscriptions with the pusher API](create-webhook-event-subscriptions.md)
+* [Delete event subscriptions with the pusher API](delete-webhook-event-subscriptions.md)
 
 ## Related API reference
-* [Pusher API reference](api-reference.md)
+* [Pusher API reference](../api-reference.md)
 <!-- Add more references if needed. -->

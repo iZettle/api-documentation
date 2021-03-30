@@ -1,5 +1,6 @@
-# Webhook event subscriptions
-Using the Zetle Go pusher API, you can subscribe to webhook events toward other Zettle Go APIs, such as the purchase API. With webhook event subscriptions, you will be immediately updated of those events that happen on your Zettle Go instead of pulling information from other Zettle Go APIs.
+Webhook event subscriptions
+=====================
+With webhook event subscriptions, you will be immediately updated of those events that happen on your Zettle Go instead of pulling information from other Zettle Go APIs.
 
 * [Understand how webhook events work](#understand-how-webhook-events-work)
     * [Payloads](#payloads)
@@ -7,7 +8,7 @@ Using the Zetle Go pusher API, you can subscribe to webhook events toward other 
 * [Manage webhook event subscriptions](#manage-webhook-event-subscriptions)
 
 ## Understand how webhook events work
-The pusher API provides webhooks events for you to listen to activities of the Zettle Go app at a working HTTPS endpoint on your server.
+The pusher API provides webhooks events for you to listen to certain activities of the Zettle Go app at a working HTTPS endpoint on your server.
 
 After you subscribe to webhook events, when an event happens, the pusher API sends a `POST` request with the activity information in a payload to the HTTPS endpoint in real time.
 
@@ -58,12 +59,12 @@ To get started, you may want to [create webhook event subscriptions](pusher-api-
 * To monitor purchases: `PurchaseCreated`
 <!-- To ketkee: after receiving info from Neon bank, maybe we can extend this section to be more focused on use cases? -->
 
-For more webhooks events that you can subscribe, see [Pusher API reference](api-reference.md).
+For more webhooks events that you can subscribe, see [Pusher API reference](../api-reference.md).
 
 ## Manage webhook event subscriptions
 With the pusher API, you can create, update, and delete webhook event subscriptions according to your plan.
 
-* [Create webhook event subscriptions](pusher-api-tutotrial-create-subscriptions.md)
-* [Update webhook event subscriptions](pusher-api-tutorial-update-subscriptions.md)
-* [Delete webhook event subscriptions](pusher-api-tutorial-delete-subscriptions.md)
+* [Create webhook event subscriptions](create-webhook-event-subscriptions.md)
+* [Update webhook event subscriptions](update-webhook-event-subscriptions.md)
+* [Delete webhook event subscriptions](delete-webhook-event-subscriptions.md)
 

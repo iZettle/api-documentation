@@ -1,4 +1,5 @@
-# Delete webhook event subscriptions
+Delete webhook event subscriptions
+=====================
 You can delete event subscriptions that are no longer needed.
 
 * [Prerequisites](#prerequisites)
@@ -43,9 +44,9 @@ None
     ```
     
 ## Related task
-* [Create webhook event subscriptions](pusher-api-tutorial-create-subscriptions.md)
-* [Update webhook event subscriptions](pusher-api-tutorial-update-subscriptions.md)
+* [Create webhook event subscriptions](create-webhook-event-subscriptions.md)
+* [Update webhook event subscriptions](update-webhook-event-subscriptions.md)
 
 ## Related API reference
-* [Pusher API reference](api-reference.md)
+* [Pusher API reference](../api-reference.md)
 <!-- Add more references if needed. -->
