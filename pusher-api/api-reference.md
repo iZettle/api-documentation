@@ -304,7 +304,7 @@ _Response_
     ],
     "updated": "2021-03-29T16:31:47.087507Z",
     "destination": "https://webhook.site/f62e2311-1232-4d8f-b75e-80e9ce013dd4",
-    "contactEmail": "karyamane@izettle.com",
+    "contactEmail": "testingemail@izettle.com",
     "status": "ACTIVE",
     "signingKey": "zLzClQLQN8yfH8aEjONeXzgJRAHR0zpD7RonFCpizujCUCectBlln0vFArTbLPYa"
 }
@@ -317,7 +317,7 @@ _Request_ ```GET /organizations/self/subscriptions```
 _Response_
 ```
 [
-{
+    {
         "uuid": "f02f80f8-8f35-11eb-8dcd-0242ac130003",
         "transportName": "WEBHOOK",
         "eventNames": [
@@ -325,7 +325,7 @@ _Response_
         ],
         "updated": "2021-03-30T07:48:52.228Z",
         "destination": "https://webhook.site/f62e2311-1232-4d8f-b75e-80e9ce013dd4",
-        "contactEmail": "testemail@izettle.com",
+        "contactEmail": "testingemail@izettle.com",
         "status": "ACTIVE",
         "signingKey": "U0Ani1WTTwwbjUnHlQAEDCRXQoQn9z9e4q55UUTyeZJt89z9XXN5ssd4Cgh0evJa"
     },
@@ -337,7 +337,7 @@ _Response_
         ],
         "updated": "2021-03-30T07:49:35.294Z",
         "destination": "https://webhook.site/f62e2311-1232-4d8f-b75e-80e9ce013dd4",
-        "contactEmail": "testemail@izettle.com",
+        "contactEmail": "testingemail@izettle.com",
         "status": "ACTIVE",
         "signingKey": "PSjClzC2HNEZZoFU7aaF9DSmn9WJBXLfEIAkbBq15lNknnijPT2AKEsvf2YHPrsQ"
     },
@@ -350,9 +350,22 @@ _Response_
         ],
         "updated": "2021-03-30T07:50:13.489Z",
         "destination": "https://webhook.site/f62e2311-1232-4d8f-b75e-80e9ce013dd4",
-        "contactEmail": "testemail@izettle.com",
+        "contactEmail": "testingemail@izettle.com",
         "status": "ACTIVE",
         "signingKey": "H2XDdE5REqT55rDTvAPqpA8UDY4mO3QSmcLO7h0PxvJ4qETKfx9rfzVxuKplUOYz"
+    },
+    {
+        "uuid": "08db4d6e-912d-11eb-a8b3-0242ac130003",
+        "transportName": "WEBHOOK",
+        "eventNames": [
+            "InventoryBalanceChanged",
+            "ProductCreated"
+        ],
+        "updated": "2021-03-30T07:54:11.798Z",
+        "destination": "https://webhook.site/f62e2311-1232-4d8f-b75e-80e9ce013dd4",
+        "contactEmail": "testingemail@izettle.com",
+        "status": "ACTIVE",
+        "signingKey": "s4T28XWVGBl8us8fvRxmY4HnFQgTbMiFtqniXpWrAIx0rv5YN7RFAygyjWSg7Nip"
     }
 ]
 ```
@@ -365,7 +378,7 @@ _Response_ <br/>
 
 ### Delete a subscription
 
-```DELETE /organizations/self/subscriptions/uuid/f02f80f8-8f35-11eb-8dcd-0242ac130003```
+_Request_ ```DELETE /organizations/self/subscriptions/uuid/f02f80f8-8f35-11eb-8dcd-0242ac130003```
 
 _Response_ <br/>
 ```204 No content```
