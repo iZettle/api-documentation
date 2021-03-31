@@ -24,7 +24,7 @@ None
 
 ## Step 2: Delete a webhook event subscription
 
-1. Send a `DELETE` request to create event subscriptions. In the request, `subscriptionsUuid` is the version 1 UUID that you generated in [Step 1: Generate a version 1 UUID](#step-1-generate-a-version-1-uuid).
+1. Send a `DELETE` request to create event subscriptions. In the request, `subscriptionsUuid` is the version 1 UUID that you retrieved in [Step 1: Retrieve the subscription UUID](#step-1-retrieve-the-subscription-uuid).
     
     ```
     DELETE /organizations/{organizationUuid}/{subscriptionsUuid}
@@ -32,7 +32,7 @@ None
        
     Example:
     
-    The following example updates the event subscrption `ef64c5e2-4e16-11e8-9c2d-fa7ae01bbebc` and subscribes to event `ProductCreated` and `PurchaseCreated`.
+    The following example deletes the event subscription `ef64c5e2-4e16-11e8-9c2d-fa7ae01bbebc`.
     ```
         DELETE /organizations/self/subscriptions/`ef64c5e2-4e16-11e8-9c2d-fa7ae01bbebc`
        

@@ -20,12 +20,12 @@ None
     GET /organizations/self/subscriptions
     ```
 
-2. Copy and save the UUID. It will be used for updating event subscription.
+2. Copy and save the UUID of the event subscription that you want to update. It will be used for updating event subscription.
 
 
 ## Step 2: Update a webhook event subscription
 
-1. Send a `PUT` request to create event subscriptions.
+1. Send a `PUT` request to create event subscriptions. In the request, `subscriptionUuid` is s the version 1 UUID that you retrieved in [Step 1: Retrieve the subscription UUID](#step-1-retrieve-the-subscription-uuid).
     
     ```
     PUT /organizations/self/subscriptions/{subscriptionUuid}
@@ -36,15 +36,9 @@ None
    }   
     ```
   
-    Where:
-
-    * `eventNames` specifies one or more events that you want to subscribe. Event names are separated by a comma.
-    * `destination` points to the URL that you want to receive events for monitoring.
-    * `contactEmail` specifies an email to which you want to receive notifications.
-    
     Example:
     
-    The following example updates the event subscrption `ef64c5e2-4e16-11e8-9c2d-fa7ae01bbebc` and subscribes to event `ProductCreated` and `PurchaseCreated`.
+    The following example updates the event subscription `ef64c5e2-4e16-11e8-9c2d-fa7ae01bbebc` and subscribes to event `ProductCreated` and `PurchaseCreated`.
     ```
         PUT /organizations/self/subscriptions/`ef64c5e2-4e16-11e8-9c2d-fa7ae01bbebc`
        {
