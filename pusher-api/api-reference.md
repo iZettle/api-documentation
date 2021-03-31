@@ -1,18 +1,19 @@
-<!--
-title: Pusher API Reference Guide
-description: For example, Purchase API Guide. This template is intended for manually creating API reference guide.
-author: DevX Team <devx@paypal.com> # Replace it with your team email alias.
--->
+API Reference
+=====================
+Pusher is a service that publishes information to the integrator's service. This information is data related to products, purchases, inventory etc. The purpose of this service is to ensure that integrators do not have to poll for data related to specific events. <br/>
+An integrator can subscribe to specific events in the Pusher service. When these events get triggered, Pusher service will publish information corresponding to the event to the integrator's service.
 
-<!-- For DevX team future reference, another approach to this would be to list common objects(along with their fields) required across all endpoints at the top so as to avoid repetition. That way, if the object structure changes, developers do not have to change at multiple places. -->
+Examples of events:
+* PurchaseCreated - This gets triggered when a purchase gets created.
+* ProductUpdated - This gets triggered when product information gets updated in the product library.<br/>
+  See the list of all [Supported events](#_supported-events_).
 
-<!-- Write full sentences.
-Use as few as acronyms and abbreviations as possible. If you need to use an acronym, make sure spell it out at its first occurrence.
-Replace anything like <__text__> with a text in regular font. Do not use italic. For syntax reference, see https://www.markdownguide.org/extended-syntax/.
--->
-* [About Pusher API](#about-pusher-api)
-  * [Base URL](#base-url)
-  * [OAuth scope](#oauth-scope)
+The Pusher service uses Webhooks. Webhooks are custom callbacks used to send data from one application to another when a specific event gets triggered. <br/>
+The other option that Pusher service supports is [AWS SQS](https://aws.amazon.com/sqs/). However, this is currently available only to selected integrators and can be made available to others as per the use case.
+
+
+* [Base URL](#base-url)
+* [OAuth scope](#oauth-scope)
 * [Create a webhook subscription](#create-a-webhook-subscription)
   * [Parameters](#parameters)
   * [Responses](#responses)
@@ -32,17 +33,6 @@ Replace anything like <__text__> with a text in regular font. Do not use italic.
   * [Update a subscription](#update-a-subscription)
   * [Delete a subscription](#delete-a-subscription)
 
-## About Pusher API
-Pusher is a service that publishes information to the integrator's service. This information is data related to products, purchases, inventory etc. The purpose of this service is to ensure that integrators do not have to poll for data related to specific events. <br/> 
-An integrator can subscribe to specific events in the Pusher service. When these events get triggered, Pusher service will publish information corresponding to the event to the integrator's service.
-
-Examples of events:
-* PurchaseCreated - This gets triggered when a purchase gets created.
-* ProductUpdated - This gets triggered when product information gets updated in the product library. 
-See the list of [Supported events](#_supported-events_).
-
-The Pusher service uses Webhooks. Webhooks are custom callbacks which are used to send data from one application to another when a specific event gets triggered. <br/>
-The other option that Pusher service supports is [AWS SQS](https://aws.amazon.com/sqs/). However, this is currently available only to selected integrators and can be made available to others as per the use case. 
 
 ### Base URL
 https://pusher.izettle.com
@@ -50,7 +40,7 @@ https://pusher.izettle.com
 ### OAuth Scope
 In order to create or update a subscription to an event, you will need to be authorized with the corresponding scope.
 
-E.g. you will require the `READ:PURCHASE` scope if you want to subscribe to the `PurchaseCreated` event.
+E.g. you will require the `READ:PURCHASE` scope if you want to subscribe to the `PurchaseCreated` event. See the [list of scopes](#_supported-events_) corresponding to every event.
 
 See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information on how to get authorization for a particular scope.
 
@@ -62,7 +52,7 @@ Creates a webhook subscription to a specific event.
 POST /organizations/{organizationUuid}/subscriptions
 ```
 
-See [example use scenario 1](#create-a-subscription).
+See [Create a subscription example](#create-a-subscription).
 
 
 ### Parameters
@@ -127,7 +117,7 @@ Gets all the webhook subscriptions for an integrator.
 GET /organizations/{organizationUuid}/subscriptions
 ```
 
-See [example use scenario 2](#get-subscriptions).
+See [Get subscriptions example](#get-subscriptions).
 
 ### Parameters
 
@@ -177,7 +167,7 @@ Updates an existing webhook subscription.
 PUT /organizations/organizationUuid}/subscriptions/{subscriptionUuid}
 ```
 
-See [example use scenario 3](#update-a-subscription).
+See [Update a subscription example](#update-a-subscription).
 
 ### Parameters
 
@@ -222,7 +212,7 @@ Deletes an existing webhook subscription.
 DELETE /organizations/{organizationUuid}/subscriptions/{subscriptionUuid}
 ```
 
-See [example use scenario 4](#delete-a-subscription).
+See [Delete a subscription example](#delete-a-subscription).
 
 ### Parameters
 
@@ -372,6 +362,11 @@ _Response_
 
 ### Update a subscription
 _Request_ ```PUT /organizations/self/subscriptions/df209936-8f31-11eb-8dcd-0242ac130003```
+```
+{
+  "eventNames": ["ProductUpdated", "CardPaymentInvalid"]
+}
+```
 
 _Response_ <br/>
 ```200 OK```
