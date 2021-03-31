@@ -362,6 +362,11 @@ _Response_
 
 ### Update a subscription
 _Request_ ```PUT /organizations/self/subscriptions/df209936-8f31-11eb-8dcd-0242ac130003```
+```
+{
+  "eventNames": ["ProductUpdated", "CardPaymentInvalid"]
+}
+```
 
 _Response_ <br/>
 ```200 OK```
