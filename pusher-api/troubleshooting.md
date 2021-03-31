@@ -1,4 +1,4 @@
-# Troubleshoot Errors in the pusher API
+# Troubleshoot Errors in the Pusher API
 * [Failing webhooks](#failing-webhooks)
     * [Root cause](#root-cause)
     * [Fix 404 DESTINATION_RESPONDED_WITH_ERROR_CODE](#fix-404-destination_responded_with_error_code)
@@ -6,12 +6,12 @@
 * [Related API reference](#related-api-reference)
 
 ## Failing webhooks
-When the webhook destination URL does not reply with a successful HTTP status code (2xx), the pusher API will mark the webhook as failing. 
+When the destination URL does not reply with a successful HTTP status code (2xx), the Pusher API will mark the webhook as failing. 
 
-The pusher API will email you about failing webhooks at the email address in the event subscription.
+The Pusher API will email you about failing webhooks at the email address in the event subscription.
 <!-- when does the email be sent? At the very first failure?-->
 
-The pusher API will also re-send event notifications to the destination URL with attempts in the following interval and sequence:
+The Pusher API will also re-send event notifications to the destination URL with attempts in the following interval and sequence:
 1. Every 60 seconds for 10 attempts in total
 2. Every 600 seconds for nine attempts in total
 3. Every hour in the next 70 hours
@@ -30,11 +30,25 @@ Failing webhooks may be caused by faulty HTTPS endpoints. One of the following e
 ### Fix 404 DESTINATION_RESPONDED_WITH_ERROR_CODE
 This error usually returns when the destination URL is wrong.
 
-1. Retrieve subscriptions.
+1. Retrieve all existing subscriptions.
 
     ```
     GET /organizations/self/subscriptions
     ```
+    or
+       
+    ```
+    GET /organizations/{organizationUuid}/subscriptions
+    ```
+   
+   Example:
+      
+      The following example retrieves all subscriptions for the organization with `a3931584-82b2-4873-a32f-12b254d43539` as the UUID.
+      
+      ```
+      GET /organizations/a3931584-82b2-4873-a32f-12b254d43539/subscriptions
+      ```
+   
  
 2. Check that the event subscription with the `failing` status has the correct destination URL in the response.
 
@@ -55,7 +69,7 @@ This error usually returns when the destination URL is wrong.
     
 3. Does the failing event subscription have the correct destination URL?
     * Yes: Check the destination URL is up and running by following [Fix 400 DESTINATION_NOT_ACCESSIBLE](#fix-400-destination_not_accessible).
-    * No: [Update event subscriptions with the pusher API](pusher-api-tutorial-update-subscriptions.md).
+    * No: [Update event subscriptions](tutorials/update-event-subscriptions.md).
  
     
 ### Fix 400 DESTINATION_NOT_ACCESSIBLE
