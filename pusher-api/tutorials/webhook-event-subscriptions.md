@@ -1,6 +1,6 @@
 Webhook event subscriptions
 =====================
-With webhook event subscriptions, you will be immediately updated of those events that happen on your Zettle Go instead of pulling information from other Zettle Go APIs.
+With webhook event subscriptions, you will be immediately updated of those events that are triggered on your Zettle Go instead of pulling information from other Zettle Go APIs.
 
 * [Understand how webhook events work](#understand-how-webhook-events-work)
     * [Payloads](#payloads)
@@ -8,12 +8,12 @@ With webhook event subscriptions, you will be immediately updated of those event
 * [Manage webhook event subscriptions](#manage-webhook-event-subscriptions)
 
 ## Understand how webhook events work
-The pusher API provides webhooks events for you to listen to certain activities of the Zettle Go app at a working HTTPS endpoint on your server.
+The Pusher API provides webhook events for you to listen to certain activities of the Zettle Go app at a working HTTPS endpoint on your server.
 
-After you subscribe to webhook events, when an event happens, the pusher API sends a `POST` request with the activity information in a payload to the HTTPS endpoint in real time.
+After you subscribe to webhook events, when an event is triggered, the Pusher API sends a `POST` request that contains a `payload` field with event information to the HTTPS endpoint in real time.
 
 ### Payloads
-Payloads are response bodies from other APIs, such as the product API. The pusher API sends `POST` requests with payloads in the following JSON format:
+Payloads are the response body that the Pusher API forwards from other APIs, such as the Inventory API. The Pusher API sends `POST` requests with payloads in the following JSON format:
 
 ```
 {
@@ -27,7 +27,7 @@ Payloads are response bodies from other APIs, such as the product API. The pushe
     "timestamp": "<event timestamp in ISO-8601 format>"
   }
 ```
-For example, if you subscribe to the `InventoryTrackingStarted` event, when that event happens at the Zettle Go app, you will receive a notification that looks similar to the following:
+For example, if you subscribe to the `InventoryTrackingStarted` event, when that event is triggered at the Zettle Go app, you will receive a notification that looks similar to the following:
 
 ```json
 {
@@ -47,6 +47,7 @@ For example, if you subscribe to the `InventoryTrackingStarted` event, when that
 ```
 
 For more information on payloads, see references of other APIs.
+
 > **Note:** As payloads can be updated due to changes of the other APIs, you can ignore unknown fields.
 
 ## Plan webhook event subscriptions
@@ -62,7 +63,7 @@ To get started, you may want to [create webhook event subscriptions](pusher-api-
 For more webhooks events that you can subscribe, see [Pusher API reference](../api-reference.md).
 
 ## Manage webhook event subscriptions
-With the pusher API, you can create, update, and delete webhook event subscriptions according to your plan.
+With the Pusher API, you can create, update, and delete webhook event subscriptions according to your plan.
 
 * [Create webhook event subscriptions](create-webhook-event-subscriptions.md)
 * [Update webhook event subscriptions](update-webhook-event-subscriptions.md)

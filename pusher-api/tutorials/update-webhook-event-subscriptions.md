@@ -1,4 +1,4 @@
-Update event subscriptions with the pusher API
+Update webhook event subscriptions
 =====================
 You can make changes on existing event subscriptions.
 

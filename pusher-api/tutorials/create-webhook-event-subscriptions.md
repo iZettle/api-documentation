@@ -12,8 +12,8 @@ Subscribe to webhook events to get notified of activities about your Zettle Go i
 
 ## Prerequisites
 * Authorization is set up using [Authorization OAuth2 API](../../authorization.adoc).
-* Make sure that you have an HTTPS endpoint as the destination URL on your server for receiving event notifications. The endpoint must be publicly accessible and correctly process event payloads. For events payloads, see [Payloads](webhook-event-subscriptions.md/#payloads).
-* Make sure that you understand the events that are supported by the pusher API. For events that are supported by the pusher API, see [Pusher API reference](../api-reference.md).
+* Make sure that you have set up an HTTPS endpoint as the destination URL on your server for receiving event notifications. The endpoint must be publicly accessible and correctly process event payloads. For events payloads, see [Payloads](webhook-event-subscriptions.md/#payloads).
+* Make sure that you understand the events that are supported by the Pusher API. For events that are supported by the Pusher API, see [Pusher API reference](../api-reference.md#supported-events).
 <!-- to be continued if any -->
 
 ## Step 1: Generate a version 1 UUID
@@ -21,13 +21,13 @@ For every subscription, generate a version 1 Universally Unique Identifier (UUID
 
 > **Note:** One UUID can be used only for one subscription.
 
-1. Generate a version 1 UUID at [UUID Generator](https://www.uuidgenerator.net/version1). <!-- how to treat 3rd party resources at Zettle? -->
-2. Copy and save the UUID. It will be used for creating event subscription.
+1. Generate a version 1 UUID. For example, you can use [UUID Generator](https://www.uuidgenerator.net/version1) to generate a version 1 UUID. <!-- how to treat 3rd party resources at Zettle? -->
+2. Copy and save the UUID. It will be used for creating an event subscription.
 
-## (Optional) Step 2: Test webhooks
-Before creating event subscriptions to the HTTPS endpoint on your app, test the events that you want to subscribe.
+## Step 2: Test webhooks
+Before creating event subscriptions to the HTTPS endpoint on your app, test the events to which you want to subscribe.
 
-1. Set up a test environment. 
+1. Set up a test environment. IfYou may want to use one  
     * If you run a local server, you can make it publicly available using [ngrok](https://ngrok.com/).
     * If you don't run a local server, you can use [Webhook.site](https://webhook.site) that provides an online view of all requests. <!-- how to treat 3rd party resources at Zettle? -->
 2. Follow [Step 3: Create an event subscription](#step-3-create-an-event-subscription) to test the events and check the payloads.
@@ -35,7 +35,7 @@ Before creating event subscriptions to the HTTPS endpoint on your app, test the 
 ## Step 3: Create a webhook event subscription
 You can subscribe to one or more events in one subscription request.
 
-1. Send a `POST` request to create event subscriptions.
+1. Send a `POST` request to create event subscriptions. In the request body, `uuid` is the version 1 UUID that you generated in [Step 1: Generate a version 1 UUID](#step-1-generate-a-version-1-uuid).
     
     ```
     POST /organizations/self/subscriptions
@@ -47,15 +47,7 @@ You can subscribe to one or more events in one subscription request.
      "contactEmail": "<email to receive notifications>"
    }   
     ```
-  
-    Where:
-
-    * `uuid` is the version 1 UUID that you generated in [Step 1: Generate a version 1 UUID](#step-1-generate-a-version-1-uuid).
-    * `transportName` is always set to `WEBHOOK`.
-    * `eventNames` specifies one or more events that you want to subscribe. Event names are separated by a comma.
-    * `destination` points to the URL that you want to receive events for monitoring.
-    * `contactEmail` specifies an email to which you want to receive notifications.
-    
+      
     Example:
     
     The following example creates a subscription to event `ProductCreated` and `PurchaseCreated`.
@@ -160,26 +152,10 @@ To verify that events come from Zettle, calculate a signature and compare it wit
         Mac hmacSHA256 = Mac.getInstance("HmacSHA256");
         hmacSHA256.init(new SecretKeySpec(signingKey.getBytes(Charsets.UTF_8), "HmacSHA256"));
         String signature = Hex.encodeHexString(hmacSHA256.doFinal(payloadToSign.getBytes(Charsets.UTF_8)));
-      ``
-          
+      ``          
     </details> 
 
 2. Compare the newly caculated signature with the value in the HTTP header `X-iZettle-Signature` and take actions accordingly.
-
-    The follwoing example shows that the request will be ended when the HTTP status code is 400.
-
-    ```
-       if (signature != mySignature) {
-            res.status(400)
-            res.end()
-        }
-        
-       res.status(400)
-       res.end()
-   
-    ```
- 
-<!-- can we add a code line for comparing the signature? -->
 
 
 ## Related task
