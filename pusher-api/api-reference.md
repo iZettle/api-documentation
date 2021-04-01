@@ -6,7 +6,7 @@ An integrator can subscribe to specific events in the Pusher service. When these
 Examples of events:
 * PurchaseCreated - This gets triggered when a purchase gets created.
 * ProductUpdated - This gets triggered when product information gets updated in the product library.<br/>
-  See the list of all [Supported events](#_supported-events_).
+  See the list of all [Supported events](#supported-events).
 
 The Pusher service uses Webhooks. Webhooks are custom callbacks used to send data from one application to another when a specific event gets triggered. <br/>
 The other option that Pusher service supports is [AWS SQS](https://aws.amazon.com/sqs/). However, this is currently available only to selected integrators and can be made available to others as per the use case.
@@ -40,7 +40,7 @@ https://pusher.izettle.com
 ### OAuth Scope
 In order to create or update a subscription to an event, you will need to be authorized with the corresponding scope.
 
-E.g. you will require the `READ:PURCHASE` scope if you want to subscribe to the `PurchaseCreated` event. See the [list of scopes](#_supported-events_) corresponding to every event.
+E.g. you will require the `READ:PURCHASE` scope if you want to subscribe to the `PurchaseCreated` event. See the [list of scopes](#supported-events) corresponding to every event.
 
 See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information on how to get authorization for a particular scope.
 
@@ -50,7 +50,7 @@ Creates a webhook subscription to a specific event.
 
 Once the subscription for an event gets created successfully, the service will publish data on the integrator's service when that event gets triggered.<br/>
 E.g.You create a subscription for the ```ProductUpdated``` event. Whenever a product gets updated in the product library, the `ProductUpdated` event gets triggered. You will then receive event data i.e, payload for the updated product on the ```destination``` that you have exposed publicly.
-See a list of payloads for all events at #_payloads_
+See a list of [payloads](tutorials/event-subscriptions.md#payloadAPITable) for all events.
 
 The service will push data for an event only once. However, there may be cases where it gets published more than once. The integrator will then have to take care to not save the data more than once.
 
@@ -64,7 +64,7 @@ See [Create a subscription example](#create-a-subscription).
 ### Parameters
 
 <details><!-- start tag of the Parameters section-->
-<summary>Click to see all request parameters for creating a subscription:</summary>
+<summary>Click to see all request parameters for creating a subscription.</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
@@ -78,8 +78,8 @@ See [Create a subscription example](#create-a-subscription).
 
 
 ### Responses
-<details>
-<summary>Click to see HTTP status codes</summary>
+<details  name="createHttpStatusCode">
+<summary>Click to see HTTP status codes.</summary>
 
 |Status code |Description
 |---- |----
@@ -92,7 +92,7 @@ See [Create a subscription example](#create-a-subscription).
 </details>
 
 <details>
-<summary>Click to see response attributes</summary>
+<summary>Click to see response attributes.</summary>
 <p>A successful <code>200 OK</code> response will have the following attributes:</p>
 
 |Name |Type |Description
@@ -121,7 +121,7 @@ See [Get subscriptions example](#get-subscriptions).
 ### Parameters
 
 <details>
-<summary>Click to see all request parameters for getting all subscriptions:</summary>
+<summary>Click to see all request parameters for getting all subscriptions.</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
@@ -131,7 +131,7 @@ See [Get subscriptions example](#get-subscriptions).
 
 ### Responses
 <details>
-<summary>Click to see HTTP status codes</summary>
+<summary>Click to see HTTP status codes.</summary>
 
 |Status code |Description
 |---- |----
@@ -142,7 +142,7 @@ See [Get subscriptions example](#get-subscriptions).
 
 
 <details>
-<summary>Click to see response attributes</summary>
+<summary>Click to see response attributes.</summary>
 <p>A successful <code>200 OK</code> response will return an array of subscriptions. Each subscription contains the following response attributes:</p>
 
 
@@ -171,7 +171,7 @@ See [Update a subscription example](#update-a-subscription).
 ### Parameters
 
 <details>
-<summary>Click to see all request parameters for updating a subscription:</summary>
+<summary>Click to see all request parameters for updating a subscription.</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
@@ -186,7 +186,7 @@ See [Update a subscription example](#update-a-subscription).
 
 ### Responses
 <details>
-<summary>Click to see HTTP status codes</summary>
+<summary name="updateHttpStatusCode">Click to see HTTP status codes.</summary>
 
 |Status code |Description
 |---- |----
@@ -198,7 +198,7 @@ See [Update a subscription example](#update-a-subscription).
 </details>
 
 <details>
-<summary>Click to see response attributes</summary><br/>
+<summary>Click to see response attributes.</summary><br/>
 <p>The service returns a <code>200 OK</code> response without any content.</p>
 </details>
 
@@ -216,7 +216,7 @@ See [Delete a subscription example](#delete-a-subscription).
 ### Parameters
 
 <details>
-<summary>Click to see all request parameters for deleting a subscription:</summary>
+<summary>Click to see all request parameters for deleting a subscription.</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
@@ -227,7 +227,7 @@ See [Delete a subscription example](#delete-a-subscription).
 
 ### Responses
 <details>
-<summary>Click to see HTTP status codes</summary>
+<summary name="deleteHttpStatusCode">Click to see HTTP status codes.</summary>
 
 |Status code |Description
 |---- |----
@@ -237,34 +237,34 @@ See [Delete a subscription example](#delete-a-subscription).
 </details>
 
 <details>
-<summary>Click to see response attributes</summary><br/>
+<summary>Click to see response attributes.</summary><br/>
 <p>The service returns a <code>204 No Content</code> response without any content.</p>
 </details>
 
 ## Supported events
 
 <details>
-<summary>Click to see a list all the events supported by the service and their corresponding authorization scopes:</summary>
+<summary>Click to see a list all the events supported by the service and their corresponding authorization scopes.</summary>
 
 |Event name |Required scope | Description
 |---- |---- |----
-|PurchaseCreated|READ:PURCHASE|Triggered when a new purchase is created
-|InvoiceCreated|READ:FINANCE|Triggered when a new invoice is created
-|OrganizationUpdated|READ:USERINFO|Triggered when information of an organization is updated
-|OrganizationFeatureUpdated|READ:USERINFO|Triggered when an organization feature set has been updated
-|PaymentInitiated|READ:FINANCE|Triggered when a new payment has been initiated
-|PaymentCreated|READ:FINANCE|Triggered when a new payment gets created
-|PaymentCanceled|READ:FINANCE|Triggered when a payment gets cancelled
-|CardPaymentAuthorized|READ:FINANCE|Triggered when a card payments gets authorized successfully
-|CardPaymentInvalid|READ:FINANCE|Triggered when a card payment is marked invalid
-|ProductCreated|READ:PRODUCT|Triggered when a product gets created in the product library
-|ProductUpdated|READ:PRODUCT|Triggered when a product gets updated in the product library
-|ProductDeleted|READ:PRODUCT|Triggered when a product gets deleted in the product library
-|InventoryBalanceChanged|READ:PRODUCT|Triggered when the balance in the inventory gets changed for a product
-|InventoryTrackingStarted|READ:PRODUCT|Triggered when the inventory tracking is enabled for a product
-|InventoryTrackingStopped|READ:PRODUCT|Triggered when the inventory tracking is disabled for a product
-|ApplicationConnectionRemoved| any scope| Triggered when the application was disconnected from Zettle organization and the OAuth refresh token has been invalidated
-|PersonalAssertionDeleted|any scope| Triggered when an API key was deleted
+|PurchaseCreated|READ:PURCHASE|Triggered when a new purchase is created.
+|InvoiceCreated|READ:FINANCE|Triggered when a new invoice is created.
+|OrganizationUpdated|READ:USERINFO|Triggered when information of an organization is updated.
+|OrganizationFeatureUpdated|READ:USERINFO|Triggered when an organization feature set has been updated.
+|PaymentInitiated|READ:FINANCE|Triggered when a new payment has been initiated.
+|PaymentCreated|READ:FINANCE|Triggered when a new payment gets created.
+|PaymentCanceled|READ:FINANCE|Triggered when a payment gets cancelled.
+|CardPaymentAuthorized|READ:FINANCE|Triggered when a card payments gets authorized successfully.
+|CardPaymentInvalid|READ:FINANCE|Triggered when a card payment is marked invalid.
+|ProductCreated|READ:PRODUCT|Triggered when a product gets created in the product library.
+|ProductUpdated|READ:PRODUCT|Triggered when a product gets updated in the product library.
+|ProductDeleted|READ:PRODUCT|Triggered when a product gets deleted in the product library.
+|InventoryBalanceChanged|READ:PRODUCT|Triggered when the balance in the inventory gets changed for a product.
+|InventoryTrackingStarted|READ:PRODUCT|Triggered when the inventory tracking is enabled for a product.
+|InventoryTrackingStopped|READ:PRODUCT|Triggered when the inventory tracking is disabled for a product.
+|ApplicationConnectionRemoved| any scope| Triggered when the application was disconnected from Zettle organization and the OAuth refresh token has been invalidated.
+|PersonalAssertionDeleted|any scope| Triggered when an API key was deleted.
 
 
 </details>
