@@ -244,7 +244,7 @@ See [Delete a subscription example](#delete-a-subscription).
 ## Supported events
 
 <details>
-<summary>Click to see a list all the events supported by the service and their corresponding authorization scopes:</summary>
+<summary>Click to see a list all the events supported by the service and their corresponding authorization scopes.</summary>
 
 |Event name |Required scope | Description
 |---- |---- |----
