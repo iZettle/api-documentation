@@ -63,7 +63,7 @@ For more information on event payloads, see the following table for the APIs tha
 ## Plan event subscriptions
 Before subscribing to events, plan which events to use for your use cases.
 
-To get started, you may want to [create event subscriptions](pusher-api-tutotrial-create-subscriptions.md) to the following events:
+To get started, you may want to subscribe to the following events:
 
 * To monitor inventory changes in Zettle Point of Sales (POS): `InventoryBalanceChanged`, `InventoryTrackingStarted`, and `InventoryTrackingStopped`
 * To monitor product library changes: `ProductCreated`, `ProductUpdated`, and `ProductDeleted`

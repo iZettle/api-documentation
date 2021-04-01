@@ -1,4 +1,4 @@
-View webhook event subscriptions
+View event subscriptions
 =====================
 You can view existing event subscriptions.
 

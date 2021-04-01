@@ -1,4 +1,4 @@
-Update webhook event subscriptions
+Update event subscriptions
 =====================
 You can make changes on existing event subscriptions.
 
