@@ -46,13 +46,11 @@ For example, if you subscribe to the `InventoryTrackingStarted` event, when that
 }
 ```
 
-For more information on event payloads, see the corresponding APIs.
+For more information on event payloads, see the following table for the APIs that provide the event payloads.
 
 > **Note:** As payloads can be updated due to changes of the other APIs, you can ignore unknown fields.
 
-<caption name="payloadAPITable">Payloads and the providing APIs</caption>
-
-|Events |API providing payloads
+|<a name="payloadAPITable"/>Events |API providing payloads
 |--- |---
 |CardPaymentAuthorized<br>CardPaymentInvalid<br>PaymentCanceled<br>PaymentCreated<br>PaymentInitiated<br>InvoiceCreated |[Finance API reference](../../finance.adoc)
 |InventoryBalanceChanged<br>InventoryTrackingStarted<br>InventoryTrackingStopped |[Inventory API reference](../../inventory.adoc)
