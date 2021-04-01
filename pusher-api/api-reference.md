@@ -273,7 +273,7 @@ See [Delete a subscription example](#delete-a-subscription).
 ## Examples
 
 ### Create a subscription
-_Request_ ```POST /organizations/{organizationUuid}/subscriptions```
+Request ```POST /organizations/{organizationUuid}/subscriptions```
 ```
 {
   "uuid": "f02f80f8-8f35-11eb-8dcd-0242ac130003",
@@ -283,7 +283,7 @@ _Request_ ```POST /organizations/{organizationUuid}/subscriptions```
   "contactEmail": "your_email@domain.com"
 }
 ```
-_Response_
+Response
 ```
 {
     "uuid": "f02f80f8-8f35-11eb-8dcd-0242ac130003",
@@ -301,9 +301,9 @@ _Response_
 
 
 ### Get subscriptions
-_Request_ ```GET /organizations/self/subscriptions``` 
+Request ```GET /organizations/self/subscriptions``` 
 
-_Response_
+Response
 ```
 [
     {
@@ -360,21 +360,21 @@ _Response_
 ```
 
 ### Update a subscription
-_Request_ ```PUT /organizations/self/subscriptions/df209936-8f31-11eb-8dcd-0242ac130003```
+Request ```PUT /organizations/self/subscriptions/df209936-8f31-11eb-8dcd-0242ac130003```
 ```
 {
   "eventNames": ["ProductUpdated", "CardPaymentInvalid"]
 }
 ```
 
-_Response_ <br/>
+Response <br/>
 ```200 OK```
 
 ### Delete a subscription
 
-_Request_ ```DELETE /organizations/self/subscriptions/uuid/f02f80f8-8f35-11eb-8dcd-0242ac130003```
+Request ```DELETE /organizations/self/subscriptions/uuid/f02f80f8-8f35-11eb-8dcd-0242ac130003```
 
-_Response_ <br/>
+Response <br/>
 ```204 No content```
 
 
