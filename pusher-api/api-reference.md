@@ -6,7 +6,7 @@ An integrator can subscribe to specific events in the Pusher service. When these
 Examples of events:
 * PurchaseCreated - This gets triggered when a purchase gets created.
 * ProductUpdated - This gets triggered when product information gets updated in the product library.<br/>
-  See the list of all [Supported events](#_supported-events_).
+  See the list of all [Supported events](#supported-events).
 
 The Pusher service uses Webhooks. Webhooks are custom callbacks used to send data from one application to another when a specific event gets triggered. <br/>
 The other option that Pusher service supports is [AWS SQS](https://aws.amazon.com/sqs/). However, this is currently available only to selected integrators and can be made available to others as per the use case.
@@ -40,7 +40,7 @@ https://pusher.izettle.com
 ### OAuth Scope
 In order to create or update a subscription to an event, you will need to be authorized with the corresponding scope.
 
-E.g. you will require the `READ:PURCHASE` scope if you want to subscribe to the `PurchaseCreated` event. See the [list of scopes](#_supported-events_) corresponding to every event.
+E.g. you will require the `READ:PURCHASE` scope if you want to subscribe to the `PurchaseCreated` event. See the [list of scopes](#supported-events) corresponding to every event.
 
 See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information on how to get authorization for a particular scope.
 
