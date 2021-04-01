@@ -48,6 +48,12 @@ See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/author
 
 Creates a webhook subscription to a specific event. 
 
+Once the subscription for an event gets created successfully, the service will publish data on the integrator's service when that event gets triggered.<br/>
+E.g.You create a subscription for the ```ProductUpdated``` event. Whenever a product gets updated in the product library, the `ProductUpdated` event gets triggered. You will then receive event data i.e, payload for the updated product on the ```destination``` that you have exposed publicly.
+See a list of payloads for all events at #_payloads_
+
+The service will push data for an event only once. However, there may be cases where it gets published more than once. The integrator will then have to take care to not save the data more than once.
+
 ```
 POST /organizations/{organizationUuid}/subscriptions
 ```
@@ -58,7 +64,7 @@ See [Create a subscription example](#create-a-subscription).
 ### Parameters
 
 <details><!-- start tag of the Parameters section-->
-<summary>Parameters</summary>
+<summary>The following table provides all request parameters for creating a subscription:</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
@@ -102,13 +108,6 @@ See [Create a subscription example](#create-a-subscription).
 </details>
 
 
-Once the subscription for an event gets created successfully, the service will publish data on the integrator's service when that event gets triggered.<br/>
-E.g. when you create a subscription for the ```ProductUpdated``` event and whenever a product gets updated in the product library, the `ProductUpdated` event gets triggered. You will then receive event data i.e, payload for the updated product on the ```destination``` that you have exposed publicly.
-See a list of payloads for all events at #_payloads_
-
-The service will push data for an event only once. However, there may be cases where it gets published more than once. The integrator will then have to take care to not save the data more than once.
-
-
 ## Get all the webhook subscriptions
 
 Gets all the webhook subscriptions for an integrator.
@@ -122,7 +121,7 @@ See [Get subscriptions example](#get-subscriptions).
 ### Parameters
 
 <details>
-<summary>Parameters</summary>
+<summary>The following table provides all request parameters for getting all subscriptions:</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
@@ -172,7 +171,7 @@ See [Update a subscription example](#update-a-subscription).
 ### Parameters
 
 <details>
-<summary>Parameters</summary>
+<summary>The following table provides all request parameters for updating a subscription:</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
@@ -217,7 +216,7 @@ See [Delete a subscription example](#delete-a-subscription).
 ### Parameters
 
 <details>
-<summary>Parameters</summary>
+<summary>The following table provides all request parameters for deleting a subscription:</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
@@ -245,7 +244,7 @@ See [Delete a subscription example](#delete-a-subscription).
 ## Supported events
 
 <details>
-<summary>You can subscribe to the following events through the service</summary>
+<summary>The following table provides a list all the events supported by the service and their corresponding authorization scopes:</summary>
 
 |Event name |Required scope | Description
 |---- |---- |----
@@ -281,7 +280,7 @@ _Request_ ```POST /organizations/{organizationUuid}/subscriptions```
   "transportName": "WEBHOOK",
   "eventNames": ["ProductUpdated"],
   "destination": "https://webhook.site/f62e2311-1232-4d8f-b75e-80e9ce013dd4",
-  "contactEmail": "karyamane@izettle.com"
+  "contactEmail": "your_email@domain.com"
 }
 ```
 _Response_
@@ -294,7 +293,7 @@ _Response_
     ],
     "updated": "2021-03-29T16:31:47.087507Z",
     "destination": "https://webhook.site/f62e2311-1232-4d8f-b75e-80e9ce013dd4",
-    "contactEmail": "testingemail@izettle.com",
+    "contactEmail": "your_email@domain.com",
     "status": "ACTIVE",
     "signingKey": "zLzClQLQN8yfH8aEjONeXzgJRAHR0zpD7RonFCpizujCUCectBlln0vFArTbLPYa"
 }
@@ -315,7 +314,7 @@ _Response_
         ],
         "updated": "2021-03-30T07:48:52.228Z",
         "destination": "https://webhook.site/f62e2311-1232-4d8f-b75e-80e9ce013dd4",
-        "contactEmail": "testingemail@izettle.com",
+        "contactEmail": "your_email@domain.com",
         "status": "ACTIVE",
         "signingKey": "U0Ani1WTTwwbjUnHlQAEDCRXQoQn9z9e4q55UUTyeZJt89z9XXN5ssd4Cgh0evJa"
     },
@@ -327,7 +326,7 @@ _Response_
         ],
         "updated": "2021-03-30T07:49:35.294Z",
         "destination": "https://webhook.site/f62e2311-1232-4d8f-b75e-80e9ce013dd4",
-        "contactEmail": "testingemail@izettle.com",
+        "contactEmail": "your_email@domain.com",
         "status": "ACTIVE",
         "signingKey": "PSjClzC2HNEZZoFU7aaF9DSmn9WJBXLfEIAkbBq15lNknnijPT2AKEsvf2YHPrsQ"
     },
@@ -340,7 +339,7 @@ _Response_
         ],
         "updated": "2021-03-30T07:50:13.489Z",
         "destination": "https://webhook.site/f62e2311-1232-4d8f-b75e-80e9ce013dd4",
-        "contactEmail": "testingemail@izettle.com",
+        "contactEmail": "your_email@domain.com",
         "status": "ACTIVE",
         "signingKey": "H2XDdE5REqT55rDTvAPqpA8UDY4mO3QSmcLO7h0PxvJ4qETKfx9rfzVxuKplUOYz"
     },
@@ -353,7 +352,7 @@ _Response_
         ],
         "updated": "2021-03-30T07:54:11.798Z",
         "destination": "https://webhook.site/f62e2311-1232-4d8f-b75e-80e9ce013dd4",
-        "contactEmail": "testingemail@izettle.com",
+        "contactEmail": "your_email@domain.com",
         "status": "ACTIVE",
         "signingKey": "s4T28XWVGBl8us8fvRxmY4HnFQgTbMiFtqniXpWrAIx0rv5YN7RFAygyjWSg7Nip"
     }
@@ -379,11 +378,11 @@ _Response_ <br/>
 ```204 No content```
 
 
-## Related use scenario
+## Related resources
 <!-- One or more tasks that will be done after this one. -->
 <!-- Add more use scenarios if needed. -->
-[API Tutorial Template](../asciidoc-templates/api-tutorial-template.adoc)
+[API Tutorial Template](webhook-event-subscriptions.md)
 
 ## Related API reference
 <!-- Other APIs that may be related in use scenarios. -->
-[API reference Template](../api-tutorial-reference.adoc)
+[OAuth2 API Reference](../authorization.adoc)
