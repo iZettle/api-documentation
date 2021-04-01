@@ -64,7 +64,7 @@ See [Create a subscription example](#create-a-subscription).
 ### Parameters
 
 <details><!-- start tag of the Parameters section-->
-<summary>Click to see all request parameters for creating a subscription</summary>
+<summary>Click to see all request parameters for creating a subscription.</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
@@ -79,7 +79,7 @@ See [Create a subscription example](#create-a-subscription).
 
 ### Responses
 <details>
-<summary name="createHttpStatusCode">Click to see HTTP status codes</summary>
+<summary name="createHttpStatusCode">Click to see HTTP status codes.</summary>
 
 |Status code |Description
 |---- |----
@@ -92,7 +92,7 @@ See [Create a subscription example](#create-a-subscription).
 </details>
 
 <details>
-<summary>Click to see response attributes</summary>
+<summary>Click to see response attributes.</summary>
 <p>A successful <code>200 OK</code> response will have the following attributes:</p>
 
 |Name |Type |Description
@@ -121,7 +121,7 @@ See [Get subscriptions example](#get-subscriptions).
 ### Parameters
 
 <details>
-<summary>Click to see all request parameters for getting all subscriptions</summary>
+<summary>Click to see all request parameters for getting all subscriptions.</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
@@ -131,7 +131,7 @@ See [Get subscriptions example](#get-subscriptions).
 
 ### Responses
 <details>
-<summary>Click to see HTTP status codes</summary>
+<summary>Click to see HTTP status codes.</summary>
 
 |Status code |Description
 |---- |----
@@ -142,7 +142,7 @@ See [Get subscriptions example](#get-subscriptions).
 
 
 <details>
-<summary>Click to see response attributes</summary>
+<summary>Click to see response attributes.</summary>
 <p>A successful <code>200 OK</code> response will return an array of subscriptions. Each subscription contains the following response attributes:</p>
 
 
@@ -171,7 +171,7 @@ See [Update a subscription example](#update-a-subscription).
 ### Parameters
 
 <details>
-<summary>Click to see all request parameters for updating a subscription</summary>
+<summary>Click to see all request parameters for updating a subscription.</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
@@ -186,7 +186,7 @@ See [Update a subscription example](#update-a-subscription).
 
 ### Responses
 <details>
-<summary name="updateHttpStatusCode">Click to see HTTP status codes</summary>
+<summary name="updateHttpStatusCode">Click to see HTTP status codes.</summary>
 
 |Status code |Description
 |---- |----
@@ -198,7 +198,7 @@ See [Update a subscription example](#update-a-subscription).
 </details>
 
 <details>
-<summary>Click to see response attributes</summary><br/>
+<summary>Click to see response attributes.</summary><br/>
 <p>The service returns a <code>200 OK</code> response without any content.</p>
 </details>
 
@@ -216,7 +216,7 @@ See [Delete a subscription example](#delete-a-subscription).
 ### Parameters
 
 <details>
-<summary>Click to see all request parameters for deleting a subscription</summary>
+<summary>Click to see all request parameters for deleting a subscription.</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
@@ -227,7 +227,7 @@ See [Delete a subscription example](#delete-a-subscription).
 
 ### Responses
 <details>
-<summary name="deleteHttpStatusCode">Click to see HTTP status codes</summary>
+<summary name="deleteHttpStatusCode">Click to see HTTP status codes.</summary>
 
 |Status code |Description
 |---- |----
@@ -237,7 +237,7 @@ See [Delete a subscription example](#delete-a-subscription).
 </details>
 
 <details>
-<summary>Click to see response attributes</summary><br/>
+<summary>Click to see response attributes.</summary><br/>
 <p>The service returns a <code>204 No Content</code> response without any content.</p>
 </details>
 
@@ -248,23 +248,23 @@ See [Delete a subscription example](#delete-a-subscription).
 
 |Event name |Required scope | Description
 |---- |---- |----
-|PurchaseCreated|READ:PURCHASE|Triggered when a new purchase is created
-|InvoiceCreated|READ:FINANCE|Triggered when a new invoice is created
-|OrganizationUpdated|READ:USERINFO|Triggered when information of an organization is updated
-|OrganizationFeatureUpdated|READ:USERINFO|Triggered when an organization feature set has been updated
-|PaymentInitiated|READ:FINANCE|Triggered when a new payment has been initiated
-|PaymentCreated|READ:FINANCE|Triggered when a new payment gets created
-|PaymentCanceled|READ:FINANCE|Triggered when a payment gets cancelled
-|CardPaymentAuthorized|READ:FINANCE|Triggered when a card payments gets authorized successfully
-|CardPaymentInvalid|READ:FINANCE|Triggered when a card payment is marked invalid
-|ProductCreated|READ:PRODUCT|Triggered when a product gets created in the product library
-|ProductUpdated|READ:PRODUCT|Triggered when a product gets updated in the product library
-|ProductDeleted|READ:PRODUCT|Triggered when a product gets deleted in the product library
-|InventoryBalanceChanged|READ:PRODUCT|Triggered when the balance in the inventory gets changed for a product
-|InventoryTrackingStarted|READ:PRODUCT|Triggered when the inventory tracking is enabled for a product
-|InventoryTrackingStopped|READ:PRODUCT|Triggered when the inventory tracking is disabled for a product
-|ApplicationConnectionRemoved| any scope| Triggered when the application was disconnected from Zettle organization and the OAuth refresh token has been invalidated
-|PersonalAssertionDeleted|any scope| Triggered when an API key was deleted
+|PurchaseCreated|READ:PURCHASE|Triggered when a new purchase is created.
+|InvoiceCreated|READ:FINANCE|Triggered when a new invoice is created.
+|OrganizationUpdated|READ:USERINFO|Triggered when information of an organization is updated.
+|OrganizationFeatureUpdated|READ:USERINFO|Triggered when an organization feature set has been updated.
+|PaymentInitiated|READ:FINANCE|Triggered when a new payment has been initiated.
+|PaymentCreated|READ:FINANCE|Triggered when a new payment gets created.
+|PaymentCanceled|READ:FINANCE|Triggered when a payment gets cancelled.
+|CardPaymentAuthorized|READ:FINANCE|Triggered when a card payments gets authorized successfully.
+|CardPaymentInvalid|READ:FINANCE|Triggered when a card payment is marked invalid.
+|ProductCreated|READ:PRODUCT|Triggered when a product gets created in the product library.
+|ProductUpdated|READ:PRODUCT|Triggered when a product gets updated in the product library.
+|ProductDeleted|READ:PRODUCT|Triggered when a product gets deleted in the product library.
+|InventoryBalanceChanged|READ:PRODUCT|Triggered when the balance in the inventory gets changed for a product.
+|InventoryTrackingStarted|READ:PRODUCT|Triggered when the inventory tracking is enabled for a product.
+|InventoryTrackingStopped|READ:PRODUCT|Triggered when the inventory tracking is disabled for a product.
+|ApplicationConnectionRemoved| any scope| Triggered when the application was disconnected from Zettle organization and the OAuth refresh token has been invalidated.
+|PersonalAssertionDeleted|any scope| Triggered when an API key was deleted.
 
 
 </details>
