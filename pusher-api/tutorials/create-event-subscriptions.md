@@ -112,7 +112,7 @@ To verify that events come from Zettle, calculate a signature and compare it wit
      <!-- what's the prerequisite for using the code? -->
 
     <details>
-      <summary>Python 2</summary>
+      <summary>Click to see a Python 2 example.</summary>
         
       ```python
         import hmac
@@ -125,7 +125,7 @@ To verify that events come from Zettle, calculate a signature and compare it wit
     </details>
        
     <details>
-      <summary>Python 3</summary>
+      <summary>Click to see a Python 3 example.</summary>
            
       ```python
         import hmac
@@ -137,7 +137,7 @@ To verify that events come from Zettle, calculate a signature and compare it wit
     </details>
         
     <details>
-      <summary>PHP</summary>
+      <summary>Click to see a PHP example.</summary>
            
       ```php
         $payloadToSign = stripslashes($timestamp . '.' . $payloadStr);
@@ -147,7 +147,7 @@ To verify that events come from Zettle, calculate a signature and compare it wit
     </details> 
     
     <details>
-      <summary>Java</summary>
+      <summary>Click to see a Java example.</summary>
            
       ```java
         import javax.crypto.Mac;
