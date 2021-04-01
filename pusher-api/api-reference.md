@@ -1,4 +1,4 @@
-API Reference
+Pusher API reference
 =====================
 Pusher is a service that publishes information to the integrator's service. This information is data related to products, purchases, inventory etc. The purpose of this service is to ensure that integrators do not have to poll for data related to specific events. <br/>
 An integrator can subscribe to specific events in the Pusher service. When these events get triggered, Pusher service will publish information corresponding to the event to the integrator's service.
@@ -64,22 +64,22 @@ See [Create a subscription example](#create-a-subscription).
 ### Parameters
 
 <details><!-- start tag of the Parameters section-->
-<summary>The following table provides all request parameters for creating a subscription:</summary>
+<summary>Click to see all request parameters for creating a subscription:</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
-|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li><li> Use "self" as the value. This will retrieve your organizationUuid through the authentication information in the request.</li></ul> 
+|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li><li> Use `self` as the value. This will retrieve your organizationUuid through the authentication information in the request.</li></ul> 
 |uuid |string |query |required | Unique identifier for the subscription as UUID version 1.
 |transportName |string |query |required | The message option used by Pusher service. Currently only `WEBHOOK` is supported. `SQS` is available only to certain clients based on the use case.
 |eventNames |array |query |required | Events that you want to create subscription for. The events are specified in an array. If you pass an empty array, you will subscribe to all events that the service supports. See the list of [supported events](#supported-events).
-|destination |string |query |required | The public url exposed by the integrator where the Pusher service will publish messages for subscribed events.
+|destination |string |query |required | The public URL exposed by the integrator where the Pusher service will publish messages for subscribed events.
 |contactEmail |string |query |required | The email address used to notify in case of any errors in subscription or the destination. <br/> The email must be a valid email address and should not exceed 512 characters.
 </details><!-- end tag of the Parameters section-->
 
 
 ### Responses
 <details>
-<summary>HTTP status codes</summary>
+<summary>Click to see HTTP status codes</summary>
 
 |Status code |Description
 |---- |----
@@ -92,7 +92,7 @@ See [Create a subscription example](#create-a-subscription).
 </details>
 
 <details>
-<summary>Response attributes</summary>
+<summary>Click to see response attributes</summary>
 <p>A successful <code>200 OK</code> response will have the following attributes:</p>
 
 |Name |Type |Description
@@ -101,7 +101,7 @@ See [Create a subscription example](#create-a-subscription).
 |transportName |string |Pusher service option used for creating the subscription.
 |eventNames|array|All the events for the created subscription.
 |updated|string|The timestamp (in UTC) when the subscription was last updated.
-|destination|string|The public url exposed by the integrator where the Pusher service will publish messages for subscribed events.
+|destination|string|The public URL exposed by the integrator where the Pusher service will publish messages for subscribed events.
 |contactEmail|string|The email used to notify any errors for subscriptions or the destination.
 |status|string|The status of the created subscription.
 |signingKey|string| The key used to verify that all incoming webhook messages from Pusher service originate from Zettle.
@@ -121,17 +121,17 @@ See [Get subscriptions example](#get-subscriptions).
 ### Parameters
 
 <details>
-<summary>The following table provides all request parameters for getting all subscriptions:</summary>
+<summary>Click to see all request parameters for getting all subscriptions:</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
-|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li><li> Use "self" as the value. This will retrieve your organizationUuid through the authentication information in the request.</li></ul> 
+|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li><li> Use `self` as the value. This will retrieve your organizationUuid through the authentication information in the request.</li></ul> 
 </details>
 
 
 ### Responses
 <details>
-<summary>HTTP status codes</summary>
+<summary>Click to see HTTP status codes</summary>
 
 |Status code |Description
 |---- |----
@@ -142,7 +142,7 @@ See [Get subscriptions example](#get-subscriptions).
 
 
 <details>
-<summary>Response attributes</summary>
+<summary>Click to see response attributes</summary>
 <p>A successful <code>200 OK</code> response will return an array of subscriptions. Each subscription contains the following response attributes:</p>
 
 
@@ -152,7 +152,7 @@ See [Get subscriptions example](#get-subscriptions).
 |transportName |string |Pusher service option used for creating the subscription.
 |eventNames|array|All the events for the created subscription.
 |updated|string|The timestamp (in UTC) when the subscription was last updated.
-|destination|string|The destination url where the Pusher service will push messages for subscribed events.
+|destination|string|The destination URL where the Pusher service will push messages for subscribed events.
 |contactEmail|string|The email used to notify any errors for subscriptions or the destination.
 |status|string|The status of the created subscription.
 |signingKey|string| The key used to verify that all incoming messages from Pusher service originate from Zettle. 
@@ -171,22 +171,22 @@ See [Update a subscription example](#update-a-subscription).
 ### Parameters
 
 <details>
-<summary>The following table provides all request parameters for updating a subscription:</summary>
+<summary>Click to see all request parameters for updating a subscription:</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
-|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li><li> Use "self" as the value. This will retrieve your organizationUuid through the authentication information in the request.</li></ul>
+|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li><li> Use `self` as the value. This will retrieve your organizationUuid through the authentication information in the request.</li></ul>
 |subscriptionUuid |string |path |required |Unique identifier for an existing subscription as UUID version 1. 
 |transportName |string |query |optional | The message option used by Pusher service. E.g. ```WEBHOOK```. You need to specify the same option that you used while creating the subscription.
 |eventNames |array |query |optional | Events that you want to update on the existing subscription. The events are specified in an array.
-|destination |string |query |optional | The destination url where Pusher service will push data for the updated subscription.
+|destination |string |query |optional | The destination URL where Pusher service will push data for the updated subscription.
 |contactEmail |string |query |optional | The email address used to notify in case of any errors in subscription or the destination. <br/> The email must be a valid email address and should not exceed 512 characters.
 </details>
 
 
 ### Responses
 <details>
-<summary>HTTP status codes</summary>
+<summary>Click to see HTTP status codes</summary>
 
 |Status code |Description
 |---- |----
@@ -194,11 +194,11 @@ See [Update a subscription example](#update-a-subscription).
 |401 Unauthorized |Returned when one of the following occurs: <br/><ul><li> The authentication information is missing in the request.</li><li>The authentication token has expired.</li><li>The authentication token is invalid.</li></ul>
 |405 Method Not Allowed | Returned when the ```subscriptionUuid``` is missing in the request.
 |400 Bad Request| Returned when the ```eventNames``` parameter contains events that are not supported by the Pusher service.
-|422 Unprocessable Entity| Returned if the ```destination``` specified in the request is empty. In case you specify the ```destination``` parameter, it has to be a valid https url.
+|422 Unprocessable Entity| Returned if the ```destination``` specified in the request is empty. In case you specify the ```destination``` parameter, it has to be a valid https URL.
 </details>
 
 <details>
-<summary>Response attributes</summary><br/>
+<summary>Click to see response attributes</summary><br/>
 <p>The service returns a <code>200 OK</code> response without any content.</p>
 </details>
 
@@ -216,18 +216,18 @@ See [Delete a subscription example](#delete-a-subscription).
 ### Parameters
 
 <details>
-<summary>The following table provides all request parameters for deleting a subscription:</summary>
+<summary>Click to see all request parameters for deleting a subscription:</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
-|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li><li> Use "self" as the value. This will retrieve your organizationUuid through the authentication information in the request.</li></ul>
+|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li><li> Use `self` as the value. This will retrieve your organizationUuid through the authentication information in the request.</li></ul>
 |subscriptionUuid |string |path |required |Unique identifier for an existing subscription as UUID version 1.
 </details>
 
 
 ### Responses
 <details>
-<summary>HTTP status codes</summary>
+<summary>Click to see HTTP status codes</summary>
 
 |Status code |Description
 |---- |----
@@ -237,14 +237,14 @@ See [Delete a subscription example](#delete-a-subscription).
 </details>
 
 <details>
-<summary>Response attributes</summary><br/>
+<summary>Click to see response attributes</summary><br/>
 <p>The service returns a <code>204 No Content</code> response without any content.</p>
 </details>
 
 ## Supported events
 
 <details>
-<summary>The following table provides a list all the events supported by the service and their corresponding authorization scopes:</summary>
+<summary>Click to see a list all the events supported by the service and their corresponding authorization scopes:</summary>
 
 |Event name |Required scope | Description
 |---- |---- |----
