@@ -78,8 +78,8 @@ See [Create a subscription example](#create-a-subscription).
 
 
 ### Responses
-<details>
-<summary name="createHttpStatusCode">Click to see HTTP status codes.</summary>
+<details  name="createHttpStatusCode">
+<summary>Click to see HTTP status codes.</summary>
 
 |Status code |Description
 |---- |----
