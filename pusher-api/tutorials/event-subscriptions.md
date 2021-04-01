@@ -50,7 +50,9 @@ For more information on event payloads, see the corresponding APIs.
 
 > **Note:** As payloads can be updated due to changes of the other APIs, you can ignore unknown fields.
 
-|<a name="payloadAPITable"/>Events |API providing payloads
+<caption name="payloadAPITable">Payloads and the providing APIs</caption>
+
+|Events |API providing payloads
 |--- |---
 |CardPaymentAuthorized<br>CardPaymentInvalid<br>PaymentCanceled<br>PaymentCreated<br>PaymentInitiated<br>InvoiceCreated |[Finance API reference](../../finance.adoc)
 |InventoryBalanceChanged<br>InventoryTrackingStarted<br>InventoryTrackingStopped |[Inventory API reference](../../inventory.adoc)
