@@ -381,7 +381,7 @@ Response <br/>
 ## Related resources
 <!-- One or more tasks that will be done after this one. -->
 <!-- Add more use scenarios if needed. -->
-[Pusher API tutorial](webhook-event-subscriptions.md)
+[Pusher API tutorial](tutorials/webhook-event-subscriptions.md)
 
 ## Related API reference
 <!-- Other APIs that may be related in use scenarios. -->
