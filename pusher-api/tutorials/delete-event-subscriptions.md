@@ -44,7 +44,7 @@ You can delete existing event subscriptions that are no longer needed.
     ```
 2. Check that the response returns with an HTTP status code `200 OK`.
     * If yes, the subscription is deleted successfully.
-    * If no, update the `DELETE` request according to the error message. For more information on error messages, see [HTTP status code](../api-reference.md#deleteHttpStatusCode).
+    * If no, update the `DELETE` request according to the error message. For more information on error messages, see [HTTP status code](../api-reference.md#responses).
  
 ## Related task
 * [Create event subscriptions](create-event-subscriptions.md)
