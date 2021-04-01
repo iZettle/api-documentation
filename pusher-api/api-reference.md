@@ -64,7 +64,7 @@ See [Create a subscription example](#create-a-subscription).
 ### Parameters
 
 <details><!-- start tag of the Parameters section-->
-<summary>Click to see all request parameters for creating a subscription:</summary>
+<summary>Click to see all request parameters for creating a subscription</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
@@ -79,7 +79,7 @@ See [Create a subscription example](#create-a-subscription).
 
 ### Responses
 <details>
-<summary>Click to see HTTP status codes</summary>
+<summary name="createHttpStatusCode">Click to see HTTP status codes</summary>
 
 |Status code |Description
 |---- |----
@@ -121,7 +121,7 @@ See [Get subscriptions example](#get-subscriptions).
 ### Parameters
 
 <details>
-<summary>Click to see all request parameters for getting all subscriptions:</summary>
+<summary>Click to see all request parameters for getting all subscriptions</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
@@ -171,7 +171,7 @@ See [Update a subscription example](#update-a-subscription).
 ### Parameters
 
 <details>
-<summary>Click to see all request parameters for updating a subscription:</summary>
+<summary>Click to see all request parameters for updating a subscription</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
@@ -186,7 +186,7 @@ See [Update a subscription example](#update-a-subscription).
 
 ### Responses
 <details>
-<summary>Click to see HTTP status codes</summary>
+<summary name="updateHttpStatusCode">Click to see HTTP status codes</summary>
 
 |Status code |Description
 |---- |----
@@ -216,7 +216,7 @@ See [Delete a subscription example](#delete-a-subscription).
 ### Parameters
 
 <details>
-<summary>Click to see all request parameters for deleting a subscription:</summary>
+<summary>Click to see all request parameters for deleting a subscription</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
@@ -227,7 +227,7 @@ See [Delete a subscription example](#delete-a-subscription).
 
 ### Responses
 <details>
-<summary>Click to see HTTP status codes</summary>
+<summary name="deleteHttpStatusCode">Click to see HTTP status codes</summary>
 
 |Status code |Description
 |---- |----
