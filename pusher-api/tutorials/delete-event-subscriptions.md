@@ -10,18 +10,11 @@ You can delete existing event subscriptions that are no longer needed.
 
 ## Prerequisites
 * Make sure that the authorization is working.
-* Make sure that the destination URL on your server is working.
-<!-- To Ketkee, if a failing webhook is caused by a faulty destination URL, how can the error be fixed if we cannot PUT with the correct URL? -->
+* Make sure that the destination URL on your server is up and running.
 
 ## Step 1: Retrieve the subscription UUID
 
 1. Retrieve all existing subscriptions.
-
-    ```
-    GET /organizations/self/subscriptions
-    ```
-   or
-   
    ```
    GET /organizations/{organizationUuid}/subscriptions
    ```
@@ -38,12 +31,6 @@ You can delete existing event subscriptions that are no longer needed.
 ## Step 2: Delete an event subscription
 
 1. Send a `DELETE` request to delete an event subscription. In the request, `subscriptionsUuid` is the version 1 UUID that you retrieved in [Step 1: Retrieve the subscription UUID](#step-1-retrieve-the-subscription-uuid).
-
-    ```
-    DELETE /organizations/self/{subscriptionUuid}
-    ```
-   or
-    
     ```
     DELETE /organizations/{organizationUuid}/{subscriptionUuid}
     ```
@@ -52,12 +39,12 @@ You can delete existing event subscriptions that are no longer needed.
     
     The following example deletes the event subscription `ef64c5e2-4e16-11e8-9c2d-fa7ae01bbebc`.
     ```
-        DELETE /organizations/self/subscriptions/ef64c5e2-4e16-11e8-9c2d-fa7ae01bbebc
+    DELETE /organizations/self/subscriptions/ef64c5e2-4e16-11e8-9c2d-fa7ae01bbebc
        
     ```
 2. Check that the response returns with an HTTP status code `200 OK`.
     * If yes, the subscription is deleted successfully.
-    * If no, update the `DELETE` request according to the error message.
+    * If no, update the `DELETE` request according to the error message. For more information on error messages, see [HTTP status code](../api-reference.md#deleteHttpStatusCode).
  
 ## Related task
 * [Create event subscriptions](create-event-subscriptions.md)

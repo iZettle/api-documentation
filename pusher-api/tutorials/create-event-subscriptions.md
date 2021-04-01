@@ -23,7 +23,7 @@ For every subscription, generate a version 1 Universally Unique Identifier (UUID
 
 1. Generate a version 1 UUID. For example, you can use [UUID Generator](https://www.uuidgenerator.net/version1) to generate a version 1 UUID. <!-- how to treat 3rd party resources at Zettle? -->
 
-> **Note:** The UUID Generator is a third-party resource that Zettle that has no liability for the availability.
+> **Disclaimer:** The UUID Generator is a third-party resource that Zettle has no liability for the availability and intellectual property claims.
 
 2. Copy and save the UUID. It will be used for creating an event subscription.
 
@@ -35,7 +35,7 @@ Before creating event subscriptions to the HTTPS endpoint on your app, test the 
     * If you run a local server, you can make it publicly available using [ngrok](https://ngrok.com/).
     * If you don't run a local server, you can use [Webhook.site](https://webhook.site) that provides an online view of all requests. <!-- how to treat 3rd party resources at Zettle? -->
 
-> **Note:** The Ngrok and Webhook.site are third-party resources that Zettle has no liability for the availability.
+> **Disclaimer:** The Ngrok and Webhook.site are third-party resources that Zettle has no liability for the availability and intellectual property claims.
 
 2. Follow [Step 3: Create an event subscription](#step-3-create-an-event-subscription) to test the events and check the payloads.
 
@@ -74,7 +74,7 @@ You can subscribe to one or more events in one subscription request.
     
 2. Check that the response returns with an HTTP status code `200 OK`.
     * If yes, the subscription is created successfully.
-    * If no, update the `POST` request according to the error message.
+    * If no, update the `POST` request according to the error message. For more information on error messages, see [HTTP status code](../api-reference.md#createHttpStatusCode).
     
 3. Save the value of `signingKey` from the response. This is the key used to sign all requests and should be stored so that you can validate the request. 
 
@@ -92,8 +92,8 @@ You can subscribe to one or more events in one subscription request.
     ```json
     {
       "eventName" : "TestMessage",
-      "organizationUuid" : "<your organization uuid>",
-      "messageId" : "<unique id of the message>",
+      "organizationUuid" : "ef64c5e2-4e16-11e8-9c2d-fa7ae01bbebc",
+      "messageId" : "0f674460-fab5-11e7-a310-0002ebd6a43c",
       "payload" : { "data" : "payload" }
     }
     ```

@@ -14,12 +14,6 @@ You can view existing event subscriptions.
 ## Step 1: Retrieve the subscription UUID
 
 1. Retrieve all existing subscriptions.
-
-    ```
-    GET /organizations/self/subscriptions
-    ```
-   or
-   
    ```
    GET /organizations/{organizationUuid}/subscriptions
    ```

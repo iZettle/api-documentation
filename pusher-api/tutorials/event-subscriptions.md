@@ -50,14 +50,14 @@ For more information on event payloads, see the corresponding APIs.
 
 > **Note:** As payloads can be updated due to changes of the other APIs, you can ignore unknown fields.
 
-|Events |API providing payloads
+|<a name="payloadAPITable"/>Events |API providing payloads
 |--- |---
 |CardPaymentAuthorized<br>CardPaymentInvalid<br>PaymentCanceled<br>PaymentCreated<br>PaymentInitiated<br>InvoiceCreated |[Finance API reference](../../finance.adoc)
 |InventoryBalanceChanged<br>InventoryTrackingStarted<br>InventoryTrackingStopped |[Inventory API reference](../../inventory.adoc)
 |ProductCreated<br>ProductDeleted<br>ProductUpdated |[Product Library API reference](../../product-library.adoc)
 |PurchaseCreated |[Purchase API reference](../../purchase.adoc)
 
-<!-- To Ketkee, are payloads for ApplicationConnectionRemoved, PersonalAssertionDeleted, OrganizationUpdated, and OrganizationFeatureUpdated from the Pusher API? --> 
+<!-- Ask the team: are the payloads for ApplicationConnectionRemoved, PersonalAssertionDeleted, OrganizationUpdated, and OrganizationFeatureUpdated from the Pusher API? --> 
 
 
 ## Plan event subscriptions
@@ -68,7 +68,7 @@ To get started, you may want to [create event subscriptions](pusher-api-tutotria
 * To monitor inventory changes in Zettle Point of Sales (POS): `InventoryBalanceChanged`, `InventoryTrackingStarted`, and `InventoryTrackingStopped`
 * To monitor product library changes: `ProductCreated`, `ProductUpdated`, and `ProductDeleted`
 * To monitor purchases: `PurchaseCreated`
-<!-- To ketkee: after receiving info from Neon bank, maybe we can extend this section to be more focused on use cases? -->
+<!-- We can extend this section to be more focused on use cases later on. -->
 
 For more events that you can subscribe, see [Pusher API reference](../api-reference.md).
 

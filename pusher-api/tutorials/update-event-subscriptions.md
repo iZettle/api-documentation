@@ -10,19 +10,11 @@ You can make changes on existing event subscriptions.
 
 ## Prerequisites
 * Make sure that the authorization is working.
-* Make sure that the destination URL on your server is working.
-<!-- To Ketkee, if a failing webhook is caused by a faulty destination URL, how can the error be fixed if we cannot PUT with the correct URL? -->
-<!-- to be continued if any -->
+* Make sure that the destination URL on your server is up and running.
 
 ## Step 1: Retrieve the subscription UUID
 
 1. Retrieve all existing subscriptions.
-
-    ```
-    GET /organizations/self/subscriptions
-    ```
-   or
-   
    ```
    GET /organizations/{organizationUuid}/subscriptions
    ```
@@ -38,20 +30,10 @@ You can make changes on existing event subscriptions.
 
 2. Copy and save the UUID of the event subscription that you want to update. It will be used for updating event subscription.
 
-
 ## Step 2: Update an event subscription
 
 1. Send a `PUT` request to update an event subscription. In the request, `subscriptionUuid` is the version 1 UUID that you retrieved in [Step 1: Retrieve the subscription UUID](#step-1-retrieve-the-subscription-uuid).
     
-    ```
-    PUT /organizations/self/subscriptions/{subscriptionUuid}
-   {
-     "eventNames": ["<event names>"],
-     "destination": "<URL to receive events>",
-     "contactEmail": "<email to receive notifications>"
-   }   
-    ```
-   or
    ```
        PUT /organizations/{organizationUuid}/subscriptions/{subscriptionUuid}
       {
@@ -77,7 +59,7 @@ You can make changes on existing event subscriptions.
     ```
 2. Check that the response returns with an HTTP status code `200 OK`.
     * If yes, the subscription is updated successfully.
-    * If no, update the `PUT` request according to the error message.
+    * If no, update the `PUT` request according to the error message. For more information on error messages, see [HTTP status code](../api-reference.md#updateHttpStatusCode).
   
 ## Related task
 * [Create event subscriptions](create-event-subscriptions.md)
