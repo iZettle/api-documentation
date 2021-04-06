@@ -48,8 +48,8 @@ See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/author
 
 Creates a webhook subscription to a specific event. 
 
-Once the subscription for an event gets created successfully, the service will publish data on the integrator's service when that event gets triggered.<br/>
-E.g.You create a subscription for the ```ProductUpdated``` event. Whenever a product gets updated in the product library, the `ProductUpdated` event gets triggered. You will then receive event data i.e, payload for the updated product on the ```destination``` that you have exposed publicly.
+Once the subscription for an event gets created successfully, Pusher service will publish data on the integrator's service whenever that event gets triggered.<br/>
+E.g. Let's say that you created a subscription for the ```ProductUpdated``` event successfully. Whenever a product gets updated in the product library, the `ProductUpdated` event gets triggered. You will then receive event data i.e, payload for the updated product on the ```destination``` that you have exposed publicly.
 See a list of [payloads](tutorials/event-subscriptions.md#payloadAPITable) for all events.
 
 The service will push data for an event only once. However, there may be cases where it gets published more than once. The integrator will then have to take care to not save the data more than once.
@@ -69,7 +69,7 @@ See [Create a subscription example](#create-a-subscription).
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
 |organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li><li> Use `self` as the value. This will retrieve your organizationUuid through the authentication information in the request.</li></ul> 
-|uuid |string |query |required | Unique identifier for the subscription as UUID version 1.
+|uuid |string |query |required | Unique identifier for the subscription as UUID version 1. The integrator needs to provide this value.
 |transportName |string |query |required | The message option used by Pusher service. Currently only `WEBHOOK` is supported. `SQS` is available only to certain clients based on the use case.
 |eventNames |array |query |required | Events that you want to create subscription for. The events are specified in an array. If you pass an empty array, you will subscribe to all events that the service supports. See the list of [supported events](#supported-events).
 |destination |string |query |required | The public URL exposed by the integrator where the Pusher service will publish messages for subscribed events.
@@ -176,7 +176,7 @@ See [Update a subscription example](#update-a-subscription).
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
 |organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li><li> Use `self` as the value. This will retrieve your organizationUuid through the authentication information in the request.</li></ul>
-|subscriptionUuid |string |path |required |Unique identifier for an existing subscription as UUID version 1. 
+|subscriptionUuid |string |path |required |Unique identifier for an existing subscription as UUID version 1. The integrator needs to provide this value.
 |transportName |string |query |optional | The message option used by Pusher service. E.g. ```WEBHOOK```. You need to specify the same option that you used while creating the subscription.
 |eventNames |array |query |optional | Events that you want to update on the existing subscription. The events are specified in an array.
 |destination |string |query |optional | The destination URL where Pusher service will push data for the updated subscription.
@@ -381,7 +381,7 @@ Response <br/>
 ## Related resources
 <!-- One or more tasks that will be done after this one. -->
 <!-- Add more use scenarios if needed. -->
-[Pusher API tutorial](tutorials/webhook-event-subscriptions.md)
+[Pusher API tutorial](tutorials/event-subscriptions.md)
 
 ## Related API reference
 <!-- Other APIs that may be related in use scenarios. -->
