@@ -6,9 +6,7 @@
 * [Related API reference](#related-api-reference)
 
 ## Failing webhooks
-When the destination URL does not reply with a successful HTTP status code (2xx), the Pusher API will mark the webhook as failing. 
-
-The Pusher API will email you about failing webhooks at the email address in the event subscription.
+When the destination URL does not reply with a successful HTTP status code (2xx), the Pusher API will mark the webhook as failing. Also, the Pusher API will email you about the failing webhook at the email address in the event subscription.
 <!-- when does the email be sent? At the very first failure?-->
 
 The Pusher API will also re-send event notifications to the destination URL with attempts in the following interval and sequence:
@@ -31,11 +29,6 @@ Failing webhooks may be caused by faulty HTTPS endpoints. One of the following e
 This error usually returns when the destination URL is wrong.
 
 1. Retrieve all existing subscriptions.
-
-    ```
-    GET /organizations/self/subscriptions
-    ```
-    or
        
     ```
     GET /organizations/{organizationUuid}/subscriptions
