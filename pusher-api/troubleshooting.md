@@ -1,5 +1,6 @@
 # Troubleshoot Errors in the Pusher API
 * [Failing webhooks](#failing-webhooks)
+    * [Retry policy](#retry-policy)
     * [Root cause](#root-cause)
     * [Fix 404 DESTINATION_RESPONDED_WITH_ERROR_CODE](#fix-404-destination_responded_with_error_code)
     * [Fix 400 DESTINATION_NOT_ACCESSIBLE](#fix-400-destination_not_accessible)
