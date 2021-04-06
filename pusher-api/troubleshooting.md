@@ -6,17 +6,17 @@
 * [Related API reference](#related-api-reference)
 
 ## Failing webhooks
-When the destination URL does not reply with a successful HTTP status code (2xx), the Pusher API will mark the webhook as failing. Also, the Pusher API will email you about the failing webhook at the email address in the event subscription.
-<!-- when does the email be sent? At the very first failure?-->
+When the destination URL does not reply with a successful HTTP status code (2xx), the Pusher API will mark the webhook as failing. Also, the Pusher API will notify you of the failing webhook at the email address that is used in the event subscription.
 
-The Pusher API will also re-send event notifications to the destination URL with attempts in the following interval and sequence:
-1. Every 60 seconds for 10 attempts in total
-2. Every 600 seconds for nine attempts in total
-3. Every hour in the next 70 hours
+### Retry policy
+The Pusher API will also re-send event notifications to the destination URL with retry attempts in the following interval and sequence:
+1. One retry attempt every 60 seconds for 10 attempts in total
+2. One retry attempt every 600 seconds for nine attempts in total
+3. One retry attempt every hour in the next 70 hours
 
-During the attempts, when the destination URL starts responding with a successful status code, the subscription will be marked as active again.
+During the retry, when the destination URL starts responding with a successful status code, the subscription will be marked as active again.
 
-After all attempts, if the destination URL still doesn't reply with a 2xx code, the event subscription will be deleted.
+After the retry, if the destination URL still doesn't reply with a 2xx code, the event subscription will be deleted. You will need to create the event subscription again.
 
 ### Root cause
 Failing webhooks may be caused by faulty HTTPS endpoints. One of the following error codes may return:
