@@ -20,7 +20,7 @@ During the retry, when the destination URL starts responding with a successful s
 After the retry, if the destination URL still doesn't reply with a 2xx code, the event subscription will be deleted. You will need to create the event subscription again.
 
 ### Root cause
-Failing webhooks may be caused by faulty HTTPS endpoints. One of the following error codes may return:
+Failing webhooks may be caused by faulty destination URLs. One of the following error codes may return:
 
 * `HTTP 400 DESTINATION_NOT_ACCESSIBLE`  
  
@@ -44,7 +44,7 @@ This error usually returns when the destination URL is wrong.
       ```
    
  
-2. Check that the event subscription with the `failing` status has the correct destination URL in the response.
+2. Check that the event subscription with the `FAILING` status has the correct destination URL in the response.
 
     ```
     {
