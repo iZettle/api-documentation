@@ -1,4 +1,4 @@
-# Troubleshoot Errors in the Pusher API
+# Troubleshoot errors in the Pusher API
 * [Failing webhooks](#failing-webhooks)
     * [Retry policy](#retry-policy)
     * [Root cause](#root-cause)
