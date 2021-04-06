@@ -4,7 +4,7 @@ Subscribe to events to stay updated of activities that happen on your Zettle Go 
 
 * [Prerequisites](#prerequisites)
 * [Step 1: Generate a version 1 UUID](#step-1-generate-a-version-1-uuid)
-* [Step 2: Test webhooks](#optional-step-2-test-webhooks)
+* [Step 2: Test webhooks](#step-2-test-webhooks)
 * [Step 3: Create an event subscription](#step-3-create-an-event-subscription)
 * [Step 4: Set up verification for events origin](#step-4-set-up-verification-for-events-origin)
 * [Related task](#related-task)
