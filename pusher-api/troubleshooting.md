@@ -63,7 +63,7 @@ This error usually returns when the destination URL is wrong.
     
 3. Does the failing event subscription have the correct destination URL?
     * Yes: Check the destination URL is up and running by following [Fix 400 DESTINATION_NOT_ACCESSIBLE](#fix-400-destination_not_accessible).
-    * No: [Update event subscriptions](tutorials/update-event-subscriptions.md).
+    * No: [Update event subscriptions](user-guides/update-event-subscriptions.md).
  
     
 ### Fix 400 DESTINATION_NOT_ACCESSIBLE
