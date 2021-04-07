@@ -88,7 +88,7 @@ See [Create a subscription example](#create-a-subscription).
 |403 Forbidden | Returned when the scope being used in the request is incorrect. <br/> E.g. If you provide a permission scope of `READ:PRODUCT` while creating a subscription for `PurchaseCreated` then the service will return 403 in the response.
 |400 Bad Request |Returned when one of the following occurs: <br/><ul><li> The `transportName` or `uuid` is missing in the request.</li><li>A subscription with the `uuid` passed in request already exists.</li><li>The `destination` is not accessible.</li></ul>
 |422 Unprocessable Entity |Returned when one of the following occurs: <br/><ul><li> Returned when the `destination` or `contactEmail` is missing in the request.</li><li>The `contactEmail` has an invalid value for email address.</li></ul>
-|500 Internal Server Error| Returned when there is an error on server side while processing the request. In case this error persists, contact [support](api@zettle.com).
+|500 Internal Server Error| Returned when there is an error on server side while processing the request. In case this error persists, contact [support](mailto:api@zettle.com).
 </details>
 
 <details>
