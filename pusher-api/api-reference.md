@@ -50,7 +50,7 @@ Creates a webhook subscription to a specific event.
 
 Once the subscription for an event gets created successfully, Pusher service will publish data on the integrator's service whenever that event gets triggered.<br/>
 E.g. Let's say that you created a subscription for the ```ProductUpdated``` event. Once this is done, whenever a product gets updated in the product library and the `ProductUpdated` event gets triggered, you will receive event data i.e, payload for the updated product on the ```destination``` that you have exposed publicly.
-See a list of [payloads](tutorials/event-subscriptions.md#payloadAPITable) for all events.
+See a list of [payloads](user-guides/event-subscriptions.md#payloadAPITable) for all events.
 
 The service will push data for an event only once. However, there may be cases where it gets published more than once. The integrator will then have to take care to not save the data more than once.
 
