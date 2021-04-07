@@ -196,7 +196,7 @@ See [Update a subscription example](#update-a-subscription).
 |404 Not Found | Returned when the subscription to be updated does not exist or cannot be found.
 |405 Method Not Allowed | Returned when the ```subscriptionUuid``` is missing in the request.
 |400 Bad Request| Returned when the ```eventNames``` parameter contains events that are not supported by the Pusher service.
-|422 Unprocessable Entity| Returned if the ```destination``` specified in the request is empty. In case you specify the ```destination``` parameter, it has to be a valid https URL.
+|422 Unprocessable Entity| Returned when one of the following occurs: <br/><ul><li> Returned if the ```destination``` specified in the request is empty.</li><li>The ```destination``` value is not a valid HTTPS URL.</li></ul>
 |500 Internal Server Error| Returned when the service encounters an internal server error. In case this error persists, contact [support](mailto:api@zettle.com).
 </details>
 
