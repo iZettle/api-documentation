@@ -48,8 +48,6 @@ For example, if you subscribe to the `InventoryTrackingStarted` event, when that
 
 For more information on event payloads, see the following table.
 
-> **Note:** As payloads can be updated due to changes of the other APIs, you can ignore unknown fields.
-
 <table name="payloadAPITable">
     <thead>
         <tr>
@@ -406,6 +404,7 @@ For more information on event payloads, see the following table.
 </table>
 
 <!-- Ask the team: are the payloads for ApplicationConnectionRemoved, PersonalAssertionDeleted, OrganizationUpdated, and OrganizationFeatureUpdated from the Pusher API? --> 
+> **Note:** As payloads can be updated due to changes of the APIs that provide payloads, you can ignore unknown fields.
 
 
 ## Plan event subscriptions
