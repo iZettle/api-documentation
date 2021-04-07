@@ -58,23 +58,7 @@ For more information on event payloads, see the following table.
         <tbody>
         <tr>
            <td>ApplicationConnectionRemoved</td>
-           <td>
-                <details>
-                    <summary>Click to see the payload.</summary>
-                    <pre>
-                    {
-                        "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                        "messageUuid": "d2f13efb-4b19-4383-bafb-eed4f743feb6",
-                        "eventName": "ApplicationConnectionRemoved",
-                        "messageId": "3a2a7baa-9782-11eb-a1d5-2c909d8c5e74",
-                        "payload": {
-                            "type": "ApplicationConnectionRemoved"
-                        },
-                        "timestamp": "2021-04-07T09:18:34.233749Z"
-                    }
-                    </pre>                    
-                </details>
-           </td>
+           <td>To be added</td>
         </tr>       
         <tr>
            <td>CardPaymentAuthorized</td>
@@ -111,191 +95,26 @@ For more information on event payloads, see the following table.
                     <summary>Click to see the payload.</summary>
                     <pre>
                     {
-                        "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                        "messageUuid": "aad95fc0-9781-11eb-8c13-4bcea8f65093",
-                        "eventName": "InventoryBalanceChanged",
-                        "messageId": "a0f01329-d2cf-5591-8c13-4bcea8f65093",
-                        "payload": {
-                            "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                            "updated": {
-                                "uuid": "7a1abbf4-b5e2-4c70-8b21-f4ec5b00c463",
-                                "timestamp": "2021-04-07T09:14:33.416+0000",
-                                "userType": "USER",
-                                "clientUuid": null
-                            },
-                            "balanceBefore": [{
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "9b310201-7763-11eb-be0f-61f90377b961",
-                                "created": "2021-04-07T09:11:11.699+0000",
-                                "balance": "0"
-                            }, {
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "96824701-7763-11eb-be0f-61f90377b961",
-                                "created": "2021-04-07T09:11:11.703+0000",
-                                "balance": "1"
-                            }, {
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "9b308cd2-7763-11eb-be0f-61f90377b961",
-                                "created": "2021-04-07T09:11:11.706+0000",
-                                "balance": "1"
-                            }, {
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "96824700-7763-11eb-be0f-61f90377b961",
-                                "created": "2021-04-07T09:11:11.708+0000",
-                                "balance": "-1"
-                            }, {
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "9b30b3e1-7763-11eb-be0f-61f90377b961",
-                                "created": "2021-04-07T09:11:11.711+0000",
-                                "balance": "15"
-                            }, {
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "9b310200-7763-11eb-be0f-61f90377b961",
-                                "created": "2021-04-07T09:11:11.714+0000",
-                                "balance": "15"
-                            }, {
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "9b308cd3-7763-11eb-be0f-61f90377b961",
-                                "created": "2021-04-07T09:11:11.698+0000",
-                                "balance": "1"
-                            }, {
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "69a60a90-7b33-11eb-8e4b-df54503eb595",
-                                "created": "2021-04-07T09:11:11.703+0000",
-                                "balance": "1"
-                            }, {
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "98da40c1-7763-11eb-be0f-61f90377b961",
-                                "created": "2021-04-07T09:11:11.698+0000",
-                                "balance": "0"
-                            }, {
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "98da40c0-7763-11eb-be0f-61f90377b961",
-                                "created": "2021-04-07T09:11:11.703+0000",
-                                "balance": "30"
-                            }, {
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "9714c301-7763-11eb-be0f-61f90377b961",
-                                "created": "2021-04-07T09:11:11.698+0000",
-                                "balance": "0"
-                            }, {
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "9714c300-7763-11eb-be0f-61f90377b961",
-                                "created": "2021-04-07T09:11:11.703+0000",
-                                "balance": "10"
-                            }],
-                            "balanceAfter": [{
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "9b310201-7763-11eb-be0f-61f90377b961",
-                                "created": "2021-04-07T09:14:33.767+0000",
-                                "balance": "0"
-                            }, {
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "96824701-7763-11eb-be0f-61f90377b961",
-                                "created": "2021-04-07T09:14:33.770+0000",
-                                "balance": "0"
-                            }, {
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "9b308cd2-7763-11eb-be0f-61f90377b961",
-                                "created": "2021-04-07T09:14:33.773+0000",
-                                "balance": "1"
-                            }, {
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "96824700-7763-11eb-be0f-61f90377b961",
-                                "created": "2021-04-07T09:14:33.776+0000",
-                                "balance": "-1"
-                            }, {
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "9b30b3e1-7763-11eb-be0f-61f90377b961",
-                                "created": "2021-04-07T09:14:33.778+0000",
-                                "balance": "15"
-                            }, {
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "9b310200-7763-11eb-be0f-61f90377b961",
-                                "created": "2021-04-07T09:14:33.781+0000",
-                                "balance": "15"
-                            }, {
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "9b308cd3-7763-11eb-be0f-61f90377b961",
-                                "created": "2021-04-07T09:14:33.766+0000",
-                                "balance": "1"
-                            }, {
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "69a60a90-7b33-11eb-8e4b-df54503eb595",
-                                "created": "2021-04-07T09:14:33.770+0000",
-                                "balance": "1"
-                            }, {
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "98da40c1-7763-11eb-be0f-61f90377b961",
-                                "created": "2021-04-07T09:14:33.767+0000",
-                                "balance": "0"
-                            }, {
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "98da40c0-7763-11eb-be0f-61f90377b961",
-                                "created": "2021-04-07T09:14:33.771+0000",
-                                "balance": "30"
-                            }, {
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "9714c301-7763-11eb-be0f-61f90377b961",
-                                "created": "2021-04-07T09:14:33.767+0000",
-                                "balance": "0"
-                            }, {
-                                "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                                "locationUuid": "fd4a39a0-e2ef-11e6-ba64-85247ae2a737",
-                                "productUuid": "45dc4c50-774b-11eb-b2b4-0b3d28190143",
-                                "variantUuid": "9714c300-7763-11eb-be0f-61f90377b961",
-                                "created": "2021-04-07T09:14:33.769+0000",
-                                "balance": "10"
-                            }],
-                            "externalUuid": null
-                        },
-                        "timestamp": "2021-04-07T09:14:33.788Z"
+                        "eventName" : "InventoryBalanceChanged",
+                        "organizationUuid" : "1b84dbd0-fb65-11e7-9c34-d96d4f33e8fc",
+                        "messageId" : "840108b7-6097-558d-b2d6-5a6e73f31c55",
+                        "payload" : {
+                          "organizationUuid" : "1b84dbd0-fb65-11e7-9c34-d96d4f33e8fc",
+                          "balanceBefore" : [ {
+                            "organizationUuid" : "1b84dbd0-fb65-11e7-9c34-d96d4f33e8fc",
+                            "locationUuid" : "1bfc07a0-fb65-11e7-8d72-68a12b957f8b",
+                            "productUuid" : "24134200-fb65-11e7-8b46-39368d314702",
+                            "variantUuid" : "24134200-fb65-11e7-8103-e11ba136a59d",
+                            "balance" : "0"
+                          } ],
+                          "balanceAfter" : [ {
+                            "organizationUuid" : "1b84dbd0-fb65-11e7-9c34-d96d4f33e8fc",
+                            "locationUuid" : "1bfc07a0-fb65-11e7-8d72-68a12b957f8b",
+                            "productUuid" : "24134200-fb65-11e7-8b46-39368d314702",
+                            "variantUuid" : "24134200-fb65-11e7-8103-e11ba136a59d",
+                            "balance" : "10"
+                          } ]
+                        }
                     }
                     </pre>
                 </details>
