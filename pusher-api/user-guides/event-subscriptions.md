@@ -55,7 +55,11 @@ For more information on event payloads, see the following table.
           <th>Payloads</th>
         </tr>
     </thead>
-        <tbody>       
+        <tbody>
+        <tr>
+           <td>ApplicationConnectionRemoved</td>
+           <td>To be added</td>
+        </tr>       
         <tr>
            <td>CardPaymentAuthorized</td>
            <td>To be added</td>
@@ -399,6 +403,18 @@ For more information on event payloads, see the following table.
                     </pre>                    
                 </details>
            </td>
+        </tr>       
+        <tr>
+           <td>OrganizationFeatureUpdated</td>
+           <td>To be added</td>
+        </tr>
+        <tr>
+           <td>OrganizationUpdated</td>
+           <td>To be added</td>
+        </tr>
+        <tr>
+           <td>PersonalAssertionDeleted</td>
+           <td>To be added</td>
         </tr>
     </tbody>
 </table>
