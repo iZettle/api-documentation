@@ -86,9 +86,9 @@ See [Create a subscription example](#create-a-subscription).
 |200 OK |Returned when a subscription is successfully created.
 |401 Unauthorized |Returned when one of the following occurs: <br/><ul><li> The authentication information is missing in the request.</li><li>The authentication token has expired.</li><li>The authentication token is invalid.</li></ul>
 |403 Forbidden | Returned when the scope being used in the request is incorrect. <br/> E.g. If you provide a permission scope of `READ:PRODUCT` while creating a subscription for `PurchaseCreated` then the service will return 403 in the response.
-|400 Bad Request |Returned when one of the following occurs: <br/><ul><li> The `transportName` or `uuid` is missing in the request.</li><li>A subscription with the `uuid` passed in request already exists.</li></ul>
-|422 Unprocessable Entity |Returned when the `destination` or `contactEmail` is missing in the request.
-
+|400 Bad Request |Returned when one of the following occurs: <br/><ul><li> The `transportName` or `uuid` is missing in the request.</li><li>A subscription with the `uuid` passed in request already exists.</li><li>The `destination` is not accessible.</li></ul>
+|422 Unprocessable Entity |Returned when one of the following occurs: <br/><ul><li> Returned when the `destination` or `contactEmail` is missing in the request.</li><li>The `contactEmail` has an invalid value for email address.</li></ul>
+|500 Internal Server Error| Returned when there is an error on server side while processing the request. In case this error persists, contact [support](api@zettle.com).
 </details>
 
 <details>
@@ -137,6 +137,7 @@ See [Get subscriptions example](#get-subscriptions).
 |---- |----
 |200 OK| Returned when the service returns a collection of subscriptions for the client. 
 |401 Unauthorized |Returned when one of the following occurs: <br/><ul><li> The authentication information is missing in the request.</li><li>The authentication token has expired.</li><li>The authentication token is invalid.</li></ul> 
+|500 Internal Server Error| Returned when there is an error on server side while processing the request. In case this error persists, contact [support](api@zettle.com).
 </details>
 
 
@@ -192,9 +193,11 @@ See [Update a subscription example](#update-a-subscription).
 |---- |----
 |200 OK| Returned when the service updates the subscription successfully.
 |401 Unauthorized |Returned when one of the following occurs: <br/><ul><li> The authentication information is missing in the request.</li><li>The authentication token has expired.</li><li>The authentication token is invalid.</li></ul>
+|404 Not Found | Returned when the subscription to be updated does not exist or cannot be found.
 |405 Method Not Allowed | Returned when the ```subscriptionUuid``` is missing in the request.
 |400 Bad Request| Returned when the ```eventNames``` parameter contains events that are not supported by the Pusher service.
 |422 Unprocessable Entity| Returned if the ```destination``` specified in the request is empty. In case you specify the ```destination``` parameter, it has to be a valid https URL.
+|500 Internal Server Error| Returned when there is an error on server side while processing the request. In case this error persists, contact [support](api@zettle.com).
 </details>
 
 <details>
@@ -234,6 +237,7 @@ See [Delete a subscription example](#delete-a-subscription).
 |204 No Content| Returned when the service deletes the subscription successfully.
 |401 Unauthorized |Returned when one of the following occurs: <br/><ul><li> The authentication information is missing in the request.</li><li>The authentication token has expired.</li><li>The authentication token is invalid.</li></ul>
 |404 Not Found| Returned when the ```subscriptionUuid``` is missing in the request.
+|500 Internal Server Error| Returned when there is an error on server side while processing the request. In case this error persists, contact [support](api@zettle.com).
 </details>
 
 <details>
