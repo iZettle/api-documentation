@@ -56,7 +56,7 @@ The service will push data for an event only once. However, there may be cases w
 POST /organizations/{organizationUuid}/subscriptions
 ```
 
-See [Create a subscription example](#create-a-webhook-subscription).
+See [Create a webhook subscription example](#create-a-webhook-subscription).
 
 
 ### Parameters
@@ -114,7 +114,7 @@ Gets all the webhook subscriptions for an integrator.
 GET /organizations/{organizationUuid}/subscriptions
 ```
 
-See [Get subscriptions example](#get-webhook-subscriptions).
+See [Get webhook subscriptions example](#get-webhook-subscriptions).
 
 ### Parameters
 
@@ -165,7 +165,7 @@ Updates an existing webhook subscription.
 PUT /organizations/organizationUuid}/subscriptions/{subscriptionUuid}
 ```
 
-See [Update a subscription example](#update-a-webhook-subscription).
+See [Update a webhook subscription example](#update-a-webhook-subscription).
 
 ### Parameters
 
@@ -212,7 +212,7 @@ Deletes an existing webhook subscription.
 DELETE /organizations/{organizationUuid}/subscriptions/{subscriptionUuid}
 ```
 
-See [Delete a subscription example](#delete-a-webhook-subscription).
+See [Delete a webhook subscription example](#delete-a-webhook-subscription).
 
 ### Parameters
 
