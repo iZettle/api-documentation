@@ -1,37 +1,35 @@
 Pusher API reference
 =====================
-Pusher is a service that publishes information to the integrator's service. This information is data related to products, purchases, inventory etc. The purpose of this service is to ensure that integrators do not have to poll for data related to specific events. <br/>
+Pusher is an API that publishes information to the integrator's service. This information is data related to products, purchases, inventory etc. The purpose of this service is to ensure that integrators do not have to poll for data related to specific events. <br/>
 An integrator can subscribe to specific events in the Pusher service. When these events get triggered, Pusher service will publish information corresponding to the event to the integrator's service.
 
 Examples of events:
-* PurchaseCreated - This gets triggered when a purchase gets created.
-* ProductUpdated - This gets triggered when product information gets updated in the product library.<br/>
+* `PurchaseCreated` - This gets triggered when a purchase gets created.
+* `ProductUpdated` - This gets triggered when product information gets updated in the product library.<br/>
   See the list of all [Supported events](#supported-events).
 
-The Pusher service uses Webhooks. Webhooks are custom callbacks used to send data from one application to another when a specific event gets triggered. <br/>
-The other option that Pusher service supports is [AWS SQS](https://aws.amazon.com/sqs/). However, this is currently available only to selected integrators and can be made available to others as per the use case.
-
+The Pusher service uses Webhooks. Webhooks are HTTP callbacks that receive notification messages for events. To create a webhook, users configure a webhook listener and subscribe it to events. A webhook listener is a server that listens at a specific URL for incoming HTTP POST notification messages that are triggered when events occur.<br/>
 
 * [Base URL](#base-url)
 * [OAuth scope](#oauth-scope)
-* [Create a webhook subscription](#create-a-webhook-subscription)
+* [Create a webhook subscription](#create-a-subscription)
   * [Parameters](#parameters)
   * [Responses](#responses)
-* [Get all the webhook subscriptions](#get-all-the-webhook-subscriptions)
+* [Get all the webhook subscriptions](#get-all-subscriptions)
   * [Parameters](#parameters)
   * [Responses](#responses)
-* [Update a webhook subscription](#update-a-webhook-subscription)
+* [Update a webhook subscription](#update-a-subscription)
   * [Parameters](#parameters)
   * [Responses](#responses)
-* [Delete a webhook subscription](#delete-a-webhook-subscription)
+* [Delete a webhook subscription](#delete-a-subscription)
   * [Parameters](#parameters)
   * [Responses](#responses)
 * [Supported events](#supported-events)
 * [Examples](#examples)
-  * [Create a subscription](#create-a-subscription)
-  * [Get subscriptions](#get-subscriptions)
-  * [Update a subscription](#update-a-subscription)
-  * [Delete a subscription](#delete-a-subscription)
+  * [Create a subscription](#create-a-webhook-subscription)
+  * [Get subscriptions](#get-webhook-subscriptions)
+  * [Update a subscription](#update-a-webhook-subscription)
+  * [Delete a subscription](#delete-a-webhook-subscription)
 
 
 ### Base URL
@@ -44,12 +42,12 @@ E.g. you will require the `READ:PURCHASE` scope if you want to subscribe to the 
 
 See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information on how to get authorization for a particular scope.
 
-## Create a webhook subscription
+## Create a subscription
 
 Creates a webhook subscription to a specific event. 
 
-Once the subscription for an event gets created successfully, Pusher service will publish data on the integrator's service whenever that event gets triggered.<br/>
-E.g. Let's say that you created a subscription for the ```ProductUpdated``` event. Once this is done, whenever a product gets updated in the product library and the `ProductUpdated` event gets triggered, you will receive event data i.e, payload for the updated product on the ```destination``` that you have exposed publicly.
+Once the subscription for an event gets created successfully, Pusher service will publish data on the integrator's service whenever that event occurs.<br/>
+E.g. Let's say that you created a subscription for the ```ProductUpdated``` event. Once this is done, whenever a product gets updated in the product library and the `ProductUpdated` event occurs, you will receive event data i.e, payload for the updated product on the ```destination``` server that you have exposed publicly.
 See a list of [payloads](user-guides/event-subscriptions.md#payloadAPITable) for all events.
 
 The service will push data for an event only once. However, there may be cases where it gets published more than once. The integrator will then have to take care to not save the data more than once.
@@ -58,7 +56,7 @@ The service will push data for an event only once. However, there may be cases w
 POST /organizations/{organizationUuid}/subscriptions
 ```
 
-See [Create a subscription example](#create-a-subscription).
+See [Create a subscription example](#create-a-webhook-subscription).
 
 
 ### Parameters
@@ -68,11 +66,11 @@ See [Create a subscription example](#create-a-subscription).
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
-|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li><li> Use `self` as the value. This will retrieve your organizationUuid through the authentication information in the request.</li></ul> 
-|uuid |string |query |required | Unique identifier for the subscription as UUID version 1. The integrator needs to provide this value.
-|transportName |string |query |required | The message option used by Pusher service. Currently only `WEBHOOK` is supported. `SQS` is available only to certain clients based on the use case.
-|eventNames |array |query |required | Events that you want to create subscription for. The events are specified in an array. If you pass an empty array, you will subscribe to all events that the service supports. See the list of [supported events](#supported-events).
-|destination |string |query |required | The public URL exposed by the integrator where the Pusher service will publish messages for subscribed events.
+|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li> Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li></ul> 
+|uuid |string |query |required | Unique identifier for the subscription as UUID version 1.
+|transportName |string |query |required | The message option used by Pusher service. Currently only `WEBHOOK` is supported. 
+|eventNames |array |query |required | Event names for events that you want to create subscription for. The events are specified in an array. If you pass an empty array, you will subscribe to all events that the service supports. In this case, make sure that you have all the corresponding authorization scopes issued. See the list of [supported events](#supported-events).
+|destination |string |query |required | The service URL publicly exposed by the integrator where the Pusher service will publish messages for subscribed events.
 |contactEmail |string |query |required | The email address used to notify in case of any errors in subscription or the destination. <br/> The email must be a valid email address and should not exceed 512 characters.
 </details><!-- end tag of the Parameters section-->
 
@@ -99,7 +97,7 @@ See [Create a subscription example](#create-a-subscription).
 |---- |---- |----
 |uuid |string |Unique identifier for the created subscription as UUID version 1. 
 |transportName |string |Pusher service option used for creating the subscription.
-|eventNames|array|All the events for the created subscription.
+|eventNames|array|The event names for the created subscription.
 |updated|string|The timestamp (in UTC) when the subscription was last updated.
 |destination|string|The public URL exposed by the integrator where the Pusher service will publish messages for subscribed events.
 |contactEmail|string|The email used to notify any errors for subscriptions or the destination.
@@ -108,7 +106,7 @@ See [Create a subscription example](#create-a-subscription).
 </details>
 
 
-## Get all the webhook subscriptions
+## Get all subscriptions
 
 Gets all the webhook subscriptions for an integrator.
 
@@ -125,7 +123,7 @@ See [Get subscriptions example](#get-subscriptions).
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
-|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li><li> Use `self` as the value. This will retrieve your organizationUuid through the authentication information in the request.</li></ul> 
+|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li> Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li></ul> 
 </details>
 
 
@@ -159,7 +157,7 @@ See [Get subscriptions example](#get-subscriptions).
 |signingKey|string| The key used to verify that all incoming messages from Pusher service originate from Zettle. 
 </details>
 
-## Update a webhook subscription
+## Update a subscription
 
 Updates an existing webhook subscription.
 
@@ -176,8 +174,8 @@ See [Update a subscription example](#update-a-subscription).
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
-|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li><li> Use `self` as the value. This will retrieve your organizationUuid through the authentication information in the request.</li></ul>
-|subscriptionUuid |string |path |required |Unique identifier for an existing subscription as UUID version 1. The integrator needs to provide this value.
+|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li> Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li></ul>
+|subscriptionUuid |string |path |required |Unique identifier for an existing subscription as UUID version 1.
 |transportName |string |query |optional | The message option used by Pusher service. E.g. ```WEBHOOK```. You need to specify the same option that you used while creating the subscription.
 |eventNames |array |query |optional | Events that you want to update on the existing subscription. The events are specified in an array.
 |destination |string |query |optional | The destination URL where Pusher service will push data for the updated subscription.
@@ -206,7 +204,7 @@ See [Update a subscription example](#update-a-subscription).
 </details>
 
 
-## Delete a webhook subscription
+## Delete a subscription
 
 Deletes an existing webhook subscription.
 
@@ -223,7 +221,7 @@ See [Delete a subscription example](#delete-a-subscription).
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
-|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li><li> Use `self` as the value. This will retrieve your organizationUuid through the authentication information in the request.</li></ul>
+|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li> Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li></ul>
 |subscriptionUuid |string |path |required |Unique identifier for an existing subscription as UUID version 1.
 </details>
 
@@ -250,25 +248,20 @@ See [Delete a subscription example](#delete-a-subscription).
 <details>
 <summary>Click to see a list all the events supported by the service and their corresponding authorization scopes.</summary>
 
-|Event name |Required scope | Description
+|Event name |Required scope | Trigger
 |---- |---- |----
-|PurchaseCreated|READ:PURCHASE|Triggered when a new purchase is created.
-|InvoiceCreated|READ:FINANCE|Triggered when a new invoice is created.
-|OrganizationUpdated|READ:USERINFO|Triggered when information of an organization is updated.
-|OrganizationFeatureUpdated|READ:USERINFO|Triggered when an organization feature set has been updated.
-|PaymentInitiated|READ:FINANCE|Triggered when a new payment has been initiated.
-|PaymentCreated|READ:FINANCE|Triggered when a new payment gets created.
-|PaymentCanceled|READ:FINANCE|Triggered when a payment gets cancelled.
+|PurchaseCreated|READ:PURCHASE|A purchase is finalized and a receipt is created.
+|InvoiceCreated|READ:FINANCE|A new invoice gets created.
+|OrganizationUpdated|READ:USERINFO|Users of an organization are updated.
 |CardPaymentAuthorized|READ:FINANCE|Triggered when a card payments gets authorized successfully.
-|CardPaymentInvalid|READ:FINANCE|Triggered when a card payment is marked invalid.
-|ProductCreated|READ:PRODUCT|Triggered when a product gets created in the product library.
-|ProductUpdated|READ:PRODUCT|Triggered when a product gets updated in the product library.
-|ProductDeleted|READ:PRODUCT|Triggered when a product gets deleted in the product library.
-|InventoryBalanceChanged|READ:PRODUCT|Triggered when the balance in the inventory gets changed for a product.
-|InventoryTrackingStarted|READ:PRODUCT|Triggered when the inventory tracking is enabled for a product.
-|InventoryTrackingStopped|READ:PRODUCT|Triggered when the inventory tracking is disabled for a product.
-|ApplicationConnectionRemoved| any scope| Triggered when the application was disconnected from Zettle organization and the OAuth refresh token has been invalidated.
-|PersonalAssertionDeleted|any scope| Triggered when an API key was deleted.
+|ProductCreated|READ:PRODUCT|A product gets created in the product library.
+|ProductUpdated|READ:PRODUCT|A product gets updated in the product library.
+|ProductDeleted|READ:PRODUCT|A product gets deleted in the product library.
+|InventoryBalanceChanged|READ:PRODUCT|A sale is made for a product and purchase gets created. This leads to change in the balance of the product in the inventory.
+|InventoryTrackingStarted|READ:PRODUCT|Inventory tracking is enabled. This means that the *Enable inventory tracking* checkbox for a product in the GO app is checked.
+|InventoryTrackingStopped|READ:PRODUCT|Inventory tracking is disabled. This means that theThe *Enable inventory tracking* checkbox for a product in the GO app is unchecked.
+|ApplicationConnectionRemoved| any scope| The application was disconnected from Zettle organization and the OAuth refresh token has been invalidated. 
+|PersonalAssertionDeleted|any scope| The API key used to create subscriptions is deleted.
 
 
 </details>
@@ -276,7 +269,7 @@ See [Delete a subscription example](#delete-a-subscription).
 
 ## Examples
 
-### Create a subscription
+### Create a webhook subscription
 Request ```POST /organizations/{organizationUuid}/subscriptions```
 ```
 {
@@ -304,7 +297,7 @@ Response
 ```
 
 
-### Get subscriptions
+### Get webhook subscriptions
 Request ```GET /organizations/self/subscriptions``` 
 
 Response
@@ -363,7 +356,7 @@ Response
 ]
 ```
 
-### Update a subscription
+### Update a webhook subscription
 Request ```PUT /organizations/self/subscriptions/df209936-8f31-11eb-8dcd-0242ac130003```
 ```
 {
@@ -374,7 +367,7 @@ Request ```PUT /organizations/self/subscriptions/df209936-8f31-11eb-8dcd-0242ac1
 Response <br/>
 ```200 OK```
 
-### Delete a subscription
+### Delete a webhook subscription
 
 Request ```DELETE /organizations/self/subscriptions/uuid/f02f80f8-8f35-11eb-8dcd-0242ac130003```
 
@@ -385,7 +378,7 @@ Response <br/>
 ## Related resources
 <!-- One or more tasks that will be done after this one. -->
 <!-- Add more use scenarios if needed. -->
-[Pusher API tutorial](user-guides/event-subscriptions.md)
+[Pusher API user guide](user-guides/event-subscriptions.md)
 
 ## Related API reference
 <!-- Other APIs that may be related in use scenarios. -->
