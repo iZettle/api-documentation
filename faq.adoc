@@ -6,7 +6,7 @@ If you want to apply to receive access to our APIs, please visit https://develop
 ====
 
 == General questions
-.*In what regions is Zettle Go API integration available?*
+.*For which regions can I make integrations with Zettle Go APIs?*
 [%collapsible]
 ====
 Zettle Go API integration is currently available in the following regions:
