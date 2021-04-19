@@ -114,7 +114,7 @@ Gets all the webhook subscriptions for an integrator.
 GET /organizations/{organizationUuid}/subscriptions
 ```
 
-See [Get subscriptions example](#get-subscriptions).
+See [Get subscriptions example](#get-webhook-subscriptions).
 
 ### Parameters
 
@@ -165,7 +165,7 @@ Updates an existing webhook subscription.
 PUT /organizations/organizationUuid}/subscriptions/{subscriptionUuid}
 ```
 
-See [Update a subscription example](#update-a-subscription).
+See [Update a subscription example](#update-a-webhook-subscription).
 
 ### Parameters
 
@@ -212,7 +212,7 @@ Deletes an existing webhook subscription.
 DELETE /organizations/{organizationUuid}/subscriptions/{subscriptionUuid}
 ```
 
-See [Delete a subscription example](#delete-a-subscription).
+See [Delete a subscription example](#delete-a-webhook-subscription).
 
 ### Parameters
 
