@@ -1,15 +1,12 @@
 # Zettle Go API Beta Documentation
-<!-- Can we remove "beta"? 
-The "beta" label is also on the developer portal.
-If we remove it, we will also need to update the changelog.
 
--->
+Zettle provides APIs for you to integrate Zettle Go with your services.
 
-Zettle provides APIs for you to integrate Zettle Go with your business.
+> **Note:** The API documentation is still in the beta phase.
 
-Zettle Go API integration is currently available for the following regions:
+Currently, Zettle provides APIs for the following available markets:
 
--   Great Britain
+-   United Kingdom
 -   Norway
 -   Denmark
 -   France
@@ -22,10 +19,7 @@ Zettle Go API integration is currently available for the following regions:
 -   Spain
 -   The Netherlands
 
-<!-- is it ok to sort the list by the alphabetical order? -->
-
-> **Tip:** You can make integrations with Zettle Go APIs for the available regions, no matter where you live.
-
+> **Note:** You can build integrations with Zettle Go APIs only for the available markets, no matter where you are located.
 
 ## APIs
 

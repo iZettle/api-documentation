@@ -6,12 +6,13 @@ If you want to apply to receive access to our APIs, please visit https://develop
 ====
 
 == General questions
-.*For which regions can I make integrations with Zettle Go APIs?*
+.*For which markets can I build integrations with Zettle Go APIs?*
 [%collapsible]
 ====
-Zettle Go API integration is currently available in the following regions:
 ****
--   Great Britain
+Currently, Zettle provides APIs for the following available markets:
+
+-   United Kingdom
 -   Norway
 -   Denmark
 -   France
@@ -24,9 +25,7 @@ Zettle Go API integration is currently available in the following regions:
 -   Spain
 -   The Netherlands
 
-You can make integrations with Zettle Go APIs for the available regions, no matter where you live.
-
-Stay tuned—we are working hard to make the integration available in more regions.
+> **Note:** You can build integrations with Zettle Go APIs only for the available markets, no matter where you are located.
 ****
 ====
 .*What TLS version is supported?*
