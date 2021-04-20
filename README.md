@@ -17,7 +17,7 @@ Currently, Zettle provides APIs for the following available markets:
 -   Italy
 -   Mexico
 -   Spain
--   The Netherlands
+-   Netherlands
 
 > **Note:** You can build integrations with Zettle Go APIs only for the available markets, no matter where you are located.
 
