@@ -2,7 +2,7 @@
 * [Failing webhooks](#failing-webhooks)
     * [Retry policy](#retry-policy)
     * [Root cause](#root-cause)
-    * [Fix 404 DESTINATION_RESPONDED_WITH_ERROR_CODE](#fix-404-destination_responded_with_error_code)
+    * [Fix 500 DESTINATION_RESPONDED_WITH_ERROR_CODE](#fix-500-destination_responded_with_error_code)
     * [Fix 400 DESTINATION_NOT_ACCESSIBLE](#fix-400-destination_not_accessible)
 * [Related API reference](#related-api-reference)
 
@@ -24,10 +24,10 @@ Failing webhooks may be caused by faulty destination URLs. One of the following 
 
 * `HTTP 400 DESTINATION_NOT_ACCESSIBLE`  
  
-* `HTTP 404 DESTINATION_RESPONDED_WITH_ERROR_CODE`
+* `HTTP 500 DESTINATION_RESPONDED_WITH_ERROR_CODE`
 
-### Fix 404 DESTINATION_RESPONDED_WITH_ERROR_CODE
-This error usually returns when the destination URL is wrong.
+### Fix 500 DESTINATION_RESPONDED_WITH_ERROR_CODE
+This error usually returns when the destination URL is wrong. Check your local logs and make sure that your service is not failing.
 
 1. Retrieve all existing subscriptions.
        
@@ -67,7 +67,7 @@ This error usually returns when the destination URL is wrong.
  
     
 ### Fix 400 DESTINATION_NOT_ACCESSIBLE
-This error usually returns when the destination URL is not up and running.
+This error usually returns when the destination URL is not up and running. Check your local logs and make sure that your service is not failing.
 
 1. If you receive the error while testing webhooks, take one of the following actions: 
 

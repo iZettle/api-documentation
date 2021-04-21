@@ -78,12 +78,20 @@ You can subscribe to one or more events in one subscription request.
     
 3. Save the value of `signingKey` from the response. This is the key used to sign all requests and should be stored so that you can validate the request. 
 
-    ```json
-    {
-        ...
-        "signingKey": "G6MWAEw1Fc6FWPkfiJiZ3j8Ya76I5ZbEDVPtzcPl6L6scsylmK5AEDyNyMe8N5cy"
-      }
-    ```
+```
+{
+    "uuid": "f02f80f8-8f35-11eb-8dcd-0242ac130003",
+    "transportName": "WEBHOOK",
+    "eventNames": [
+        "ProductUpdated"
+    ],
+    "updated": "2021-03-29T16:31:47.087507Z",
+    "destination": "https://webhook.site/f62e2311-1232-4d8f-b75e-80e9ce013dd4",
+    "contactEmail": "your_email@domain.com",
+    "status": "ACTIVE",
+    "signingKey": "zLzClQLQN8yfH8aEjONeXzgJRAHR0zpD7RonFCpizujCUCectBlln0vFArTbLPYa"
+}
+```
 4. If you use the destination URL to receive events for the first time, check that the server receives a test message.
 
     Example:
@@ -132,7 +140,7 @@ To verify that events come from Zettle, calculate a signature and compare it wit
         import hashlib
         ...
         payload_to_sign = '{}.{}'.format(timestamp, payload)
-        signature = hmac.new(bytes(signing_key, 'UTF-8'), msg = bytes(payload
+        signature = hmac.new(bytes(signing_key, 'UTF-8'), msg = bytes(payload_to_sign, 'UTF-8'), digestmod = hashlib.sha256).hexdigest()
       ```    
     </details>
         
