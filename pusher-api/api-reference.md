@@ -1,11 +1,11 @@
 Pusher API reference
 =====================
 Pusher is an API that publishes information to the integrator's service. This information is data related to products, purchases, inventory etc. The purpose of this service is to ensure that integrators do not have to poll for data related to specific events. <br/>
-An integrator can subscribe to specific events in the Pusher service. When these events get triggered, Pusher service will publish information corresponding to the event to the integrator's service.
+An integrator can subscribe to specific events in the Pusher service. When these events occur, Pusher API will publish information corresponding to the event to the integrator's service.
 
 Examples of events:
-* `PurchaseCreated` - This gets triggered when a purchase gets created.
-* `ProductUpdated` - This gets triggered when product information gets updated in the product library.<br/>
+* `PurchaseCreated` - This is triggered when a purchase gets created.
+* `ProductUpdated` - This is triggered when product information gets updated in the product library.<br/>
   See the list of all [Supported events](#supported-events).
 
 The Pusher service uses Webhooks. Webhooks are HTTP callbacks that receive notification messages for events. To create a webhook, users configure a webhook listener and subscribe it to events. A webhook listener is a server that listens at a specific URL for incoming HTTP POST notification messages that are triggered when events occur.<br/>
@@ -36,6 +36,8 @@ The Pusher service uses Webhooks. Webhooks are HTTP callbacks that receive notif
 https://pusher.izettle.com
 
 ### OAuth Scope
+You can create webhook subscriptions using an access token or API key that corresponds to an organization. All the subsequent operations such as updating/deleting a subscription, or viewing a subscription will have to be made using the same access token or API key.
+
 In order to create or update a subscription to an event, you will need to be authorized with the corresponding scope.
 
 E.g. you will require the `READ:PURCHASE` scope if you want to subscribe to the `PurchaseCreated` event. See the [list of scopes](#supported-events) corresponding to every event.
@@ -44,7 +46,7 @@ See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/author
 
 ## Create a subscription
 
-Creates a webhook subscription to a specific event. 
+Creates a webhook subscription to a specific event.
 
 Once the subscription for an event gets created successfully, Pusher service will publish data on the integrator's service whenever that event occurs.<br/>
 E.g. Let's say that you created a subscription for the ```ProductUpdated``` event. Once this is done, whenever a product gets updated in the product library and the `ProductUpdated` event occurs, you will receive event data i.e, payload for the updated product on the ```destination``` server that you have exposed publicly.
@@ -69,7 +71,7 @@ See [Create a webhook subscription example](#create-a-webhook-subscription).
 |organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li> Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li></ul> 
 |uuid |string |query |required | Unique identifier for the subscription as UUID version 1.
 |transportName |string |query |required | The message option used by Pusher service. Currently only `WEBHOOK` is supported. 
-|eventNames |array |query |required | Event names for events that you want to create subscription for. The events are specified in an array. If you pass an empty array, you will subscribe to all events that the service supports. In this case, make sure that you have all the corresponding authorization scopes issued. See the list of [supported events](#supported-events).
+|eventNames |array |query |required | Event names for events that you want to create subscription for. The events are specified in an array. <br/>If you pass an empty array, you will subscribe to all events that the service supports. In this case, make sure that you have all the corresponding authorization scopes issued. See the list of [scopes](#supported-events).
 |destination |string |query |required | The service URL publicly exposed by the integrator where the Pusher service will publish messages for subscribed events.
 |contactEmail |string |query |required | The email address used to notify in case of any errors in subscription or the destination. <br/> The email must be a valid email address and should not exceed 512 characters.
 </details><!-- end tag of the Parameters section-->
@@ -251,15 +253,13 @@ See [Delete a webhook subscription example](#delete-a-webhook-subscription).
 |Event name |Required scope | Trigger
 |---- |---- |----
 |PurchaseCreated|READ:PURCHASE|A purchase is finalized and a receipt is created.
-|InvoiceCreated|READ:FINANCE|A new invoice gets created.
-|OrganizationUpdated|READ:USERINFO|Users of an organization are updated.
-|CardPaymentAuthorized|READ:FINANCE|Triggered when a card payments gets authorized successfully.
+|OrganizationUpdated|READ:USERINFO|A property of an organization is updated. E.g. name, email address etc.
 |ProductCreated|READ:PRODUCT|A product gets created in the product library.
 |ProductUpdated|READ:PRODUCT|A product gets updated in the product library.
 |ProductDeleted|READ:PRODUCT|A product gets deleted in the product library.
-|InventoryBalanceChanged|READ:PRODUCT|A sale is made for a product and purchase gets created. This leads to change in the balance of the product in the inventory.
-|InventoryTrackingStarted|READ:PRODUCT|Inventory tracking is enabled. This means that the *Enable inventory tracking* checkbox for a product in the GO app is checked.
-|InventoryTrackingStopped|READ:PRODUCT|Inventory tracking is disabled. This means that theThe *Enable inventory tracking* checkbox for a product in the GO app is unchecked.
+|InventoryBalanceChanged|READ:PRODUCT|Either: <br/><ul><li>A sale is made for a product and purchase gets created. This leads to change in the balance of the product in the inventory.</li><li>The stock of a product gets updated in the product library.</li></ul>
+|InventoryTrackingStarted|READ:PRODUCT|Inventory tracking for a product is enabled in the Zettle Go app.
+|InventoryTrackingStopped|READ:PRODUCT|Inventory tracking for a product is disabled in the Zettle Go app.
 |ApplicationConnectionRemoved| any scope| The application was disconnected from Zettle organization and the OAuth refresh token has been invalidated. 
 |PersonalAssertionDeleted|any scope| The API key used to create subscriptions is deleted.
 
