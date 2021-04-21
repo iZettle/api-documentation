@@ -10,7 +10,7 @@ If you want to apply to receive access to our APIs, please visit https://develop
 [%collapsible]
 ====
 ****
-Currently, Zettle provides APIs for the following available markets:
+Currently, Zettle provides APIs for the following markets:
 
 -   United Kingdom
 -   Norway
@@ -25,7 +25,7 @@ Currently, Zettle provides APIs for the following available markets:
 -   Spain
 -   Netherlands
 
-> **Note:** You can build integrations with Zettle Go APIs only for the available markets, no matter where you are located.
+> **Note:** You can build integrations with Zettle Go APIs only for the supported markets, no matter where you are located.
 ****
 ====
 .*What TLS version is supported?*

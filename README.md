@@ -4,7 +4,7 @@ Zettle provides APIs for you to integrate Zettle Go with your services.
 
 > **Note:** The API documentation is still in the beta phase.
 
-Currently, Zettle provides APIs for the following available markets:
+Currently, Zettle provides APIs for the following markets:
 
 -   United Kingdom
 -   Norway
@@ -19,7 +19,7 @@ Currently, Zettle provides APIs for the following available markets:
 -   Spain
 -   Netherlands
 
-> **Note:** You can build integrations with Zettle Go APIs only for the available markets, no matter where you are located.
+> **Note:** You can build integrations with Zettle Go APIs only for the supported markets, no matter where you are located.
 
 ## APIs
 
