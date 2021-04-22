@@ -58,7 +58,7 @@ For more information on event payloads, see the following table.
         <tbody>
         <tr>
            <td>PurchaseCreated</td>
-           <td style="max-width: 150 px">   
+           <td>   
                 <details>
                     <summary>Click to see the payload.</summary>
                     <pre>
@@ -80,14 +80,14 @@ For more information on event payloads, see the following table.
               <details>
                     <summary>Click to see the payload.</summary>
                     <pre>
-                   {
-                      "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
-                      "messageUuid": "ffd31f50-a27d-11eb-a056-6cd78557771d",
-                      "eventName": "OrganizationUpdated",
-                      "messageId": "4814342e-6dde-5c46-a056-6cd78557771d",
-                      "payload": "{\"uuid\":\"d3f03ffa-4a18-4282-bbfa-efd5f642ffb7\",\"name\":\"John Smith\",\"receiptName\":\"Demo GB\",\"city\":\"Edinburgh\",\"zipCode\":\"WHA7 TF1\",\"address\":\"32 mango chutney street\",\"addressLine2\":null,\"optionalText\":\"Opening hours, Instagram account, other information as applicable.\\n\",\"legalName\":\"Joh Smith\",\"legalAddress\":\"20 Whitcomb St\",\"legalAddressLine2\":null,\"legalZipCode\":\"WC2H7HA\",\"legalCity\":\"London\",\"legalState\":null,\"phoneNumber\":\"\",\"webSite\":\"www.anothercoffeshop.com\",\"contactEmail\":\"demo.gb@izettle.com\",\"receiptEmail\":\"demo.gb@izettle.com\",\"legalEntityType\":\"COMPANY\",\"legalEntityNr\":\"011184GB\",\"vatNr\":null,\"vatPercentage\":20.0,\"country\":\"GB\",\"language\":\"en\",\"currency\":\"GBP\",\"profileImageUrl\":\"https://image.izettle.com/profileimage/[size]/4Vjoq2vHcV5Y6PB1iKC24IToX-o.png\",\"created\":\"2014-04-28T18:12:51.335+0000\",\"ownerUuid\":\"7a1abbf4-b5e2-4c70-8b21-f4ec5b00c463\",\"customerStatus\":\"PAUSED\",\"usesVat\":true,\"customerType\":\"SelfEmployed\",\"taxationType\":\"VAT\",\"taxationMode\":\"INCLUSIVE\",\"timeZone\":\"Europe/London\"}",
-                      "timestamp": "2021-04-21T08:46:01.157Z"
-                    }
+{
+  "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
+  "messageUuid": "ffd31f50-a27d-11eb-a056-6cd78557771d",
+  "eventName": "OrganizationUpdated",
+  "messageId": "4814342e-6dde-5c46-a056-6cd78557771d",
+  "payload": "{\"uuid\":\"d3f03ffa-4a18-4282-bbfa-efd5f642ffb7\",\"name\":\"John Smith\",\"receiptName\":\"Demo GB\",\"city\":\"Edinburgh\",\"zipCode\":\"WHA7 TF1\",\"address\":\"32 mango chutney street\",\"addressLine2\":null,\"optionalText\":\"Opening hours, Instagram account, other information as applicable.\\n\",\"legalName\":\"Joh Smith\",\"legalAddress\":\"20 Whitcomb St\",\"legalAddressLine2\":null,\"legalZipCode\":\"WC2H7HA\",\"legalCity\":\"London\",\"legalState\":null,\"phoneNumber\":\"\",\"webSite\":\"www.anothercoffeshop.com\",\"contactEmail\":\"demo.gb@izettle.com\",\"receiptEmail\":\"demo.gb@izettle.com\",\"legalEntityType\":\"COMPANY\",\"legalEntityNr\":\"011184GB\",\"vatNr\":null,\"vatPercentage\":20.0,\"country\":\"GB\",\"language\":\"en\",\"currency\":\"GBP\",\"profileImageUrl\":\"https://image.izettle.com/profileimage/[size]/4Vjoq2vHcV5Y6PB1iKC24IToX-o.png\",\"created\":\"2014-04-28T18:12:51.335+0000\",\"ownerUuid\":\"7a1abbf4-b5e2-4c70-8b21-f4ec5b00c463\",\"customerStatus\":\"PAUSED\",\"usesVat\":true,\"customerType\":\"SelfEmployed\",\"taxationType\":\"VAT\",\"taxationMode\":\"INCLUSIVE\",\"timeZone\":\"Europe/London\"}",
+  "timestamp": "2021-04-21T08:46:01.157Z"
+}
                     </pre>
                 </details>
           </td>
