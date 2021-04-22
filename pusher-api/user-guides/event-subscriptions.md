@@ -94,27 +94,13 @@ For more information on event payloads, see the following table.
                 <details>
                     <summary>Click to see the payload.</summary>
                     <pre>
-                    {
-                        "eventName" : "InventoryBalanceChanged",
-                        "organizationUuid" : "1b84dbd0-fb65-11e7-9c34-d96d4f33e8fc",
-                        "messageId" : "840108b7-6097-558d-b2d6-5a6e73f31c55",
-                        "payload" : {
-                          "organizationUuid" : "1b84dbd0-fb65-11e7-9c34-d96d4f33e8fc",
-                          "balanceBefore" : [ {
-                            "organizationUuid" : "1b84dbd0-fb65-11e7-9c34-d96d4f33e8fc",
-                            "locationUuid" : "1bfc07a0-fb65-11e7-8d72-68a12b957f8b",
-                            "productUuid" : "24134200-fb65-11e7-8b46-39368d314702",
-                            "variantUuid" : "24134200-fb65-11e7-8103-e11ba136a59d",
-                            "balance" : "0"
-                          } ],
-                          "balanceAfter" : [ {
-                            "organizationUuid" : "1b84dbd0-fb65-11e7-9c34-d96d4f33e8fc",
-                            "locationUuid" : "1bfc07a0-fb65-11e7-8d72-68a12b957f8b",
-                            "productUuid" : "24134200-fb65-11e7-8b46-39368d314702",
-                            "variantUuid" : "24134200-fb65-11e7-8103-e11ba136a59d",
-                            "balance" : "10"
-                          } ]
-                        }
+                   {
+                      "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
+                      "messageUuid": "b0f05af0-a111-11eb-89a6-faa68186fd9c",
+                      "eventName": "InventoryBalanceChanged",
+                      "messageId": "79bfa251-04d5-5f8c-89a6-faa68186fd9c",
+                      "payload": "{\"organizationUuid\":\"d3f03ffa-4a18-4282-bbfa-efd5f642ffb7\",\"updated\":{\"uuid\":\"7a1abbf4-b5e2-4c70-8b21-f4ec5b00c463\",\"timestamp\":\"2021-04-19T13:18:11.966+0000\",\"userType\":\"USER\",\"clientUuid\":\"51e57b0d-1ea2-48a4-b0a0-91d90424e62c\"},\"balanceBefore\":[{\"organizationUuid\":\"d3f03ffa-4a18-4282-bbfa-efd5f642ffb7\",\"locationUuid\":\"fd4a39a0-e2ef-11e6-ba64-85247ae2a737\",\"productUuid\":\"e4cc8750-a110-11eb-adc0-ffd446d76f99\",\"variantUuid\":\"4745e110-a111-11eb-adc0-ffd446d76f99\",\"balance\":\"0\"}],\"balanceAfter\":[{\"organizationUuid\":\"d3f03ffa-4a18-4282-bbfa-efd5f642ffb7\",\"locationUuid\":\"fd4a39a0-e2ef-11e6-ba64-85247ae2a737\",\"productUuid\":\"e4cc8750-a110-11eb-adc0-ffd446d76f99\",\"variantUuid\":\"4745e110-a111-11eb-adc0-ffd446d76f99\",\"created\":\"2021-04-19T13:18:11.992+0000\",\"balance\":\"5\"}],\"externalUuid\":null}",
+                      "timestamp": "2021-04-19T13:18:11.999Z"
                     }
                     </pre>
                 </details>
