@@ -12,7 +12,7 @@ Subscribe to events to stay updated of activities that happen on your Zettle Go 
 
 ## Prerequisites
 * Make sure that authorization is set up using [Authorization OAuth2 API](../../authorization.adoc).
-* Make sure that you have set up an HTTPS endpoint as the destination URL on your server for receiving event notifications. The endpoint must be publicly accessible and correctly process event payloads. For events payloads, see [Payloads](event-subscriptions.md/#payloads).
+* Make sure that you have set up an HTTPS endpoint as the destination URL on your server for receiving event notifications. The endpoint must be publicly accessible and correctly process event payloads. For events payloads, see [Payloads](subscriptions.md/#payloads).
 * Make sure that you understand the events that are supported by the Pusher API. For events that are supported by the Pusher API, see [Pusher API reference](../api-reference.md#supported-events).
 <!-- to be continued if any -->
 
@@ -37,7 +37,7 @@ Before creating subscriptions to the HTTPS endpoint on your app, test the events
 
 > **Disclaimer:** The Ngrok and Webhook.site are third-party resources that Zettle has no liability for the availability and intellectual property claims.
 
-2. Follow [Step 3: Create a subscription](#step-3-create-an-event-subscription) to test the events and check the payloads.
+2. Follow [Step 3: Create a subscription](#step-3-create-a-subscription) to test the events and check the payloads.
 
 ## Step 3: Create a subscription
 You can subscribe to one or more events in one subscription request.
