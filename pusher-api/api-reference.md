@@ -30,6 +30,8 @@ The Pusher service uses Webhooks. Webhooks are HTTP callbacks that receive notif
   * [Get webhook subscriptions](#get-webhook-subscriptions)
   * [Update a webhook subscription](#update-a-webhook-subscription)
   * [Delete a webhook subscription](#delete-a-webhook-subscription)
+* [Related resources](#related-resources)
+* [Related API reference](#related-api-reference)
 
 
 ### Base URL
@@ -378,7 +380,7 @@ Response <br/>
 ## Related resources
 <!-- One or more tasks that will be done after this one. -->
 <!-- Add more use scenarios if needed. -->
-[Pusher API user guide](user-guides/event-subscriptions.md)
+[Pusher API user guide](user-guides/subscriptions.md)
 
 ## Related API reference
 <!-- Other APIs that may be related in use scenarios. -->

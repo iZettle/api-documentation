@@ -1,11 +1,11 @@
-Event subscriptions
+Subscriptions
 =====================
-With event subscriptions, you will be immediately updated of those events that are triggered on your Zettle Go instead of pulling information from other Zettle Go APIs.
+With subscriptions, you will be immediately updated of those events that are triggered on your Zettle Go instead of pulling information from other Zettle Go APIs.
 
 * [Understand how events work](#understand-how-events-work)
     * [Payloads](#payloads)
-* [Plan event subscriptions](#plan-event-subscriptions)
-* [Manage event subscriptions](#manage-event-subscriptions)
+* [Plan subscriptions](#plan-subscriptions)
+* [Manage subscriptions](#manage-subscriptions)
 
 ## Understand how events work
 The Pusher API provides events for you to listen to certain activities of the Zettle Go app at a working HTTPS endpoint on your server.
@@ -242,7 +242,7 @@ For more information on event payloads, see the following table.
 > **Note:** As payloads can be updated due to changes of the APIs that provide payloads, you can ignore unknown fields.
 
 
-## Plan event subscriptions
+## Plan subscriptions
 Before subscribing to events, plan which events to use for your use cases.
 
 To get started, you may want to subscribe to the following events:
@@ -254,11 +254,11 @@ To get started, you may want to subscribe to the following events:
 
 For more events that you can subscribe, see [Pusher API reference](../api-reference.md).
 
-## Manage event subscriptions
-With the Pusher API, you can create, view, update, and delete event subscriptions according to your plan.
+## Manage subscriptions
+With the Pusher API, you can create, view, update, and delete subscriptions according to your plan.
 
-* [Create event subscriptions](create-event-subscriptions.md)
-* [View event subscriptions](view-event-subscriptions.md)
-* [Update event subscriptions](update-event-subscriptions.md)
-* [Delete event subscriptions](delete-event-subscriptions.md)
+* [Create subscriptions](create-subscriptions.md)
+* [View subscriptions](view-subscriptions.md)
+* [Update subscriptions](update-subscriptions.md)
+* [Delete subscriptions](delete-subscriptions.md)
 

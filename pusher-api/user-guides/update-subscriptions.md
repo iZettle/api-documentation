@@ -1,10 +1,10 @@
-Update event subscriptions
+Update subscriptions
 =====================
-You can make changes on existing event subscriptions.
+You can make changes on existing subscriptions.
 
 * [Prerequisites](#prerequisites)
 * [Step 1: Retrieve the subscription UUID](#step-1-retrieve-the-subscription-uuid)
-* [Step 2: Update an event subscription](#step-2-update-an-event-subscription)
+* [Step 2: Update a subscription](#step-2-update-a-subscription)
 * [Related task](#related-task)
 * [Related API reference](#related-api-reference)
 
@@ -28,11 +28,11 @@ You can make changes on existing event subscriptions.
    ```
    
 
-2. Copy and save the UUID of the event subscription that you want to update. It will be used for updating event subscription.
+2. Copy and save the UUID of the subscription that you want to update. It will be used for updating subscription.
 
-## Step 2: Update an event subscription
+## Step 2: Update a subscription
 
-1. Send a `PUT` request to update an event subscription. In the request, `subscriptionUuid` is the version 1 UUID that you retrieved in [Step 1: Retrieve the subscription UUID](#step-1-retrieve-the-subscription-uuid).
+1. Send a `PUT` request to update a subscription. In the request, `subscriptionUuid` is the version 1 UUID that you retrieved in [Step 1: Retrieve the subscription UUID](#step-1-retrieve-the-subscription-uuid).
     
    ```
        PUT /organizations/{organizationUuid}/subscriptions/{subscriptionUuid}
@@ -45,7 +45,7 @@ You can make changes on existing event subscriptions.
   
     Example:
     
-    The following example updates the event subscription `ef64c5e2-4e16-11e8-9c2d-fa7ae01bbebc` and subscribes to event `ProductCreated` and `PurchaseCreated`.
+    The following example updates the subscription `ef64c5e2-4e16-11e8-9c2d-fa7ae01bbebc` and subscribes to event `ProductCreated` and `PurchaseCreated`.
     ```
         PUT /organizations/self/subscriptions/ef64c5e2-4e16-11e8-9c2d-fa7ae01bbebc
        {
@@ -62,9 +62,9 @@ You can make changes on existing event subscriptions.
     * If no, update the `PUT` request according to the error message. For more information on error messages, see [HTTP status code](../api-reference.md#updateHttpStatusCode).
   
 ## Related task
-* [Create event subscriptions](create-event-subscriptions.md)
-* [Delete event subscriptions](delete-event-subscriptions.md)
-* [View event subscriptions](view-event-subscriptions.md)
+* [Create subscriptions](create-subscriptions.md)
+* [Delete subscriptions](delete-subscriptions.md)
+* [View subscriptions](view-subscriptions.md)
 ## Related API reference
 * [Pusher API reference](../api-reference.md)
 <!-- Add more references if needed. -->

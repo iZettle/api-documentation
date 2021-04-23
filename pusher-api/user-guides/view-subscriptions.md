@@ -1,6 +1,6 @@
-View event subscriptions
+View subscriptions
 =====================
-You can view existing event subscriptions.
+You can view existing subscriptions.
 
 * [Prerequisites](#prerequisites)
 * [Step 1: Retrieve the subscription UUID](#step-1-retrieve-the-subscription-uuid)
@@ -27,9 +27,9 @@ You can view existing event subscriptions.
    ```
 
 ## Related task
-* [Create event subscriptions](create-event-subscriptions.md)
-* [Delete event subscriptions](delete-event-subscriptions.md)
-* [Update event subscriptions](update-event-subscriptions.md)
+* [Create subscriptions](create-subscriptions.md)
+* [Delete subscriptions](delete-subscriptions.md)
+* [Update subscriptions](update-subscriptions.md)
 
 ## Related API reference
 * [Pusher API reference](../api-reference.md)

@@ -1,11 +1,11 @@
-Create event subscriptions
+Create subscriptions
 =====================
 Subscribe to events to stay updated of activities that happen on your Zettle Go in real time.  
 
 * [Prerequisites](#prerequisites)
 * [Step 1: Generate a version 1 UUID](#step-1-generate-a-version-1-uuid)
 * [Step 2: Test webhooks](#step-2-test-webhooks)
-* [Step 3: Create an event subscription](#step-3-create-an-event-subscription)
+* [Step 3: Create a subscription](#step-3-create-a-subscription)
 * [Step 4: Set up verification for events origin](#step-4-set-up-verification-for-events-origin)
 * [Related task](#related-task)
 * [Related API reference](#related-api-reference)
@@ -25,10 +25,10 @@ For every subscription, generate a version 1 Universally Unique Identifier (UUID
 
 > **Disclaimer:** The UUID Generator is a third-party resource that Zettle has no liability for the availability and intellectual property claims.
 
-2. Copy and save the UUID. It will be used for creating an event subscription.
+2. Copy and save the UUID. It will be used for creating a subscription.
 
 ## Step 2: Test webhooks
-Before creating event subscriptions to the HTTPS endpoint on your app, test the events to which you want to subscribe.
+Before creating subscriptions to the HTTPS endpoint on your app, test the events to which you want to subscribe.
 
 1. Set up a test environment. For example, you can set up the environment using one of the following approaches:  
     * You can use the destination URL that you have set up on your server.
@@ -37,12 +37,12 @@ Before creating event subscriptions to the HTTPS endpoint on your app, test the 
 
 > **Disclaimer:** The Ngrok and Webhook.site are third-party resources that Zettle has no liability for the availability and intellectual property claims.
 
-2. Follow [Step 3: Create an event subscription](#step-3-create-an-event-subscription) to test the events and check the payloads.
+2. Follow [Step 3: Create a subscription](#step-3-create-an-event-subscription) to test the events and check the payloads.
 
-## Step 3: Create an event subscription
+## Step 3: Create a subscription
 You can subscribe to one or more events in one subscription request.
 
-1. Send a `POST` request to create event subscriptions. In the request body, `uuid` is the version 1 UUID that you generated in [Step 1: Generate a version 1 UUID](#step-1-generate-a-version-1-uuid).
+1. Send a `POST` request to create subscriptions. In the request body, `uuid` is the version 1 UUID that you generated in [Step 1: Generate a version 1 UUID](#step-1-generate-a-version-1-uuid).
     
     ```
     POST /organizations/self/subscriptions
@@ -107,13 +107,13 @@ You can subscribe to one or more events in one subscription request.
     ```
 
 ## Step 4: Set up verification for events origin
-After event subscriptions are created, you need to set up a mechanism for verifying that events come from Zettle by checking the signature in the events. 
+After subscriptions are created, you need to set up a mechanism for verifying that events come from Zettle by checking the signature in the events. 
 
 The signature hash is generated as hexdigest using HMAC with SHA-256 as the cryptographic hash function. 
 
 To verify that events come from Zettle, calculate a signature and compare it with the value in the HTTP header `X-iZettle-Signature` of the incoming events. 
 
-1. Calculate a signature by concatenating the timestamp and payload of the incoming event `.`: `<timestamp>.<payload>` and using the stored signing key that you stored in [Step 3: Create an event subscription](#step-3-create-an-event-subscription).
+1. Calculate a signature by concatenating the timestamp and payload of the incoming event `.`: `<timestamp>.<payload>` and using the stored signing key that you stored in [Step 3: Create a subscription](#step-3-create-an-event-subscription).
 
     The following examples uses Python, PHP, and Java for calculating a signature. 
 
@@ -174,9 +174,9 @@ To verify that events come from Zettle, calculate a signature and compare it wit
 
 
 ## Related task
-* [Delete event subscriptions](delete-event-subscriptions.md)
-* [Update event subscriptions](update-event-subscriptions.md)
-* [View event subscriptions](view-event-subscriptions.md)
+* [Delete subscriptions](delete-subscriptions.md)
+* [Update subscriptions](update-subscriptions.md)
+* [View subscriptions](view-subscriptions.md)
 
 ## Related API reference
 * [Pusher API reference](../api-reference.md)
