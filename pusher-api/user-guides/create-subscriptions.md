@@ -113,7 +113,7 @@ The signature hash is generated as hexdigest using HMAC with SHA-256 as the cryp
 
 To verify that events come from Zettle, calculate a signature and compare it with the value in the HTTP header `X-iZettle-Signature` of the incoming events. 
 
-1. Calculate a signature by concatenating the timestamp and payload of the incoming event `.`: `<timestamp>.<payload>` and using the stored signing key that you stored in [Step 3: Create a subscription](#step-3-create-an-event-subscription).
+1. Calculate a signature by concatenating the timestamp and payload of the incoming event `.`: `<timestamp>.<payload>` and using the stored signing key that you stored in [Step 3: Create a subscription](#step-3-create-a-subscription).
 
     The following examples uses Python, PHP, and Java for calculating a signature. 
 
