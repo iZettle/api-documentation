@@ -31,18 +31,12 @@ For example, if you subscribe to the `InventoryTrackingStarted` event, when that
 
 ```json
 {
-  "eventName" : "InventoryTrackingStarted",
-  "organizationUuid" : "0f60dbc0-fab5-11e7-b884-62da5a369555",
-  "messageId" : "52662705-98de-588c-810b-75d274d6fa8b",
-  "payload" : {
-    "organizationUuid" : "0f60dbc0-fab5-11e7-b884-62da5a369555",
-    "productUuid" : "18380ac0-fab5-11e7-94b4-842bd3fbd22c",
-    "created" : {
-      "uuid" : "0f674460-fab5-11e7-a310-0002ebd6a43c",
-      "timestamp" : "2018-01-16T12:02:16.569+0000",
-      "userType" : "USER"
-    }
-  }
+  "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
+  "messageUuid": "a7c05d90-a111-11eb-b035-58d8b8a0b7f4",
+  "eventName": "InventoryTrackingStarted",
+  "messageId": "017b002f-3de4-53f4-b035-58d8b8a0b7f4",
+  "payload": "{\"organizationUuid\":\"d3f03ffa-4a18-4282-bbfa-efd5f642ffb7\",\"productUuid\":\"e4cc8750-a110-11eb-adc0-ffd446d76f99\",\"created\":{\"uuid\":\"7a1abbf4-b5e2-4c70-8b21-f4ec5b00c463\",\"timestamp\":\"2021-04-19T13:17:56.572+0000\",\"userType\":\"USER\",\"clientUuid\":\"51e57b0d-1ea2-48a4-b0a0-91d90424e62c\"}}",
+  "timestamp": "2021-04-19T13:17:56.585Z"
 }
 ```
 
