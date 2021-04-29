@@ -2,7 +2,7 @@
 
 Zettle provides APIs for you to integrate Zettle Go with your services.
 
-> **Note:** The API documentation is still in the beta phase.
+> **Note:** The API documentation is currently in the beta phase.
 
 Currently, Zettle provides APIs for the following markets:
 
@@ -29,7 +29,7 @@ Currently, Zettle provides APIs for the following markets:
 -   [Product Library](product-library.adoc)
 -   [Inventory](inventory.adoc)
 -   [Image](image.adoc)
--   [Pusher (Webhooks)](pusher.adoc)
+-   [Pusher](pusher-api/api-reference.md)
 -   [Giftcard](giftcard.adoc)
 
 All API changes are recorded in [Changelog](CHANGELOG.adoc).

@@ -1,11 +1,22 @@
-== iZettle API Changelog
+== Zettle API Changelog
+.**April 30, 2021** `Pusher API`
+[%collapsible]
+====
+**Pusher API documentation Improvement**
+
+The Pusher API documentation is improved as follows:
+
+- Improved the list of supported events.
+- Improved API reference.
+- Added user guides and troubleshooting for using the Pusher API.
+====
 
 .**Oct 28, 2020** `Editorial changes`
 [%collapsible]
 ====
 **Apply a Beta label on any mention of API documentation**
 
-The current state of the API documentation leave plenty of room for improvement. We feel that in order to be transparent and set expectations right, we've applied a Beta label on any mention of the API documentation. In the meantime, we will be hard at work at improving the iZettle Developer Platform. Some examples of the ongoing work includes revisiting all OpenAPI (Swagger) specifications and making sure that no details are left out, and make more richer documentation available to the wider developer audience.
+The current state of the API documentation leave plenty of room for improvement. We feel that in order to be transparent and set expectations right, we've applied a Beta label on any mention of the API documentation. In the meantime, we will be hard at work at improving the Zettle Developer Platform. Some examples of the ongoing work includes revisiting all OpenAPI (Swagger) specifications and making sure that no details are left out, and make more richer documentation available to the wider developer audience.
 ====
 .**Sep 21, 2020** `Finance` `Product library` `Image`
 [%collapsible]
