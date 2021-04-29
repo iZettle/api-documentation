@@ -1,9 +1,25 @@
 # Zettle Go API Beta Documentation
 
-These are the beta documentation pages for the Zettle Go APIs.
+Zettle provides APIs for you to integrate Zettle Go with your services.
 
--   [Changelog](CHANGELOG.adoc)
--   [Frequently Asked Questions](faq.adoc)
+> **Note:** The API documentation is still in the beta phase.
+
+Currently, Zettle provides APIs for the following markets:
+
+-   United Kingdom
+-   Sweden
+-   Brazil
+-   Norway
+-   Denmark
+-   Finland
+-   Germany
+-   Mexico
+-   Netherlands
+-   France
+-   Spain
+-   Italy
+
+> **Note:** You can build integrations with Zettle Go APIs only for the supported markets, no matter where you are located.
 
 ## APIs
 
@@ -16,10 +32,13 @@ These are the beta documentation pages for the Zettle Go APIs.
 -   [Pusher (Webhooks)](pusher.adoc)
 -   [Giftcard](giftcard.adoc)
 
+All API changes are recorded in [Changelog](CHANGELOG.adoc).
+
+For common questions about the APIs, see [Frequently Asked Questions](faq.adoc).
+
 ## Credentials
 
-Apply for API credentials here: https://developer.zettle.com/register
+Apply for API credentials on [Zettle Developer Portal](https://developer.zettle.com/register).
 
 ## Get help
 Contact our [Integrations team](mailto:api@zettle.com) for more information. 
-
