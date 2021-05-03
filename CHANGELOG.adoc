@@ -1,41 +1,48 @@
 == Zettle API Changelog
-.**April 30, 2021** `Pusher API`
+.**May 3, 2021** `Pusher API`
 [%collapsible]
 ====
-**Pusher API documentation Improvement**
+**Pusher API documentation Improvements**
 
-The Pusher API documentation is improved as follows:
+The improvements include the following:
 
-- Improved the list of supported events.
-- Improved API reference.
-- Added user guides and troubleshooting for using the Pusher API.
+- Improved API reference document.
+- Added the list of currently supported events in the API reference document.
+- Added the user guides and troubleshooting documents.
 ====
 
 .**Oct 28, 2020** `Editorial changes`
 [%collapsible]
 ====
-**Apply a Beta label on any mention of API documentation**
+**Applied a Beta label on any mention of API documentation**
 
-The current state of the API documentation leave plenty of room for improvement. We feel that in order to be transparent and set expectations right, we've applied a Beta label on any mention of the API documentation. In the meantime, we will be hard at work at improving the Zettle Developer Platform. Some examples of the ongoing work includes revisiting all OpenAPI (Swagger) specifications and making sure that no details are left out, and make more richer documentation available to the wider developer audience.
+The current state of the API documentation leaves plenty of room for improvement.
+
+To be transparent and set expectations right, we've applied a Beta label on any mention of the API documentation.
+
+In the meantime, we will work hard to improve the Zettle Developer Platform. An example of the ongoing work is to improve the API documentation.
 ====
-.**Sep 21, 2020** `Finance` `Product library` `Image`
+
+.**Sep 21, 2020** `Finance` `Purchase` `Product library` `Image`
 [%collapsible]
 ====
-Update documentation.
+Updated documentation for Finance, Purchase, Product Library, and Image APIs.
 
 **Finance API**
 
-- Remove transaction type `SUBSCRIPTION_CHARGE` since it was incorrectly added to the documentation.
-- Clarify that `VOUCHER_ACTIVATION` does not appear on the `LIQUID` account.
-- Mark the `TELL_FRIEND` transaction type as *deprecated*. This transaction type was removed in late 2018, but may show up in transactions prior to that.
+- Removed transaction type `SUBSCRIPTION_CHARGE`, since it was incorrectly added to the documentation.
+- Clarified that `VOUCHER_ACTIVATION` does not appear on the `LIQUID` account.
+- Marked the `TELL_FRIEND` transaction type as *deprecated*. This transaction type was removed in late 2018, but may show up in transactions prior to that.
+
 **Purchase API**
-- Remove the `CUSTOM` payment type. This payment type does not exist anymore and has not been in use.
+
+- Removed the `CUSTOM` payment type. This payment type does not exist anymore and has not been in use.
 
 **Product Library API**
 
-- Update example request under the "Create product" section to reflect the new `category` & `variantOptionDefinitions` fields.
+- Updated the example request under the "Create product" section to reflect the new `category` and `variantOptionDefinitions` fields.
 
-The `category` field replaces the old `categories` field. Now, a product may only have one category assigned to it. To create a new product category, simply provide a new UUID (v1) value on the `category.uuid` field when creating or updating a product, for example:
+The `category` field replaces the old `categories` field. Now, a product may only have one category assigned to it. To create a new product category, simply provide a new UUID (v1) value for the `category.uuid` field when creating or updating a product, for example:
 
 [source,json]
 --
@@ -48,10 +55,10 @@ The `category` field replaces the old `categories` field. Now, a product may onl
 --
 
 - The `imageLookupKeys` field has been deprecated in favour of `presentation.imageUrl`.
-- Add example request under the "Update product" section.
-- Add docs about Product Categories.
+- Added an example request under the "Update product" section.
+- Added descriptions about Product Categories.
 
 **Image API**
 
-- Replace usage of `imageLookupKey` with `imageUrls` in the docs. The `imageLookupKey` has been deprecated, and instead the fully qualified URLs should be used.
+- Replaced usage of `imageLookupKey` with `imageUrls`. The `imageLookupKey` has been deprecated. Instead, the fully qualified URLs should be used.
 ====

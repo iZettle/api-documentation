@@ -29,7 +29,7 @@ Currently, Zettle provides APIs for the following markets:
 -   [Product Library](product-library.adoc)
 -   [Inventory](inventory.adoc)
 -   [Image](image.adoc)
--   [Pusher](pusher-api/api-reference.md)
+-   [Pusher](pusher-api/)
 -   [Giftcard](giftcard.adoc)
 
 All API changes are recorded in [Changelog](CHANGELOG.adoc).
