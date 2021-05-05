@@ -28,7 +28,7 @@ After a deposit has been made from `LIQUID` account to merchant's bank account (
 If not, it will return the amount that is still due in merchant's iZettle account.
 
 `GET /organizations/{organizationUuid}/accounts/{accountTypeGroup}/balance`
-[%collapsible%open]
+[%collapsible]
 ====
 
 *Parameters*
@@ -74,7 +74,7 @@ _Response:_
 Returns a list of transactions for given account and period.
 
 `GET /organizations/{organizationUuid}/accounts/{accountTypeGroup}/transactions`
-[%collapsible%open]
+[%collapsible]
 ====
 
 *Parameters*
@@ -419,7 +419,7 @@ Returns payout related information for an organization.
 
 `GET /organizations/{organizationUuid}/payout-info`
 
-[%collapsible%open]
+[%collapsible]
 ====
 *Parameters*
 
