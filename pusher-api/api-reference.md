@@ -65,8 +65,8 @@ See [Create a webhook subscription example](#create-a-webhook-subscription).
 
 ### Parameters
 
-<details><!-- start tag of the Parameters section-->
-<summary>Click to see all request parameters for creating a subscription.</summary>
+<details open="true"><!-- start tag of the Parameters section-->
+<summary>Click to hide all request parameters for creating a subscription.</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
@@ -80,8 +80,8 @@ See [Create a webhook subscription example](#create-a-webhook-subscription).
 
 
 ### Responses
-<details>
-<summary name="createHttpStatusCode">Click to see HTTP status codes.</summary>
+<details open="true">
+<summary name="createHttpStatusCode">Click to hide HTTP status codes.</summary>
 
 |Status code |Description
 |---- |----
@@ -93,8 +93,8 @@ See [Create a webhook subscription example](#create-a-webhook-subscription).
 |500 Internal Server Error|Returned when one of the following occurs: <br/><ul><li>The `destination` responded with a non-successful HTTP response code.</li><li>The service encountered an internal server error. In case this error persists, contact [support](mailto:api@zettle.com).</li></ul>
 </details>
 
-<details>
-<summary>Click to see response attributes.</summary>
+<details open="true">
+<summary>Click to hide response attributes.</summary>
 <p>A successful <code>200 OK</code> response will have the following attributes:</p>
 
 |Name |Type |Description
@@ -122,8 +122,8 @@ See [Get webhook subscriptions example](#get-webhook-subscriptions).
 
 ### Parameters
 
-<details>
-<summary>Click to see all request parameters for getting all subscriptions.</summary>
+<details open="true">
+<summary>Click to hide all request parameters for getting all subscriptions.</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
@@ -132,8 +132,8 @@ See [Get webhook subscriptions example](#get-webhook-subscriptions).
 
 
 ### Responses
-<details>
-<summary>Click to see HTTP status codes.</summary>
+<details open="true">
+<summary>Click to hide HTTP status codes.</summary>
 
 |Status code |Description
 |---- |----
@@ -144,8 +144,8 @@ See [Get webhook subscriptions example](#get-webhook-subscriptions).
 
 
 
-<details>
-<summary>Click to see response attributes.</summary>
+<details open="true">
+<summary>Click to hide response attributes.</summary>
 <p>A successful <code>200 OK</code> response will return an array of subscriptions. Each subscription contains the following response attributes:</p>
 
 
@@ -173,8 +173,8 @@ See [Update a webhook subscription example](#update-a-webhook-subscription).
 
 ### Parameters
 
-<details>
-<summary>Click to see all request parameters for updating a subscription.</summary>
+<details open="true">
+<summary>Click to hide all request parameters for updating a subscription.</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
@@ -188,8 +188,8 @@ See [Update a webhook subscription example](#update-a-webhook-subscription).
 
 
 ### Responses
-<details>
-<summary name="updateHttpStatusCode">Click to see HTTP status codes.</summary>
+<details open="true">
+<summary name="updateHttpStatusCode">Click to hide HTTP status codes.</summary>
 
 |Status code |Description
 |---- |----
@@ -202,8 +202,8 @@ See [Update a webhook subscription example](#update-a-webhook-subscription).
 |500 Internal Server Error| Returned when the service encounters an internal server error. In case this error persists, contact [support](mailto:api@zettle.com).
 </details>
 
-<details>
-<summary>Click to see response attributes.</summary><br/>
+<details open="true">
+<summary>Click to hide response attributes.</summary><br/>
 <p>The service returns a <code>200 OK</code> response without any content.</p>
 </details>
 
@@ -220,8 +220,8 @@ See [Delete a webhook subscription example](#delete-a-webhook-subscription).
 
 ### Parameters
 
-<details>
-<summary>Click to see all request parameters for deleting a subscription.</summary>
+<details open="true">
+<summary>Click to hide all request parameters for deleting a subscription.</summary>
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
@@ -231,8 +231,8 @@ See [Delete a webhook subscription example](#delete-a-webhook-subscription).
 
 
 ### Responses
-<details>
-<summary name="deleteHttpStatusCode">Click to see HTTP status codes.</summary>
+<details open="true">
+<summary name="deleteHttpStatusCode">Click to hide HTTP status codes.</summary>
 
 |Status code |Description
 |---- |----
@@ -242,15 +242,15 @@ See [Delete a webhook subscription example](#delete-a-webhook-subscription).
 |500 Internal Server Error| Returned when the service encounters an internal server error. In case this error persists, contact [support](mailto:api@zettle.com).
 </details>
 
-<details>
-<summary>Click to see response attributes.</summary><br/>
+<details open="true">
+<summary>Click to hide response attributes.</summary><br/>
 <p>The service returns a <code>204 No Content</code> response without any content.</p>
 </details>
 
 ## Supported events
 
-<details>
-<summary>Click to see a list all the events supported by the service and their corresponding authorization scopes.</summary>
+<details open="true">
+<summary>Click to hide a list all the events supported by the service and their corresponding authorization scopes.</summary>
 
 |Event name |Required scope | Trigger
 |---- |---- |----

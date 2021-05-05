@@ -24,7 +24,7 @@ See <<example1>>.
 
 === Parameters
 .Parameters
-[%collapsible]
+[%collapsible%open]
 ====
 [cols="15%,10%,10%,10%,55%"]
 |===
@@ -42,7 +42,7 @@ By default `startDate` is resolved to three years back.
 === Responses
 .Response codes
 
-[%collapsible]
+[%collapsible%open]
 ====
 [cols="30%,70%"]
 |===
@@ -55,7 +55,7 @@ By default `startDate` is resolved to three years back.
 ====
 
 .Response attributes
-[%collapsible]
+[%collapsible%open]
 ====
 [cols="20%,20%,60%"]
 |===
@@ -85,7 +85,7 @@ See <<example4>>.
 
 === Parameters
 .Parameters
-[%collapsible]
+[%collapsible%open]
 ====
 [cols="15%,10%,10%,10%,55%"]
 |===
@@ -97,7 +97,7 @@ See <<example4>>.
 
 === Responses
 .Response codes
-[%collapsible]
+[%collapsible%open]
 ====
 [cols="30%,70%"]
 |===
@@ -112,7 +112,7 @@ See <<example4>>.
 
 [#Purchase]
 .Response attributes
-[%collapsible]
+[%collapsible%open]
 ====
 .Purchase attributes
 [cols="20%,20%,60%"]
