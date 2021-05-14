@@ -23,8 +23,6 @@ For every subscription, generate a version 1 Universally Unique Identifier (UUID
 
 1. Generate a version 1 UUID. For example, you can use [UUID Generator](https://www.uuidgenerator.net/version1) to generate a version 1 UUID. <!-- how to treat 3rd party resources at Zettle? -->
 
-> **Disclaimer:** The UUID Generator is a third-party resource that Zettle has no liability for the availability and intellectual property claims.
-
 2. Copy and save the UUID. It will be used for creating a subscription.
 
 ## Step 2: Test webhooks
@@ -34,8 +32,6 @@ Before creating subscriptions to the HTTPS endpoint on your app, test the events
     * You can use the destination URL that you have set up on your server.
     * If you run a local server, you can make it publicly available using [ngrok](https://ngrok.com/).
     * If you don't run a local server, you can use [Webhook.site](https://webhook.site) that provides an online view of all requests. <!-- how to treat 3rd party resources at Zettle? -->
-
-> **Disclaimer:** The Ngrok and Webhook.site are third-party resources that Zettle has no liability for the availability and intellectual property claims.
 
 2. Follow [Step 3: Create a subscription](#step-3-create-a-subscription) to test the events and check the payloads.
 
