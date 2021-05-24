@@ -43,91 +43,66 @@ The following Finance API endpoint returned wrong `originatorTransactionType`:
 
 |Start time | End time |Total duration
 |:---- |:---- |:----
-|2021-03-30 16:03:11.437237 UTC |2021-03-30 16:59:45.00856  UTC |56 minutes
+|2021-03-30 16:03:11.437237 UTC |2021-03-30 16:59:45.00856  UTC |Approximate 56 minutes
 
 
 <h3>What do you need to do</h3>
 <ol>
     <li><p>Refetch transactions that happened during the <a href="incidentDuration">incident duration</a> for merchants that your integration serves.</p>
-    <p>After refetching, the following values will returned.</p>    
+    <p>After refetching, the following values will returned for <code>originatorTransactionType</code>:</p>
+        <ul>
+            <li><code>PAYMENT</code> will be returned for <code>CARD_PAYMENT</code> and <code>CARD_REFUND</code> transactions.</li>
+            <li><code>PAYMENT_FEE</code> will be returned for <code>CARD_PAYMENT_FEE</code> and <code>CARD_PAYMENT_FEE_REFUND</code> transactions.</li>
+        </ul>
+    <p>The following example shows what will be returned after refetching the transactions for the expected <code>originatorTransactionType</code>.</p>
     <table style="text-align:left">
-        <thead>
-            <tr>
-              <th>Expected <code>originatorTransactionType</code></th>
-              <th>Example of expected response</th>
-              <th>Refetched <code>originatorTransactionType</code></th>
-              <th>Example of refetched response</th>
-            </tr>
-        </thead>
-            <tbody>             
-            <tr>
-               <td>CARD_PAYMENT</td>
-               <td>
-                   <pre>
-                        ...
-                        {
-                                   "timestamp": "2021-03-30T16:03:31.003+0000",
-                                   "amount": 780,
-                                   "originatorTransactionType": "CARD_PAYMENT",
-                                   "originatingTransactionUuid": "ff4f492e-914c-1bbb-bb86-850e353b75b8"
-                        },
-                        ...
-                   </pre>
-               </td>               
-               <td>PAYMENT</td>
-               <td>
-                   <pre>
-                        ...
-                        {
-                                   "timestamp": "2021-03-30T16:03:31.003+0000",
-                                   "amount": 780,
-                                   "originatorTransactionType": "PAYMENT",
-                                   "originatingTransactionUuid": "ff4f492e-914c-1bbb-bb86-850e353b75b8"
-                        },
-                        ...
-                   </pre>
-               </td>
-            </tr>
-            <tr>
-               <td>CARD_PAYMENT_FEE</td>               
-               <td>
-                  <pre>                     
-                        ...
-                        {
-                                   "timestamp": "2021-03-30T16:03:31.003+0000",
-                                   "amount": -10,
-                                   "originatorTransactionType": "CARD_PAYMENT_FEE",
-                                   "originatingTransactionUuid": "ff4f492e-914c-1bbb-bb86-850e353b75b8"
-                        },
-                        ...
-                  </pre>
-               </td>
-               <td>PAYMENT_FEE</td>               
-               <td>
-                  <pre>                     
-                        ...
-                        {
-                                   "timestamp": "2021-03-30T16:03:31.003+0000",
-                                   "amount": -10,
-                                   "originatorTransactionType": "PAYMENT_FEE",
-                                   "originatingTransactionUuid": "ff4f492e-914c-1bbb-bb86-850e353b75b8"
-                        },
-                        ...
-                  </pre>
-               </td>
-            </tr>
-            <tr>
-               <td>CARD_REFUND</td>
-               <td>PAYMENT</td>
-               <td><pre></pre></td>
-            </tr>
-            <tr>
-               <td>CARD_PAYMENT_FEE_REFUND</td>
-               <td>PAYMENT_FEE</td>
-               <td><pre></pre></td>
-            </tr>        
-            </tbody>
-    </table>
+                <thead>
+                    <tr>
+                      <th>Expected <code>originatorTransactionType</code></th>
+                      <th>Returned <code>originatorTransactionType</code></th>
+                    </tr>
+                </thead>
+                    <tbody>             
+                    <tr>
+                       <td>
+                            <pre>
+                             ...
+                                    {
+                                        "timestamp": "2021-03-30T16:03:31.003+0000",
+                                        "amount": -10,
+                                        "originatorTransactionType": "CARD_PAYMENT_FEE",
+                                        "originatingTransactionUuid": "ff4f492e-914c-1bbb-bb86-850e353b75b8"
+                                    },
+                                    {
+                                        "timestamp": "2021-03-30T16:03:31.000+0000",
+                                        "amount": 780,
+                                        "originatorTransactionType": "CARD_PAYMENT",
+                                        "originatingTransactionUuid": "ff4f492e-914c-1bbb-bb86-850e353b75b8"
+                                    },
+                               ...
+                            </pre>  
+                       </td>
+                       <td>
+                            <pre>
+                             ...
+                                    {
+                                        "timestamp": "2021-03-30T16:03:31.003+0000",
+                                        "amount": -10,
+                                        "originatorTransactionType": "PAYMENT_FEE",
+                                        "originatingTransactionUuid": "ff4f492e-914c-1bbb-bb86-850e353b75b8"
+                                    },
+                                    {
+                                        "timestamp": "2021-03-30T16:03:31.003+0000",
+                                        "amount": 780,
+                                        "originatorTransactionType": "PAYMENT",
+                                        "originatingTransactionUuid": "ff4f492e-914c-1bbb-bb86-850e353b75b8"
+                                    },
+                               ...
+                            </pre>  
+                       </td>
+                    </tr>   
+                    </tbody>
+            </table>  
     </li>    
     <li><p>If your integration disregards transactions with <code>originatorTransactionType</code> as <code>PAYMENT</code> and <code>PAYMENT_FEE</code>, handle those transactions and bookkeep the same as you used to do with <code>CARD</code>.</p></li> 
     
