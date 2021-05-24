@@ -34,6 +34,8 @@ Currently, Zettle provides APIs for the following markets:
 
 All API changes are recorded in [Changelog](CHANGELOG.adoc).
 
+All API incidents are recorded in [Incidents](incidents.md).
+
 For common questions about the APIs, see [Frequently Asked Questions](faq.adoc).
 
 ## Credentials
