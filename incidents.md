@@ -49,7 +49,7 @@ The following Finance API endpoint returned wrong `originatorTransactionType`:
 <h3>What do you need to do</h3>
 <ol>
     <li><p>Refetch transactions that happened during the <a href="incidentDuration">incident duration</a> for merchants that your integration serves.</p>
-    <p>After refectching, the following values will returned.</p>    
+    <p>After refetching, the following values will returned.</p>    
     <table style="text-align:left">
         <thead>
             <tr>
