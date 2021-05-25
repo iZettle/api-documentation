@@ -1,110 +1,87 @@
 Zettle API Incidents
 =====================
+If you have questions about any incident, contact our [Integrations team](mailto:api@zettle.com).
+
 # 30 March, 2021
 ## (status: resolved) Finance API returned wrong `originatorTransactionType` 
 The following Finance API endpoint returned wrong `originatorTransactionType`:
 
-`GET /organizations/{organizationUuid}/accounts/{accountTypeGroup}/transactions`.
+```
+GET /organizations/{organizationUuid}/accounts/{accountTypeGroup}/transactions
+```
 
 <details><!-- start tag of the incident section-->
 <summary>Click to see the incident.</summary>
-    <h3>Incident summary</h3>
-        <p>The <code>originatorTransactionType</code> field was returned with wrong values.</p>
-        <p>The following table shows the expected and returned values for the field.<p>
-        <table style="text-align:left">
-            <thead>
-                <tr>
-                  <th>Expected <code>originatorTransactionType</code></th>
-                  <th>Returned <code>originatorTransactionType</code></th>
-                </tr>
-            </thead>
-                <tbody>             
-                <tr>
-                   <td>CARD_PAYMENT</td>
-                   <td>PAYMENT</td>
-                </tr>
-                <tr>
-                   <td>CARD_PAYMENT_FEE</td>
-                   <td>PAYMENT</td>
-                </tr>
-                <tr>
-                   <td>CARD_REFUND</td>
-                   <td>PAYMENT</td>
-                </tr>
-                <tr>
-                   <td>CARD_PAYMENT_FEE_REFUND</td>
-                   <td>PAYMENT</td>
-                </tr>        
-                </tbody>
-        </table>
 
-<h4 name="incidentDuration">Incident duration</h4>
-<p>Transactions made between the following timestamps were affected:</p>
+### Incident summary
+The `originatorTransactionType` field was returned with wrong values. The following table shows the expected and returned values for the field.
 
-|Start time | End time |Total duration
-|:---- |:---- |:----
-|2021-03-30 16:03:11.437237 UTC |2021-03-30 16:59:45.00856  UTC |Approximate 56 minutes
+|Expected value in `originatorTransactionType` field |Expected value in `originatorTransactionType` field
+|:---- |:----
+|CARD_PAYMENT |PAYMENT
+|CARD_PAYMENT_FEE |PAYMENT
+|CARD_REFUND |PAYMENT
+|CARD_PAYMENT_FEE_REFUND |PAYMENT
+
+Transactions made between the following timestamps were affected:
+
+Start time:  2021-03-30 16:03:11.437237 UTC<br>
+End time:  2021-03-30 16:59:45.00856  UTC<br>
+The total duration was approximately 56 minutes.
 
 
-<h3>What do you need to do</h3>
-<ol>
-    <li><p>Refetch transactions that happened during the <a href="incidentDuration">incident duration</a> for merchants that your integration serves.</p>
-    <p>After refetching, the following values will returned for <code>originatorTransactionType</code>:</p>
-        <ul>
-            <li><code>PAYMENT</code> will be returned for <code>CARD_PAYMENT</code> and <code>CARD_REFUND</code> transactions.</li>
-            <li><code>PAYMENT_FEE</code> will be returned for <code>CARD_PAYMENT_FEE</code> and <code>CARD_PAYMENT_FEE_REFUND</code> transactions.</li>
-        </ul>
-    <p>The following example shows what will be returned after refetching the transactions for the expected <code>originatorTransactionType</code>.</p>
-    <table style="text-align:left">
-                <thead>
-                    <tr>
-                      <th>Expected <code>originatorTransactionType</code></th>
-                      <th>Returned <code>originatorTransactionType</code></th>
-                    </tr>
-                </thead>
-                    <tbody>             
-                    <tr>
-                       <td>
-                            <pre>
-                             ...
-                                    {
-                                        "timestamp": "2021-03-30T16:03:31.003+0000",
-                                        "amount": -10,
-                                        "originatorTransactionType": "CARD_PAYMENT_FEE",
-                                        "originatingTransactionUuid": "ff4f492e-914c-1bbb-bb86-850e353b75b8"
-                                    },
-                                    {
-                                        "timestamp": "2021-03-30T16:03:31.000+0000",
-                                        "amount": 780,
-                                        "originatorTransactionType": "CARD_PAYMENT",
-                                        "originatingTransactionUuid": "ff4f492e-914c-1bbb-bb86-850e353b75b8"
-                                    },
-                               ...
-                            </pre>  
-                       </td>
-                       <td>
-                            <pre>
-                             ...
-                                    {
-                                        "timestamp": "2021-03-30T16:03:31.003+0000",
-                                        "amount": -10,
-                                        "originatorTransactionType": "PAYMENT_FEE",
-                                        "originatingTransactionUuid": "ff4f492e-914c-1bbb-bb86-850e353b75b8"
-                                    },
-                                    {
-                                        "timestamp": "2021-03-30T16:03:31.003+0000",
-                                        "amount": 780,
-                                        "originatorTransactionType": "PAYMENT",
-                                        "originatingTransactionUuid": "ff4f492e-914c-1bbb-bb86-850e353b75b8"
-                                    },
-                               ...
-                            </pre>  
-                       </td>
-                    </tr>   
-                    </tbody>
-            </table>  
-    </li>    
-    <li><p>If your integration disregards transactions with <code>originatorTransactionType</code> as <code>PAYMENT</code> and <code>PAYMENT_FEE</code>, handle those transactions and bookkeep the same as you used to do with <code>CARD</code>.</p></li> 
-    
-</ol>
+
+### What do you need to do?
+To fix your data you would need to refetch transactions for merchants your integration serves between the timestamps given above once again.
+
+If your integration disregards transactions with originatorTransactionType` `PAYMENT` and `PAYMENT_FEE` you would need to handle those transactions and bookkeep as you used to do with CARD.
+
+See example below to understand better:
+
+```
+GET/organizations/self/accounts/liquid/transactions?start=2021-03-30T16:03:10&end=2021-03-30T16:59:46
+```
+
+__Expected response:__
+
+```
+    ...
+            {
+                "timestamp": "2021-03-30T16:03:31.003+0000",
+                "amount": -10,
+                "originatorTransactionType": "CARD_PAYMENT_FEE",
+                "originatingTransactionUuid": "ff4f492e-914c-1bbb-bb86-850e353b75b8"
+            },
+            {
+                "timestamp": "2021-03-30T16:03:31.000+0000",
+                "amount": 780,
+                "originatorTransactionType": "CARD_PAYMENT",
+                "originatingTransactionUuid": "ff4f492e-914c-1bbb-bb86-850e353b75b8"
+            }
+    ...
+
+```
+
+__Actual response during the time of incident after a partial fix when refetching:__
+ 
+
+```
+    ...
+            {
+                "timestamp": "2021-03-30T16:03:31.003+0000",
+                "amount": -10,
+                "originatorTransactionType": "PAYMENT_FEE",
+                "originatingTransactionUuid": "ff4f492e-914c-1bbb-bb86-850e353b75b8"
+            },
+            {
+                "timestamp": "2021-03-30T16:03:31.000+0000",
+                "amount": 780,
+                "originatorTransactionType": "PAYMENT",
+                "originatingTransactionUuid": "ff4f492e-914c-1bbb-bb86-850e353b75b8"
+            }
+    ...
+
+```
+
+
 </details>
