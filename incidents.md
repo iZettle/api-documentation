@@ -14,7 +14,7 @@ GET /organizations/{organizationUuid}/accounts/{accountTypeGroup}/transactions
 <summary>Click to see the incident.</summary>
 
 ### Incident summary
-The `originatorTransactionType` field was returned with wrong values. The following table shows the expected and returned values for the field.
+There was a problem with the `originatorTransactionType` field in the response for transactions made with cards. Following is a table which enlists the expected and actual values for the field:
 
 |Expected value in `originatorTransactionType` field |Expected value in `originatorTransactionType` field
 |:---- |:----
