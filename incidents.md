@@ -16,7 +16,7 @@ GET /organizations/{organizationUuid}/accounts/{accountTypeGroup}/transactions
 ### Incident summary
 There was a problem with the `originatorTransactionType` field in the response for transactions made with cards. Following is a table which enlists the expected and actual values for the field:
 
-|Expected value in `originatorTransactionType` field |Expected value in `originatorTransactionType` field
+|Expected value in `originatorTransactionType` field |Actual value in `originatorTransactionType` field
 |:---- |:----
 |CARD_PAYMENT |PAYMENT
 |CARD_PAYMENT_FEE |PAYMENT
