@@ -34,7 +34,7 @@ The total duration was approximately 56 minutes.
 ### What do you need to do?
 To fix your data you would need to refetch transactions for merchants your integration serves between the timestamps given above once again.
 
-If your integration disregards transactions with originatorTransactionType` `PAYMENT` and `PAYMENT_FEE` you would need to handle those transactions and bookkeep as you used to do with CARD.
+If your integration disregards transactions with `originatorTransactionType` `PAYMENT` and `PAYMENT_FEE` you would need to handle those transactions and bookkeep as you used to do with CARD.
 
 See example below to understand better:
 
