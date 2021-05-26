@@ -1,22 +1,26 @@
-Zettle API Incidents
+Incidents
 =====================
 If you have questions about any incident, contact our [Integrations team](mailto:api@zettle.com).
 
-# 30 March, 2021
-## (status: resolved) Finance API returned wrong `originatorTransactionType` 
-The following Finance API endpoint returned wrong `originatorTransactionType`:
+## March 2021
+### Finance API returned wrong transaction type for transactions made with cards.
+
+Mar 30, 16:03 - 16:59 UTC<br>
+This incident has been resolved. __Action needed to fix data.__<br>
+We apologize for the inconvenience.
+<details><!-- start tag of the incident section-->
+<summary>Click for details</summary>
+
+### Incident summary
+There was a problem with the `originatorTransactionType` field in the response for transactions made with cards for the following endpoint:
 
 ```
 GET /organizations/{organizationUuid}/accounts/{accountTypeGroup}/transactions
 ```
 
-<details><!-- start tag of the incident section-->
-<summary>Click to see the incident.</summary>
+Table below enlists the expected and actual values for the field:
 
-### Incident summary
-There was a problem with the `originatorTransactionType` field in the response for transactions made with cards. Following is a table which enlists the expected and actual values for the field:
-
-|Expected value in `originatorTransactionType` field |Actual value in `originatorTransactionType` field
+|Expected value in `originatorTransactionType` |Actual value in `originatorTransactionType` during the incident
 |:---- |:----
 |CARD_PAYMENT |PAYMENT
 |CARD_PAYMENT_FEE |PAYMENT
@@ -29,12 +33,10 @@ Start time:  2021-03-30 16:03:11.437237 UTC<br>
 End time:  2021-03-30 16:59:45.00856  UTC<br>
 The total duration was approximately 56 minutes.
 
+### What do you need to do as a consumer?
+To fix your data you would need to refetch transactions for merchants your integration serves between the timestamps given above.
 
-
-### What do you need to do?
-To fix your data you would need to refetch transactions for merchants your integration serves between the timestamps given above once again.
-
-If your integration disregards transactions with `originatorTransactionType` `PAYMENT` and `PAYMENT_FEE` you would need to handle those transactions and bookkeep as you used to do with CARD.
+If your integration disregards transactions with `originatorTransactionType` `PAYMENT` and `PAYMENT_FEE` you would need to handle those transactions as you used to do with card related types.
 
 See example below to understand better:
 
@@ -45,20 +47,34 @@ GET/organizations/self/accounts/liquid/transactions?start=2021-03-30T16:03:10&en
 __Expected response:__
 
 ```
-    ...
-            {
-                "timestamp": "2021-03-30T16:03:31.003+0000",
-                "amount": -10,
-                "originatorTransactionType": "CARD_PAYMENT_FEE",
-                "originatingTransactionUuid": "ff4f492e-914c-1bbb-bb86-850e353b75b8"
-            },
-            {
-                "timestamp": "2021-03-30T16:03:31.000+0000",
-                "amount": 780,
-                "originatorTransactionType": "CARD_PAYMENT",
-                "originatingTransactionUuid": "ff4f492e-914c-1bbb-bb86-850e353b75b8"
-            }
-    ...
+{
+  "data": [
+    {
+      "timestamp": "2021-04-23T00:08:40.171+0000",
+      "amount": 5533,
+      "originatorTransactionType": "CARD_PAYMENT_FEE_REFUND",
+      "originatingTransactionUuid": "63a5073a-a386-11eb-9017-db0e39c91814"
+    },
+    {
+      "timestamp": "2021-04-23T00:08:40.168+0000",
+      "amount": -201200,
+      "originatorTransactionType": "CARD_REFUND",
+      "originatingTransactionUuid": "63a5073a-a386-11eb-9017-db0e39c91814"
+    },
+    {
+      "timestamp": "2021-04-23T00:08:40.165+0000",
+      "amount": -110,
+      "originatorTransactionType": "CARD_PAYMENT_FEE",
+      "originatingTransactionUuid": "40a35d88-a387-11eb-850d-127e2d49c7a5"
+    },
+    {
+      "timestamp": "2021-04-23T00:08:40.163+0000",
+      "amount": 3990,
+      "originatorTransactionType": "CARD_PAYMENT",
+      "originatingTransactionUuid": "40a35d88-a387-11eb-850d-127e2d49c7a5"
+    }
+  ]
+}
 
 ```
 
@@ -66,20 +82,34 @@ __Actual response during the time of incident after a partial fix when refetchin
  
 
 ```
-    ...
-            {
-                "timestamp": "2021-03-30T16:03:31.003+0000",
-                "amount": -10,
-                "originatorTransactionType": "PAYMENT_FEE",
-                "originatingTransactionUuid": "ff4f492e-914c-1bbb-bb86-850e353b75b8"
-            },
-            {
-                "timestamp": "2021-03-30T16:03:31.000+0000",
-                "amount": 780,
-                "originatorTransactionType": "PAYMENT",
-                "originatingTransactionUuid": "ff4f492e-914c-1bbb-bb86-850e353b75b8"
-            }
-    ...
+{
+  "data": [
+    {
+      "timestamp": "2021-04-23T00:08:40.171+0000",
+      "amount": 5533,
+      "originatorTransactionType": "PAYMENT_FEE",
+      "originatingTransactionUuid": "63a5073a-a386-11eb-9017-db0e39c91814"
+    },
+    {
+      "timestamp": "2021-04-23T00:08:40.168+0000",
+      "amount": -201200,
+      "originatorTransactionType": "PAYMENT",
+      "originatingTransactionUuid": "63a5073a-a386-11eb-9017-db0e39c91814"
+    },
+    {
+      "timestamp": "2021-04-23T00:08:40.165+0000",
+      "amount": -110,
+      "originatorTransactionType": "PAYMENT_FEE",
+      "originatingTransactionUuid": "40a35d88-a387-11eb-850d-127e2d49c7a5"
+    },
+    {
+      "timestamp": "2021-04-23T00:08:40.163+0000",
+      "amount": 3990,
+      "originatorTransactionType": "PAYMENT",
+      "originatingTransactionUuid": "40a35d88-a387-11eb-850d-127e2d49c7a5"
+    }
+  ]
+}
 
 ```
 
