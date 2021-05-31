@@ -88,7 +88,7 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 
 ### Parameters
 
-<details>
+<details open="true">
 <summary>Parameters</summary>
 
 |Name |Type |In |Required/Optional |Description
@@ -103,8 +103,8 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 </details>
 
 #### Supported transaction types
-<details>
-<summary>Valid transaction types</summary>
+<details open="true">
+<summary>Supported transaction types</summary>
 
 |Name |Type
 |:---- |:----
@@ -145,7 +145,7 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 |400 Bad Request |Returned when a required parameter is missing or in a wrong format in the request .  
 </details>
 
-<details>
+<details open="true">
 <summary>Response attributes</summary>
 
 |Name |Type |Description
@@ -169,7 +169,7 @@ See example [Fetch information about payout during a specific period](#fetch-inf
 
 ### Parameters
 
-<details>
+<details open="true">
 <summary>Parameters</summary>
 
 |Name |Type |In |Required/Optional |Description
@@ -180,7 +180,7 @@ See example [Fetch information about payout during a specific period](#fetch-inf
 
 
 ### Responses
-<details>
+<details open="true">
 <summary>HTTP status codes</summary>
 
 |Status code |Description
@@ -190,7 +190,7 @@ See example [Fetch information about payout during a specific period](#fetch-inf
 |400 Bad Request |Returned when a required parameter is missing or in a wrong format in the request .  
 </details>
 
-<details>
+<details open="true">
 <summary>Response attributes</summary>
 
 |Name |Type |Description
