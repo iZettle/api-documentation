@@ -74,7 +74,7 @@ See example [Fetch balance for a liquid account](#fetch-balance-for-a-liquid-acc
 |Name |Type |Description
 |:---- |:---- |:----
 |data |object|Information about the account balance at a point in time. It's represented by `totalBalance` and `currencyId`.
-|totalBalance |integer |The account balance. For example, `300`
+|totalBalance |integer |The account balance. It can be negative. For example, `-300`
 |currencyId |string |The currency of the account balance. For example, `SEK`.
 </details>
 
@@ -144,7 +144,7 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 |:---- |:----
 |200 OK |Returned when the account transactions are successfully fetched.  
 |403 Forbidden |Returned when you are not authorised to fetch the account transactions.
-|400 Bad Request |Returned when a required parameter is missing or in a wrong format in the request .  
+|400 Bad Request |Returned when a required parameter is missing or in a wrong format in the request.  
 </details>
 <!-- what about 500 Internal Server Error? -->
 
@@ -157,7 +157,7 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 |timestamp |string |Time when a transaction happened. 
 |amount |integer |The amount of money of a transaction. If the transaction is a refund, the amount is negative.
 |originatorTransactionType |string |The transaction type.
-|originatingTransactionUuid |string |The transaction identifier as UUID. -->  
+|originatingTransactionUuid |string |The transaction identifier as UUID.  
 </details>
 
 
@@ -177,7 +177,7 @@ See example [Fetch information about payout during a specific period](#fetch-inf
 
 |Name |Type |In |Required/Optional |Description
 |:---- |:---- |:---- |:---- |:----
-|organizationUuid |string |path |required |Unique identifier for your organization. You can use the following options to fill in this value: <br/><ul><li> Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li></ul> 
+|organizationUuid |string |path |required |Unique identifier for your organization. You can specify the value with one of the following: <br/><ul><li> Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li></ul> 
 |at |string |query |optional |Used to fetch account balance at a time point in history. If it's used, any transaction after that point will be ignored. You can specify the time in one of the following formats: <br/><ul><li>`YYYY` to specify a year. When a year is specified, the account balance at the first date of that year will be fetched. For example, `2020` indicates that the account balance at `2020-01-01` will be fetched.</li><li>`YYYY-MM-DD` to specify a date. For example, `2020-11-29`.</li><li>`YYYY-MM-DDThh:mm:ss` to specify a time. For example, `2020-11-29T03:10:02`.</li></ul>
 </details>
 
@@ -190,7 +190,7 @@ See example [Fetch information about payout during a specific period](#fetch-inf
 |:---- |:----
 |200 OK |Returned when the payout information is successfully fetched.  
 |403 Forbidden |Returned when you are not authorised to fetch the payout information for the account.
-|400 Bad Request |Returned when a required parameter is missing or in a wrong format in the request .  
+|400 Bad Request |Returned when a required parameter is missing or in a wrong format in the request.  
 </details>
 
 <details open="true">
@@ -199,7 +199,7 @@ See example [Fetch information about payout during a specific period](#fetch-inf
 |Name |Type |Description
 |:---- |:---- |:----
 |data |object|Information about the account payout 
-|totalBalance |integer |The account balance. For example, `300`<!-- Can it be negative? -->
+|totalBalance |integer |The account balance. It can be negative. For example, `-300`.
 |currencyId |string |The currency of the account balance. For example, `SEK`. 
 |nextPayoutAmount |integer |The amount of money that is in the `liquid` status and is ready to be paid out to the merchant.  
 |discountRemaining |integer |The amount of discounts that remains in merchant's vouchers.  
@@ -210,7 +210,7 @@ See example [Fetch information about payout during a specific period](#fetch-inf
 ## Examples
 
 ### Fetch balance for a liquid account
-The following example fetches balance from the liquid account of the merchant with `organizationUuid` as `18071066-bfc7-11eb-8529-0242ac130003`.
+The following example fetches balance from Zettle liquid account of the merchant with `organizationUuid` as `18071066-bfc7-11eb-8529-0242ac130003`.
 
 Request
 ```
@@ -227,7 +227,7 @@ Response
 ```
 
 ### Fetch transactions for a liquid account
-The following example fetches all transactions from the liquid account of the merchant with `organizationUuid` as `18071066-bfc7-11eb-8529-0242ac130003`.
+The following example fetches all transactions from Zettle liquid account of the merchant with `organizationUuid` as `18071066-bfc7-11eb-8529-0242ac130003`.
 
 Request
 ```
