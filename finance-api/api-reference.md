@@ -24,7 +24,6 @@ For information on how Zettle handles transactions, see [how card payment works]
 * [Related resources](#related-resources)
 * [Related API reference](#related-api-reference)
   
-
 ### Base URL
 https://finance.zettle.com
 
@@ -33,8 +32,10 @@ https://finance.zettle.com
 <!-- For more information on how to get authorisaition for the scope, see See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) -->
 
 ## Fetch account balance
-Returns accumulated balance at a specific point in time.
-After a deposit has been made from LIQUID account to merchant’s bank account (daily, monthly or weekly), the balance is usually zero. If not, it will return the amount that is still due in merchant’s Zettle account.
+Returns the balance in a merchant's Zettle account at a specific point in time.
+
+If the balance is zero, it means that the money is paid out from Zettle to the mechant's bank account.
+<!-- Returns accumulated balance at a specific point in time. After a deposit has been made from LIQUID account to merchant’s bank account (daily, monthly or weekly), the balance is usually zero. If not, it will return the amount that is still due in merchant’s Zettle account. -->
 
 ```
 GET /organizations/{organizationUuid}/accounts/{accountTypeGroup}/balance
@@ -49,10 +50,11 @@ See example [Fetch balance for a liquid account](#fetch-balance-for-a-liquid-acc
 
 |Name |Type |In |Required/Optional |Description
 |:---- |:---- |:---- |:---- |:----
-|organizationUuid |string |path |required |Unique identifier for your organization. You can use the following options to fill in this value: <br/><ul><li> Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li></ul> 
+|organizationUuid |string |path |required |Unique identifier for your organization. You can specify the value with one of the following: <br/><ul><li> Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li></ul> 
 |accountTypeGroup |string |path |required |The account type from which the data like transactions is retrieved. You can use one of the following account types: <br/><ul><li> `PRELIMINARY` account where transactions are to be confirmed by third-party acquirers.</li><li> `LIQUID` account where transactions are to be paid out to the merchant.</li></ul>
-|at |string |query |optional |Used to fetch account balance at a time point in history. If it's used, any transaction after that point will be ignored. You can specify the time in one of the following formats: <br/><ul><li>`YYYY` to specify a year. When a year is specified, the account balance at the first date of that year will be fetched. For example, `2020` indicates that the account balance at `2020-01-01` will be fetched.</li><li>`YYYY-MM-DD` to specify a date. For example, `2020-11-29`.</li><li>`YYYY-MM-DDThh:mm:ss` to specify a time. For example, `2020-11-29T03:10:02`.</li></ul>
+|at |string |query |optional |Used to fetch account balance at a point in time. If it's used, any transaction after that point will be ignored. If it's not used, the balance of all transactions at the current point of time is returned. <br/>You can specify the time in one of the following formats: <br/><ul><li>`YYYY` to specify a year. When a year is specified, the account balance at the first date of that year will be fetched. For example, `2020` indicates that the account balance at `2020-01-01` will be fetched.</li><li>`YYYY-MM-DD` to specify a date. For example, `2020-11-29`.</li><li>`YYYY-MM-DDThh:mm:ss` to specify a time. For example, `2020-11-29T03:10:02`.</li></ul>
 </details>
+<!-- Please pay extra attention on the at description -->
 
 
 ### Responses
@@ -71,14 +73,14 @@ See example [Fetch balance for a liquid account](#fetch-balance-for-a-liquid-acc
 
 |Name |Type |Description
 |:---- |:---- |:----
-|data |object|Information about the account balance at a time point in history. It's represented by `totalBalance` and `currencyId`.
-|totalBalance |integer |The account balance. For example, `300`<!-- Can it be negative? -->
+|data |object|Information about the account balance at a point in time. It's represented by `totalBalance` and `currencyId`.
+|totalBalance |integer |The account balance. For example, `300`
 |currencyId |string |The currency of the account balance. For example, `SEK`.
 </details>
 
 
 ## Fetch account transactions
-Returns a list of transactions for given account and period.
+Returns a list of transactions for a merchant's Zettle account during a specific period.
 
 ```
 GET /organizations/{organizationUuid}/accounts/{accountTypeGroup}/transactions?{start}&{end}
@@ -93,43 +95,43 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 
 |Name |Type |In |Required/Optional |Description
 |:---- |:---- |:---- |:---- |:----
-|organizationUuid |string |path |required |Unique identifier for your organization. You can use the following options to fill in this value: <br/><ul><li> Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li></ul> 
+|organizationUuid |string |path |required |Unique identifier for your organization. You can specify the value with one of the following: <br/><ul><li> Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li></ul> 
 |accountTypeGroup |string |path |required |The account type from which the data like transactions is retrieved. You can use one of the following account types: <br/><ul><li> `PRELIMINARY` account where transactions are to be confirmed by third-party acquirers.</li><li> `LIQUID` account where transactions are to be paid out to the merchant.</li></ul>
-|start |string |query |required |A start point in time from when the transactions will be fetched inclusively. You can specify the time in one of the following formats: <br/><ul><li>`YYYY` to specify a year. When a year is specified, the account balance at the first date of that year will be fetched. For example, `2020` indicates that the account balance at `2020-01-01` will be fetched.</li><li>`YYYY-MM-DD` to specify a date. For example, `2020-11-29`.</li><li>`YYYY-MM-DDThh:mm:ss` to specify a time. For example, `2020-11-29T03:10:02`.</li></ul>
-|end |string |query |required |An end point in time before when the transactions will be fetched. You can specify the time in one of the following formats: <br/><ul><li>`YYYY` to specify a year. When a year is specified, the account balance at the first date of that year will be fetched. For example, `2020` indicates that the account balance at `2020-01-01` will be fetched.</li><li>`YYYY-MM-DD` to specify a date. For example, `2020-11-29`.</li><li>`YYYY-MM-DDThh:mm:ss` to specify a time. For example, `2020-11-29T03:10:02`.</li></ul>
-|includeTransactionType |string |query |optional |Which transaction types to fetch. <br>You can include more than one [supported transaction types](#supported-transaction-types) in a request. 
-|limit |integer |query |optional |How many transactions to return in total in a response. <!-- is there a value range -->
-|offset |integer |query |optional |How many transactions to return per page in a response. <!-- is there a value range -->
+|start |string |query |required |A start point in time (inclusive) from when the transactions will be fetched. You can specify the time in one of the following formats: <br/><ul><li>`YYYY` to specify a year. When a year is specified, the account balance at the first date of that year will be fetched. For example, `2020` indicates that the account balance at `2020-01-01` will be fetched.</li><li>`YYYY-MM-DD` to specify a date. For example, `2020-11-29`.</li><li>`YYYY-MM-DDThh:mm:ss` to specify a time. For example, `2020-11-29T03:10:02`.</li></ul>
+|end |string |query |required |An end point in time (exclusive) before when the transactions will be fetched. You can specify the time in one of the following formats: <br/><ul><li>`YYYY` to specify a year. When a year is specified, the account balance at the first date of that year will be fetched. For example, `2020` indicates that the account balance at `2020-01-01` will be fetched.</li><li>`YYYY-MM-DD` to specify a date. For example, `2020-11-29`.</li><li>`YYYY-MM-DDThh:mm:ss` to specify a time. For example, `2020-11-29T03:10:02`.</li></ul>
+|includeTransactionType |string |query |optional |Which transaction types to fetch. <br>You can include more than one [supported transaction types](#supported-transaction-types) in a request. <br/>If you want to use `includeTransactionType`, don't use `limit` and `offset`. Because `limit` and `offset` will be ignored when `includeTransactionType` is used.  
+|limit |integer |query |optional |How many transactions to return in total in a response. You can specify `limit` with any integer greater than 0. <br/>If you want to use `limit` and `offset`, don't use `includeTransactionType`. Because `limit` and `offset` will be ignored when `includeTransactionType` is used. 
+|offset |integer |query |optional |How many transactions to return per page in a response. You can specify `offset` with any integer greater than 0. <br/>If you want to use `limit` and `offset`, don't use `includeTransactionType`. Because `limit` and `offset` will be ignored when `includeTransactionType` is used. 
 </details>
 
 #### Supported transaction types
 <details open="true">
 <summary>Supported transaction types</summary>
 
-|Name |Type
+|Type |Description
 |:---- |:----
-|ADJUSTMENT |References a bookkeeping adjustment.
-|ADVANCE |References the cash advance given by Zettle to a merchant. A cash advance is a type of financing that is offered to merchants based on their sales history. The advance is paid back with monthly down payments.
+|ADJUSTMENT |A bookkeeping adjustment.
+|ADVANCE |The cash advance given by Zettle to a merchant. A cash advance is a type of financing that is offered to merchants based on their sales history. The advance is paid back with monthly down payments.
 |ADVANCE_DOWNPAYMENT |A down payment on a previously paid out cash advance.
-|ADVANCE_FEE_DOWNPAYMENT |References the netting of a cash advance fee.
+|ADVANCE_FEE_DOWNPAYMENT |The netting of a cash advance fee.
 |BANK_ACCOUNT_VERIFICATION (Deprecated) |N/A
-|CARD_PAYMENT |References a card payment. Contains a reference to the card payment in the Purchase API.
-|CARD_PAYMENT_FEE |References the commission part of a card payment.
-|CARD_PAYMENT_FEE_REFUND |References the commission part of a refund.
-|CARD_REFUND |References a card refund. Will be accompanied by CARD_PAYMENT_FEE_REFUND that will void the card fee. Contains a reference to the card payment refund in the Purchase API.
+|CARD_PAYMENT |A card payment. Contains a reference to the card payment in the Purchase API.
+|CARD_PAYMENT_FEE |The commission part of a card payment.
+|CARD_PAYMENT_FEE_REFUND |The commission part of a refund.
+|CARD_REFUND |A card refund. <!-- Is it not obvious? -- Accompanied by CARD_PAYMENT_FEE_REFUND. --> Contains a reference to the card payment refund in the Purchase API.
 |CASHBACK |Money given to a merchant to retroactively adjust the card payment fee rate.
 |CASHBACK_PAYOUT (Deprecated) |N/A
 |EMONEY_TRANSFER (Deprecated) |N/A
-|FAILED_PAYOUT |A previous PAYOUT transaction has failed and is voided by this transaction (money going back to the merchant’s liquid account at Zettle).
-|FEE_DISCOUNT_REVOCATION |An internal reclaim of outstanding fee discount money if the customer has not consumed the discount within a certain time frame. As these funds are reclaimed from a special fee discount account, the transaction will not be visible on the liquid account.
-|FROZEN_FUNDS |In the event of a chargeback initiated by the issuing bank, funds will be removed from the merchant liquid account and marked as frozen, to cover the chargeback. If the chargeback is later revoked, the money will be returned to the merchants liquid account with a new, positive, transaction of the same type, effectively voiding the initial FROZEN_FUNDS transaction..
-|INVOICE_PAYMENT |References an invoice payment.
-|INVOICE_PAYMENT_FEE |References an invoice payment fee.
-|PAYMENT |References an alternative, third-party, payment method where Zettle handles the funds e.g. PayPal QR code, Klarna QR code.
-|PAYMENT_FEE |References the fee for a third-party payment method e.g PayPal QR code, Klarna QR code.
+|FAILED_PAYOUT |A previous payout transaction has failed and been made void. The payout money is returned to the Zettle liquid account of the merchant.
+|FEE_DISCOUNT_REVOCATION |An internal reclaim of an outstanding fee discount that is not consumed within a certain time frame. As these funds are reclaimed from a special fee discount account, the transaction will not be visible in the Zettle liquid account of the merchant.
+|FROZEN_FUNDS |The money that is frozen to cover a chargeback. When the issuing back initiates a chargeback, the money will be removed from the merchant's liquid account and marked as frozen to cover the chargeback. If the chargeback is later revoked, the money will be returned to the merchants liquid account with a new and positive transaction of the same type. It effectively makes the initial FROZEN_FUNDS transaction void.
+|INVOICE_PAYMENT |An invoice payment.
+|INVOICE_PAYMENT_FEE |An invoice payment fee.
+|PAYMENT |An alternative third-party payment method where Zettle handles the funds. For example, PayPal QR code and Klarna QR code.
+|PAYMENT_FEE |The fee for a third-party payment method. For example,PayPal QR code and Klarna QR code.
 |PAYOUT |A payout to the merchant’s bank account.
 |TELL_FRIEND (Deprecated) |N/A
-|VOUCHER_ACTIVATION |Used when activating a voucher (money is inserted to the merchant’s fee discount account). These transactions will never appear in the LIQUID account.
+|VOUCHER_ACTIVATION |Used when activating a voucher (money is inserted to the merchant’s fee discount account). These transactions will never appear in the merchant's liquid account. <!-- why -->
  
 </details>
 
@@ -144,6 +146,7 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 |403 Forbidden |Returned when you are not authorised to fetch the account transactions.
 |400 Bad Request |Returned when a required parameter is missing or in a wrong format in the request .  
 </details>
+<!-- what about 500 Internal Server Error? -->
 
 <details open="true">
 <summary>Response attributes</summary>
@@ -199,8 +202,8 @@ See example [Fetch information about payout during a specific period](#fetch-inf
 |totalBalance |integer |The account balance. For example, `300`<!-- Can it be negative? -->
 |currencyId |string |The currency of the account balance. For example, `SEK`. 
 |nextPayoutAmount |integer |The amount of money that is in the `liquid` status and is ready to be paid out to the merchant.  
-|discountRemaining |integer |<_attribute description_>  
-|periodicity |string |The interval between each payout. It can be `DAILY`, `WEEKLY`, and `MONTHLY`. <!-- Is it correct? And in which API is the periodicity set? -->  
+|discountRemaining |integer |The amount of discounts that remains in merchant's vouchers.  
+|periodicity |string |The interval between each payout. It can be `DAILY`, `WEEKLY`, and `MONTHLY`.   
 </details>
 
 
