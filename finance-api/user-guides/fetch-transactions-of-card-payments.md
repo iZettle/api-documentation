@@ -65,7 +65,7 @@ Find the transaction UUID for card transactions for which you will fetch purchas
 3. In the response, find and save the value of `originatingTransactionUuid` for transactions for which you want to fetch purchase information. This is the key used to sign all requests and should be stored so that you can validate the request.
 
 ## Step 2: Fetch purchase information for card transactions
-You can subscribe to one or more events in one subscription request.
+Using `originatingTransactionUuid` of a card transaction, you can fetch purchase information for the transaction.
 
 1. Fetch purchase information for the card transactions. In the request body, `purchaseUuid` is the value of `originatingTransactionUuid` that you saved in [Step 1: Find the transaction UUID of a card payment](#step-1-find-the-transaction-uuid-of-a-card-payment).
     
