@@ -3,8 +3,6 @@ Finance API reference
 ## About Finance API
 The Finance API fetches information about transactions that are made through Zettle. For example, card payments made with a Zettle card reader.
 
-For information on how Zettle handles transactions, see [how card payment works](#how_card_payment_works.md).  
-
 * [About Finance API](#about-finance-api)
   * [Base URL](#base-url)
   * [OAuth scope](#oauth-scope)
@@ -105,6 +103,7 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 </details>
 
 #### Supported transaction types
+> **Note:** Deprecated transaction types are no longer in use, but may appear in historic data.
 <details open="true">
 <summary>Supported transaction types</summary>
 
@@ -282,7 +281,7 @@ Response
 ## Related resources
 <!-- One or more tasks that will be done after this one. -->
 <!-- Add more use scenarios if needed. -->
-[How card payment works](how_card_payment_works.md)
+[how card payments work at Zettle](overview.md/#understand-how-card-payments-work-at-Zettle)
 
 ## Related API reference
 <!-- Other APIs that may be related in use scenarios. -->
