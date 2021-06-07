@@ -16,34 +16,34 @@ Using the Finance API and the Purchase API, you can fetch purchase information f
 Find the transaction UUID for card transactions for which you will fetch purchase information.  
 
 1. Optional: Fetch your organisation UUID. 
-> **Tip:** You don't need to fetch the organisation UUID, as you can specify the organisation UUID as `self` in requests that require it.
+   > **Tip:** You don't need to fetch the organisation UUID, as you can specify the organisation UUID as `self` in requests that require it.
 
-   ```
-   GET users/me
-   ```
+    ```
+    GET users/me
+    ```
    Example:
        
    The following example returns organisation UUID `ab305d54-75b4-431b-adb2-eb6b9e546013`.
 
-   ```
-   {
+    ```
+    {
         "uuid": "de305d54-75b4-431b-adb2-eb6b9e546014",
         "organizationUuid": "ab305d54-75b4-431b-adb2-eb6b9e546013"
-   }
-   ```
+    }
+    ```
        
 2. Fetch the account card transactions.
-> **Tip:** You specify the organisation UUID as `self`.
+   > **Tip:** You specify the organisation UUID as `self`.
 
-   ```
-   GET /organizations/{organizationUuid}/accounts/{accountTypeGroup}/transactions?{start}&{end}&includeTransactionType=CARD_PAYMENT
-   ```
+    ```
+    GET /organizations/{organizationUuid}/accounts/{accountTypeGroup}/transactions?{start}&{end}&includeTransactionType=CARD_PAYMENT
+    ```
    Example:
        
    The following example returns `originatingTransactionUuid` as `336a4946-4528-11eb-8078-fdfb2cfbeb76`.
 
-   ```json
-   {
+    ```json
+    {
        "data": [
            {
                "timestamp": "2020-12-23T14:15:23.335+0000",
@@ -59,7 +59,8 @@ Find the transaction UUID for card transactions for which you will fetch purchas
            },
            ...
        ]
-   ```
+   }
+    ```
 
 3. In the response, find and save the value of `originatingTransactionUuid` for transactions for which you want to fetch purchase information. This is the key used to sign all requests and should be stored so that you can validate the request.
 
