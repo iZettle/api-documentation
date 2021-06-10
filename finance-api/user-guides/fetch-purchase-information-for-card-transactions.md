@@ -55,7 +55,7 @@ Find the transaction UUID for card transactions for which you will fetch purchas
                        "timestamp": "2021-04-06T22:37:37.621+0000",
                        "amount": 100,
                        "originatorTransactionType": "CARD_PAYMENT",
-                       "originatingTransactionUuid": "d8254410-4f3f-11eb-a57f-1aef6b55e380"
+                       "originatingTransactionUuid": "aefbced2-9728-11eb-aa46-1cae508bb7b5"
                    },
                    {
                        "timestamp": "2021-04-06T10:30:12.293+0000",
@@ -90,7 +90,7 @@ Using the value of `originatingTransactionUuid` and `timestamp` of card transact
 
 2. In the response, search for the value of `originatingTransactionUuid` of the transactions that you saved in [Step 1: Find the card transaction UUID](#step-1-find-the-card-transaction-uuid).
 
-    In the following example response that returns purchase information from 6 April, 2021 to 7 April, 2021, search for `originatingTransactionUuid` as `aefbced2-9728-11eb-aa46-1cae508bb7b5`.
+    In the following example response that returns purchase information from 6 April, 2021 to 7 April, 2021, search for `aefbced2-9728-11eb-aa46-1cae508bb7b5` that is the value of `originatingTransactionUuid`.
     
     ```json
     {
@@ -99,17 +99,7 @@ Using the value of `originatingTransactionUuid` and `timestamp` of card transact
             {
                 "source": "POS",
                 "purchaseUUID": "XTmwwJcoEeuQQ9Xdh4qONQ",
-                "amount": 100,
-                "vatAmount": 0,
-                "taxAmount": 0,
-                "country": "GB",
-                "currency": "GBP",
-                "timestamp": "2021-04-06T22:37:38.042+0000",
-                "purchaseNumber": 12748,
-                "globalPurchaseNumber": 12748,
-                "userDisplayName": "John Smith",
-                "userId": 835601,
-                "organizationId": 6114307,
+                ...
                 "products": [
                     {
                         "quantity": "1",
@@ -142,9 +132,7 @@ Using the value of `originatingTransactionUuid` and `timestamp` of card transact
                         "amount": 100,
                         "type": "IZETTLE_CARD_ONLINE",
                         "attributes": {
-                            "cardType": "VISA",
-                            "maskedPan": "474174******3331",
-                            "cardPaymentEntryMode": "ECOMMERCE",
+                            ...
                             "referenceNumber": "3CBIZN4SVF",
                             "paymentlinkOrderUuid": "5d39b0c0-9728-11eb-9043-d5dd878a8e35"
                         }

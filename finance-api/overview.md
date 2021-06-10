@@ -7,6 +7,13 @@ For every merchant who makes transactions with Zettle, they have an Zettle accou
 
 For information on how Zettle handles card transactions, see [how card payments work at Zettle](concepts/how-card-payments-work-at-Zettle.md).  
 
-# Fetch transactions
+# Understand the Finance API
+See [Finance API reference](api-reference.md).
 
-* [Fetch purchase information for card transactions](user-guides/fetch-transactions-of-card-payments.md)
+# Fetch transactions
+You can fetch the following information about transactions:
+
+* [Fetch account balance](user-guides/fetch-account-balance)
+* [Fetch account transactions](user-guides/fetch-account-transactions)
+* [Fetch payout information](user-guides/fetch-payout-info.md)
+* [Fetch purchase information for card transactions](user-guides/fetch-purchase-information-for-card-transactions.md) 
