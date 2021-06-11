@@ -103,7 +103,7 @@ To fetch transactions of certain types from a merchant's Zettle account during a
 
 For example, you can fetch all card transactions.
 
-1. Fetch transactions of certain types from the merchant's Zettle liquid account. In the request path, specify transaction types as you need. See [supported transction types](../api-reference.md#supported-transaction-types).
+1. Fetch transactions of certain types from the merchant's Zettle liquid account. In the request path, specify transaction types as you need. See [supported transaction types](../api-reference.md#supported-transaction-types).
    > **Tip:** You specify the organisation UUID as `self`.
         
    ```
@@ -115,7 +115,7 @@ For example, you can fetch all card transactions.
    The following example request fetches all card payments and the associated card payment fees from the merchant's Zettle liquid account from 1 January, 2020 to 7 June, 2021.
    
    ```
-   GET /organizations/self/accounts/liquid/transactions?start=2021-01-01&end=2021-06-07includeTransactionType=CARD_PAYMENT&includeTransactionType=CARD_PAYMENT_FEE
+   GET /organizations/self/accounts/liquid/transactions?start=2020-01-01&end=2021-06-07&includeTransactionType=CARD_PAYMENT&includeTransactionType=CARD_PAYMENT_FEE
    ```
        
    The following example response returns a card payment and the associated card payment fee that happened during the period from 1 January, 2020 to 7 June, 2021.
@@ -140,8 +140,8 @@ For example, you can fetch all card transactions.
     ```
 
 ## Related task
-* [Fetch account balance](fetch-account-transactions)
-* [Fetch payout information](fetch-payout-info)
+* [Fetch account balance](fetch-account-balance.md)
+* [Fetch payout information](fetch-payout-info.md)
 * [Fetch a purchase](../../purchase.adoc#fetch-a-purchase)
 
 ## Related API reference

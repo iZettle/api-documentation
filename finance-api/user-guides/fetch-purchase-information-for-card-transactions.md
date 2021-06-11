@@ -173,7 +173,7 @@ Using the value of `originatingTransactionUuid` and `timestamp` of card transact
     ```
 
 ## Related task
-* [Fetch account transactions](fetch-account-transactions)
+* [Fetch account transactions](fetch-account-transactions.md)
 * [Fetch a purchase](../../purchase.adoc#fetch-a-purchase)
 
 ## Related API reference

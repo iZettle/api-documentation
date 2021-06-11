@@ -65,8 +65,8 @@ You can fetch payout information from a merchant's Zettle account for any given 
     ![scheduled-deposit-setting](../images/scheduled-deposits-setting.png)       
 
 ## Related task
-* [Fetch account balance](fetch-account-transactions)
-* [Fetch account transactions](fetch-account-transactions)
+* [Fetch account balance](fetch-account-balance.md)
+* [Fetch account transactions](fetch-account-transactions.md)
 
 ## Related API reference
 * [Finance API reference](../api-reference.md)

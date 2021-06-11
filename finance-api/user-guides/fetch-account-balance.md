@@ -62,8 +62,8 @@ Fetch the account balance in the merchant's Zettle preliminary or liquid account
 
  
 ## Related task
-* [Fetch account transactions](fetch-account-transactions)
-* [Fetch payout information](fetch-payout-info)
+* [Fetch account transactions](fetch-account-transactions.md)
+* [Fetch payout information](fetch-payout-info.md)
 
 ## Related API reference
 * [Finance API reference](../api-reference.md)

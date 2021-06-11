@@ -275,7 +275,7 @@ Response
 ```
 
 ## Related resources
-[how card payments work at Zettle](overview.md/#understand-how-card-payments-work-at-Zettle)
+[how card payments work at Zettle](concepts/how-card-payments-work-at-Zettle.md)
 [Finance API user guide](user-guides)
 
 ## Related API reference
