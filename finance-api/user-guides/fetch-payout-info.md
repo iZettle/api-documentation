@@ -61,8 +61,8 @@ You can fetch payout information from a merchant's Zettle account for any given 
         }
     }
     ```
-   > **Tip**: The periodicity can be changed to `daily` or `monthly` in the merchant's Zettle Back Office > **Account & settings** > **Scheduled deposits**.
-![scheduled-deposit-setting](../images/scheduled-deposits-setting.png)       
+   > **Tip**: The periodicity can be changed to `daily` or `monthly` in the merchant's Zettle Back Office > **Account & settings** > **Scheduled deposits**.                                                                                   
+    ![scheduled-deposit-setting](../images/scheduled-deposits-setting.png)       
 
 ## Related task
 * [Fetch account balance](fetch-account-transactions)
