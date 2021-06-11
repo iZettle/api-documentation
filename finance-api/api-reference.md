@@ -17,8 +17,8 @@ The Finance API fetches information about transactions that are made through Zet
   * [Responses](#responses)
 * [Examples](#examples)
   * [Fetch balance for a liquid account](#fetch-balance-for-a-liquid-account)
-  * [Fetch transactions for a preliminary account](#fetch-transactions-for-a-preliminary-account)
-  * [Fetch information about payout on a specific day](#fetch-information-about-payout-on-a-specific-day)
+  * [Fetch transactions for a liquid account](#fetch-transactions-for-a-preliminary-account)
+  * [Fetch payout information on a specific day](#fetch-payout-information-on-a-specific-day)
 * [Related resources](#related-resources)
 * [Related API reference](#related-api-reference)
   
@@ -168,7 +168,7 @@ Returns payout related information from a merchant's Zettle liquid account.
 GET /organizations/{organizationUuid}/payout-info
 ```
 
-See example [Fetch information about payout on a specific period](#fetch-information-about-payout-on-a-specific-day).
+See example [Fetch payout information on a specific period](#fetch-payout-information-on-a-specific-day).
 
 ### Parameters
 
@@ -226,12 +226,12 @@ Response
 }
 ```
 
-### Fetch transactions for a preliminary account
-The following example fetches all transactions from Zettle preliminary account of the merchant that has `organizationUuid` as `18071066-bfc7-11eb-8529-0242ac130003` from 1 January, 2021 to 7 June, 2021.
+### Fetch transactions for a liquid account
+The following example fetches all transactions from Zettle liquid account of the merchant that has `organizationUuid` as `18071066-bfc7-11eb-8529-0242ac130003` from 1 January, 2021 to 7 June, 2021.
 
 Request
 ```
-GET/organizations/18071066-bfc7-11eb-8529-0242ac130003/accounts/preliminary/transactions?start=2021-01-01&end=2021-06-07
+GET/organizations/18071066-bfc7-11eb-8529-0242ac130003/accounts/liquid/transactions?start=2021-01-01&end=2021-06-07
 ```
 Response
 ```json
@@ -254,7 +254,7 @@ Response
 }
 ```
 
-### Fetch information about payout on a specific day
+### Fetch payout information on a specific day
 The following example fetches all payout information from Zettle liquid account of the merchant that has `organizationUuid` as `18071066-bfc7-11eb-8529-0242ac130003` on 7 June, 2021.
 
 Request
@@ -275,11 +275,8 @@ Response
 ```
 
 ## Related resources
-<!-- One or more tasks that will be done after this one. -->
-<!-- Add more use scenarios if needed. -->
 [how card payments work at Zettle](overview.md/#understand-how-card-payments-work-at-Zettle)
 [Finance API user guide](user-guides)
 
 ## Related API reference
-<!-- Other APIs that may be related in use scenarios. -->
 [Purchase API reference](../purchase.adoc)

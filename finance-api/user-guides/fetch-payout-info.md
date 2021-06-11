@@ -5,8 +5,7 @@ Using the Finance API, you can fetch payout information from a merchant's Zettle
 <!-- Is there any limit for how oldest transactions can be fetched? -->  
 
 * [Prerequisites](#prerequisites)
-* [Step 1: Fetch all transactions](#step-1-fetch-all-transactions-during-a-specific-period)
-* [Step 2: Fetch transactions of certain types](#step-2-fetch-transactions-of-certain-types-during-a-specific-period)
+* [Step 1: Fetch payout information](#step-1-fetch-payout-information)
 * [Related task](#related-task)
 * [Related API reference](#related-api-reference)
 
@@ -72,4 +71,3 @@ You can fetch payout information from a merchant's Zettle account for any given 
 ## Related API reference
 * [Finance API reference](../api-reference.md)
 * [Purchase API reference](../../purchase.adoc)
-<!-- Add more references if needed. -->

@@ -179,4 +179,3 @@ Using the value of `originatingTransactionUuid` and `timestamp` of card transact
 ## Related API reference
 * [Finance API reference](../api-reference.md)
 * [Purchase API reference](../../purchase.adoc)
-<!-- Add more references if needed. -->
