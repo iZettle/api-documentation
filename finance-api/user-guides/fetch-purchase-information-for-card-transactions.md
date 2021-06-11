@@ -13,7 +13,7 @@ Using the Finance API and the Purchase API, you can fetch purchase information f
 <!-- to be continued if any -->
 
 ## Step 1: Find the card transaction UUID
-Find the transaction UUID for card transactions for which you will fetch purchase information.  
+Using the Finance API, find the transaction UUID for card transactions for which you will fetch purchase information.  
 
 1. Optional: Fetch your organisation UUID. 
    > **Tip:** You don't need to fetch the organisation UUID, as you can specify the organisation UUID as `self` in requests that require it.
@@ -72,20 +72,21 @@ Find the transaction UUID for card transactions for which you will fetch purchas
 
 
 ## Step 2: Fetch purchase information for card transactions
-Using the value of `originatingTransactionUuid` and `timestamp` of card transactions, you can fetch purchase information for the transaction.
+Using the Purchase API and the value of `originatingTransactionUuid` and `timestamp` of card transactions, you can fetch purchase information for the transaction.
 
-1. Fetch purchase information for the card transactions. In the request path, set `startDate` and `endDate` to include the time in `timestamp` of the transactions that you saved in [Step 1: Find the card transaction UUID](#step-1-find-the-card-transaction-uuid). <!-- to the checkout team: is there an automatic lookup? -->
+1. Fetch purchase information for the card transactions. In the request path, set `startDate` and `endDate` to include the time in `timestamp` of the transactions that you saved in [Step 1: Find the card transaction UUID](#step-1-find-the-card-transaction-uuid).
+   > **Tip:** Set `startDate` and `endDate` with a few minutes before and after the time in `timestamp` to fetch a small amount of purchase information for pinpointing the transactions.
     
     ```
-    GET /purchase/v2/?{startDate}&{endDate}
+    GET /purchases/v2/?{startDate}&{endDate}
     ```
     
    Example:
     
-   The following example request fetches purchase information from 6 April, 2021 to 7 April, 2021 that includes the `timestamp` as `2021-04-06T22:37:37.621+0000`.
+   The following example request fetches purchase information from a few minutes before the `timestamp` as `2021-04-06T22:37:37.621+0000` to a few minutes after that time on 6 April, 2021.
     
     ```
-    GET /purchase/v2/?startDate=2021-04-06&endDate=2021-04-07
+    GET /purchases/v2/?startDate=2021-04-06T22:32&endDate=2021-04-06T22:40
     ```
 
 2. In the response, search for the value of `originatingTransactionUuid` of the transactions that you saved in [Step 1: Find the card transaction UUID](#step-1-find-the-card-transaction-uuid).
