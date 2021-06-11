@@ -17,5 +17,5 @@ As shown in [Figure 1 Zettle card transaction flow](#Zettle-card-transaction-flo
    
 > **Note:** It usually takes two days for the money to be paid out. However, it may take longer, depending on the communication between third-party acquirers and banks.
 
-<figure ><img id="Zettle-card-transaction-flow" style="margin: auto" src="../images/Zettle-card-transaction-flow.svg" alt="This card transaction flow shows how Zettle handles transaction money." >  <figcaption><b>Figure 1. </b>Zettle card transaction flow</figcaption></figure>
+<figure ><img id="Zettle-card-transaction-flow" src="../images/Zettle-card-transaction-flow.svg" alt="This card transaction flow shows how Zettle handles transaction money." >  <figcaption><b>Figure 1. </b>Zettle card transaction flow</figcaption></figure>
 
