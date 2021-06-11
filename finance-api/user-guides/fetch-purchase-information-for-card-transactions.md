@@ -175,7 +175,7 @@ Using the Purchase API and the value of `originatingTransactionUuid` and `timest
 
 ## Related task
 * [Fetch account transactions](fetch-account-transactions.md)
-* [Fetch a purchase](../../purchase.adoc#fetch-a-purchase)
+* [Fetch a list of purchases](../../purchase.adoc#fetch-a-list-of-purchases)
 
 ## Related API reference
 * [Finance API reference](../api-reference.md)

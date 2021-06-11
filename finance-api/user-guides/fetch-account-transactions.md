@@ -142,7 +142,8 @@ For example, you can fetch all card transactions.
 ## Related task
 * [Fetch account balance](fetch-account-balance.md)
 * [Fetch payout information](fetch-payout-info.md)
-* [Fetch a purchase](../../purchase.adoc#fetch-a-purchase)
+* [Fetch a list of purchases](../../purchase.adoc#fetch-a-list-of-purchases)
+
 
 ## Related API reference
 * [Finance API reference](../api-reference.md)
