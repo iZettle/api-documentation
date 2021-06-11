@@ -40,5 +40,5 @@ test
 
 test
 
-<figure id="Zettle-card-transaction-flow"><img style="margin: auto" src="../images/Zettle-card-transaction-flow.svg" alt="This card transaction flow shows how Zettle handles transaction money." >  <figcaption><b>Figure 1. </b>Zettle card transaction flow</figcaption></figure>
+<figure ><img id="Zettle-card-transaction-flow" style="margin: auto" src="../images/Zettle-card-transaction-flow.svg" alt="This card transaction flow shows how Zettle handles transaction money." >  <figcaption><b>Figure 1. </b>Zettle card transaction flow</figcaption></figure>
 
