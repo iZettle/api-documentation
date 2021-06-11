@@ -2,7 +2,7 @@ How card payments work at Zettle
 ===
 For every merchant who makes transactions with Zettle, they have an Zettle account that handles those transactions.
 
-As shown in [Zettle card transaction flow](#Zettle-card-transaction-flow), after a merchant makes a transaction with Zettle, the money of the transaction will go through the following phases in sequence:
+As shown in [Figure 1 Zettle card transaction flow](Zettle-card-transaction-flow), after a merchant makes a transaction with Zettle, the money of the transaction will go through the following phases in sequence:
 1. Recorded in the merchant's Zettle preliminary account:
  
    Zettle checks the money with a third-party acquirer who confirms the transaction.
@@ -17,4 +17,4 @@ As shown in [Zettle card transaction flow](#Zettle-card-transaction-flow), after
    
 > **Note:** It usually takes two days for the money to be paid out. However, it may take longer, depending on the communication between third-party acquirers and banks.
 
-<figure name="Zettle-card-transaction-flow"><img src="../images/Zettle-card-transaction-flow.svg" alt="This card transaction flow shows how Zettle handles transaction money.">  <figcaption><b>Figure 1.</b>Zettle card transaction flow</figcaption></figure>
+<figure name="Zettle-card-transaction-flow"><img src="../images/Zettle-card-transaction-flow.svg" alt="This card transaction flow shows how Zettle handles transaction money.">  <figcaption><b>Figure 1. </b>Zettle card transaction flow</figcaption></figure>
