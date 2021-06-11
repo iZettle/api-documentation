@@ -40,13 +40,13 @@ Find the transaction UUID for card transactions for which you will fetch purchas
     ```
    Example:
    
-   The following example request fetches card transactions of the merchant's Zettle preliminary account.
+   The following example request fetches card transactions of the merchant's Zettle liquid account.
    
    ```
-   GET /organizations/self/accounts/preliminary/transactions?start=2017-01-01&end=2021-06-07&includeTransactionType=CARD_PAYMENT&includeTransactionType=CARD_REFUND
+   GET /organizations/self/accounts/liquid/transactions?start=2017-01-01&end=2021-06-07&includeTransactionType=CARD_PAYMENT&includeTransactionType=CARD_REFUND
    ```
        
-   The following example response returns `originatingTransactionUuid` as `a4b1fc70-3427-11e9-89d7-88df8a0a0855` for a card payment transaction and `originatingTransactionUuid` as `d8254410-4f3f-11eb-a57f-1aef6b55e380` for a card refund transaction.
+   The following example response returns `originatingTransactionUuid` as `aefbced2-9728-11eb-aa46-1cae508bb7b5` for a card payment transaction and `originatingTransactionUuid` as `a4b1fc70-3427-11e9-89d7-88df8a0a0855` for a card refund transaction.
 
     ```json
     {
@@ -74,16 +74,16 @@ Find the transaction UUID for card transactions for which you will fetch purchas
 ## Step 2: Fetch purchase information for card transactions
 Using the value of `originatingTransactionUuid` and `timestamp` of card transactions, you can fetch purchase information for the transaction.
 
-1. Fetch purchase information for the card transactions. In the request path, set `startDate` and `endDate` to include the time in `timestamp` of the transactions that you saved in [Step 1: Find the card transaction UUID](#step-1-find-the-card-transaction-uuid).
-<!-- to the checkout team: is there an automatic lookup? -->
+1. Fetch purchase information for the card transactions. In the request path, set `startDate` and `endDate` to include the time in `timestamp` of the transactions that you saved in [Step 1: Find the card transaction UUID](#step-1-find-the-card-transaction-uuid). <!-- to the checkout team: is there an automatic lookup? -->
     
     ```
     GET /purchase/v2/?{startDate}&{endDate}
     ```
-      
-    Example:
     
-    The following example request fetches purchase information from 6 April, 2021 to 7 April, 2021 that includes the `timestamp` as `2021-04-06T22:37:37.621+0000`.
+   Example:
+    
+   The following example request fetches purchase information from 6 April, 2021 to 7 April, 2021 that includes the `timestamp` as `2021-04-06T22:37:37.621+0000`.
+    
     ```
     GET /purchase/v2/?startDate=2021-04-06&endDate=2021-04-07
     ```
