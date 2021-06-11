@@ -13,7 +13,7 @@ See [Finance API reference](api-reference.md).
 # Fetch transactions
 Using the Finance API, you can fetch the following information about transactions:
 
-* [Fetch account balance](user-guides/fetch-account-balance)
-* [Fetch account transactions](user-guides/fetch-account-transactions)
+* [Fetch account balance](user-guides/fetch-account-balance.md)
+* [Fetch account transactions](user-guides/fetch-account-transactions.md)
 * [Fetch payout information](user-guides/fetch-payout-info.md)
 * [Fetch purchase information for card transactions](user-guides/fetch-purchase-information-for-card-transactions.md) 
