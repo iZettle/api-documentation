@@ -67,4 +67,3 @@ Fetch the account balance in the merchant's Zettle preliminary or liquid account
 
 ## Related API reference
 * [Finance API reference](../api-reference.md)
-* [Purchase API reference](../../purchase.adoc)

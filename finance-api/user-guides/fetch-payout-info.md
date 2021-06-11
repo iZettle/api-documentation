@@ -70,4 +70,3 @@ You can fetch payout information from a merchant's Zettle account for any given 
 
 ## Related API reference
 * [Finance API reference](../api-reference.md)
-* [Purchase API reference](../../purchase.adoc)
