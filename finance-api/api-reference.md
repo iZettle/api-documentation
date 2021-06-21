@@ -16,7 +16,7 @@ The Finance API fetches information about transactions that are made through Zet
   * [Parameters](#parameters)
   * [Responses](#responses)
 * [Examples](#examples)
-  * [Fetch balance for a liquid account](#fetch-balance-for-a-liquid-account)
+  * [Fetch current balance for a liquid account](#fetch-current-balance-for-a-liquid-account)
   * [Fetch transactions for a liquid account](#fetch-transactions-for-a-preliminary-account)
   * [Fetch payout information on a specific day](#fetch-payout-information-on-a-specific-day)
 * [Related resources](#related-resources)

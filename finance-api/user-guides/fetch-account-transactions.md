@@ -7,7 +7,7 @@ Using the Finance API, you can fetch transactions or transactions of certain typ
 <!-- Is there any limit for how old transactions can be fetched? -->  
 
 * [Prerequisites](#prerequisites)
-* [Fetch all transactions during a specific period](#fetch-all-transactions-during-a-specific-period)
+* [Fetch transactions during a specific period](#fetch-transactions-during-a-specific-period)
 * [Fetch transactions of certain types during a specific period](#fetch-transactions-of-certain-types-during-a-specific-period)
 * [Related task](#related-task)
 * [Related API reference](#related-api-reference)
