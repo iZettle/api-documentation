@@ -97,7 +97,7 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 |end |string |query |required |An end time in UTC (exclusive) before when the transactions will be fetched. You can specify a UTC time in one of the following formats: <br/><ul><li>`YYYY-MM-DD` to specify a date. For example, `2020-11-29`.</li><li>`YYYY-MM-DDThh:mm:ss` to specify a time. For example, `2020-11-29T03:10:02`.</li></ul>
 |includeTransactionType |string |query |optional |Which transaction types to fetch. <br>You can include more than one [supported transaction types](#supported-transaction-types) in a request.  
 |limit |integer |query |optional |The maximum number of transactions to return in a response. You can specify `limit` with any integer greater than 0. Use `limit` and `offset` together to set response pagination.<br/>For example, to return three transaction at a time for all transactions during a specific period, set `limit` as `3` and `offset` as `0` in the first request. Then set `limit` as `3` and `offset` as `0` in the second request. 
-|offset |integer |query |optional |The number of transactions to skip before beginning to return in a response. You can specify `offset` with any integer greater than 0.  Use `limit` and `offset` together to set response pagination.
+|offset |integer |query |optional |The number of transactions to skip before beginning to return in a response. You can specify `offset` with any integer greater than or equal to 0.  Use `limit` and `offset` together to set response pagination.
 </details>
 
 #### Supported transaction types
