@@ -1,6 +1,6 @@
 Fetch account transactions
 ===
-Using the Finance API, you can fetch all transactions or transactions of certain types from a merchant's Zettle liquid account during a specific period.
+Using the Finance API, you can fetch transactions or transactions of certain types from a merchant's Zettle liquid account during a specific period.
 
 > **Note**: A merchant's Zettle liquid account contains all confirmed transactions that are already paid out or to be paid out to the merchant. If you want to check preliminary transactions that are being confirmed with the issuing banks (buyers' banks), you can fetch them from a merchant's Zettle preliminary account.
 
@@ -15,11 +15,11 @@ Using the Finance API, you can fetch all transactions or transactions of certain
 ## Prerequisites
 * Make sure that authorization is set up with the required OAuth scope using [Authorization OAuth2 API](../../authorization.adoc). 
 
-## Fetch all transactions during a specific period
-To fetch all transactions from a merchant's Zettle account during a specific period, you need to fetch them from their Zettle liquid account.
+## Fetch transactions during a specific period
+To fetch transactions from a merchant's Zettle account during a specific period, you need to fetch them from their Zettle liquid account.
 <!-- Check with team Ledger: Is it correct that a PAYMENT transaction can have a PAYOUT state? When I fetched all transactions, I got transactions that include PAYOUT. How can the integrator tell which PAYOUT is from which transaction type? --> 
 
-1. Fetch all transactions from the merchant's Zettle liquid account with pagination.
+1. Fetch transactions from the merchant's Zettle liquid account with pagination.
      
    ```
    GET /organizations/self/accounts/{accountTypeGroup}/transactions?start={start_time}&end={end_time}&{limit}&{offset}
@@ -27,7 +27,9 @@ To fetch all transactions from a merchant's Zettle account during a specific per
 
    Example:
    
-   The following example requests fetch all transactions from the merchant's Zettle liquid account from 1 January, 2020 to 31 December, 2020. The requests fetch three transactions at a time. 
+   The following example fetches all transactions from the merchant's Zettle liquid account from 1 January, 2020 to 31 December, 2020. The requests fetch three transactions at a time, with pagination set by `limit` and `offset`. 
+   
+   Request
    
    ```
    GET /organizations/self/accounts/liquid/transactions?start=2020-01-01&end=2020-12-31&limit=3&offset=0
@@ -35,9 +37,8 @@ To fetch all transactions from a merchant's Zettle account during a specific per
    ```
    GET /organizations/self/accounts/liquid/transactions?start=2020-01-01&end=2020-12-31&limit=3&offset=3
    ```
-       
-   In the following example response, three transactions are returned at a time until all the transactions are returned from 1 January, 2020 to 31 December, 2020. 
-
+   Response
+   
     ```json
     {
         "data": [
@@ -95,13 +96,14 @@ For example, you can fetch all card transactions.
 
    Example:
    
-   The following example request fetches all card payments and the associated card payment fees from the merchant's Zettle liquid account from 1 January, 2020 to 31 December, 2020.
+   The following example fetches all card payments and the associated card payment fees from the merchant's Zettle liquid account from 1 January, 2020 to 31 December, 2020.
    
+   Request   
    ```
    GET /organizations/self/accounts/liquid/transactions?start=2020-01-01&end=2020-12-31&includeTransactionType=CARD_PAYMENT&includeTransactionType=CARD_PAYMENT_FEE
    ```
        
-   In the following example response, the Finance API returns a card payment and the associated card payment fee that happened during the period from 1 January, 2020 to 31 December, 2020.
+   Response
 
     ```json
     {

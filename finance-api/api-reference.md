@@ -205,11 +205,11 @@ See example [Fetch payout information on a specific period](#fetch-payout-inform
 ## Examples
 
 ### Fetch current balance for a liquid account
-In the following example, current balance is fetched from Zettle liquid account of the merchant that has `organizationUuid` as `18071066-bfc7-11eb-8529-0242ac130003`. As `at` is not specified, by default, the current balance is fetched.
+In the following example, as `at` is not specified, the current balance is fetched by default.
 
 Request
 ```
-GET/organizations/18071066-bfc7-11eb-8529-0242ac130003/accounts/liquid/balance
+GET /organizations/self/accounts/liquid/balance
 ```
 Response
 ```json
@@ -222,14 +222,14 @@ Response
 ```
 
 ### Fetch transactions for a liquid account
-The following example fetches all transactions from Zettle liquid account of the merchant that has `organizationUuid` as `18071066-bfc7-11eb-8529-0242ac130003` from 1 January, 2020 to 7 December, 2020. With pagination set by `limit` and `offset`, three transactions are returned at a time until all transactions are fetched during that specific period.
+The following example fetches transactions from the merchant's Zettle liquid account from 1 January, 2020 to 31 December, 2020. With pagination set by `limit` and `offset`, three transactions are returned at a time until all transactions are fetched during that specific period.
 
 Request
 ```
-GET/organizations/18071066-bfc7-11eb-8529-0242ac130003/accounts/liquid/transactions?start=2021-01-01&end=2021-06-07&limit=3&offset=0
+GET /organizations/self/accounts/liquid/transactions?start=2020-01-01&end=2020-12-31&limit=3&offset=0
 ```
 ```
-GET/organizations/18071066-bfc7-11eb-8529-0242ac130003/accounts/liquid/transactions?start=2021-01-01&end=2021-06-07&limit=3&offset=3
+GET /organizations/self/accounts/liquid/transactions?start=2020-01-01&end=2020-12-31&limit=3&offset=3
 ```
 
 Response
@@ -254,16 +254,17 @@ Response
             "originatorTransactionType": "FAILED_PAYOUT",
             "originatingTransactionUuid": "d8550d7a-f347-11ea-9612-3bce5300b9a9"
         }
+       ...
     ]
 }
 ```
 
 ### Fetch payout information on a specific day
-The following example fetches all payout information from Zettle liquid account of the merchant that has `organizationUuid` as `18071066-bfc7-11eb-8529-0242ac130003` on 7 June, 2021.
+The following example fetches all payout information from the merchant's Zettle liquid account on 7 June, 2021.
 
 Request
 ```
-GET/organizations/18071066-bfc7-11eb-8529-0242ac130003/payout-info?at=2021-06-07
+GET /organizations/self/payout-info?at=2021-06-07
 ```
 Response
 ```json

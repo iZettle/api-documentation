@@ -24,13 +24,14 @@ You can fetch payout information from a merchant's Zettle account for any given 
 
    Example:
    
-   The following example request fetches the payout information for 7 June, 2021.
+   The following example fetches the payout information for 7 June, 2021.
    
+   Request   
    ```
    GET /organizations/self/payout-info?at=2021-06-07
    ```
        
-   The following example response returns the payout information for 7 June, 2021.
+   Response
 
     ```json
     {

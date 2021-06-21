@@ -15,7 +15,7 @@ Using the Finance API, you can fetch the balance that is available in the mercha
 Fetch the account balance in the merchant's Zettle preliminary or liquid account.  
 
 1. Fetch the balance in one or both of the merchant's preliminary and liquid accounts as follows:
-   * To check the balance of transactions that are still in the process of being cleared by the acquiring bank, fetch the preliminary account balance:
+   * To check the balance of transactions that are still being cleared by the acquiring bank, fetch the preliminary account balance:
      ```
      GET /organizations/self/accounts/preliminary/balance
      ```
@@ -26,13 +26,11 @@ Fetch the account balance in the merchant's Zettle preliminary or liquid account
 
    Example:
    
-   The following example request fetches account balance in the merchant's Zettle preliminary account.
+   The following example fetches account balance in the merchant's Zettle preliminary account. The response shows that £1.00 is still being cleared by the acquiring bank.
    
    ```
    GET /organizations/self/accounts/preliminary/balance
    ```
-       
-   The following example response shows that £1.00 is still in the process of being cleared by the acquiring bank.
 
     ```json
     {
