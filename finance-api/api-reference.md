@@ -17,7 +17,7 @@ The Finance API fetches information about transactions that are made through Zet
   * [Responses](#responses)
 * [Examples](#examples)
   * [Fetch current balance for a liquid account](#fetch-current-balance-for-a-liquid-account)
-  * [Fetch transactions for a liquid account](#fetch-transactions-for-a-preliminary-account)
+  * [Fetch transactions for a liquid account](#fetch-transactions-for-a-liquid-account)
   * [Fetch payout information on a specific day](#fetch-payout-information-on-a-specific-day)
 * [Related resources](#related-resources)
 * [Related API reference](#related-api-reference)
@@ -32,7 +32,7 @@ https://finance.zettle.com
 ## Fetch account balance
 Returns the balance that is available in a merchant's Zettle preliminary or liquid account at a specific time.
 
-After a payment has been made from a merchant's liquid account to their bank account (daily, monthly or weekly), the balance is usually zero or the minimum balance in the merchant's Zettle Back Office. In other cases, you can see how much money is in the merchant's Zettle account.
+After a payment has been made from a merchant's liquid account to their bank account (daily, monthly or weekly), the balance is usually zero or the minimum balance in the merchant's Zettle account. In other cases, you can see how much money is in the merchant's Zettle account.
 
 ```
 GET /organizations/{organizationUuid}/accounts/{accountTypeGroup}/balance
@@ -92,7 +92,7 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 |Name |Type |In |Required/Optional |Description
 |:---- |:---- |:---- |:---- |:----
 |organizationUuid |string |path |required |Unique identifier for your organization. You can specify the value with one of the following: <br/><ul><li> Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li></ul> 
-|accountTypeGroup |string |path |required |The account type from which the data like transactions is retrieved. You can use one of the following account types: <br/><ul><li> `PRELIMINARY` account where transactions are to be confirmed by third-party acquirers.</li><li> `LIQUID` account where transactions are to be paid out to the merchant.</li></ul>
+|accountTypeGroup |string |path |required |The type of a merchant's Zettle account. You can use one of the following account types: <br/><ul><li> `PRELIMINARY` account where transactions are to be confirmed by third-party acquirers.</li><li> `LIQUID` account where transactions are to be paid out to the merchant.</li></ul>
 |start |string |query |required |A start time in UTC (inclusive) from when the transactions will be fetched. You can specify a UTC time in one of the following formats: <br/><ul><li>`YYYY-MM-DD` to specify a date. For example, `2020-11-29`.</li><li>`YYYY-MM-DDThh:mm:ss` to specify a time. For example, `2020-11-29T03:10:02`.</li></ul>
 |end |string |query |required |An end time in UTC (exclusive) before when the transactions will be fetched. You can specify a UTC time in one of the following formats: <br/><ul><li>`YYYY-MM-DD` to specify a date. For example, `2020-11-29`.</li><li>`YYYY-MM-DDThh:mm:ss` to specify a time. For example, `2020-11-29T03:10:02`.</li></ul>
 |includeTransactionType |string |query |optional |Which transaction types to fetch. <br>You can include more than one [supported transaction types](#supported-transaction-types) in a request.  
@@ -115,7 +115,7 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 |CARD_PAYMENT |A card payment. Contains a reference to the card payment in the Purchase API.
 |CARD_PAYMENT_FEE |The commission part of a card payment.
 |CARD_PAYMENT_FEE_REFUND |The commission part of a refund.
-|CARD_REFUND |A card refund. <!-- Is it not obvious? -- Accompanied by CARD_PAYMENT_FEE_REFUND. --> Contains a reference to the card payment refund in the Purchase API.
+|CARD_REFUND |A card refund. Contains a reference to the card payment refund in the Purchase API.
 |CASHBACK |Money given to a merchant to retroactively adjust the card payment fee rate.
 |CASHBACK_PAYOUT (Deprecated) |No available description.
 |EMONEY_TRANSFER (Deprecated) |No available description.
@@ -280,8 +280,9 @@ Response
 ```
 
 ## Related resources
-[how card payments work at Zettle](concepts/how-card-payments-work-at-Zettle.md)
-[Finance API user guide](user-guides)
+* [how card payments work at Zettle](concepts/how-card-payments-work-at-Zettle.md)
+* [Finance API user guide](user-guides)
 
 ## Related API reference
-[Purchase API reference](../purchase.adoc)
+* [OAuth2 API Reference](../authorization.adoc)
+* [Purchase API reference](../purchase.adoc)
