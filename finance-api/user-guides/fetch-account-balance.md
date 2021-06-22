@@ -28,9 +28,12 @@ Fetch the account balance in the merchant's Zettle preliminary or liquid account
    
    The following example fetches account balance in the merchant's Zettle preliminary account. The response shows that £1.00 is still being cleared by the acquiring bank.
    
+   Request
+   
    ```
    GET /organizations/self/accounts/preliminary/balance
    ```
+   Response
 
     ```json
     {
