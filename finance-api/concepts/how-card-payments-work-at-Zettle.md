@@ -1,8 +1,6 @@
 How card payments work at Zettle
 ===
-For merchants who take card payments with Zettle, they have a Zettle account that handles transactions for the payments.
-
-As shown in [Figure 1 Zettle card transaction flow](#Zettle-card-transaction-flow), after a merchant takes a card payment with Zettle, the transaction for the payment will go through the following phases in sequence:
+A merchant's Zettle account handles different status of transactions. As shown in [Figure 1 Zettle card transaction flow](#Zettle-card-transaction-flow), after a merchant takes a card payment with Zettle, the transaction for the payment will go through the following phases in sequence:
 1. Recorded in the merchant's Zettle preliminary account:
  
    Zettle checks the transaction with the acquiring bank to capture the funds.
