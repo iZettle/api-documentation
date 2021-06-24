@@ -1,8 +1,8 @@
 Finance API overview
 ===
-For merchants who take payments with Zettle, they have a Zettle account that handles transactions for the payments. For example, card payments made with a Zettle card reader.
+Merchants taking payments with Zettle have internal accounts that handle transactions for the payments. For example, card payments made with Zettle card readers.
 
-The Finance API fetches transaction information about the payments.
+The Finance API is used to fetch information about the transactions.
 
 # Understand how card payments work at Zettle
 For information on how Zettle handles card transactions, see [how card payments work at Zettle](concepts/how-card-payments-work-at-Zettle.md).  
