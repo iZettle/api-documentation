@@ -1,6 +1,6 @@
 Fetch account transactions
 ===
-Using the Finance API, you can fetch transactions or transactions of certain types from a merchant's Zettle liquid account during a specific period.
+Use the Finance API to fetch transactions or transactions of certain types from a merchant's Zettle liquid account during a specific period.
 
 > **Note**: A merchant's Zettle liquid account contains all confirmed transactions that are already paid out or to be paid out to the merchant. If you want to check preliminary transactions that are being confirmed with the issuing banks (buyers' banks), you can fetch them from a merchant's Zettle preliminary account.
 
@@ -22,12 +22,12 @@ To fetch transactions from a merchant's Zettle account during a specific period,
 1. Fetch transactions from the merchant's Zettle liquid account with pagination.
      
    ```
-   GET /organizations/self/accounts/{accountTypeGroup}/transactions?start={start_time}&end={end_time}&{limit}&{offset}
+   GET /organizations/self/accounts/{accountTypeGroup}/transactions?start={start_time}&end={end_time}&{limit}={limit_value}&offset={offset_value}
    ```
 
    Example:
    
-   The following example fetches all transactions from the merchant's Zettle liquid account from 1 January, 2020 to 31 December, 2020. The requests fetch three transactions at a time, with pagination set by `limit` and `offset`. 
+   The following example fetches all transactions from the merchant's Zettle liquid account from 1 January, 2020 to 31 December, 2020. Each request fetches three transactions at a time, with pagination set by `limit` and `offset`. 
    
    Request
    

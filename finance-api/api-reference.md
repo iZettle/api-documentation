@@ -92,11 +92,11 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 |Name |Type |In |Required/Optional |Description
 |:---- |:---- |:---- |:---- |:----
 |organizationUuid |string |path |required |Unique identifier for your organization. You can specify the value with one of the following: <br/><ul><li> Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li></ul> 
-|accountTypeGroup |string |path |required |The type of a merchant's Zettle account. You can use one of the following account types: <br/><ul><li> `PRELIMINARY` account where transactions are to be confirmed by third-party acquirers.</li><li> `LIQUID` account where transactions are to be paid out to the merchant.</li></ul>
+|accountTypeGroup |string |path |required |The type of a merchant's Zettle account. You can use one of the following account types: <br/><ul><li> `PRELIMINARY` account where transactions are to be confirmed.</li><li> `LIQUID` account where transactions are to be paid out to the merchant.</li></ul>
 |start |string |query |required |A start time in UTC (inclusive) from when the transactions will be fetched. You can specify a UTC time in one of the following formats: <br/><ul><li>`YYYY-MM-DD` to specify a date. For example, `2020-11-29`.</li><li>`YYYY-MM-DDThh:mm:ss` to specify a time. For example, `2020-11-29T03:10:02`.</li></ul>
 |end |string |query |required |An end time in UTC (exclusive) before when the transactions will be fetched. You can specify a UTC time in one of the following formats: <br/><ul><li>`YYYY-MM-DD` to specify a date. For example, `2020-11-29`.</li><li>`YYYY-MM-DDThh:mm:ss` to specify a time. For example, `2020-11-29T03:10:02`.</li></ul>
 |includeTransactionType |string |query |optional |Which transaction types to fetch. <br>You can include more than one [supported transaction types](#supported-transaction-types) in a request.  
-|limit |integer |query |optional |The maximum number of transactions to return in a response. You can specify `limit` with any integer greater than 0. Use `limit` and `offset` together to set response pagination.<br/>For example, to return three transaction at a time for all transactions during a specific period, set `limit` as `3` and `offset` as `0` in the first request. Then set `limit` as `3` and `offset` as `0` in the second request. 
+|limit |integer |query |optional |The maximum number of transactions to return in a response. You can specify `limit` with any integer greater than 0. Use `limit` and `offset` together to set response pagination.<br/>For example, to return three transaction at a time for all transactions during a specific period, set `limit` as `3` and `offset` as `0` in the first request. Then set `limit` as `3` and `offset` as `3` in the second request. See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-liquid-account).
 |offset |integer |query |optional |The number of transactions to skip before beginning to return in a response. You can specify `offset` with any integer greater than or equal to 0.  Use `limit` and `offset` together to set response pagination.
 </details>
 
@@ -153,7 +153,7 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 |timestamp |string |Time when a transaction happens in the merchant's Zettle account. It's not the timestamp when a card transaction or a purchase happens. <br/>For example, transactions in the merchant's liquid account may happen hours after card transactions or purchases take place.
 |amount |integer |The amount of money of a transaction. If the transaction is a refund or a payment fee, the amount is negative.
 |originatorTransactionType |string |The transaction type. See [supported transaction types](#supported-transaction-types). 
-|originatingTransactionUuid |string |The transaction identifier as UUID version 1.  
+|originatingTransactionUuid |string |The identifier of the originating transaction as UUID version 1.  
 </details>
 
 
@@ -195,10 +195,11 @@ See example [Fetch payout information on a specific period](#fetch-payout-inform
 |Name |Type |Description
 |:---- |:---- |:----
 |data |object|Information about the upcoming payout. 
-|totalBalance |integer |The account balance in the currency's smallest unit. It can be negative, such as when refunds are greater than sales. In the following example, the account balance is -3 SEK. <br/><pre>{ <br/>totalBalance: -300, <br/>currencyId: "SEK" <br/>}</pre> 
+|totalBalance |integer |The account balance in the currency's smallest unit. It can be negative, such as when refunds are greater than sales. In the following example, the account balance is -3 SEK. <br/><pre>{ <br/>totalBalance: -300, <br/>currencyId: "SEK" <br/>...}</pre>
+|currencyId |string |The currency of the account. For example, `SEK`. 
 |nextPayoutAmount |integer |The amount of money to be paid out to the merchant.  
 |discountRemaining |integer |The amount of discounts that remains in merchant's vouchers. The vouchers are offered by Zettle.<br/>For example, a merchant has a voucher worthy 100 SEK from a Zettle marketing campaign. For a transaction of 200 SEK, Zettle will subtract two SEK for the transaction fee from the voucher. Then the merchant will have a remaining discount of 98 SEK. 
-|periodicity |string |The period between each payout that is set by the merchant . It can be `DAILY`, `WEEKLY`, and `MONTHLY`.   
+|periodicity |string |The period between each payout that is set by the merchant. It can be `DAILY`, `WEEKLY`, and `MONTHLY`.   
 </details>
 
 

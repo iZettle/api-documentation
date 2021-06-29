@@ -1,6 +1,6 @@
 Fetch account balance
 ===
-Using the Finance API, you can fetch the balance that is available in the merchant's Zettle preliminary or liquid account.
+Use the Finance API to fetch the account balance of the merchant's Zettle preliminary or liquid account.
 
 * [Prerequisites](#prerequisites)
 * [Fetch the account balance](#fetch-the-account-balance)

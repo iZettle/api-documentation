@@ -1,6 +1,6 @@
 Fetch payout information
 ===
-Using the Finance API, you can fetch payout information from a merchant's Zettle account. By default, it's fetched from the merchant's Zettle liquid account. The payout information includes the account balance, currency, payout, periodicity, and so on. 
+Use the Finance API to fetch payout information from a merchant's Zettle account. The payout information includes the account balance, currency, payout, periodicity, and remaining discounts. 
 
 <!-- Is there any limit for how oldest transactions can be fetched? -->  
 
@@ -19,7 +19,7 @@ You can fetch payout information from a merchant's Zettle account for any given 
 1. Fetch payout information on a specific day. If you don't specify `at`, you will get the latest payout information by default.
      
    ```
-   GET /organizations/self/payout-info?at={time}
+   GET /organizations/self/payout-info?at={time_to_fetch_payout}
    ```
 
    Example:
