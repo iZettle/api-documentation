@@ -44,16 +44,16 @@ When fetching transactions from a merchant's Zettle account during a specific pe
                    "originatingTransactionUuid": "30cef6e2-be09-11ea-a8e4-bce028663c34"
                },
                {
-               "timestamp": "2020-07-04T20:16:44.309+0000",
-               "amount": -20610,
-               "originatorTransactionType": "CARD_REFUND",
-               "originatingTransactionUuid": "30cef6e2-be09-11ea-a8e4-bce028663c34"
+                   "timestamp": "2020-07-04T20:16:44.309+0000",
+                   "amount": -20610,
+                   "originatorTransactionType": "CARD_REFUND",
+                   "originatingTransactionUuid": "30cef6e2-be09-11ea-a8e4-bce028663c34"
                },
                {
-               "timestamp": "2020-06-27T23:52:18.327+0000",
-               "amount": 649,
-               "originatorTransactionType": "PAYMENT_FEE", // In case of refund
-               "originatingTransactionUuid": "690c99ea-b6ef-11ea-9730-7ef7aeff642d"
+                   "timestamp": "2020-06-27T23:52:18.327+0000",
+                   "amount": 649,
+                   "originatorTransactionType": "PAYMENT_FEE", // In case of refund
+                   "originatingTransactionUuid": "690c99ea-b6ef-11ea-9730-7ef7aeff642d"
                },
            ]
        }
