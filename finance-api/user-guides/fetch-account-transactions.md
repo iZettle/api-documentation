@@ -27,30 +27,30 @@ When fetching transactions from a merchant's Zettle account during a specific pe
 
    Example:
    
-   The following example fetches the latest three transactions from the merchant's liquid account from 1 January, 2020 to 31 December, 2020. 
+   The following example fetches the latest three transactions from the merchant's liquid account from 1 January, 2020 to 5 July, 2020. 
    
    Request   
    ```
-   GET /organizations/self/accounts/liquid/transactions?start=2020-01-01&end=2020-12-31&limit=3&offset=0
+   GET /organizations/self/accounts/liquid/transactions?start=2020-01-01&end=2020-07-05&limit=3&offset=0
    ```
    Response         
    ```json
        {
            "data": [
                {
-                   "timestamp": "2020-12-30T20:16:44.309+0000",
+                   "timestamp": "2020-07-04T20:16:44.309+0000",
                    "amount": 381,
                    "originatorTransactionType": "CARD_PAYMENT_FEE_REFUND",
                    "originatingTransactionUuid": "30cef6e2-be09-11ea-a8e4-bce028663c34"
                },
                {
-               "timestamp": "2020-12-30T20:16:44.309+0000",
+               "timestamp": "2020-07-04T20:16:44.309+0000",
                "amount": -20610,
                "originatorTransactionType": "CARD_REFUND",
                "originatingTransactionUuid": "30cef6e2-be09-11ea-a8e4-bce028663c34"
                },
                {
-               "timestamp": "2020-12-27T23:52:18.327+0000",
+               "timestamp": "2020-06-27T23:52:18.327+0000",
                "amount": 649,
                "originatorTransactionType": "PAYMENT_FEE", // In case of refund
                "originatingTransactionUuid": "690c99ea-b6ef-11ea-9730-7ef7aeff642d"
@@ -66,12 +66,12 @@ When fetching transactions from a merchant's Zettle account during a specific pe
    ```
    Example:
       
-   The following example fetches the next three transactions from the merchant's liquid account from 1 January, 2020 to 31 December, 2020.
+   The following example fetches the next three transactions from the merchant's liquid account from 1 January, 2020 to 5 July, 2020.
    
    Request
     
    ```
-   GET /organizations/self/accounts/liquid/transactions?start=2020-01-01&end=2020-12-31&limit=3&offset=3
+   GET /organizations/self/accounts/liquid/transactions?start=2020-01-01&end=2020-07-05&limit=3&offset=3
    ```
    Response
    
@@ -79,19 +79,19 @@ When fetching transactions from a merchant's Zettle account during a specific pe
     {
         "data": [
             {
-                "timestamp": "2020-12-27T23:52:18.327+0000",
+                "timestamp": "2020-06-27T23:52:18.327+0000",
                 "amount": -35100,
                 "originatorTransactionType": "PAYMENT", // In case of refund
                 "originatingTransactionUuid": "690c99ea-b6ef-11ea-9730-7ef7aeff642d"
             },
             {
-                 "timestamp": "2020-12-26T19:51:38.161+0000",
+                 "timestamp": "2020-06-26T19:51:38.161+0000",
                  "amount": -649,
                  "originatorTransactionType": "PAYMENT_FEE",
                  "originatingTransactionUuid": "45f51ed4-b7bf-11ea-90de-435a3f6e4738"
             },
             {
-                 "timestamp": "2020-12-26T19:51:38.161+0000",
+                 "timestamp": "2020-06-26T19:51:38.161+0000",
                  "amount": 35100,
                  "originatorTransactionType": "PAYMENT",
                  "originatingTransactionUuid": "45f51ed4-b7bf-11ea-90de-435a3f6e4738"
@@ -103,29 +103,30 @@ When fetching transactions from a merchant's Zettle account during a specific pe
 
    Example:
       
-   The following example shows that last two transactions are fetched from the merchant's liquid account from 1 January, 2020 to 31 December, 2020.
+   The following example shows that last two transactions are fetched from the merchant's liquid account from 1 January, 2020 to 5 July, 2020.
    
    Request
    ```
-   GET /organizations/self/accounts/liquid/transactions?start=2020-01-01&end=2020-12-31&limit=3&offset=3
+   GET /organizations/self/accounts/liquid/transactions?start=2020-01-01&end=2020-07-05&limit=3&offset=3
    ```
    Response
    
     ```json
     {
         "data": [
-             {
-                "timestamp": "2020-01-01T11:15:40.144+0000",
-                "amount": 470433,
-                "originatorTransactionType": "FAILED_PAYOUT",
-                "originatingTransactionUuid": "5d4846ae-b78f-11ea-b003-01f0540f969e"
-             },
-             {
-                "timestamp": "2020-01-01T09:28:16.144+0000",
-                "amount": -470433,
-                "originatorTransactionType": "PAYOUT",
-                "originatingTransactionUuid": "5d4846ae-b78f-11ea-b003-01f0540f969e"
-             },
+
+            {
+                 "timestamp": "2020-01-02T15:16:43.945+0000",
+                 "amount": -8867,
+                 "originatorTransactionType": "CARD_PAYMENT_FEE",
+                 "originatingTransactionUuid": "7428bda0-2d50-11ea-9132-999363d04928"
+            },
+            {
+                  "timestamp": "2020-01-02T15:16:43.945+0000",
+                  "amount": 479300,
+                  "originatorTransactionType": "CARD_PAYMENT",
+                  "originatingTransactionUuid": "7428bda0-2d50-11ea-9132-999363d04928"
+            }
         ]
     }
     ```

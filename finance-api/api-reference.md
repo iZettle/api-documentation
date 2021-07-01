@@ -202,7 +202,7 @@ See example [Fetch payout information on a specific period](#fetch-payout-inform
 |totalBalance |integer |The account balance in the currency's smallest unit. For example, 300 with currency SEK is 3 kr. It can be negative, such as when refunds are greater than sales.
 |currencyId |string |The currency of the account. For example, `SEK`. 
 |nextPayoutAmount |integer |The amount of money to be paid out to the merchant.  
-|discountRemaining |integer |The amount of discounts that remains in merchant's vouchers. The vouchers are offered by Zettle.<br/>For example, a merchant has a voucher worthy 100 SEK from a Zettle marketing campaign. For a transaction of 200 SEK, Zettle will subtract two SEK for the transaction fee from the voucher. Then the merchant will have a remaining discount of 98 SEK. 
+|discountRemaining |integer |The amount of discounts that remains in merchant's vouchers. The vouchers are offered by Zettle.<br/>For example, a merchant has a voucher worthy 100 kr from a Zettle marketing campaign. For a transaction of 200 kr, Zettle will subtract 2 kr for the transaction fee from the voucher. Then the merchant will have a remaining discount of 98 kr. 
 |periodicity |string |The period between each payout that is set by the merchant. It can be `DAILY`, `WEEKLY` or `MONTHLY`.   
 </details>
 
