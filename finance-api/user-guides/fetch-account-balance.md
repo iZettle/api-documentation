@@ -13,7 +13,7 @@ Use the Finance API to fetch the account balance of the merchant's preliminary o
 
 ## Fetch the account balance 
 Fetch the balance in one or both of the merchant's preliminary and liquid accounts as follows:
-   * To check the balance of transactions that are still being confirmed with the issuing banks (buyers' banks), fetch the preliminary account balance:
+   * To check the balance of transactions that are still being cleared by the acquiring bank, fetch the preliminary account balance:
      ```
      GET /organizations/self/accounts/preliminary/balance
      ```
@@ -24,7 +24,7 @@ Fetch the balance in one or both of the merchant's preliminary and liquid accoun
 
    Example:
    
-   The following example fetches account balance in the merchant's preliminary account. The response shows that £1 is still being confirmed with the issuing bank (buyers' bank).
+   The following example fetches account balance in the merchant's preliminary account. The response shows that £1 is still being cleared by the acquiring bank.
    
    Request
    
