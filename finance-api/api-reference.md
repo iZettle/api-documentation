@@ -33,7 +33,7 @@ For more information on how to get authorisaition for the scope, see [OAuth2 API
 ## Fetch account balance
 Returns the balance in a merchant's preliminary or liquid account at a specific time.
 
-After a deposit has been made from a merchant's liquid account to their bank account (daily, weekly or monthly), the balance is usually zero or the minimum balance in the merchant's Zettle account or PayPal Wallet for PayPal users. In other cases, you can see how much money is in the merchant's Zettle account or PayPal Wallet for PayPal users.
+After a deposit has been made from a merchant's liquid account to their bank account or PayPal Wallet for PayPal users (daily, weekly or monthly), the balance is usually zero or the minimum balance in the merchant's Zettle account. In other cases, you can see how much money is in the merchant's Zettle account.
 
 ```
 GET /organizations/{organizationUuid}/accounts/{accountTypeGroup}/balance
