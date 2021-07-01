@@ -1,6 +1,6 @@
 Fetch payout information
 ===
-Use the Finance API to fetch payout information from a merchant's Zettle account. The payout information includes the account balance, currency, payout, periodicity, and remaining discounts. 
+Use the Finance API to fetch payout information from a merchant's account. The payout information includes the account balance, currency, payout, periodicity, and remaining discounts. 
 
 <!-- Is there any limit for how oldest transactions can be fetched? -->  
 
@@ -16,35 +16,34 @@ Use the Finance API to fetch payout information from a merchant's Zettle account
 ## Fetch payout information
 You can fetch payout information from a merchant's Zettle account for any given day.
 
-1. Fetch payout information on a specific day. If you don't specify `at`, you will get the latest payout information by default.
+Fetch payout information on a specific day. If you don't specify `at`, you will get the latest payout information by default.
      
    ```
-   GET /organizations/self/payout-info?at={time_to_fetch_payout}
+   GET /organizations/self/payout-info?at={when_to_fetch_payout}
    ```
 
    Example:
    
-   The following example fetches the payout information for 7 June, 2021.
+   The following example fetches the payout information for 7 June, 2021. The next payout amount will be 6605.89 kr.
    
    Request   
    ```
    GET /organizations/self/payout-info?at=2021-06-07
    ```
-       
-   Response
+   Response   
+   ```json
+      {
+           "data": {
+               "totalBalance": 660589,
+               "currencyId": "SEK",
+               "nextPayoutAmount": 660589,
+               "discountRemaining": 0,
+               "periodicity": "DAILY"
+           }
+      }        
+   ```
 
-    ```json
-    {
-        "data": {
-            "totalBalance": 9022,
-            "currencyId": "SEK",
-            "nextPayoutAmount": 0,
-            "discountRemaining": 10000,
-            "periodicity": "WEEKLY"
-        }
-    }
-    ```
-   > **Tip**: The periodicity can be `DAYLY`, `WEEKLY`, or `MONTHLY` according to the merchant's configuration.        
+   > **Tip**: The periodicity can be `DAYLY`, `WEEKLY` or `MONTHLY` according to the merchant's configuration.        
 
 ## Related task
 * [Fetch account balance](fetch-account-balance.md)

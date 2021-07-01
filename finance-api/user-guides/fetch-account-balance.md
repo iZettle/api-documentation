@@ -1,6 +1,6 @@
 Fetch account balance
 ===
-Use the Finance API to fetch the account balance of the merchant's Zettle preliminary or liquid account.
+Use the Finance API to fetch the account balance of the merchant's preliminary or liquid account.
 
 * [Prerequisites](#prerequisites)
 * [Fetch the account balance](#fetch-the-account-balance)
@@ -12,10 +12,8 @@ Use the Finance API to fetch the account balance of the merchant's Zettle prelim
 <!-- to be continued if any -->
 
 ## Fetch the account balance 
-Fetch the account balance in the merchant's Zettle preliminary or liquid account.  
-
-1. Fetch the balance in one or both of the merchant's preliminary and liquid accounts as follows:
-   * To check the balance of transactions that are still being cleared by the acquiring bank, fetch the preliminary account balance:
+Fetch the balance in one or both of the merchant's preliminary and liquid accounts as follows:
+   * To check the balance of transactions that are still being confirmed with the issuing banks (buyers' banks), fetch the preliminary account balance:
      ```
      GET /organizations/self/accounts/preliminary/balance
      ```
@@ -26,7 +24,7 @@ Fetch the account balance in the merchant's Zettle preliminary or liquid account
 
    Example:
    
-   The following example fetches account balance in the merchant's Zettle preliminary account. The response shows that £1.00 is still being cleared by the acquiring bank.
+   The following example fetches account balance in the merchant's preliminary account. The response shows that £1 is still being confirmed with the issuing bank (buyers' bank).
    
    Request
    
@@ -35,14 +33,14 @@ Fetch the account balance in the merchant's Zettle preliminary or liquid account
    ```
    Response
 
-    ```json
+   ```json
     {
         "data": {
             "totalBalance": 100,
             "currencyId": "GBP"
         }
     }    
-
+   ```
  
 ## Related task
 * [Fetch account transactions](fetch-account-transactions.md)
