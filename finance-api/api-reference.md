@@ -98,7 +98,7 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 |start |string |query |required |A start time in UTC (inclusive) from when the transactions will be fetched. You can specify a UTC time in one of the following formats: <br/><ul><li>`YYYY-MM` to specify a month. By default, it specifies the first second of the first day in the month. For example, for `2020-11`, the time will be `2020-11-01T00:00:00`.</li><li>`YYYY-MM-DD` to specify a date. For example, `2020-11-29`.</li><li>`YYYY-MM-DDThh:mm:ss` to specify a time. For example, `2020-11-29T03:10:02`.</li></ul>
 |end |string |query |required |An end time in UTC (exclusive) before when the transactions will be fetched. You can specify a UTC time in one of the following formats: <br/><ul><li>`YYYY-MM` to specify a month. By default, it specifies the first second of the first day in the month. For example, for `2020-11`, the time will be `2020-11-01T00:00:00`.</li><li>`YYYY-MM-DD` to specify a date. For example, `2020-11-29`.</li><li>`YYYY-MM-DDThh:mm:ss` to specify a time. For example, `2020-11-29T03:10:02`.</li></ul>
 |includeTransactionType |string |query |optional |Which transaction types to fetch. <br>You can include more than one [supported transaction types](#supported-transaction-types) in a request.  
-|limit |integer |query |optional |The maximum number of transactions to return in a response. You can specify `limit` with any integer greater than 0.<br/>To avoid a big dataset in a response, use `limit` and `offset` together to set response pagination.<br/>For example, to return three transaction at a time for all transactions during a specific period, set `limit` as `3` and `offset` as `0` in the first request. Then set `limit` as `3` and `offset` as `3` in the second request and repeat the request until all transactions are fetched. See examples in [Fetch account transactions](fetch-account-transactions.md).
+|limit |integer |query |optional |The maximum number of transactions to return in a response. You can specify `limit` with any integer greater than 0.<br/>To avoid a big dataset in a response, use `limit` and `offset` together to set response pagination.<br/>For example, to return three transaction at a time for all transactions during a specific period, set `limit` as `3` and `offset` as `0` in the first request. Then set `limit` as `3` and increment `offset` with `3` in the second request and repeat the request until all transactions are fetched. See examples in [Fetch account transactions](fetch-account-transactions.md).
 |offset |integer |query |optional |The number of transactions to skip before beginning to return in a response. You can specify `offset` with any integer greater than or equal to 0.  Use `limit` and `offset` together to set response pagination to avoid a big dataset in a response.
 </details>
 
@@ -251,6 +251,7 @@ Response
             "originatorTransactionType": "CARD_REFUND",
             "originatingTransactionUuid": "30cef6e2-be09-11ea-a8e4-bce028663c34"
         },
+        ...
         {
             "timestamp": "2020-06-27T23:52:18.327+0000",
             "amount": 649,

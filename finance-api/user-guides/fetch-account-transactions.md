@@ -19,7 +19,7 @@ Use the Finance API to fetch transactions or transactions of certain types from 
 When fetching transactions from a merchant's Zettle account during a specific period, set pagination to avoid a big dataset in a response. The transactions should be fetched from the merchant's liquid account.
 
 
-1. Send a request where `limit` is set as the number of transactions to fetch and `offset` set as `0`.
+1. Send a request where you set `limit` as the number of transactions to fetch and `offset` as `0`.
      
    ```
    GET /organizations/self/accounts/{accountTypeGroup}/transactions?start={start_time}&end={end_time}&{limit}={limit_value}&offset={offset_value}
@@ -59,7 +59,7 @@ When fetching transactions from a merchant's Zettle account during a specific pe
        }
    ```
    
-2. Send another request where `limit` and `offset` are set the same as `limit` in the initial request. 
+2. Send another request where you keep `limit` the same as in step 1 and increment `offset` with the value of `limit` . 
      
    ```
    GET /organizations/self/accounts/{accountTypeGroup}/transactions?start={start_time}&end={end_time}&{limit}={limit_value}&offset={offset_value}
