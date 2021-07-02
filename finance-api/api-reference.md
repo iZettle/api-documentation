@@ -23,7 +23,7 @@ The Finance API is used to fetch information about the transactions that are mad
 * [Related API reference](#related-api-reference)
   
 ### Base URL
-https://finance.zettle.com
+https://finance.izettle.com
 
 ### OAuth Scope
 `READ:FINANCE`
