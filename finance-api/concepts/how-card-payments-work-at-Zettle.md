@@ -13,7 +13,7 @@ A merchant's Zettle account handles different status of transactions. As shown i
   
    Zettle makes sure that the correct amount of money will be paid out from the merchant's Zettle account to the merchant's bank account or PayPal Wallet for PayPal users. Then the merchant will receive the deposit in the upcoming payout.
    
-> **Note:** It usually takes two business days for the payment to be paid out. However, it may take longer.
+> **Note:** The amount of time for the money to be paid out varies depending on the country. Check [Zettle Help Centre](https://www.zettle.com/gb/help/articles/1084784-deposits) for country-specific information.
 
 <figure ><img id="Zettle-card-transaction-flow" src="../images/Zettle-card-transaction-flow.svg" alt="This card transaction flow shows how Zettle handles card payments." >  <figcaption><b>Figure 1. </b>Zettle card transaction flow</figcaption></figure>
 
