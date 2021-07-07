@@ -1,7 +1,7 @@
 Finance API reference
 ===
 ## About Finance API
-The Finance API is used to fetch information about the transactions that are made through Zettle. For example, card payments made with Zettle card readers.
+The Finance API is used to fetch finance-related information that is processed through Zettle. The information includes account balance, all the transactions processed through Zettle, and payout. For example, card payments made with Zettle card readers.
 
 * [About Finance API](#about-finance-api)
   * [Base URL](#base-url)
