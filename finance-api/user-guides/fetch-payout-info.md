@@ -24,7 +24,7 @@ Fetch payout information on a specific day. If you don't specify `at`, you will 
 
    Example:
    
-   The following example fetches the payout information for 7 June, 2021. The next payout amount will be 6605.89 kr.
+   The following example fetches the payout information for 7 June, 2021. The next payout amount will be £6605.89.
    
    Request   
    ```
@@ -35,7 +35,7 @@ Fetch payout information on a specific day. If you don't specify `at`, you will 
       {
            "data": {
                "totalBalance": 660589,
-               "currencyId": "SEK",
+               "currencyId": "GBP",
                "nextPayoutAmount": 660589,
                "discountRemaining": 0,
                "periodicity": "DAILY"

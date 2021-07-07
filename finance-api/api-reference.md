@@ -72,8 +72,8 @@ See example [Fetch current balance for a liquid account](#fetch-current-balance-
 |Name |Type |Description
 |:---- |:---- |:----
 |data |object|Information about the account balance at a point in time. It's represented by `totalBalance` and `currencyId`.
-|totalBalance |integer |The account balance in the currency's smallest unit. For example, 300 with currency SEK is 3 kr. It can be negative, such as when refunds are greater than sales.
-|currencyId |string |The currency of the account. For example, `SEK`.
+|totalBalance |integer |The account balance in the currency's smallest unit. For example, 300 with currency GBP is £3. It can be negative, such as when refunds are greater than sales.
+|currencyId |string |The currency of the account. For example, `GBP`.
 </details>
 
 
@@ -199,10 +199,10 @@ See example [Fetch payout information on a specific period](#fetch-payout-inform
 |Name |Type |Description
 |:---- |:---- |:----
 |data |object|Information about the upcoming payout. 
-|totalBalance |integer |The account balance in the currency's smallest unit. For example, 300 with currency SEK is 3 kr. It can be negative, such as when refunds are greater than sales.
-|currencyId |string |The currency of the account. For example, `SEK`. 
+|totalBalance |integer |The account balance in the currency's smallest unit. For example, 300 with currency GBP is £3. It can be negative, such as when refunds are greater than sales.
+|currencyId |string |The currency of the account. For example, `GBP`. 
 |nextPayoutAmount |integer |The amount of money to be paid out to the merchant.  
-|discountRemaining |integer |The amount of discounts that remains in merchant's vouchers. The vouchers are offered by Zettle.<br/>For example, a merchant has a voucher worthy 100 kr from a Zettle marketing campaign. For a transaction of 200 kr, Zettle will subtract 2 kr for the transaction fee from the voucher. Then the merchant will have a remaining discount of 98 kr. 
+|discountRemaining |integer |The amount of discounts that remains in merchant's vouchers. The vouchers are offered by Zettle.<br/>For example, a merchant has a voucher worthy £100 from a Zettle marketing campaign. For a transaction of £200, Zettle will subtract £2 for the transaction fee from the voucher. Then the merchant will have a remaining discount of £98. 
 |periodicity |string |The period between each payout that is set by the merchant. It can be `DAILY`, `WEEKLY` or `MONTHLY`.   
 </details>
 
@@ -306,7 +306,7 @@ Response
 ```
 
 ### Fetch payout information on a specific day
-The following example fetches all payout information from the merchant's liquid account on 7 June, 2021. The next payout amount will be 6605.89 kr.
+The following example fetches all payout information from the merchant's liquid account on 7 June, 2021. The next payout amount will be £6605.89.
 
 Request
 ```
@@ -317,7 +317,7 @@ Response
     {
         "data": {
             "totalBalance": 660589,
-            "currencyId": "SEK",
+            "currencyId": "GBP",
             "nextPayoutAmount": 660589,
             "discountRemaining": 0,
             "periodicity": "DAILY"
