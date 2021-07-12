@@ -44,3 +44,15 @@ Apply for API credentials on [Zettle Developer Portal](https://developer.zettle.
 
 ## Get help
 Contact our [Integrations team](mailto:api@zettle.com) for more information. 
+
+When contacting the Integration team, please provide the following information for us to better help with your integrations:
+
+* Description about the issue. That includes:
+    * What's the integration used for?
+    * Which API or APIs are you using?
+    * What went wrong? 
+
+* Information about affected merchants. That includes:
+    * Emails of affected merchants.
+    * UUIDs and organisation UUIDs of the affected merchants.
+      To fetch UUIDs and organisation UUIDs, use the `GET users/me` endpoint of the OAuth API. For more information about using the endpoint, see [Get user info](authorization.adoc/#get-user-info).
