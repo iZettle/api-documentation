@@ -4,8 +4,10 @@ Merchants who take payments with Zettle have an Zettle account that processes tr
 
 The Finance API is used to fetch finance-related information that is processed through Zettle. The information includes account balance, all the transactions processed through Zettle, and payout.
 
-# Understand how card payments work at Zettle
-For information on how Zettle handles card transactions, see [how card payments work at Zettle](concepts/how-card-payments-work-at-Zettle.md).  
+# Understand how payments work at Zettle
+Payments are card payments, card refunds, or alternative payment methods (APMs) like PayPal Wallet.
+
+For information on how Zettle handles transactions for payments, see [how payments work at Zettle](concepts/how-payments-work-at-Zettle.md).  
 
 # Understand the Finance API
 See [Finance API reference](api-reference.md).
