@@ -33,7 +33,7 @@ For more information on how to get authorisaition for the scope, see [OAuth2 API
 ## Fetch account balance
 Returns the balance in a merchant's preliminary or liquid account at a specific time.
 
-After a deposit has been made from a merchant's liquid account to their bank account or PayPal Wallet for PayPal users (daily, weekly or monthly), the balance is usually zero or the minimum balance in the merchant's Zettle account. In other cases, you can see how much money is in the merchant's Zettle account.
+After a deposit has been made from a merchant's liquid account to their bank account or PayPal Wallet for PayPal users (daily, weekly or monthly), the balance is usually zero or the minimum account balance in the merchant's Zettle account. In other cases, you can see how much money is in the merchant's Zettle account.
 
 ```
 GET /organizations/{organizationUuid}/accounts/{accountTypeGroup}/balance
@@ -109,7 +109,7 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 
 |Type |Description |In which account
 |:---- |:---- |:----
-|ADJUSTMENT |A bookkeeping adjustment.|Liquid
+|ADJUSTMENT |A bookkeeping adjustment.|Liquid, preliminary
 |ADVANCE |The cash advance given by Zettle to a merchant in the liquid account. A cash advance is a type of financing that is offered to merchants based on their sales history. The advance is paid back with monthly down payments. |Liquid
 |ADVANCE_DOWNPAYMENT |A down payment on a previously paid out cash advance in the liquid account. |Liquid
 |ADVANCE_FEE_DOWNPAYMENT |The netting of a cash advance fee in the liquid account. |Liquid
@@ -122,15 +122,13 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 |CASHBACK_PAYOUT (Deprecated) |No available description. |Not applicable
 |EMONEY_TRANSFER (Deprecated) |No available description. |Not applicable
 |FAILED_PAYOUT |A previous payout transaction has failed and been made void. The payout money is returned to the merchant's liquid account. |Liquid
-|FROZEN_FUNDS |The money that is frozen to cover a chargeback. When the issuing back initiates a chargeback, the money will be removed from the merchant's liquid account and marked as frozen to cover the chargeback. If the chargeback is later revoked, the money will be returned to the merchants liquid account with a new and positive transaction of the same type. It effectively makes the initial FROZEN_FUNDS transaction void.  |Liquid
+|FROZEN_FUNDS |The money that is frozen to cover a chargeback. When the issuing bank initiates a chargeback, the money will be removed from the merchant's liquid account and marked as frozen to cover the chargeback. If the chargeback is later revoked, the money will be returned to the merchants liquid account with a new and positive transaction of the same type. It effectively makes the initial FROZEN_FUNDS transaction void.  |Liquid
 |INVOICE_PAYMENT |An invoice payment. It's only supported in Sweden. If an invoice is paid through a card payment, the payment type is `CARD_PAYMENT`. |Liquid, preliminary
 |INVOICE_PAYMENT_FEE |An invoice payment fee. It's only supported in Sweden. If an invoice is paid through a card payment, the payment fee type is `CARD_PAYMENT_FEE`. |Liquid, preliminary
 |PAYMENT |An alternative third-party payment method where Zettle handles the funds. For example, PayPal QR code and Klarna QR code. Contains a reference to the payment in the Purchase API. |Liquid, preliminary
 |PAYMENT_FEE |The fee for a third-party payment method. For example, PayPal QR code and Klarna QR code. Contains a reference to the payment fee in the Purchase API. |Liquid, preliminary
 |PAYOUT |A payout of the account balance from the merchant's liquid account to the merchant’s bank account. If the merchant is a PayPal user, the payout will be made to their PayPal Wallet. <br/>If the merchant's configuration has a minimum account balance, the payout is the liquid account balance minus the minimum account balance. For example, if the account balance is £147 and the minimum account balance is £47, the payout is £100. |Liquid
-|TELL_FRIEND (Deprecated) |No available description. |Not applicable
-|VOUCHER_ACTIVATION |Used when activating a voucher. The money is inserted to the merchant’s fee discount account instead of preliminary and liquid accounts.  |Not applicable
- 
+|TELL_FRIEND (Deprecated) |No available description. |Not applicable 
 </details>
 
 

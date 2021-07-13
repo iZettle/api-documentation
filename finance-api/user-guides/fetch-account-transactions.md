@@ -49,8 +49,8 @@ When fetching transactions from a merchant's Zettle account during a specific pe
                },
                {
                    "timestamp": "2020-06-27T23:52:18.327+0000",
-                   "amount": 649,
-                   "originatorTransactionType": "PAYMENT_FEE", // This is a refund so the amount is positive.
+                   "amount": 649, // Positive in case of refund
+                   "originatorTransactionType": "PAYMENT_FEE",
                    "originatingTransactionUuid": "690c99ea-b6ef-11ea-9730-7ef7aeff642d"
                },
            ]
@@ -78,8 +78,8 @@ When fetching transactions from a merchant's Zettle account during a specific pe
         "data": [
             {
                 "timestamp": "2020-06-27T23:52:18.327+0000",
-                "amount": -35100,
-                "originatorTransactionType": "PAYMENT", // This is a refund so the amount is negative.
+                "amount": -35100, // Negative in case of refund
+                "originatorTransactionType": "PAYMENT",
                 "originatingTransactionUuid": "690c99ea-b6ef-11ea-9730-7ef7aeff642d"
             },
             {
