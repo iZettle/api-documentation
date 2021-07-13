@@ -8,8 +8,7 @@ Use the Finance API to fetch the account balance of the merchant's preliminary o
 * [Related API reference](#related-api-reference)
 
 ## Prerequisites
-* Make sure that authorization is set up with the required OAuth scope using [Authorization OAuth2 API](../../authorization.adoc).  
-<!-- to be continued if any -->
+* Make sure that authorization is set up with the required OAuth scope using [Authorization OAuth2 API](../../authorization.adoc).
 
 ## Fetch the account balance 
 Fetch the balance in one or both of the merchant's preliminary and liquid accounts as follows:

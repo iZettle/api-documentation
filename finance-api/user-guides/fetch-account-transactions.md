@@ -4,8 +4,6 @@ Use the Finance API to fetch transactions or transactions of certain types from 
 
 > **Note**: A merchant's liquid account contains all confirmed transactions that are already paid out or to be paid out to the merchant. If you want to check preliminary transactions that are being checked by Zettle whether they should be paid out, you can fetch them from a merchant's preliminary account.
 
-<!-- Is there any limit for how old transactions can be fetched? -->  
-
 * [Prerequisites](#prerequisites)
 * [Fetch transactions during a specific period](#fetch-transactions-during-a-specific-period)
 * [Fetch transactions of certain types during a specific period](#fetch-transactions-of-certain-types-during-a-specific-period)
@@ -52,7 +50,7 @@ When fetching transactions from a merchant's Zettle account during a specific pe
                {
                    "timestamp": "2020-06-27T23:52:18.327+0000",
                    "amount": 649,
-                   "originatorTransactionType": "PAYMENT_FEE", // This is a refund so the amount is negative.
+                   "originatorTransactionType": "PAYMENT_FEE", // This is a refund so the amount is positive.
                    "originatingTransactionUuid": "690c99ea-b6ef-11ea-9730-7ef7aeff642d"
                },
            ]

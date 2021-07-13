@@ -127,7 +127,7 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 |INVOICE_PAYMENT_FEE |An invoice payment fee. It's only supported in Sweden. If an invoice is paid through a card payment, the payment fee type is `CARD_PAYMENT_FEE`. |Liquid, preliminary
 |PAYMENT |An alternative third-party payment method where Zettle handles the funds. For example, PayPal QR code and Klarna QR code. Contains a reference to the payment in the Purchase API. |Liquid, preliminary
 |PAYMENT_FEE |The fee for a third-party payment method. For example, PayPal QR code and Klarna QR code. Contains a reference to the payment fee in the Purchase API. |Liquid, preliminary
-|PAYOUT |A payout from the merchant's liquid account to the merchant’s bank account. If the merchant is a PayPal user, the payout will be made to their PayPal Wallet. |Liquid
+|PAYOUT |A payout of the account balance from the merchant's liquid account to the merchant’s bank account. If the merchant is a PayPal user, the payout will be made to their PayPal Wallet. <br/>If the merchant's configuration has a minimum account balance, the payout is the liquid account balance minus the minimum account balance. For example, if the account balance is £147 and the minimum account balance is £47, the payout is £100. |Liquid
 |TELL_FRIEND (Deprecated) |No available description. |Not applicable
 |VOUCHER_ACTIVATION |Used when activating a voucher. The money is inserted to the merchant’s fee discount account instead of preliminary and liquid accounts.  |Not applicable
  
