@@ -45,7 +45,7 @@ Apply for API credentials on [Zettle Developer Portal](https://developer.zettle.
 ## Get help
 Contact our [Integrations team](mailto:api@zettle.com) for more information. 
 
-When contacting the Integration team, please provide the following information for us to better help with your integrations:
+When contacting the Integrations team, please provide the following information:
 
 * Description about the issue. That includes:
     * What's the integration used for?
