@@ -107,30 +107,29 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 <details open="true">
 <summary>Click to hide supported transaction types.</summary>
 
-|Type |Description
-|:---- |:----
-|ADJUSTMENT |A bookkeeping adjustment.
-|ADVANCE |The cash advance given by Zettle to a merchant. A cash advance is a type of financing that is offered to merchants based on their sales history. The advance is paid back with monthly down payments.
-|ADVANCE_DOWNPAYMENT |A down payment on a previously paid out cash advance.
-|ADVANCE_FEE_DOWNPAYMENT |The netting of a cash advance fee.
-|BANK_ACCOUNT_VERIFICATION (Deprecated) |No available description.
-|CARD_PAYMENT |A card payment. Contains a reference to the card payment in the Purchase API.
-|CARD_PAYMENT_FEE |The commission part of a card payment. Contains a reference to the card payment fee in the Purchase API.
-|CARD_PAYMENT_FEE_REFUND |The commission part of a refund. Contains a reference to the card payment fee refund in the Purchase API.
-|CARD_REFUND |A card refund. Contains a reference to the card refund in the Purchase API.
-|CASHBACK |Money given to a merchant to retroactively adjust the card payment fee rate.
-|CASHBACK_PAYOUT (Deprecated) |No available description.
-|EMONEY_TRANSFER (Deprecated) |No available description.
-|FAILED_PAYOUT |A previous payout transaction has failed and been made void. The payout money is returned to the merchant's liquid account.
-|FEE_DISCOUNT_REVOCATION |An internal reclaim of an outstanding fee discount that is not consumed within a certain time frame. As these funds are reclaimed from a special fee discount account, the transaction will not be visible in the liquid account of the merchant.
-|FROZEN_FUNDS |The money that is frozen to cover a chargeback. When the issuing back initiates a chargeback, the money will be removed from the merchant's liquid account and marked as frozen to cover the chargeback. If the chargeback is later revoked, the money will be returned to the merchants liquid account with a new and positive transaction of the same type. It effectively makes the initial FROZEN_FUNDS transaction void.
-|INVOICE_PAYMENT |An invoice payment.
-|INVOICE_PAYMENT_FEE |An invoice payment fee.
-|PAYMENT |An alternative third-party payment method where Zettle handles the funds. For example, PayPal QR code and Klarna QR code. Contains a reference to the payment in the Purchase API.
-|PAYMENT_FEE |The fee for a third-party payment method. For example, PayPal QR code and Klarna QR code. Contains a reference to the payment fee in the Purchase API.
-|PAYOUT |A payout from the merchant's liquid account to the merchant’s bank account. If the merchant is a PayPal user, the payout will be made to their PayPal Wallet.  
-|TELL_FRIEND (Deprecated) |No available description.
-|VOUCHER_ACTIVATION |Used when activating a voucher. The money is inserted to the merchant’s fee discount account instead of preliminary and liquid accounts.
+|Type |Description |In which account
+|:---- |:---- |:----
+|ADJUSTMENT |A bookkeeping adjustment.|Liquid
+|ADVANCE |The cash advance given by Zettle to a merchant in the liquid account. A cash advance is a type of financing that is offered to merchants based on their sales history. The advance is paid back with monthly down payments. |Liquid
+|ADVANCE_DOWNPAYMENT |A down payment on a previously paid out cash advance in the liquid account. |Liquid
+|ADVANCE_FEE_DOWNPAYMENT |The netting of a cash advance fee in the liquid account. |Liquid
+|BANK_ACCOUNT_VERIFICATION (Deprecated) |No available description. |Not applicable
+|CARD_PAYMENT |A card payment. Contains a reference to the card payment in the Purchase API. |Liquid, preliminary
+|CARD_PAYMENT_FEE |The commission part of a card payment. Contains a reference to the card payment fee in the Purchase API.  |Liquid, preliminary
+|CARD_PAYMENT_FEE_REFUND |The commission part of a refund. Contains a reference to the card payment fee refund in the Purchase API.  |Liquid, preliminary
+|CARD_REFUND |A card refund. Contains a reference to the card refund in the Purchase API.  |Liquid, preliminary
+|CASHBACK |Money given to a merchant to retroactively adjust the card payment fee rate.  |Liquid
+|CASHBACK_PAYOUT (Deprecated) |No available description. |Not applicable
+|EMONEY_TRANSFER (Deprecated) |No available description. |Not applicable
+|FAILED_PAYOUT |A previous payout transaction has failed and been made void. The payout money is returned to the merchant's liquid account. |Liquid
+|FROZEN_FUNDS |The money that is frozen to cover a chargeback. When the issuing back initiates a chargeback, the money will be removed from the merchant's liquid account and marked as frozen to cover the chargeback. If the chargeback is later revoked, the money will be returned to the merchants liquid account with a new and positive transaction of the same type. It effectively makes the initial FROZEN_FUNDS transaction void.  |Liquid
+|INVOICE_PAYMENT |An invoice payment. It's only supported in Sweden. If an invoice is paid through a card payment, the payment type is `CARD_PAYMENT`. |Liquid, preliminary
+|INVOICE_PAYMENT_FEE |An invoice payment fee. It's only supported in Sweden. If an invoice is paid through a card payment, the payment fee type is `CARD_PAYMENT_FEE`. |Liquid, preliminary
+|PAYMENT |An alternative third-party payment method where Zettle handles the funds. For example, PayPal QR code and Klarna QR code. Contains a reference to the payment in the Purchase API. |Liquid, preliminary
+|PAYMENT_FEE |The fee for a third-party payment method. For example, PayPal QR code and Klarna QR code. Contains a reference to the payment fee in the Purchase API. |Liquid, preliminary
+|PAYOUT |A payout from the merchant's liquid account to the merchant’s bank account. If the merchant is a PayPal user, the payout will be made to their PayPal Wallet. |Liquid
+|TELL_FRIEND (Deprecated) |No available description. |Not applicable
+|VOUCHER_ACTIVATION |Used when activating a voucher. The money is inserted to the merchant’s fee discount account instead of preliminary and liquid accounts.  |Not applicable
  
 </details>
 
