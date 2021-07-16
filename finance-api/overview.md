@@ -13,7 +13,7 @@ For information on how Zettle handles transactions for payments, see [how paymen
 See [Finance API reference](api-reference.md).
 
 # Fetch transactions
-Using the Finance API, you can fetch transaction information about payments as follows:
+Using the Finance API, you can fetch finance-related information as follows:
 
 * [Fetch account balance](user-guides/fetch-account-balance.md)
 * [Fetch account transactions](user-guides/fetch-account-transactions.md)
