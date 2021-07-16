@@ -11,7 +11,7 @@ Use the Finance API to fetch transactions or transactions of certain types from 
 * [Related API reference](#related-api-reference)
 
 ## Prerequisites
-* Make sure that authorization is set up with the required OAuth scope using [Authorization OAuth2 API](../../authorization.adoc). 
+* Make sure that authorisation is set up with the required OAuth scope using [Authorization OAuth2 API](../../authorization.adoc). 
 
 ## Fetch transactions during a specific period
 When fetching transactions from a merchant's Zettle account during a specific period, set pagination to avoid a big dataset in a response. The transactions should be fetched from the merchant's liquid account.

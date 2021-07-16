@@ -2,6 +2,9 @@ Fetch payout information
 ===
 Use the Finance API to fetch payout information from a merchant's account. The payout information includes the account balance, currency, payout, periodicity, and remaining discounts. 
 
+A payout is to deposit the account balance to the merchant's bank account or their PayPal Wallet for PayPal users at the [scheduled time](https://www.zettle.com/help/articles/1084784-deposits). The scheduled time varies depending on the country.
+
+
 <!-- Is there any limit for how oldest transactions can be fetched? -->  
 
 * [Prerequisites](#prerequisites)
@@ -10,7 +13,7 @@ Use the Finance API to fetch payout information from a merchant's account. The p
 * [Related API reference](#related-api-reference)
 
 ## Prerequisites
-* Make sure that authorization is set up with the required OAuth scope using [Authorization OAuth2 API](../../authorization.adoc). 
+* Make sure that authorisation is set up with the required OAuth scope using [Authorization OAuth2 API](../../authorization.adoc). 
 <!-- to be continued if any -->
 
 ## Fetch payout information

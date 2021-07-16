@@ -48,7 +48,7 @@ See example [Fetch current balance for a liquid account](#fetch-current-balance-
 
 |Name |Type |In |Required/Optional |Description
 |:---- |:---- |:---- |:---- |:----
-|organizationUuid |string |path |required |Unique identifier for your organization. You can specify the value with one of the following: <br/><ul><li> Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li></ul> 
+|organizationUuid |string |path |required |Unique identifier for your organisation. You can specify the value with one of the following: <br/><ul><li> Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li></ul> 
 |accountTypeGroup |string |path |required |The type of a merchant's Zettle account. You can use one of the following account types: <br/><ul><li> `PRELIMINARY` account where transactions are to be confirmed.</li><li> `LIQUID` account where transactions are to be paid out to the merchant.</li></ul>
 |at |string |query |optional |Used to fetch account balance that is available at a UTC time. If it's used, any transaction after that point will be ignored. If it's not used, the balance of all transactions at the current point of time is returned. <br/>You can specify a UTC time in one of the following formats: <br/><ul><li>`YYYY-MM` to specify a month. By default, it specifies the first second of the first day in the month. For example, for `2020-11`, the time will be `2020-11-01T00:00:00`.</li><li>`YYYY-MM-DD` to specify a date. For example, `2020-11-29`.</li><li>`YYYY-MM-DDThh:mm:ss` to specify a time. For example, `2020-11-29T03:10:02`.</li></ul>
 </details>
@@ -93,7 +93,7 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 
 |Name |Type |In |Required/Optional |Description
 |:---- |:---- |:---- |:---- |:----
-|organizationUuid |string |path |required |Unique identifier for your organization. You can specify the value with one of the following: <br/><ul><li> Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li></ul> 
+|organizationUuid |string |path |required |Unique identifier for your organisation. You can specify the value with one of the following: <br/><ul><li> Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li></ul> 
 |accountTypeGroup |string |path |required |The type of a merchant's Zettle account. You can use one of the following account types: <br/><ul><li> `PRELIMINARY` account where transactions are to be confirmed.</li><li> `LIQUID` account where transactions are to be paid out to the merchant.</li></ul>
 |start |string |query |required |A start time in UTC (inclusive) from when the transactions will be fetched. You can specify a UTC time in one of the following formats: <br/><ul><li>`YYYY-MM` to specify a month. By default, it specifies the first second of the first day in the month. For example, for `2020-11`, the time will be `2020-11-01T00:00:00`.</li><li>`YYYY-MM-DD` to specify a date. For example, `2020-11-29`.</li><li>`YYYY-MM-DDThh:mm:ss` to specify a time. For example, `2020-11-29T03:10:02`.</li></ul>
 |end |string |query |required |An end time in UTC (exclusive) before when the transactions will be fetched. You can specify a UTC time in one of the following formats: <br/><ul><li>`YYYY-MM` to specify a month. By default, it specifies the first second of the first day in the month. For example, for `2020-11`, the time will be `2020-11-01T00:00:00`.</li><li>`YYYY-MM-DD` to specify a date. For example, `2020-11-29`.</li><li>`YYYY-MM-DDThh:mm:ss` to specify a time. For example, `2020-11-29T03:10:02`.</li></ul>
@@ -113,22 +113,22 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 |ADVANCE |The cash advance given by Zettle to a merchant in the liquid account. A cash advance is a type of financing that is offered to merchants based on their sales history. The advance is paid back with monthly down payments. |Liquid
 |ADVANCE_DOWNPAYMENT |A down payment on a previously paid out cash advance in the liquid account. |Liquid
 |ADVANCE_FEE_DOWNPAYMENT |The netting of a cash advance fee in the liquid account. |Liquid
-|BANK_ACCOUNT_VERIFICATION (Deprecated) |No available description. |Not applicable
+|BANK_ACCOUNT_VERIFICATION (Deprecated) |Not applicable. |Not applicable
 |CARD_PAYMENT |A card payment. Contains a reference to the card payment in the Purchase API. |Liquid, preliminary
 |CARD_PAYMENT_FEE |The commission part of a card payment. Contains a reference to the card payment fee in the Purchase API.  |Liquid, preliminary
 |CARD_PAYMENT_FEE_REFUND |The commission part of a refund. Contains a reference to the card payment fee refund in the Purchase API.  |Liquid, preliminary
 |CARD_REFUND |A card refund. Contains a reference to the card refund in the Purchase API.  |Liquid, preliminary
 |CASHBACK |Money given to a merchant to retroactively adjust the card payment fee rate.  |Liquid
-|CASHBACK_PAYOUT (Deprecated) |No available description. |Not applicable
-|EMONEY_TRANSFER (Deprecated) |No available description. |Not applicable
+|CASHBACK_PAYOUT (Deprecated) |Not applicable. |Not applicable
+|EMONEY_TRANSFER (Deprecated) |Not applicable. |Not applicable
 |FAILED_PAYOUT |A previous payout transaction has failed and been made void. The payout money is returned to the merchant's liquid account. |Liquid
-|FROZEN_FUNDS |The money that is frozen to cover a chargeback. When the issuing bank initiates a chargeback, the money will be removed from the merchant's liquid account and marked as frozen to cover the chargeback. If the chargeback is later revoked, the money will be returned to the merchants liquid account with a new and positive transaction of the same type. It effectively makes the initial FROZEN_FUNDS transaction void.  |Liquid
+|FROZEN_FUNDS |The money that is frozen to cover a chargeback. When the issuing bank initiates a chargeback, the money will be removed from the merchant's liquid account and marked as frozen to cover the chargeback. If the chargeback is later revoked, the money will be returned to the merchant's liquid account with a new and positive transaction of the same type. It effectively makes the initial FROZEN_FUNDS transaction void.  |Liquid
 |INVOICE_PAYMENT |An invoice payment. It's only supported in Sweden. If an invoice is paid through a card payment, the payment type is `CARD_PAYMENT`. |Liquid, preliminary
 |INVOICE_PAYMENT_FEE |An invoice payment fee. It's only supported in Sweden. If an invoice is paid through a card payment, the payment fee type is `CARD_PAYMENT_FEE`. |Liquid, preliminary
 |PAYMENT |An alternative third-party payment method where Zettle handles the funds. For example, PayPal QR code and Klarna QR code. Contains a reference to the payment in the Purchase API. |Liquid, preliminary
 |PAYMENT_FEE |The fee for a third-party payment method. For example, PayPal QR code and Klarna QR code. Contains a reference to the payment fee in the Purchase API. |Liquid, preliminary
 |PAYOUT |A payout of the account balance from the merchant's liquid account to the merchant’s bank account. If the merchant is a PayPal user, the payout will be made to their PayPal Wallet. <br/>If the merchant's configuration has a minimum account balance, the payout is the liquid account balance minus the minimum account balance. For example, if the account balance is £147 and the minimum account balance is £47, the payout is £100. |Liquid
-|TELL_FRIEND (Deprecated) |No available description. |Not applicable 
+|TELL_FRIEND (Deprecated) |Not applicable. |Not applicable 
 </details>
 
 
@@ -158,7 +158,7 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 
 
 ## Fetch payout information
-Returns payout related information from a merchant's liquid account.
+Returns payout related information from a merchant's liquid account. A payout is to deposit the account balance to the merchant's bank account or their PayPal Wallet for PayPal users at the [scheduled time](https://www.zettle.com/help/articles/1084784-deposits). The scheduled time varies depending on the country.
 
 ```
 GET /organizations/{organizationUuid}/payout-info
@@ -173,7 +173,7 @@ See example [Fetch payout information on a specific period](#fetch-payout-inform
 
 |Name |Type |In |Required/Optional |Description
 |:---- |:---- |:---- |:---- |:----
-|organizationUuid |string |path |required |Unique identifier for your organization. You can specify the value with one of the following: <br/><ul><li> Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li></ul> 
+|organizationUuid |string |path |required |Unique identifier for your organisation. You can specify the value with one of the following: <br/><ul><li> Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the https://oauth.izettle.com/users/me endpoint of OAuth2 API. See [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) for more information.</li></ul> 
 |at |string |query |optional |Used to fetch payouts at a certain point in UTC time. If it's used, any transaction after that time will be ignored. If it's not used, the balance of all transactions at the current point of time is returned. <br/>You can specify a UTC time in one of the following formats: <br/><ul><li>`YYYY-MM` to specify a month. For example, `2020-11`. By default, it specifies the first second of the first day in the month.</li><li>`YYYY-MM-DD` to specify a date. For example, `2020-11-29`.</li><li>`YYYY-MM-DDThh:mm:ss` to specify a time. For example, `2020-11-29T03:10:02`.</li></ul>
 </details>
 
