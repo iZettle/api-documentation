@@ -28,7 +28,7 @@ https://finance.izettle.com
 ### OAuth Scope
 `READ:FINANCE`
 
-For more information on how to get authorisaition for the scope, see [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc)
+For more information on how to get authorisation for the scope, see [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc)
 
 ## Fetch account balance
 Returns the balance in a merchant's preliminary or liquid account at a specific time.
