@@ -28,7 +28,7 @@ https://finance.izettle.com
 ### OAuth Scope
 `READ:FINANCE`
 
-For more information on how to get authorisation for the scope, see [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc)
+For more information on how to get authorisation for the scope, see [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc).
 
 ## Fetch account balance
 Returns the balance in a merchant's preliminary or liquid account at a specific time.
@@ -158,7 +158,11 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 
 
 ## Fetch payout information
-Returns payout related information from a merchant's liquid account. A payout is to deposit the account balance to the merchant's bank account or their PayPal Wallet for PayPal users at the [scheduled time](https://www.zettle.com/help/articles/1084784-deposits). The scheduled time varies depending on the country.
+Returns payout related information from a merchant's liquid account.
+
+A payout is to deposit the account balance to the merchant's bank account or their PayPal Wallet for PayPal users at the [scheduled time](https://www.zettle.com/help/articles/1084784-deposits). The scheduled time varies depending on the country.
+
+If the merchant's configuration has a minimum account balance, then the payout will deposit the account balance minus the minimum account balance.
 
 ```
 GET /organizations/{organizationUuid}/payout-info
@@ -251,14 +255,14 @@ Response
         ...
         {
             "timestamp": "2020-06-27T23:52:18.327+0000",
-            "amount": 649,
-            "originatorTransactionType": "PAYMENT_FEE", // In case of refund
+            "amount": 649, // Positive in case of refund
+            "originatorTransactionType": "PAYMENT_FEE",
             "originatingTransactionUuid": "690c99ea-b6ef-11ea-9730-7ef7aeff642d"
         },
         {
             "timestamp": "2020-06-27T23:52:18.327+0000",
-            "amount": -35100,
-            "originatorTransactionType": "PAYMENT", // In case of refund
+            "amount": -35100, // Negative in case of refund
+            "originatorTransactionType": "PAYMENT",
             "originatingTransactionUuid": "690c99ea-b6ef-11ea-9730-7ef7aeff642d"
         },
         {

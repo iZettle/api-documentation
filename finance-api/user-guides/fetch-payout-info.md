@@ -4,8 +4,7 @@ Use the Finance API to fetch payout information from a merchant's account. The p
 
 A payout is to deposit the account balance to the merchant's bank account or their PayPal Wallet for PayPal users at the [scheduled time](https://www.zettle.com/help/articles/1084784-deposits). The scheduled time varies depending on the country.
 
-
-<!-- Is there any limit for how oldest transactions can be fetched? -->  
+If the merchant's configuration has a minimum account balance, then the payout will deposit the account balance minus the minimum account balance.
 
 * [Prerequisites](#prerequisites)
 * [Fetch payout information](#fetch-payout-information)
