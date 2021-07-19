@@ -151,7 +151,7 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 |:---- |:---- |:----
 |data |an array of objects|A list of transactions for the given account in the descending order that shows the most recent transaction first.
 |timestamp |string |Time when a transaction happens in the merchant's Zettle account. It's not the timestamp when a card transaction or a purchase happens. <br/>For example, transactions in the merchant's liquid account may happen hours after card transactions or purchases take place.
-|amount |integer |The amount of money of a transaction. Depending on the transaction and the transaction type, the amount can be negative. For example, the `PAYMENT` transaction type in a refund.
+|amount |integer |The amount of money of a transaction in the currency's smallest unit. For example, 300 with currency GBP is £3. <br/>Depending on the transaction and the transaction type, the amount can be negative. For example, the `PAYMENT` transaction type in a refund.
 |originatorTransactionType |string |The transaction type. See [supported transaction types](#supported-transaction-types). 
 |originatingTransactionUuid |string |The identifier of the originating transaction as UUID version 1.  
 </details>
