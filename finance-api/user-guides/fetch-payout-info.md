@@ -7,15 +7,15 @@ A payout is to deposit the account balance to the merchant's bank account or the
 If the merchant's configuration has a minimum account balance, then the payout will deposit the account balance minus the minimum account balance.
 
 * [Prerequisites](#prerequisites)
-* [Fetch payout information](#fetch-payout-information)
+* [Fetch the payout information](#fetch-the-payout-information)
 * [Related task](#related-task)
 * [Related API reference](#related-api-reference)
 
 ## Prerequisites
-* Make sure that authorisation is set up with the required OAuth scope using [Authorization OAuth2 API](../../authorization.adoc). 
-<!-- to be continued if any -->
+* Make sure that authorisation is set up with the following OAuth scope using [Authorization OAuth2 API](../../authorization.adoc):
+    * `READ:FINANCE`
 
-## Fetch payout information
+## Fetch the payout information
 You can fetch payout information from a merchant's Zettle account for any given day.
 
 Fetch payout information on a specific day. If you don't specify `at`, you will get the latest payout information by default.

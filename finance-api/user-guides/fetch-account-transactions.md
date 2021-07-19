@@ -11,7 +11,8 @@ Use the Finance API to fetch transactions or transactions of certain types from 
 * [Related API reference](#related-api-reference)
 
 ## Prerequisites
-* Make sure that authorisation is set up with the required OAuth scope using [Authorization OAuth2 API](../../authorization.adoc). 
+* Make sure that authorisation is set up with the following OAuth scope using [Authorization OAuth2 API](../../authorization.adoc):
+    * `READ:FINANCE`
 
 ## Fetch transactions during a specific period
 When fetching transactions from a merchant's Zettle account during a specific period, set pagination to avoid a big dataset in a response. The transactions should be fetched from the merchant's liquid account.
@@ -20,7 +21,7 @@ When fetching transactions from a merchant's Zettle account during a specific pe
 1. Send a request where you set `limit` as the number of transactions to fetch and `offset` as `0`.
      
    ```
-   GET /organizations/self/accounts/{accountTypeGroup}/transactions?start={start_time}&end={end_time}&{limit}={limit_value}&offset={offset_value}
+   GET /organizations/self/accounts/{accountTypeGroup}/transactions?start={start_time}&end={end_time}&limit={limit_value}&offset={offset_value}
    ```
 
    Example:
@@ -60,7 +61,7 @@ When fetching transactions from a merchant's Zettle account during a specific pe
 2. Send another request where you keep `limit` the same as in step 1 and increment `offset` with the value of `limit` . 
      
    ```
-   GET /organizations/self/accounts/{accountTypeGroup}/transactions?start={start_time}&end={end_time}&{limit}={limit_value}&offset={offset_value}
+   GET /organizations/self/accounts/{accountTypeGroup}/transactions?start={start_time}&end={end_time}&limit={limit_value}&offset={offset_value}
    ```
    Example:
       
@@ -105,7 +106,7 @@ When fetching transactions from a merchant's Zettle account during a specific pe
    
    Request
    ```
-   GET /organizations/self/accounts/liquid/transactions?start=2020-01-01&end=2020-07-05&limit=3&offset=3
+   GET /organizations/self/accounts/liquid/transactions?start=2020-01-01&end=2020-07-05&limit=3&offset=30
    ```
    Response
    
@@ -128,8 +129,6 @@ When fetching transactions from a merchant's Zettle account during a specific pe
         ]
     }
     ```
-
-
 
 ## Fetch transactions of certain types during a specific period
 You can fetch transactions of certain types from a merchant's Zettle account during a specific period. For example, you can fetch all card transactions. The transactions should be fetched from the merchant's liquid account.

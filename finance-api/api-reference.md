@@ -125,8 +125,8 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 |FROZEN_FUNDS |The money that is frozen to cover a chargeback. When the issuing bank initiates a chargeback, the money will be removed from the merchant's liquid account and marked as frozen to cover the chargeback. If the chargeback is later revoked, the money will be returned to the merchant's liquid account with a new and positive transaction of the same type. It effectively makes the initial FROZEN_FUNDS transaction void.  |Liquid
 |INVOICE_PAYMENT |An invoice payment. It's only supported in Sweden. If an invoice is paid through a card payment, the payment type is `CARD_PAYMENT`. |Liquid, preliminary
 |INVOICE_PAYMENT_FEE |An invoice payment fee. It's only supported in Sweden. If an invoice is paid through a card payment, the payment fee type is `CARD_PAYMENT_FEE`. |Liquid, preliminary
-|PAYMENT |An alternative third-party payment method where Zettle handles the funds. For example, PayPal QR code and Klarna QR code. Contains a reference to the payment in the Purchase API. |Liquid, preliminary
-|PAYMENT_FEE |The fee for a third-party payment method. For example, PayPal QR code and Klarna QR code. Contains a reference to the payment fee in the Purchase API. |Liquid, preliminary
+|PAYMENT |An alternative third-party payment method where Zettle handles the funds. For example, PayPal QR code and Klarna QR code. The amount is negative in a refund. <br/>Contains a reference to the payment in the Purchase API. |Liquid, preliminary
+|PAYMENT_FEE |The fee for a third-party payment method. For example, PayPal QR code and Klarna QR code. The amount is positive in a refund. <br/>Contains a reference to the payment fee in the Purchase API. |Liquid, preliminary
 |PAYOUT |A payout of the account balance from the merchant's liquid account to the merchant’s bank account. If the merchant is a PayPal user, the payout will be made to their PayPal Wallet. <br/>If the merchant's configuration has a minimum account balance, the payout is the liquid account balance minus the minimum account balance. For example, if the account balance is £147 and the minimum account balance is £47, the payout is £100. |Liquid
 |TELL_FRIEND (Deprecated) |Not applicable. |Not applicable 
 </details>
@@ -151,7 +151,7 @@ See example [Fetch transactions for a liquid account](#fetch-transactions-for-a-
 |:---- |:---- |:----
 |data |an array of objects|A list of transactions for the given account in the descending order that shows the most recent transaction first.
 |timestamp |string |Time when a transaction happens in the merchant's Zettle account. It's not the timestamp when a card transaction or a purchase happens. <br/>For example, transactions in the merchant's liquid account may happen hours after card transactions or purchases take place.
-|amount |integer |The amount of money of a transaction. If the transaction is a refund or a payment fee, the amount is negative.
+|amount |integer |The amount of money of a transaction. Depending on the transaction and the transaction type, the amount can be negative. For example, the `PAYMENT` transaction type in a refund.
 |originatorTransactionType |string |The transaction type. See [supported transaction types](#supported-transaction-types). 
 |originatingTransactionUuid |string |The identifier of the originating transaction as UUID version 1.  
 </details>
@@ -211,7 +211,7 @@ See example [Fetch payout information on a specific period](#fetch-payout-inform
 ## Examples
 
 ### Fetch current balance for a liquid account
-In the following example, as `at` is not specified, the current balance £1.95 is fetched by default.
+In the following example, the current balance, which is £1.95, is fetched by default, since `at` is not specified.
 
 Request
 ```
