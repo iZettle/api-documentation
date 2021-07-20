@@ -1,4 +1,16 @@
 == Zettle API Changelog
+.**July 20, 2021** `Finance API`
+[%collapsible]
+====
+**Finance API documentation Improvements**
+
+The improvements include the following:
+
+- Improved the API reference document.
+- Added a concept description about how payments work at Zettle.
+- Added user guides.
+====
+
 .**May 3, 2021** `Pusher API`
 [%collapsible]
 ====
