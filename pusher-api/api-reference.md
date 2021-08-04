@@ -166,7 +166,7 @@ See [Get webhook subscriptions example](#get-webhook-subscriptions).
 Updates an existing webhook subscription.
 
 ```
-PUT /organizations/organizationUuid}/subscriptions/{subscriptionUuid}
+PUT /organizations/{organizationUuid}/subscriptions/{subscriptionUuid}
 ```
 
 See [Update a webhook subscription example](#update-a-webhook-subscription).
