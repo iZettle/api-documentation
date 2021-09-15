@@ -45,17 +45,20 @@ To use this approach, the merchant using the integration needs to provide you wi
    https://my.zettle.com/apps/api-keys?name=WooCommerce&scopes=READ:PURCHASE+READ:FINANCE
    ```
 2. When the merchant accesses the link, they will have to confirm the API Key creation according to these screenshots.
- 
-    a. Review the information and click **Create key**.
-       <img id="create-API-keys-from-the-deep-link" src="images/create-API-keys-from-the-deep-link.png" alt="This screenshot shows the dialog that is started after clicking a deep link for creating API keys.">
+
+   a. Review the information and click **Create key**.
+       
+      <img id="create-API-keys-from-the-deep-link" src="images/create-API-keys-from-the-deep-link.png" alt="This screenshot shows the dialog that is started after clicking a deep link for creating API keys.">
        
     b. Confirm your password.
     
     c. The API Key has been created. Click **Copy key** and keep it in a safe place. This is the information you need to share with the developer in charge of the changes.
-       <img id="copy-key" src="images/copy-key.png" alt="This screenshot shows the dialog where you can copy the API key and save it for later use.">
+       
+      <img id="copy-key" src="images/copy-key.png" alt="This screenshot shows the dialog where you can copy the API key and save it for later use.">
     
     d. The created key will be displayed in the list of keys. Once the integration starts working with this key, the Last used column will show the last time the integration accessed your Zettle data. 
-       <img id="available-API-keys" src="images/available-API-keys.png" alt="This screenshot shows the dialog where you can see a list of created API keys.">
+       
+      <img id="available-API-keys" src="images/available-API-keys.png" alt="This screenshot shows the dialog where you can see a list of created API keys.">
        
 ### Option 2: Create the API Key by accessing my.zettle.com
 Ask the merchant to follow the steps to create the API key by accessing [my.zettle.com](https://my.zettle.com/).
@@ -64,7 +67,7 @@ Ask the merchant to follow the steps to create the API key by accessing [my.zett
 
 2. On the left panel, click **Integrations**.
 
-   <img id="check-integrations-in-my.zettle.com" src="images/check-integrations-in-check-integrations-in-my.zettle.com.png" alt="This screenshot shows where you can find integrations in my.zettle.com.">
+   <img id="check-integrations-in-my.zettle.com" src="images/check-integrations-in-my.zettle.com.png" alt="This screenshot shows where you can find integrations in my.zettle.com.">
  
 3. Under the Integration tools section, click **API Keys**.
 
