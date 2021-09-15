@@ -31,7 +31,7 @@ To use this approach, the merchant using the integration needs to provide you wi
 
 ### Option 1: Create the API Key using a link
 
-1. In order to make it a easy as possible for the merchant to create the API key, the integrator can provide a deep link to the API key creation page with pre-populated fields: 
+1. In order to make it as easy as possible for the merchant to create the API key, the integrator can provide a deep link to the API key creation page with pre-populated fields: 
      
    ```
    https://my.zettle.com/apps/api-keys?name=<key-name>&scopes=<scopes>
