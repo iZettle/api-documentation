@@ -37,14 +37,13 @@ To use this approach, the merchant using the integration needs to provide you wi
    https://my.zettle.com/apps/api-keys?name=<key-name>&scopes=<scopes>
    ```
    Where:
-   * `<key-name>` should be the name under which the API key is stored. Keep it short, but descriptive. One good practice is to use the integration name as the key name, for example, `"WooCommerce Sync"`.
-   * `<scopes>` should contain the list of needed scopes separated by a space, for example, `"READ:PURCHASE+READ:FINANCE"`.
+   * `<key-name>` should be the name under which the API key is stored. Keep it short, but descriptive. One good practice is to use the integration name as the key name, for example, `WooCommerce Sync`.
+   * `<scopes>` should contain the list of needed scopes separated by a space, for example, `READ:PURCHASE+READ:FINANCE`.
    
    Example:
    ```
-   https://my.zettle.com/apps/api-keys?name="WooCommerce"&scopes="READ:PURCHASE+READ:FINANCE"
+   https://my.zettle.com/apps/api-keys?name=WooCommerce&scopes=READ:PURCHASE+READ:FINANCE
    ```
-   <!-- Taiza: could you double check the example? I pasted the link in the URL but I didn't receive a dialog as the screenshot in step 2.a. -->
 2. When the merchant accesses the link, they will have to confirm the API Key creation according to these screenshots.
  
     a. Review the information and click **Create key**.
