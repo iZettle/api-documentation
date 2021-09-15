@@ -1,5 +1,5 @@
 == Zettle API Changelog
-.**September 30, 2021** `OAuth API`
+.**September 15, 2021** `OAuth API`
 [%collapsible]
 ====
 **Password grant is deprecated**
