@@ -4,7 +4,7 @@
 ====
 **Password grant is deprecated**
 
-The Password grant OAuth flow has been deprecated and will be removed on 31st January 2022. Please update your Zettle integration to another authentication flow to keep it running. For information about how to update the authentication flow, see xref:oauth-api/update-password-grant-to-assertion-grant/update-password-grant-to-assertion-grant.md[Update password grant to assertion grant].
+The Password grant OAuth flow has been deprecated and will be removed on 31st January 2022. Please update your Zettle integration to another authentication flow to keep it running. For information about how to update the authentication flow, see xref:oauth-api/zettle-password-grant-migration-guide/zettle-password-grant-migration-guide.md[Zettle Password grant migration guide].
 ====
 
 .**July 20, 2021** `Finance API`
