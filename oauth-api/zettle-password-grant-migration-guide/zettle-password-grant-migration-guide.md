@@ -1,4 +1,4 @@
-Update password grant to assertion grant
+Zettle Password grant migration guide
 ===
 The Password grant for Zettle integrations is now deprecated and will be removed on January 31th  2022.
 
@@ -10,13 +10,13 @@ The Password grant for Zettle integrations is now deprecated and will be removed
   * [Option 2: Create the API Key by accessing my.zettle.com](#option-2-create-the-api-key-by-accessing-myzettlecom)
 
 ## Action needed
-Update the integration to use an authentication grant supported by Zettle. You can find more information in this document and in the [Zettle OAuth2 API documentation](../../authorization.adoc). <!-- Taiza: do we recommend they use assertion grant instead of saying "use an authentication grant supported by Zettle"-->
+Update the integration to use an authentication grant supported by Zettle. You can find more information in this document and in the [Zettle OAuth2 API documentation](../../authorization.adoc).
 
 ## Support 
 If you have any questions, please contact our service desk by sending an email to our [Integrations team](mailto:api@zettle.com). 
  
 ## Technical details
-Zettle API uses the OAuth 2.0 Authorization Framework. We recommend implementing the Assertion grant to keep your integration private. For more information about the assertion grant and other authentication flows, read more in the [Zettle OAuth2 API documentation](../../authorization.adoc). 
+Zettle API uses the OAuth 2.0 Authorization Framework. The Assertion grant is recommend to keep your integration private. For more information about the assertion grant and other authentication flows, read more in the [Zettle OAuth2 API documentation](../../authorization.adoc). 
 
 ## Assertion grant API Keys
 To use this approach, the merchant using the integration needs to provide you with the API Key. The API key is created at [my.zettle.com](https://my.zettle.com/) by the Zettle account owner (merchant). The creation process can be started in one of the following ways:
@@ -44,7 +44,7 @@ To use this approach, the merchant using the integration needs to provide you wi
    ```
    https://my.zettle.com/apps/api-keys?name=WooCommerce&scopes=READ:PURCHASE+READ:FINANCE
    ```
-2. When the merchant accesses the link, they will have to confirm the API Key creation according to these screenshots.
+2. When the merchant accesses the link, ask them to follow the steps to confirm the API key creation.
 
    a. Review the information and click **Create key**.
        
