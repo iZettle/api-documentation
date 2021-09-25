@@ -1,17 +1,17 @@
 ## Authorization OAuth2 API
 
 ### Service Description
-The Authorization service implements the OAuth 2.0 protocol. It handles merchant authorization of external integrators and issues access tokens used by authorized clients to call the other parts of the iZettle API.
+The Authorization service implements the OAuth 2.0 protocol. It handles merchant authorization of external integrators and issues access tokens used by authorized clients to call the other parts of the Zettle API.
 
 ### URL
-https://oauth.izettle.com
+https://oauth.zettle.com
 
 ---
 
 ### Introduction
 The OAuth API implements the OAuth 2.0 Authorization Framework (https://tools.ietf.org/html/rfc6749[RFC 6749]). For an external integrator, there are two different grant types that are of interest, the authorization code grant and the assertion grant. Both grant types are described below. 
 
-The authorization code grant is to be used for public integrations, where you want to create an integration that can be used by any iZettle merchant, whereas the assertion grant is to be used when you are creating a private integration, for your own merchant account.
+The authorization code grant is to be used for public integrations, where you want to create an integration that can be used by any Zettle merchant, whereas the assertion grant is to be used when you are creating a private integration, for your own merchant account.
 
 ### Authorization Code Grant
 For public integrations, you should implement the authorization code grant as described below. This will allow any user to authorize and install your integration.
@@ -76,14 +76,14 @@ The response will contain both the access and refresh tokens:
 ```
 
 ### Assertion Grant
-For private integrations, you should implement the assertion grant as described below. This will allow you to retrieve an access token using an API key provided to you by the iZettle account owner.
+For private integrations, you should implement the assertion grant as described below. This will allow you to retrieve an access token using an API key provided to you by the Zettle account owner.
 
 #### Create API key
-The iZettle account owner can create an API key from within the https://my.izettle.com/apps/api-keys[iZettle Backoffice]. The API key is provided in the form of a JWT string and serves as the assertion that the integrator will use when calling the assertion grant. *It is of highest importance that this key is being kept secure!*
+The Zettle account owner can create an API key from within the https://my.zettle.com/apps/api-keys[Zettle Backoffice]. The API key is provided in the form of a JWT string and serves as the assertion that the integrator will use when calling the assertion grant. *It is of highest importance that this key is being kept secure!*
 
 In order to make it as easy as possible for the account owner to create the API key, the integrator can provide a deep link to the API key creation page, with prepopulated fields:
 
-`https://my.izettle.com/apps/api-keys?name=<key-name>&scopes=<scopes>`
+`https://my.zettle.com/apps/api-keys?name=<key-name>&scopes=<scopes>`
 
 *Key-name* should be the name under which the API key is stored. Keep it short but descriptive. One good practice is to use the integration name as the key name, e.g "WooCommerce Sync".
 
@@ -101,15 +101,15 @@ The `grant_type` should be set to `urn:ietf:params:oauth:grant-type:jwt-bearer`,
 curl -s -d \
 'grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&client_id=c55de605-48b6-42ef-b69e-cd9d14ded15a&assertion=eyJraWQiOiIwIiwidHlwIjoiS....' \
 -H 'Content-Type: application/x-www-form-urlencoded' \
-'https://oauth.izettle.com/token'
+'https://oauth.zettle.com/token'
 ```
 
 You will get a normal access token back, which you can then start using. There is no refresh token provided in the response for this grant. To get a new access token once the previous one has expired, you will just call the assertion grant again with the same API key.
 
 #### Optional tracking when using assertions
-Since an assertion is not connected to an OAuth application, the usage cannot be tracked by iZettle in the same way as for normal OAuth based integrations. This can be a problem in cases where the developer of an integration and iZettle has a partnership and where the usage of that integration should be attributed to the developer.
+Since an assertion is not connected to an OAuth application, the usage cannot be tracked by Zettle in the same way as for normal OAuth based integrations. This can be a problem in cases where the developer of an integration and Zettle has a partnership and where the usage of that integration should be attributed to the developer.
 
-To solve this, we provide two tracking entry points. They both require the developer to register the integration as a normal OAuth application at https://developer.izettle.com.
+To solve this, we provide two tracking entry points. They both require the developer to register the integration as a normal OAuth application at https://developer.zettle.com.
 
 When requesting an access token using an assertion, a developer that wants to be attributed should use the `client_id` of the created OAuth application instead of the `client_id` of the assertion itself in the `/token` request.
 
@@ -184,7 +184,7 @@ Note: Not all services are not currently using the error code `ACCESS_TOKEN_EXPI
 ```
 
 #### Disconnect application from organization
-An external integration that want to disconnect its connection to an iZettle organization can do so by calling the following endpoint, providing the issued access token for that organization. This can be useful when a user disconnects outside of iZettle, to clean up registered webhooks and remove access for the external integration.
+An external integration that want to disconnect its connection to an Zettle organization can do so by calling the following endpoint, providing the issued access token for that organization. This can be useful when a user disconnects outside of Zettle, to clean up registered webhooks and remove access for the external integration.
 
 ```
 DELETE /application-connections/self
