@@ -173,7 +173,7 @@ Note: Not all services are not currently using the error code `ACCESS_TOKEN_EXPI
 
 #### Get user info
 
-`GET users/me`
+`GET users/self`
 
 ##### Example response
 ```json
