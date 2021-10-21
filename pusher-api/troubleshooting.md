@@ -10,7 +10,7 @@
 When the destination URL does not reply with a successful HTTP status code (2xx), the Pusher API will mark the webhook as failing. Also, the Pusher API will notify you of the failing webhook at the email address that is used in the subscription.
 
 ### Retry policy
-The Pusher API will also re-send event notifications to the destination URL with retry attempts in the following interval and sequence:
+The Pusher API will make retry attempts to re-send event notifications to the destination URL in the following interval and sequence:
 1. One retry attempt every 60 seconds for 10 attempts in total
 2. One retry attempt every 600 seconds for nine attempts in total
 3. One retry attempt every hour in the next 70 hours
@@ -32,7 +32,7 @@ This error usually returns when the destination URL is wrong.
 1. Check your local logs and make sure that your service is not failing.
 2. Retrieve all existing subscriptions.
        
-    ```
+    ```http
     GET /organizations/{organizationUuid}/subscriptions
     ```
    
@@ -40,14 +40,14 @@ This error usually returns when the destination URL is wrong.
       
       The following example retrieves all subscriptions for the organization with `a3931584-82b2-4873-a32f-12b254d43539` as the UUID.
       
-      ```
+      ```http
       GET /organizations/a3931584-82b2-4873-a32f-12b254d43539/subscriptions
       ```
    
  
 3. Check that the subscription with the `FAILING` status has the correct destination URL in the response.
 
-    ```
+    ```JSON
     {
             "uuid": "bc281bd9-bdb0-1011-ad31-6744c6f2972c",
             "transportName": "WEBHOOK",
