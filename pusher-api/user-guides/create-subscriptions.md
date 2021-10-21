@@ -31,16 +31,16 @@ Before creating subscriptions to the HTTPS endpoint on your app, test the events
 1. Set up a test environment. For example, you can set up the environment using one of the following approaches:  
     * You can use the destination URL that you have set up on your server.
     * If you run a local server, you can make it publicly available using [ngrok](https://ngrok.com/).
-    * If you don't run a local server, you can use [Webhook.site](https://webhook.site) that provides an online view of all requests. <!-- how to treat 3rd party resources at Zettle? -->
+    * If you don't run a local server, you can view all requests online using [Webhook.site](https://webhook.site).
 
-2. Follow [Step 3: Create a subscription](#step-3-create-a-subscription) to test the events and check the payloads.
+2. Test the events and check the payloads by following [Step 3: Create a subscription](#step-3-create-a-subscription).
 
 ## Step 3: Create a subscription
 You can subscribe to one or more events in one subscription request.
 
 1. Send a `POST` request to create subscriptions. In the request body, `uuid` is the version 1 UUID that you generated in [Step 1: Generate a version 1 UUID](#step-1-generate-a-version-1-uuid).
     
-    ```
+    ```http
     POST /organizations/self/subscriptions
    {
      "uuid": "<version 1 UUID>",
@@ -54,18 +54,18 @@ You can subscribe to one or more events in one subscription request.
     Example:
     
     The following example creates a subscription to event `ProductCreated` and `PurchaseCreated`.
-    ```
-        POST /organizations/self/subscriptions
-       {
-         "uuid": "ef64c5e2-4e16-11e8-9c2d-fa7ae01bbebc",
-         "transportName": "WEBHOOK",
-         "eventNames": [
-            "ProductCreated",
-            "PurchaseCreated"
-         ],
-         "destination": "https://yoururl.domain",
-         "contactEmail": "email_if_it_breaks@domain.com"
-       }   
+    ```http
+    POST /organizations/self/subscriptions
+    {
+      "uuid": "ef64c5e2-4e16-11e8-9c2d-fa7ae01bbebc",
+      "transportName": "WEBHOOK",
+      "eventNames": [
+      "ProductCreated",
+      "PurchaseCreated"
+      ],
+      "destination": "https://yoururl.domain",
+      "contactEmail": "email_if_it_breaks@domain.com"
+    }   
     ```
     
 2. Check that the response returns with an HTTP status code `200 OK`.
@@ -74,20 +74,20 @@ You can subscribe to one or more events in one subscription request.
     
 3. Save the value of `signingKey` from the response. This is the key used to sign all requests and should be stored so that you can validate the request. 
 
-```
-{
-    "uuid": "f02f80f8-8f35-11eb-8dcd-0242ac130003",
-    "transportName": "WEBHOOK",
-    "eventNames": [
+    ```json
+    {
+      "uuid": "f02f80f8-8f35-11eb-8dcd-0242ac130003",
+      "transportName": "WEBHOOK",
+      "eventNames": [
         "ProductUpdated"
-    ],
-    "updated": "2021-03-29T16:31:47.087507Z",
-    "destination": "https://webhook.site/f62e2311-1232-4d8f-b75e-80e9ce013dd4",
-    "contactEmail": "your_email@domain.com",
-    "status": "ACTIVE",
-    "signingKey": "zLzClQLQN8yfH8aEjONeXzgJRAHR0zpD7RonFCpizujCUCectBlln0vFArTbLPYa"
-}
-```
+      ],
+      "updated": "2021-03-29T16:31:47.087507Z",
+      "destination": "https://webhook.site/f62e2311-1232-4d8f-b75e-80e9ce013dd4",
+      "contactEmail": "your_email@domain.com",
+      "status": "ACTIVE",
+      "signingKey": "zLzClQLQN8yfH8aEjONeXzgJRAHR0zpD7RonFCpizujCUCectBlln0vFArTbLPYa"
+    }
+    ```
 4. If you use the destination URL to receive events for the first time, check that the server receives a test message.
 
     Example:
