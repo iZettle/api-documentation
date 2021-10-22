@@ -14,15 +14,15 @@ You can view existing subscriptions.
 ## Step 1: Retrieve the subscription UUID
 
 1. Retrieve all existing subscriptions.
-   ```
+   ```http
    GET /organizations/{organizationUuid}/subscriptions
    ```
    
    Example:
    
-   The following example retrieves all subscriptions for the organization with `a3931584-82b2-4873-a32f-12b254d43539` as the UUID.
+   The following example retrieves all subscriptions for the organization with UUID `a3931584-82b2-4873-a32f-12b254d43539`.
    
-   ```
+   ```http
    GET /organizations/a3931584-82b2-4873-a32f-12b254d43539/subscriptions
    ```
 
@@ -33,4 +33,3 @@ You can view existing subscriptions.
 
 ## Related API reference
 * [Pusher API reference](../api-reference.md)
-<!-- Add more references if needed. -->
