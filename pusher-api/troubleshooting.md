@@ -38,7 +38,7 @@ This error usually returns when the destination URL is wrong.
    
    Example:
       
-      The following example retrieves all subscriptions for the organization with `a3931584-82b2-4873-a32f-12b254d43539` as the UUID.
+      The following example retrieves all subscriptions for the organization with UUID `a3931584-82b2-4873-a32f-12b254d43539`.
       
       ```http
       GET /organizations/a3931584-82b2-4873-a32f-12b254d43539/subscriptions
