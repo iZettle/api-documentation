@@ -10,7 +10,7 @@ within the Zettle apps or via the `imageUrls` returned by the service.
 
 For upload restrictions, see [Swagger documentation](https://image.izettle.com/swagger).
 
-> **Note:** JPG does not exist as an imageFormat, you must use JPEG for .jpg images.
+> **Note:** For .jpg images, specify `imageFormat` as JPEG.
 
 ## URL
 https://image.izettle.com/v2/images
@@ -23,7 +23,7 @@ https://image.izettle.com/swagger
 ## Example Request
 
 ```http
-POST https://image.izettle.com/v2/images/organizations/{organizationUuid}/products`
+POST https://image.izettle.com/v2/images/organizations/{organizationUuid}/products
 ```
 ```json
 {
