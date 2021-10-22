@@ -42,6 +42,8 @@ You can subscribe to one or more events in one subscription request.
     
     ```http
     POST /organizations/self/subscriptions
+   ```
+    ```json
    {
      "uuid": "<version 1 UUID>",
      "transportName": "WEBHOOK",
@@ -53,9 +55,11 @@ You can subscribe to one or more events in one subscription request.
       
     Example:
     
-    The following example creates a subscription to event `ProductCreated` and `PurchaseCreated`.
+    The following example creates a subscription to event `ProductCreated` and `PurchaseCreated`.   
     ```http
     POST /organizations/self/subscriptions
+   ```
+    ```json
     {
       "uuid": "ef64c5e2-4e16-11e8-9c2d-fa7ae01bbebc",
       "transportName": "WEBHOOK",
