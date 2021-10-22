@@ -23,7 +23,7 @@ https://image.izettle.com/swagger
 ## Example Request
 
 ```http
-POST https://image.izettle.com/v2/images/organizations/{organizationUuid}/products
+POST /v2/images/organizations/{organizationUuid}/products
 ```
 ```json
 {
