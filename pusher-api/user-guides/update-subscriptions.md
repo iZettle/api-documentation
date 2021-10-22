@@ -35,7 +35,7 @@ You can make changes on existing subscriptions.
 1. Send a `PUT` request to update a subscription. In the request, `subscriptionUuid` is the version 1 UUID that you retrieved in [Step 1: Retrieve the subscription UUID](#step-1-retrieve-the-subscription-uuid).
     
    ```http
-       PUT /organizations/{organizationUuid}/subscriptions/{subscriptionUuid}`
+   PUT /organizations/{organizationUuid}/subscriptions/{subscriptionUuid}
    ```
     ```json
       {
@@ -49,7 +49,7 @@ You can make changes on existing subscriptions.
     
     The following example updates the subscription `ef64c5e2-4e16-11e8-9c2d-fa7ae01bbebc` and subscribes to event `ProductCreated` and `PurchaseCreated`.
     ```http
-        PUT /organizations/self/subscriptions/ef64c5e2-4e16-11e8-9c2d-fa7ae01bbebc
+    PUT /organizations/self/subscriptions/ef64c5e2-4e16-11e8-9c2d-fa7ae01bbebc
    ```
     ```json
        {
