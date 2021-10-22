@@ -15,7 +15,7 @@ After you subscribe to events, when an event is triggered, the Pusher API sends 
 ### Payloads
 The `payload` field is the response body from other APIs, such as the Inventory API. The Pusher API sends `POST` requests with the `payload` field in the following JSON format:
 
-```
+```json
 {
     "organizationUuid" : "<organization uuid>",
     "messageUuid" : "<UUID v1 based on timestamp and messageId>",
@@ -55,7 +55,7 @@ For more information on event payloads, see the following table.
            <td>   
                 <details>
                     <summary>Click to see the payload.</summary>
-                    <pre>
+                    <pre class="language-json">
 {
 "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
 "messageUuid": "803f68c0-a110-11eb-a1cd-f7dd79ee0866",
