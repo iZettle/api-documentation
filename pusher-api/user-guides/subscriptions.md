@@ -1,6 +1,6 @@
 Subscriptions
 =====================
-With subscriptions, you will be immediately updated of those events that are triggered on your Zettle Go instead of pulling information from other Zettle Go APIs.
+With subscriptions, the Pusher API will immediately update you of those events that are triggered on your Zettle Go. So you don't need to pull information from other Zettle Go APIs.
 
 * [Understand how events work](#understand-how-events-work)
     * [Payloads](#payloads)
@@ -10,7 +10,7 @@ With subscriptions, you will be immediately updated of those events that are tri
 ## Understand how events work
 The Pusher API provides events for you to listen to certain activities of the Zettle Go app at a working HTTPS endpoint on your server.
 
-After you subscribe to events, when an event is triggered, the Pusher API sends a `POST` request that contains a `payload` field with event information to the HTTPS endpoint in real time.
+After you subscribe to events, when an event is triggered, the Pusher API sends a `POST` request that contains a `payload` field. The field contains event information to the HTTPS endpoint in real time.
 
 ### Payloads
 The `payload` field is the response body from other APIs, such as the Inventory API. The Pusher API sends `POST` requests with the `payload` field in the following JSON format:
@@ -27,7 +27,7 @@ The `payload` field is the response body from other APIs, such as the Inventory 
     "timestamp": "<event timestamp in ISO-8601 format>"
   }
 ```
-For example, if you subscribe to the `InventoryTrackingStarted` event, when that event is triggered at the Zettle Go app, you will receive a `POST` request that looks similar to the following:
+For example, you have a subscription to the `InventoryTrackingStarted` event. When that event is triggered at the Zettle Go app, you will receive a `POST` request that looks like the following:
 
 ```json
 {
@@ -55,7 +55,7 @@ For more information on event payloads, see the following table.
            <td>   
                 <details>
                     <summary>Click to see the payload.</summary>
-                    <pre class="language-json">
+                    <pre>
 {
 "organizationUuid": "d3f03ffa-4a18-4282-bbfa-efd5f642ffb7",
 "messageUuid": "803f68c0-a110-11eb-a1cd-f7dd79ee0866",
@@ -249,7 +249,7 @@ To get started, you may want to subscribe to the following events:
 For more events that you can subscribe, see [Pusher API reference](../api-reference.md).
 
 ## Manage subscriptions
-With the Pusher API, you can create, view, update, and delete subscriptions according to your plan.
+With the Pusher API, you can create, view, update, and delete subscriptions as you need.
 
 * [Create subscriptions](create-subscriptions.md)
 * [View subscriptions](view-subscriptions.md)
