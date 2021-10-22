@@ -21,7 +21,7 @@ For every subscription, generate a version 1 Universally Unique Identifier (UUID
 
 > **Note:** One UUID can be used only for one subscription.
 
-1. Generate a version 1 UUID. For example, you can use [UUID Generator](https://www.uuidgenerator.net/version1) to generate a version 1 UUID. <!-- how to treat 3rd party resources at Zettle? -->
+1. Generate a version 1 UUID. For example, you can generate a version 1 UUID using [UUID Generator](https://www.uuidgenerator.net/version1).
 
 2. Copy and save the UUID. It will be used for creating a subscription.
 
