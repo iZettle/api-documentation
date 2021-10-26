@@ -3,7 +3,7 @@ Pusher API reference
 ## About Pusher API
 The Pusher API publishes information to your service. This information is data related to products, purchases, inventory etc.
  
-You can subscribe to specific events in the Pusher API. Then you don't need to poll for data related to the events.  When these events occur, the Pusher API will publish information about the events to your service.
+You can subscribe to specific events in the Pusher API, so that you don't need to poll for data related to the events.  When these events occur, the Pusher API will publish information about the events to your service.
 
 Examples of events:
 * `PurchaseCreated` is triggered when a purchase gets created.
@@ -36,7 +36,7 @@ The Pusher API uses webhooks. Webhooks are HTTP callbacks that receive notificat
 * [Related API reference](#related-api-reference)
 
 ### Base URL
-https://pusher.izettle.com
+`https://pusher.izettle.com`
 
 ### OAuth Scope
 You can create webhook subscriptions using an access token or API key that corresponds to an organization. To update, delete, or view a subscription, use the same access token or API key.
@@ -71,12 +71,12 @@ See example [Create a webhook subscription](#create-a-webhook-subscription).
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
-|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br></br><ul><li> Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the `users/me` endpoint of OAuth2 API. For more information, see [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) .</li></ul> 
+|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li>Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li>Get it by using the `users/me` endpoint of OAuth2 API. For more information, see [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) .</li></ul> 
 |uuid |string |query |required | Unique identifier for the subscription as UUID version 1.
 |transportName |string |query |required | The message option used by Pusher API. Currently only `WEBHOOK` is supported. 
-|eventNames |array |query |required | Event names for events that you want to create subscription for. The events are specified in an array. <br></br>If you pass an empty array, you will subscribe to all events that the Pusher API supports. In this case, make sure that you have all the corresponding authorization scopes issued. See [the list of scopes](#supported-events).
+|eventNames |array |query |required | Event names for events that you want to create subscription for. The events are specified in an array. <br/>If you pass an empty array, you will subscribe to all events that the Pusher API supports. In this case, make sure that you have all the corresponding authorization scopes issued. See [the list of scopes](#supported-events).
 |destination |string |query |required | Your service URL publicly exposed where the Pusher API will publish messages for subscribed events.
-|contactEmail |string |query |required | The email address used to notify in case of any errors in subscription or the destination. <br></br> The email must be a valid email address and should not exceed 512 characters.
+|contactEmail |string |query |required | The email address used to notify in case of any errors in subscription or the destination. <br/>The email must be a valid email address and should not exceed 512 characters.
 
 
 ### Responses
@@ -86,11 +86,11 @@ See example [Create a webhook subscription](#create-a-webhook-subscription).
 |Status code |Description
 |---- |----
 |200 OK |Returned when a subscription is successfully created.
-|401 Unauthorized |Returned when one of the following occurs: <br></br><ul><li> The authentication information is missing in the request.</li><li>The authentication token has expired.</li><li>The authentication token is invalid.</li></ul>
-|403 Forbidden | Returned when the scope being used in the request is incorrect. <br></br> E.g. If you provide a permission scope of `READ:PRODUCT` while creating a subscription for `PurchaseCreated` then the Pusher API will return 403 in the response.
-|400 Bad Request |Returned when one of the following occurs: <br></br><ul><li> The `transportName` or `uuid` is missing in the request.</li><li>A subscription with the `uuid` passed in request already exists.</li><li>The `destination` is not accessible.</li></ul>
-|422 Unprocessable Entity |Returned when one of the following occurs: <br></br><ul><li>The `destination` or `contactEmail` is missing in the request.</li><li>The `contactEmail` has an invalid value for email address.</li></ul>
-|500 Internal Server Error|Returned when one of the following occurs: <br></br><ul><li>The `destination` responded with a non-successful HTTP response code.</li><li>The Pusher API encountered an internal server error. In case this error persists, contact [support](mailto:api@zettle.com).</li></ul>
+|401 Unauthorized |Returned when one of the following occurs: <br/><ul><li>The authentication information is missing in the request.</li><li>The authentication token has expired.</li><li>The authentication token is invalid.</li></ul>
+|403 Forbidden | Returned when the scope being used in the request is incorrect. <br/> E.g. If you provide a permission scope of `READ:PRODUCT` while creating a subscription for `PurchaseCreated` then the Pusher API will return 403 in the response.
+|400 Bad Request |Returned when one of the following occurs: <br/><ul><li>The `transportName` or `uuid` is missing in the request.</li><li>A subscription with the `uuid` passed in request already exists.</li><li>The `destination` is not accessible.</li></ul>
+|422 Unprocessable Entity |Returned when one of the following occurs: <br/><ul><li>The `destination` or `contactEmail` is missing in the request.</li><li>The `contactEmail` has an invalid value for email address.</li></ul>
+|500 Internal Server Error|Returned when one of the following occurs: <br/><ul><li>The `destination` responded with a non-successful HTTP response code.</li><li>The Pusher API encountered an internal server error. In case this error persists, contact [support](mailto:api@zettle.com).</li></ul>
 </details>
 
 <details open="true">
@@ -127,7 +127,7 @@ See example [Get webhook subscriptions](#get-webhook-subscriptions).
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
-|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br></br><ul><li> Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the `users/me` endpoint of OAuth2 API. For more information, see [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) .</li></ul>  
+|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li>Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the `users/me` endpoint of OAuth2 API. For more information, see [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) .</li></ul>  
 </details>
 
 
@@ -138,7 +138,7 @@ See example [Get webhook subscriptions](#get-webhook-subscriptions).
 |Status code |Description
 |---- |----
 |200 OK| Returned when the Pusher API returns a collection of subscriptions for the client. 
-|401 Unauthorized |Returned when one of the following occurs: <br></br><ul><li> The authentication information is missing in the request.</li><li>The authentication token has expired.</li><li>The authentication token is invalid.</li></ul> 
+|401 Unauthorized |Returned when one of the following occurs: <br/><ul><li>The authentication information is missing in the request.</li><li>The authentication token has expired.</li><li>The authentication token is invalid.</li></ul> 
 |500 Internal Server Error| Returned when the Pusher API encounters an internal server error. In case this error persists, contact [support](mailto:api@zettle.com).
 </details>
 
@@ -178,12 +178,12 @@ See example [Update a webhook subscription](#update-a-webhook-subscription).
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
-|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br></br><ul><li> Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the `users/me` endpoint of OAuth2 API. For more information, see [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) .</li></ul> 
+|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li>Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the `users/me` endpoint of OAuth2 API. For more information, see [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) .</li></ul> 
 |subscriptionUuid |string |path |required |Unique identifier for an existing subscription as UUID version 1.
 |transportName |string |query |optional | The message option used by the Pusher API. E.g. `WEBHOOK`. You need to specify the same option that you used while creating the subscription.
 |eventNames |array |query |optional | Events that you want to update on the existing subscription. The events are specified in an array.
 |destination |string |query |optional | The destination URL where the Pusher API will push data for the updated subscription.
-|contactEmail |string |query |optional | The email address used to notify in case of any errors in subscription or the destination. <br></br>The email must be a valid email address and should not exceed 512 characters.
+|contactEmail |string |query |optional | The email address used to notify in case of any errors in subscription or the destination. <br/>The email must be a valid email address and should not exceed 512 characters.
 </details>
 
 
@@ -194,16 +194,16 @@ See example [Update a webhook subscription](#update-a-webhook-subscription).
 |Status code |Description
 |---- |----
 |200 OK| Returned when the Pusher API updates the subscription successfully.
-|401 Unauthorized |Returned when one of the following occurs: <br></br><ul><li> The authentication information is missing in the request.</li><li>The authentication token has expired.</li><li>The authentication token is invalid.</li></ul>
+|401 Unauthorized |Returned when one of the following occurs: <br/><ul><li>The authentication information is missing in the request.</li><li>The authentication token has expired.</li><li>The authentication token is invalid.</li></ul>
 |404 Not Found | Returned when the subscription to be updated does not exist or cannot be found.
 |405 Method Not Allowed | Returned when the `subscriptionUuid` is missing in the request.
 |400 Bad Request| Returned when the `eventNames` parameter contains events that are not supported by the Pusher API.
-|422 Unprocessable Entity| Returned when one of the following occurs: <br></br><ul><li> Returned if the `destination` specified in the request is empty.</li><li>The `destination` value is not a valid HTTPS URL.</li></ul>
+|422 Unprocessable Entity| Returned when one of the following occurs: <br/><ul><li> Returned if the `destination` specified in the request is empty.</li><li>The `destination` value is not a valid HTTPS URL.</li></ul>
 |500 Internal Server Error| Returned when the Pusher API encounters an internal server error. In case this error persists, contact [support](mailto:api@zettle.com).
 </details>
 
 <details open="true">
-<summary>Click to hide response attributes.</summary><br></br>
+<summary>Click to hide response attributes.</summary><br/>
 <p>The Pusher API returns a <code>200 OK</code> response without any content.</p>
 </details>
 
@@ -225,7 +225,7 @@ See example [Delete a webhook subscription](#delete-a-webhook-subscription).
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
-|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br></br><ul><li> Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the `users/me` endpoint of OAuth2 API. For more information, see [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) .</li></ul> 
+|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li>Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the `users/me` endpoint of OAuth2 API. For more information, see [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc) .</li></ul> 
 |subscriptionUuid |string |path |required |Unique identifier for an existing subscription as UUID version 1.
 </details>
 
@@ -237,13 +237,13 @@ See example [Delete a webhook subscription](#delete-a-webhook-subscription).
 |Status code |Description
 |---- |----
 |204 No Content| Returned when the Pusher API deletes the subscription successfully.
-|401 Unauthorized |Returned when one of the following occurs: <br></br><ul><li> The authentication information is missing in the request.</li><li>The authentication token has expired.</li><li>The authentication token is invalid.</li></ul>
-|404 Not Found|Returned when one of the following occurs: <br></br><ul><li>The `subscriptionUuid` is missing in the request.</li><li>A subscription was not found for the `subscriptionUuid` passed in the request</li></ul> 
+|401 Unauthorized |Returned when one of the following occurs: <br/><ul><li>The authentication information is missing in the request.</li><li>The authentication token has expired.</li><li>The authentication token is invalid.</li></ul>
+|404 Not Found|Returned when one of the following occurs: <br/><ul><li>The `subscriptionUuid` is missing in the request.</li><li>A subscription was not found for the `subscriptionUuid` passed in the request</li></ul> 
 |500 Internal Server Error| Returned when the Pusher API encounters an internal server error. In case this error persists, contact [support](mailto:api@zettle.com).
 </details>
 
 <details open="true">
-<summary>Click to hide response attributes.</summary><br></br>
+<summary>Click to hide response attributes.</summary><br/>
 <p>The Pusher API returns a <code>204 No Content</code> response without any content.</p>
 </details>
 
@@ -259,7 +259,7 @@ See example [Delete a webhook subscription](#delete-a-webhook-subscription).
 |ProductCreated|READ:PRODUCT|A product gets created in the product library.
 |ProductUpdated|READ:PRODUCT|A product gets updated in the product library.
 |ProductDeleted|READ:PRODUCT|A product gets deleted in the product library.
-|InventoryBalanceChanged|READ:PRODUCT|Either: <br></br><ul><li>A sale is made for a product and purchase gets created. This leads to change in the balance of the product in the inventory.</li><li>The stock of a product gets updated in the product library.</li></ul>
+|InventoryBalanceChanged|READ:PRODUCT|Either: <br/><ul><li>A sale is made for a product and purchase gets created. This leads to change in the balance of the product in the inventory.</li><li>The stock of a product gets updated in the product library.</li></ul>
 |InventoryTrackingStarted|READ:PRODUCT|Inventory tracking for a product is enabled in the Zettle Go app.
 |InventoryTrackingStopped|READ:PRODUCT|Inventory tracking for a product is disabled in the Zettle Go app.
 |ApplicationConnectionRemoved| any scope| The application was disconnected from Zettle organization and the OAuth refresh token has been invalidated. 

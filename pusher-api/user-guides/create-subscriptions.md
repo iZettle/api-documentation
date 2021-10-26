@@ -55,7 +55,7 @@ You can subscribe to one or more events in one subscription request.
       
     Example:
     
-    The following example creates a subscription to event `ProductCreated` and `PurchaseCreated`.   
+    The following example creates a subscription to events `ProductCreated` and `PurchaseCreated`.   
     ```http
     POST /organizations/self/subscriptions
    ```

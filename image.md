@@ -13,7 +13,7 @@ For upload restrictions, see [Swagger documentation](https://image.izettle.com/s
 > **Note:** For .jpg images, specify `imageFormat` as JPEG.
 
 ## URL
-https://image.izettle.com/v2/images
+`https://image.izettle.com/v2/images`
 
 ## Swagger Documentation
 https://image.izettle.com/swagger
