@@ -5,7 +5,7 @@ If you have questions about any incident, contact our [Integrations team](mailto
 ## March 2021
 ### Finance API returned wrong transaction type for transactions made with cards.
 
-Mar 30, 16:03 - 16:59 UTC<br>
+Mar 30, 16:03 to 16:59 UTC<br>
 This incident has been resolved. __Action needed to fix data.__<br>
 We apologize for the inconvenience.
 <details><!-- start tag of the incident section-->
@@ -18,7 +18,7 @@ There was a problem with the `originatorTransactionType` field in the response f
 GET /organizations/{organizationUuid}/accounts/{accountTypeGroup}/transactions
 ```
 
-Table below enlists the expected and actual values for the field:
+The following table lists the expected and actual values for the field:
 
 |Expected value in `originatorTransactionType` |Actual value in `originatorTransactionType` during the incident
 |:---- |:----
@@ -34,12 +34,12 @@ End time:  2021-03-30 16:59:45.00856  UTC<br>
 The total duration was approximately 56 minutes.
 
 ### What do you need to do as a consumer?
-To fix your data you would need to refetch transactions for merchants your integration serves between the timestamps given above.
+To fix your data, you would need to refetch transactions for merchants that your integration serves between the affected timestamps.
 
 If your integration disregards transactions with `originatorTransactionType` `PAYMENT` and `PAYMENT_FEE` you would need to handle those transactions as you used to do with card related types. In other words `CARD_PAYMENT` and `CARD_REFUND` should be expected as `PAYMENT`.<br>
 `CARD_PAYMENT_FEE` and `CARD_PAYMENT_FEE_REFUND` should be expected as `PAYMENT_FEE`.
 
-See example below to understand better:
+See the following example to understand better:
 
 ```
 GET/organizations/self/accounts/liquid/transactions?start=2021-03-30T16:03:10&end=2021-03-30T16:59:46
