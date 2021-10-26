@@ -1,13 +1,14 @@
-## Product Library API
+# Product Library API
 
-### Service Description
-The product library API provides information about a merchant's products.
+## Service description
+The Product Library API provides information about products that a merchant have for selling. Using the Product Library API you can add, manage and delete
+items in a product library.
 
 ### URL
-https://products.izettle.com
+Service endpoint URL: https://products.izettle.com
 
-### API Documentation
-https://products.izettle.com/swagger
+### API documentation
+API specification: https://products.izettle.com/swagger
 
 ### Scopes
 The Product Library API implements the following scopes:
@@ -16,11 +17,11 @@ The Product Library API implements the following scopes:
 - `WRITE:PRODUCT`
 
 ---
-### Example Requests
-#### Create product
+## Example requests
+### Create product
 `POST /organizations/self/products`
 
-https://products.izettle.com/swagger/#!/products/createProduct
+See https://products.izettle.com/swagger/#!/products/createProduct for more details.
 
 *Request payload*
 
@@ -102,13 +103,12 @@ https://products.izettle.com/swagger/#!/products/createProduct
 ```
 ---
 
-#### Update product
+### Update product
 `PUT /organizations/self/products/v2/{productUuid}`
 
-https://products.izettle.com/swagger/#!/products/updateFullProduct
+Updates a product entity using JSON merge patch (https://tools.ietf.org/html/rfc7396). This means that only included fields will be changed. "Null" values remove the field on the target entity. Other values update the field. Uses the same format as Create product.
 
-Updates a product entity using JSON merge patch (https://tools.ietf.org/html/rfc7396). This means that only included fields will be changed: null values removes the field on the target entity, and other values updates the field.
-Uses same format as Create product
+See https://products.izettle.com/swagger/#!/products/updateFullProduct for more details.
 
 *Request payload*
 
@@ -128,13 +128,12 @@ Uses same format as Create product
 ```
 ---
 
-#### Fetching product categories
-
+### Fetch product categories
 `GET /organizations/self/categories/v2`
 
-https://products.izettle.com/swagger#/categoriesv2/getProductTypes
+Returns all the product categories in the product library.
 
-Returns all the product categories.
+See https://products.izettle.com/swagger#/categoriesv2/getProductTypes for more details.
 
 *Response*
 
