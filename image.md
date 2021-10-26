@@ -44,6 +44,6 @@ POST /v2/images/organizations/{organizationUuid}/products
   ]
 }
 ```
-Where `o` is a `2000*2000px` image and `L` is a `560*560px` image.
+Where `o` is a `2000×2000px` image and `L` is a `560×560px` image.
 
 To apply this uploaded image on a product, use the first URL provided in the `imageUrls` array.
