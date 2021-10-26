@@ -42,7 +42,7 @@ You can subscribe to one or more events in one subscription request.
     
     ```http
     POST /organizations/self/subscriptions
-   ```
+    ```
     ```json
    {
      "uuid": "<version 1 UUID>",
@@ -58,7 +58,7 @@ You can subscribe to one or more events in one subscription request.
     The following example creates a subscription to events `ProductCreated` and `PurchaseCreated`.   
     ```http
     POST /organizations/self/subscriptions
-   ```
+    ```
     ```json
     {
       "uuid": "ef64c5e2-4e16-11e8-9c2d-fa7ae01bbebc",
