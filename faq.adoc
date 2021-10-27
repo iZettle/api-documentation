@@ -81,8 +81,8 @@ filter instead of `{organizationUuid}`
 [%collapsible]
 ====
 ****
-You can either use the *_self_* filter. You can also call the following endpoint.
-[source]
+You can either use the *_self_* filter or call the following endpoint.
+[source,http]
 --
 GET https://oauth.izettle.com/users/me
 --
