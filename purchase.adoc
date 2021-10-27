@@ -5,7 +5,7 @@
 == About Purchase API
 Provides read only information about purchases made through Zettle.
 Purchase represents a receipt, it's immutable and contains information about sold items. The purchase information includes one or several payments received, taxes, discounts and so on.
-Refunds are represented by the same model but with negative quantity and refund-related flags/fields.
+Refunds are represented by the same model, but with negative quantity and refund-related flags/fields.
 
 === Base URL
 Base URL: `https://purchase.izettle.com`
@@ -16,7 +16,7 @@ Base URL: `https://purchase.izettle.com`
 See https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[OAuth2 API] for more information about access tokens.
 
 == Fetch a list of purchases
-Returns a list of purchases for a merchant. Purchases up to three years old are available to fetch.
+Returns a list of purchases for a merchant. Purchases up to three years old are available for fetching.
 
 `GET  {nbsp}/purchases/v2`
 
@@ -31,9 +31,9 @@ See <<example1>>.
 |Name|Type|In|Required/Optional|Description
 
 |lastPurchaseHash|string|query|optional|A value from "lastPurchaseHash" from the result of a previous request to retrieve next page of purchases.
-|startDate|string|query|optional|The start date UTC(inclusive) for purchases to be retrieved from until today or `endDate` if provided e.g. "2020-01-01", "2020-01-01T17:00". +
+|startDate|string|query|optional|The start date UTC(inclusive) for purchases to be retrieved from until today or `endDate` if provided. For example "2020-01-01", "2020-01-01T17:00". +
 By default `startDate` is resolved to three years back.
-|endDate|string|query|optional|The last date UTC(exclusive) for purchases to be retrieved until e.g. "2021-01-13", "2021-01-13T12:30".
+|endDate|string|query|optional|The last date UTC(exclusive) for purchases to be retrieved until. For example "2021-01-13", "2021-01-13T12:30".
 |limit|integer|query|optional|The maximum number of records to return. Value range 1–1000.
 |descending|boolean|query|optional|When set to true, most recent purchases are returned first. Defaults to false if not specified.
 |===
@@ -48,7 +48,7 @@ By default `startDate` is resolved to three years back.
 |===
 |HTTP Status code|Description
 
-|200 OK|Successful
+|200 OK|Successful.
 |401 Unauthorized|You were not authorized to execute this operation.
 |429 Too Many Requests|You hit the rate limit. Retry request later.
 |===
@@ -63,7 +63,7 @@ By default `startDate` is resolved to three years back.
 
 |purchases|array|List of purchases. See <<Purchase>> in "Fetch a purchase" section for more information.
 |firstPurchaseHash|string|Reference to the first purchase in the list returned.
-|lastPurchaseHash|string|Reference to the last purchase in the list returned. Use it as parameter for the next page of purchases.
+|lastPurchaseHash|string|Reference to the last purchase in the list returned. Use it as parameter for the next page with purchases.
 |linkUrls|array a|List of links to pages. +
 Example:
 [source,json]
@@ -91,7 +91,7 @@ See <<example4>>.
 |===
 |Name|Type|In|Required/Optional|Description
 
-|purchaseUuid|string|path|required|Unique id of the purchase as UUID within Zettle system.
+|purchaseUuid|string|path|required|Unique ID of the purchase as UUID within the Zettle system.
 |===
 ====
 
@@ -119,18 +119,18 @@ See <<example4>>.
 |===
 |Name|Type|Description
 
-|source|string a|Source of purchase, value can be one of the following
+|source|string a|Source of purchase, value can be one of the following:
 
 * "POS" - purchase made with Zettle Go app
 * "WEB_SHOP" - purchase made online
 * "SDK" - purchase made through  SDK
-|[.line-through]#purchaseUUID#|string|Unique id of a purchase. *Deprecated*.
-|purchaseUUID1|string|Unique id of a purchase as UUID version 1.
-|timestamp|string|Created timestamp according to the https://en.wikipedia.org/wiki/ISO_8601[ISO 8601] format, e.g. "2019-12-03T17:05:06.123+0000".
+|[.line-through]#purchaseUUID#|string|Unique ID of a purchase. *Deprecated*.
+|purchaseUUID1|string|Unique ID of a purchase as UUID version 1.
+|timestamp|string|Created timestamp according to the https://en.wikipedia.org/wiki/ISO_8601[ISO 8601] format. For example "2019-12-03T17:05:06.123+0000".
 |purchaseNumber|integer|Incremental receipt number.
 |globalPurchaseNumber|integer|Incremental receipt number, only different from `purchaseNumber` if several cash registers are used by the merchant.
-|amount|integer|Gross amount (inc VAT) in minor currency units e.g  €9.95 EUR, amount will be 995. Is negative in case of refund.
-|vatAmount|integer|VAT amount for the whole purchase in minor currency units e.g €5 EUR, amount will be 500.
+|amount|integer|Gross amount (inc VAT) in minor currency units. For example €9.95 EUR, amount will be 995. Is negative in case of refund.
+|vatAmount|integer|VAT amount for the whole purchase in minor currency units. FOr example €5 EUR, amount will be 500.
 |country|string|Two-letter country code for country the merchant operates in. Examples "SE", "NO", "GB", "FR", "DE", "DK".
 |currency|string|Currency code https://en.wikipedia.org/wiki/ISO_4217[ISO 4217]. Examples "SEK", "NOK", "GBP", "EUR".
 |products|array|List of items that were sold. See section <<Product>> for more information.
@@ -161,7 +161,7 @@ or
 ----
 `name` attribute is optional, not always present.
 For more information see section <<Discounts>>.
-|serviceCharge|object a|Service charge added to a purchase e.g. delivery charge. +
+|serviceCharge|object a|Service charge added to a purchase, for example delivery charge. +
 Example:
 [source,json]
 ----
@@ -173,13 +173,13 @@ Example:
   }
 ----
 
-|created|string|Created timestamp according to the https://en.wikipedia.org/wiki/ISO_8601[ISO 8601] format e.g. "2019-12-03T17:05:06.123+0000".
+|created|string|Created timestamp according to the https://en.wikipedia.org/wiki/ISO_8601[ISO 8601] format. For example "2019-12-03T17:05:06.123+0000".
 |refund|boolean|Indicates if given purchase is a refund.
 |refunded|boolean|Indicates if given purchase has been refunded.
-|[.line-through]#refundsPurchaseUUID#|string|Unique id of the purchase that was refunded as string. *Deprecated*.
-|refundsPurchaseUUID1|string|Unique id of the purchase that was refunded as UUID version 1.
-|[.line-through]#refundedByPurchaseUUIDs#|array a|List with ids of purchases that refunded this particular one. *Deprecated*.
-|refundedByPurchaseUUIDs1|array a|List with ids of purchases that refunded this particular one as UUIDs version 1. +
+|[.line-through]#refundsPurchaseUUID#|string|Unique ID of the purchase that was refunded as string. *Deprecated*.
+|refundsPurchaseUUID1|string|Unique ID of the purchase that was refunded as UUID version 1.
+|[.line-through]#refundedByPurchaseUUIDs#|array a|List with IDs of purchases that refunded this particular one. *Deprecated*.
+|refundedByPurchaseUUIDs1|array a|List with IDs of purchases that refunded this particular one as UUIDs version 1. +
 [source, json]
 ----
 "refundedByPurchaseUUIDs1": [
@@ -207,10 +207,10 @@ Example:
     "accuracyMeters": 165
   }
 ----
-|cashRegister|object|Mostly for internal use. There is no public API available for cash register.
+|cashRegister|object|For internal use. There is no public API available for cash register.
 |===
 
-*Note*: {nbsp}More attributes can potentially be added. Please make sure your integration is built in a tolerant way.
+*Note*: {nbsp}More attributes can potentially be added. Make sure your integration is built in a tolerant way.
 
 .Product attributes
 [[Product]]
@@ -235,14 +235,14 @@ Example:
 ----
 Gift card details can be fetched through https://github.com/iZettle/api-documentation/blob/master/giftcard.adoc#get-giftcard-details[Gift Card API]. +
 
-|productUuid|string|Unique id of product in product library as UUID.
+|productUuid|string|Unique ID of product in product library as UUID.
 |name|string|Name of the product sold.
-|variantUuid|string|Unique id of variant in product library as UUID.
+|variantUuid|string|Unique ID of variant in product library as UUID.
 |variantName|string|Name of variant.
 |vatPercentage|number|VAT percentage of the item.
-|rowTaxableAmount|integer|Amount on which VAT is chargeable in minor currency units e.g. £12.5 GBP will be 1250.
-|unitPrice|integer|Unit price of the item in minor currency units e.g. €10 EUR will be 1000.
-|unitName|string|Name of unit e.g. "kg", "hour".
+|rowTaxableAmount|integer|Amount on which VAT is chargeable in minor currency units. For example £12.5 GBP will be 1250.
+|unitPrice|integer|Unit price of the item in minor currency units. For example €10 EUR will be 1000.
+|unitName|string|Name of unit, for example "kg", "hour".
 |comment|string|Comment for the item row.
 |discount|object a|Discount for the item row. +
 Example:
@@ -260,12 +260,12 @@ or
 }
 ----
 See section <<Discounts>> for more information.
-|discountValue|integer|Discount amount in minor currency units e.g. €5 EUR will be 500.
+|discountValue|integer|Discount amount in minor currency units. For example €5 EUR will be 500.
 |libraryProduct|boolean|Indicates if product registered in merchant's product library.
 |sku|string|SKU of product in inventory.
 |barcode|string|Barcode of the product in inventory.
-|fromLocationUuid|string|Supplier location id as UUID (inventory context).
-|toLocationUuid|string|Store location id as UUID (inventory context).
+|fromLocationUuid|string|Supplier location ID as UUID (inventory context).
+|toLocationUuid|string|Store location ID as UUID (inventory context).
 |===
 
 .Payment attributes
@@ -274,7 +274,7 @@ See section <<Discounts>> for more information.
 |===
 |Name|Type |Description
 
-|uuid|string|Unique id of the payment as UUID. Can be linked to transactions in https://github.com/iZettle/api-documentation/blob/master/finance.adoc#fetch-account-transactions[Finance API].
+|uuid|string|Unique ID of the payment as UUID. Can be linked to transactions in https://github.com/iZettle/api-documentation/blob/master/finance.adoc#fetch-account-transactions[Finance API].
 |type|string|Payment type used when making a purchase. See <<Payment_types>> for more information.
 |gratuityAmount|integer|Corresponds to the tipping amount in the purchase. This
 feature is not available in all supported by Zettle countries. When the `gratuityAmount` is set, the
@@ -320,7 +320,7 @@ Example:
   }
 }
 ----
-|IZETTLE_CARD_ONLINE a|Payment taken with Zettle online e.g. with payment link.
+|IZETTLE_CARD_ONLINE a|Payment taken with Zettle online, for example with payment link.
 
 Example:
 [source,json]
@@ -386,7 +386,7 @@ Example:
   }
 }
 ----
-|STORE_CREDIT|Store credit is usually a document offered by a store to a customer who returns an item not eligible for a refund or when a customer doesn't want to get chargeback on credit card that was used. It can be used to buy other goods at the same store.
+|STORE_CREDIT|Store credit is usually a document offered by a store to a customer who returns an item not eligible for a refund. Can also be the case where a customer doesn't want to get chargeback on the credit card that was used. It can also be used to buy other goods at the same store.
 |GIFTCARD|Payment made with a gift card(certificate/voucher) issued by the merchant.
 |KLARNA a|Payment made with Klarna.
 
@@ -452,7 +452,7 @@ Example:
 }
 ----
 
-**Step 3:** Send another request that has the `limit` parameter set the same as in the initial request and the `lastPurchaseHash` set with the value from the previous response.
+**Step 3:** Send another request with these settings: The `limit` parameter the same as in the initial request; `lastPurchaseHash` with the value from the previous response.
 
 
 **Step 4:** Repeat step 2 and step 3 until the response is empty.
@@ -460,11 +460,11 @@ Example:
 
 === [[example2]]Purchases with partial refund
 ====
-Request:
+**Request:**
 
 `GET /purchases/v2?descending=true&limit=2`
 
-Response:
+**Response:**
 
 Status: 200 OK
 
@@ -620,11 +620,11 @@ Status: 200 OK
 ====
 --
 
-Request:
+**Request:**
 
 `GET /purchases/v2?limit=10&descending=true`
 
-Response:
+**Response:**
 
 Status: 200 OK
 [source,json]
@@ -724,11 +724,11 @@ Status: 200 OK
 
 ====
 --
-Request:
+**Request:**
 
 `GET /purchase/v2/589c2de6-3ee4-11eb-9e70-a2ac075b17fd`
 
-Response:
+**Response:**
 
 Status: 200 OK
 
