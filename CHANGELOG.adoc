@@ -1,4 +1,4 @@
-= Zettle API Changelog
+= Zettle API changelog
 
 .**September 15, 2021** `OAuth API`
 [%collapsible]
@@ -11,7 +11,7 @@ The Password grant OAuth flow has been deprecated and will be removed on 31st Ja
 .**July 20 2021** `Finance API`
 [%collapsible]
 ====
-**Finance API documentation Improvements**
+**Finance API documentation improvements**
 
 The improvements include the following:
 
@@ -23,7 +23,7 @@ The improvements include the following:
 .**May 3 2021** `Pusher API`
 [%collapsible]
 ====
-**Pusher API documentation Improvements**
+**Pusher API documentation improvements**
 
 The improvements include the following:
 
@@ -63,7 +63,7 @@ Updated documentation for Finance, Purchase, Product Library, and Image APIs.
 
 - Updated the example request under the "Create product" section to reflect the new `category` and `variantOptionDefinitions` fields.
 
-The `category` field replaces the old `categories` field. Now, a product may only have one category assigned to it. To create a new product category, simply provide a new UUID (v1) value for the `category.uuid` field when creating or updating a product, for example:
+The `category` field replaces the old `categories` field. Now, a product may only have one category assigned to it. To create a new product category, provide a new version 1 UUID for the `category.uuid` field when creating or updating a product. For example:
 
 [source,json]
 --
