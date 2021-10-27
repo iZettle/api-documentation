@@ -82,7 +82,7 @@ filter instead of `{organizationUuid}`
 ====
 ****
 You can either use the `self` filter or call the following endpoint.
-[source,http]
+[source]
 --
 GET https://oauth.izettle.com/users/me
 --
