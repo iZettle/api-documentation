@@ -63,7 +63,7 @@ No, it is completely free to use our API and the only limitation is that some re
 This is something our framework sends when it has received the request headers and
 indicates that the client should proceed to send the request body. What you can do is investigate
 the reason why your code does this, or you could traverse the headers until
-you find a header with the intended response code. For example, see https://stackoverflow.com/questions/2964687/how-to-handle-100-continue-http-message[how to handle `HTTP 100 Continue`] and https://stackoverflow.com/questions/14526627/double-http-status-header-on-http-post-to-jersey[Double HTTP-Status header on HTTP-POST to Jersey].
+you find a header with the intended response code. See https://stackoverflow.com/questions/2964687/how-to-handle-100-continue-http-message[example of handling HTTP 100 Continue] and https://stackoverflow.com/questions/14526627/double-http-status-header-on-http-post-to-jersey[ example of handling double HTTP-Status header on HTTP-POST].
 ****
 ====
 
