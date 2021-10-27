@@ -1,24 +1,24 @@
-= Purchase API Reference Guide
+= Purchase API reference guide
 :toc: right
 :imagesdir: assets/images
 
 == About Purchase API
 Provides read only information about purchases made through Zettle.
-Purchase represents a receipt, it's immutable and contains information about items that were sold, one or several payments received, taxes, discounts etc.
-Refunds are represented by the same model but with negative quantity and refund related flags/fields.
+Purchase represents a receipt, it's immutable and contains information about sold items. The purchase information includes one or several payments received, taxes, discounts and so on.
+Refunds are represented by the same model but with negative quantity and refund-related flags/fields.
 
 === Base URL
-https://purchase.izettle.com
+Base URL: `https://purchase.izettle.com`
 
-=== OAuth Scope
+=== OAuth authorization scope
 - `READ:PURCHASE`
 
 See https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[OAuth2 API] for more information about access tokens.
 
-== __Fetch a list of purchases__
-__Returns a list of purchases for a merchant. Purchases up to three years old are available to fetch.__
+== Fetch a list of purchases
+Returns a list of purchases for a merchant. Purchases up to three years old are available to fetch.
 
-__GET  {nbsp}/purchases/v2__
+`GET  {nbsp}/purchases/v2`
 
 See <<example1>>.
 
@@ -75,11 +75,11 @@ Example:
 |===
 ====
 
-== __Fetch a purchase__
+== Fetch a purchase
 
-__Returns a purchase with given UUID.__
+Returns a purchase with given UUID.
 
-__GET {nbsp} /purchase/v2/{purchaseUuid}__
+`GET {nbsp} /purchase/v2/{purchaseUuid}`
 
 See <<example4>>.
 
@@ -210,9 +210,9 @@ Example:
 |cashRegister|object|Mostly for internal use. There is no public API available for cash register.
 |===
 
-*Note*: {nbsp}More attributes can potentially be added, please make sure your integration is built in a tolerant way.
+*Note*: {nbsp}More attributes can potentially be added. Please make sure your integration is built in a tolerant way.
 
-._Product attributes_
+.Product attributes
 [[Product]]
 [cols="10%,10%,80%"]
 |===
@@ -268,7 +268,7 @@ See section <<Discounts>> for more information.
 |toLocationUuid|string|Store location id as UUID (inventory context).
 |===
 
-._Payment attributes_
+.Payment attributes
 [[Payment]]
 [cols="10%,10%,80%"]
 |===
@@ -291,7 +291,7 @@ Example:
 |attributes|object|Additional information about the payment. Different attributes are included depending on payment type.
 |===
 
-._Payment types_
+.Payment types
 [[Payment_types]]
 [cols="30%,70%"]
 |===
@@ -430,13 +430,13 @@ Example:
 ====
 
 == Examples
-=== [[example1]]__Fetch all purchases for a merchant.__
+=== [[example1]]Fetch all purchases for a merchant
 ====
-__**Step 1:** Send a request with the limit parameter to define the number of purchases to retrieve.__
+**Step 1:** Send a request with the limit parameter to define the number of purchases to retrieve.
 
-__GET /purchases/v2?limit=50&descending=true__
+`GET /purchases/v2?limit=50&descending=true`
 
-__**Step 2:** In the bottom of the response, find the values of the lastPurchaseHash.__
+**Step 2:** At the bottom of the response, find the values of `lastPurchaseHash`.
 
 [source,json]
 ----
@@ -452,21 +452,21 @@ __**Step 2:** In the bottom of the response, find the values of the lastPurchase
 }
 ----
 
-__**Step 3:** Send another request that has the `limit` parameter set the same as in the initial request and the `lastPurchaseHash` set with the value from the previous response.__
+**Step 3:** Send another request that has the `limit` parameter set the same as in the initial request and the `lastPurchaseHash` set with the value from the previous response.
 
 
-__**Step 4:** Repeat step 2 and step 3 until the response is empty.__
+**Step 4:** Repeat step 2 and step 3 until the response is empty.
 ====
 
-=== [[example2]]__Purchases with partial refund.__
+=== [[example2]]Purchases with partial refund
 ====
-_Request:_
+Request:
 
-__GET /purchases/v2?descending=true&limit=2__
+`GET /purchases/v2?descending=true&limit=2`
 
-_Response:_
+Response:
 
-__Status: 200 OK__
+Status: 200 OK
 
 [source,json]
 ----
@@ -616,17 +616,17 @@ __Status: 200 OK__
 ----
 ====
 
-=== [[example3]]__Purchase with discounts.__
+=== [[example3]]Purchase with discounts
 ====
 --
 
-_Request:_
+Request:
 
-__GET /purchases/v2?limit=10&descending=true__
+`GET /purchases/v2?limit=10&descending=true`
 
-_Response:_
+Response:
 
-__Status: 200 OK__
+Status: 200 OK
 [source,json]
 ----
 {
@@ -720,17 +720,17 @@ __Status: 200 OK__
 --
 ====
 
-=== [[example4]]__Fetch a specific purchase.__
+=== [[example4]]Fetch a specific purchase
 
 ====
 --
-_Request:_
+Request:
 
-__GET /purchase/v2/589c2de6-3ee4-11eb-9e70-a2ac075b17fd__
+`GET /purchase/v2/589c2de6-3ee4-11eb-9e70-a2ac075b17fd`
 
-_Response:_
+Response:
 
-__Status: 200 OK__
+Status: 200 OK
 
 [source,json]
 ----
@@ -795,7 +795,7 @@ __Status: 200 OK__
 --
 ====
 
-=== [[Discounts]]__Discounts explained__
+=== [[Discounts]]Discounts explained
 ====
 Discounts can exist both on a specific row of items(products), as well as on the entire purchase.
 Discount on a row of items is applied on the whole amount of the row, can be set either as a percentage or as a fixed amount.
@@ -850,7 +850,7 @@ They can contain either `amount` or `percentage`.
 
 *Note:* Currently only one discount for the whole purchase is supported, so the `discounts` list will only contain one item with `quantity` set to 1. This could potentially change in the future.
 
-See further below for a full response example containing discounts.
+See the following for a full response example containing discounts.
 --
 
 *Discount calculation example*
