@@ -101,7 +101,7 @@ For more information on the filter and the endpoint, see https://github.com/iZet
 ====
 
 == Product Library
-.*I'm using your API to create Products on Zettle, I have a problem when assigning images to products, I used the image API to create an image and it's working, but how to assign this image to the product I'm creating?*
+.*I'm using your API to create Products on Zettle. I have a problem when assigning images to products. I used the image API to create an image and it's working, but how do I assign this image to the product I'm creating?*
 [%collapsible]
 ====
 ****
