@@ -797,7 +797,7 @@ Status: 200 OK
 
 === [[Discounts]]Discounts explained
 ====
-Discounts can exist both on a specific row of items(products), as well as on the entire purchase.
+Discounts can exist both on a specific row of items (products), as well as on the entire purchase.
 Discount on a row of items is applied on the whole amount of the row, can be set either as a percentage or as a fixed amount.
 
 Items row discounts will be applied first, followed by the discount on the sum of the already discounted row prices.
@@ -877,11 +877,11 @@ Second row contains 10 items and a percentage discount of 10%.
 2. Then we calculate the purchase discount, based on the sum of the previously discounted rows:
 +
 --
-*Sum of discounted rows* = 20 × 2 + 10 × 10 - 15 = 125
+*Sum of discounted rows* = 20 × 2 + 10 × 10 &minus; 15 = 125
 
 *Purchase discount* = 125 × 0.2 = 25
 
-So the total discount on this purchase is 15 + 25 = 40 and the total sum to pay is 140 - 40 = 100.
+So the total discount on this purchase is 15 + 25 = 40 and the total sum to pay is 140 &minus; 40 = 100.
 
 A discount can never be greater than the actual amount of the row or purchase price.
 --
