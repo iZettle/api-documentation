@@ -2,7 +2,7 @@
 
 
 ====
-If you want to apply to receive access to our APIs, please visit https://developer.zettle.com/register[https://developer.zettle.com/register]
+If you want to apply to receive access to our APIs, sign up for an account at https://developer.zettle.com/register[Zettle Developer Portal].
 ====
 
 == General questions
@@ -35,11 +35,11 @@ Currently, Zettle provides APIs for the following markets:
 We are using TLS 1.2 for the moment.
 ****
 ====
-.*How do I take payments through the iZettle API?*
+.*How do I take payments through the Zettle API?*
 [%collapsible]
 ====
 ****
-It is not possible to take payments through the API. However, we do have SDKs for both iOS (https://github.com/iZettle/sdk-ios) and Android (https://github.com/iZettle/sdk-android) which supports taking payments.
+It is not possible to take payments through the API. However, you can take payments using https://github.com/iZettle/sdk-ios[Zettle Payments SDK for iOS] and https://github.com/iZettle/sdk-android[Payments SDK for Android].
 ****
 ====
 .*Do you provide any test or sandbox environment?*
@@ -56,20 +56,19 @@ Unfortunately we do not at this time.
 No, it is completely free to use our API and the only limitation is that some resources might have rate limiting enabled to ensure service stability.
 ****
 ====
-.*Why do i receive `HTTP 100 Continue`  responses sometimes?*
+.*Why do I receive `HTTP 100 Continue`  responses sometimes?*
 [%collapsible]
 ====
 ****
 This is something our framework sends when it has received the request headers and
 indicates that the client should proceed to send the request body. What you can do is investigate
 the reason why your code does this, or you could traverse the headers until
-you find a header with the intended response code, examples https://stackoverflow.com/questions/14526627/double-http-status-header-on-http-post-to-jersey[here]
-and https://stackoverflow.com/questions/2964687/how-to-handle-100-continue-http-message[here].
+you find a header with the intended response code. For example, see https://stackoverflow.com/questions/2964687/how-to-handle-100-continue-http-message[how to handle `HTTP 100 Continue`] and https://stackoverflow.com/questions/14526627/double-http-status-header-on-http-post-to-jersey[Double HTTP-Status header on HTTP-POST to Jersey].
 ****
 ====
 
 == OAuth
-.*Once I have a Access token, how do I use it to authenticate myself?*
+.*Once I have an Access token, how do I use it to authenticate myself?*
 [%collapsible]
 ====
 ****
@@ -82,7 +81,7 @@ filter instead of `{organizationUuid}`
 [%collapsible]
 ====
 ****
-You can either use the *_self_* filter: see this documentation for details on how, the other option is to call
+You can either use the *_self_* filter. You can also call the following endpoint.
 [source]
 --
 GET https://oauth.izettle.com/users/me
@@ -97,12 +96,12 @@ Example response
 }
 
 --
-See https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[OAuth] for more info.
+For more information on the filter and the endpoint, see https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[OAuth2 API documentation].
 ****
 ====
 
 == Product Library
-.*I'm using your API to create Products on iZettle, i have a problem when assigning images to products, i used the image API to create an image and it's working, but how to assign this image to the product i'm creating?*
+.*I'm using your API to create Products on Zettle, I have a problem when assigning images to products, I used the image API to create an image and it's working, but how to assign this image to the product I'm creating?*
 [%collapsible]
 ====
 ****
@@ -119,9 +118,9 @@ See https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[
   },
 --
 
-The image api will return a imageUrl back which can be directly put into the `presentation.imageUrl` field, however we just introduced this and is not fully supported by the portal and the apps yet.
+The image API will return a imageUrl back which can be directly put into the `presentation.imageUrl` field, however we just introduced this and is not fully supported by the portal and the apps yet.
 
-So if you only want to use the information outside of the iZettle apps you might want to use  `presentation.imageUrl`, otherwise use  `imageLookupKeys` and strip away everything except the last part of the imageUrl and place for example `Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEmQ.jpeg` in the imageLookupKeys to be able to see the image in the iZettle apps.
+So if you only want to use the information outside of the Zettle apps you might want to use  `presentation.imageUrl`, otherwise use  `imageLookupKeys` and strip away everything except the last part of the imageUrl and place for example `Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEmQ.jpeg` in the imageLookupKeys to be able to see the image in the Zettle apps.
 
 Clarification examples:
 [source,json]
@@ -137,7 +136,7 @@ Clarification examples:
 ====
 
 == Finance
-.*How do i get sum of all payments, fees, refunds, invoices?*
+.*How do I get sum of all payments, fees, refunds, invoices?*
 [%collapsible]
 ====
 Use `includeTransactionType` parameter in query for relevant transaction type/types, +
