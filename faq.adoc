@@ -56,7 +56,7 @@ Unfortunately we do not at this time.
 No, it is completely free to use our APIs. The only limitation is that some resources might have rate limiting enabled to ensure service stability.
 ****
 ====
-.*Why do I receive `HTTP 100 Continue`  responses sometimes?*
+.*Why do I receive `HTTP 100 Continue` responses sometimes?*
 [%collapsible]
 ====
 ****
