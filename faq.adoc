@@ -35,11 +35,11 @@ Currently, Zettle provides APIs for the following markets:
 We are using TLS 1.2 for the moment.
 ****
 ====
-.*How do I take payments through the Zettle API?*
+.*How do I take payments through the Zettle APIs?*
 [%collapsible]
 ====
 ****
-It is not possible to take payments through the API. However, you can take payments using https://github.com/iZettle/sdk-ios[Zettle Payments SDK for iOS] and https://github.com/iZettle/sdk-android[Payments SDK for Android].
+It is not possible to take payments through the APIs. However, you can take payments using https://github.com/iZettle/sdk-ios[Zettle Payments SDK for iOS] and https://github.com/iZettle/sdk-android[Payments SDK for Android].
 ****
 ====
 .*Do you provide any test or sandbox environment?*
@@ -49,11 +49,11 @@ It is not possible to take payments through the API. However, you can take payme
 Unfortunately we do not at this time.
 ****
 ====
-.*Does it cost anything to use your open APIs and is there some restriction on the API?*
+.*Does it cost anything to use your APIs and is there some restriction on the APIs?*
 [%collapsible]
 ====
 ****
-No, it is completely free to use our API and the only limitation is that some resources might have rate limiting enabled to ensure service stability.
+No, it is completely free to use our APIs and the only limitation is that some resources might have rate limiting enabled to ensure service stability.
 ****
 ====
 .*Why do I receive `HTTP 100 Continue`  responses sometimes?*
@@ -109,10 +109,10 @@ For more information on the filter and the endpoint, see https://github.com/iZet
 [source,json]
 --
  "imageLookupKeys": [
-    "string" what should i put here?
+    "string" // What should I put here?
   ],
   "presentation": {
-    "imageUrl": "string", i should put the created image url?
+    "imageUrl": "string", // Should I put the created image URL?
     "backgroundColor": "string",
     "textColor": "string"
   },
@@ -139,6 +139,5 @@ Clarification examples:
 .*How do I get sum of all payments, fees, refunds, invoices?*
 [%collapsible]
 ====
-Use `includeTransactionType` parameter in query for relevant transaction type/types, +
-traverse the list of transactions returned and sum up the amounts.
+Use `includeTransactionType` parameter in query for the relevant transaction type or types. Then traverse the list of transactions returned and sum up the amounts.
 ====
