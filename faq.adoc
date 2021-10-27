@@ -39,7 +39,7 @@ We are using TLS 1.2 for the moment.
 [%collapsible]
 ====
 ****
-It is not possible to take payments through the APIs. However, you can take payments using https://github.com/iZettle/sdk-ios[Zettle Payments SDK for iOS] and https://github.com/iZettle/sdk-android[Payments SDK for Android].
+It is not possible to take payments through the APIs. However, you can take payments using https://github.com/iZettle/sdk-ios[Zettle Payments SDK for iOS] and https://github.com/iZettle/sdk-android[Zettle Payments SDK for Android].
 ****
 ====
 .*Do you provide any test or sandbox environment?*
@@ -53,7 +53,7 @@ Unfortunately we do not at this time.
 [%collapsible]
 ====
 ****
-No, it is completely free to use our APIs and the only limitation is that some resources might have rate limiting enabled to ensure service stability.
+No, it is completely free to use our APIs. The only limitation is that some resources might have rate limiting enabled to ensure service stability.
 ****
 ====
 .*Why do I receive `HTTP 100 Continue`  responses sometimes?*
@@ -73,7 +73,7 @@ you find a header with the intended response code. See https://stackoverflow.com
 ====
 ****
 The Access token is passed through the `Authorization` header with the format:
-`Authorization: Bearer <Token>`. Also, note that on most services you can use the *_self_*
+`Authorization: Bearer <Token>`. Also, note that on most services you can use the `self`
 filter instead of `{organizationUuid}`
 ****
 ====
@@ -120,7 +120,7 @@ For more information on the filter and the endpoint, see https://github.com/iZet
 
 The image API will return a imageUrl back which can be directly put into the `presentation.imageUrl` field, however we just introduced this and is not fully supported by the portal and the apps yet.
 
-So if you only want to use the information outside of the Zettle apps you might want to use  `presentation.imageUrl`, otherwise use  `imageLookupKeys` and strip away everything except the last part of the imageUrl and place for example `Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEmQ.jpeg` in the imageLookupKeys to be able to see the image in the Zettle apps.
+So if you only want to use the information outside of the Zettle apps you might want to use  `presentation.imageUrl`, otherwise use  `imageLookupKeys` and strip away everything except the last part of the imageUrl and place for example `Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEmQ.jpeg` in `imageLookupKeys` to be able to see the image in the Zettle apps.
 
 Clarification examples:
 [source,json]
