@@ -8,9 +8,9 @@ Purchase represents a receipt, it's immutable and contains information about sol
 Refunds are represented by the same model, but with negative quantity and refund-related flags/fields.
 
 === Base URL
-Base URL: `https://purchase.izettle.com`
+`https://purchase.izettle.com`
 
-=== OAuth authorization scope
+=== OAuth scope
 - `READ:PURCHASE`
 
 See https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[OAuth2 API] for more information about access tokens.
@@ -18,7 +18,7 @@ See https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[
 == Fetch a list of purchases
 Returns a list of purchases for a merchant. Purchases up to three years old are available for fetching.
 
-`GET  {nbsp}/purchases/v2`
+`GET /purchases/v2`
 
 See <<example1>>.
 
@@ -79,7 +79,7 @@ Example:
 
 Returns a purchase with given UUID.
 
-`GET {nbsp} /purchase/v2/{purchaseUuid}`
+`GET  /purchase/v2/{purchaseUuid}`
 
 See <<example4>>.
 
@@ -210,7 +210,7 @@ Example:
 |cashRegister|object|For internal use. There is no public API available for cash register.
 |===
 
-*Note*: {nbsp}More attributes can potentially be added. Make sure your integration is built in a tolerant way.
+*Note*: More attributes can potentially be added. Make sure your integration is built in a tolerant way.
 
 .Product attributes
 [[Product]]
@@ -386,7 +386,7 @@ Example:
   }
 }
 ----
-|STORE_CREDIT|Store credit is usually a document offered by a store to a customer who returns an item not eligible for a refund. Can also be the case where a customer doesn't want to get chargeback on the credit card that was used. It can also be used to buy other goods at the same store.
+|STORE_CREDIT|Store credit is usually a document offered by a store to a customer who returns an item not eligible for a refund. It can also be offered when a customer doesn't want to get chargeback on the credit card that was used. Furthermore, it can be used to buy other goods at the same store.
 |GIFTCARD|Payment made with a gift card(certificate/voucher) issued by the merchant.
 |KLARNA a|Payment made with Klarna.
 
