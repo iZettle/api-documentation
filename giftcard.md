@@ -14,7 +14,7 @@ The Gift Card API provides extra information about purchases made through Zettle
 ```http
 GET organizations/self/giftcards/external/{uuid}
 ```
-Where `uuid` is the UUID of a gift card.
+Where `uuid` is the UUID of the gift card.
 
 ### Errors
 `404 Giftcard not found`
