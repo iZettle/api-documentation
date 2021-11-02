@@ -2,7 +2,7 @@ Gift Card API
 ======
 
 ## Service description
-The Gift Card API provides extra information about purchases made through Zettle with a gift card.
+The Gift Card API provides extra information about purchases made through Zettle with gift cards.
 
 ### Base URL
 `https://giftcard.izettle.com`
