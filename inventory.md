@@ -14,7 +14,7 @@ https://inventory.izettle.com/swagger
 The service uses a concept of transactions where stock is moved between so called `Locations`.
 Locations are created automatically when tracking is enabled on any product. Currently existing locations and the natural flow of stock balance are explained in the following.
 
-![Stock balance flow from SUPPLIER to STORE and either BIN or SOLD](/inventory-api/images/InventoryLocationFlow.png)
+![Stock balance flow from SUPPLIER to STORE and either BIN or SOLD](/inventory-api/images/Location_Flow.png)
 
 `SUPPLIER` is an abstraction of a supplier and holds infinite stock.
 
