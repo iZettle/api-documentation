@@ -23,7 +23,7 @@ Currently, Zettle provides APIs for the following markets:
 
 ## APIs
 
--   [OAuth](authorization.adoc)
+-   [OAuth](authorization.md)
 -   [Finance](finance-api/overview.md)
 -   [Purchase](purchase.adoc)
 -   [Product Library](product-library.adoc)
