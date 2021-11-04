@@ -27,7 +27,7 @@ Currently, Zettle provides APIs for the following markets:
 -   [Finance](finance-api/overview.md)
 -   [Purchase](purchase.adoc)
 -   [Product Library](product-library.adoc)
--   [Inventory](inventory.adoc)
+-   [Inventory](inventory.md)
 -   [Image](image.md)
 -   [Pusher](pusher-api/)
 -   [Giftcard](giftcard.adoc)

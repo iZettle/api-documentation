@@ -1,4 +1,5 @@
-== Zettle API Changelog
+= Zettle API changelog
+
 .**September 15, 2021** `OAuth API`
 [%collapsible]
 ====
@@ -7,10 +8,10 @@
 The Password grant OAuth flow has been deprecated and will be removed on 31st January 2022. Please update your Zettle integration to another authentication flow to keep it running. For information about how to update the authentication flow, see xref:oauth-api/zettle-password-grant-migration-guide/zettle-password-grant-migration-guide.md[Zettle Password grant migration guide].
 ====
 
-.**July 20, 2021** `Finance API`
+.**July 20 2021** `Finance API`
 [%collapsible]
 ====
-**Finance API documentation Improvements**
+**Finance API documentation improvements**
 
 The improvements include the following:
 
@@ -19,10 +20,10 @@ The improvements include the following:
 - Added user guides.
 ====
 
-.**May 3, 2021** `Pusher API`
+.**May 3 2021** `Pusher API`
 [%collapsible]
 ====
-**Pusher API documentation Improvements**
+**Pusher API documentation improvements**
 
 The improvements include the following:
 
@@ -31,7 +32,7 @@ The improvements include the following:
 - Added the user guides and troubleshooting documents.
 ====
 
-.**Oct 28, 2020** `Editorial changes`
+.**October 28 2020** `Editorial changes`
 [%collapsible]
 ====
 **Applied a Beta label on any mention of API documentation**
@@ -43,7 +44,7 @@ To be transparent and set expectations right, we've applied a Beta label on any 
 In the meantime, we will work hard to improve the Zettle Developer Platform. An example of the ongoing work is to improve the API documentation.
 ====
 
-.**Sep 21, 2020** `Finance` `Purchase` `Product library` `Image`
+.**September 21 2020** `Finance` `Purchase` `Product library` `Image`
 [%collapsible]
 ====
 Updated documentation for Finance, Purchase, Product Library, and Image APIs.
@@ -62,7 +63,7 @@ Updated documentation for Finance, Purchase, Product Library, and Image APIs.
 
 - Updated the example request under the "Create product" section to reflect the new `category` and `variantOptionDefinitions` fields.
 
-The `category` field replaces the old `categories` field. Now, a product may only have one category assigned to it. To create a new product category, simply provide a new UUID (v1) value for the `category.uuid` field when creating or updating a product, for example:
+The `category` field replaces the old `categories` field. Now, a product may only have one category assigned to it. To create a new product category, provide a new version 1 UUID for the `category.uuid` field when creating or updating a product. For example:
 
 [source,json]
 --
