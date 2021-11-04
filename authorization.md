@@ -23,7 +23,7 @@ For public integrations, you should implement the authorization code grant as de
 
 Once the partner is registered and has received a secret and client id (uuid) it can present the user with a link to authorize the partners access to the users data,
 this link is opened up in a web browser:
-```http
+```
 {{URL}}/authorize?response_type=code&client_id=c55de605-48b6-42ef-b69e-cd9d14ded15a&scope=READ:FINANCE%20READ:PURCHASE&redirect_uri=https://httpbin.org/get
 ```
 
@@ -37,7 +37,7 @@ curl --write-out %{redirect_url} -s \
 '{{URL}}/authorize?response_type=code&client_id=c55de605-48b6-42ef-b69e-cd9d14ded15a&scope=READ:FINANCE%20READ:PURCHASE&action=authorize&state=XFadwMEXCJGJUfD'
 ```
 The server responds with a redirect to the redirect URI that the partner has provided, appended with the generated authorization code as a parameter `code`:
-```http
+```
 http://httpbin.org/get?code=4fa87ba8cc7f30e91ad2ab1ad21c1b3e&state=XFadwMEXCJGJUfD
 ```
 
@@ -147,7 +147,7 @@ The response has the same format as the request:
 
 The Authorization OAuth2 API will return errors when retrieving and refreshing access tokens as specified in the RFC, for example:
 
-```json
+```http
 HTTP 400 Bad Request
 {
     "error": "invalid_grant",
@@ -166,7 +166,7 @@ This is described in detail in [RFC 6750 section 2.1](https://tools.ietf.org/htm
 
 ### Errors
 When using an expired or invalid access token in an API request, the resource service will return a `HTTP 401 Unauthorized` response, with the error set in the HTTP header `WWW-Authenticate`, similar to this:
-```json
+```
 Bearer error="invalid_request", error_description="ACCESS_TOKEN_EXPIRED"
 ```
 
@@ -176,7 +176,9 @@ Bearer error="invalid_request", error_description="ACCESS_TOKEN_EXPIRED"
 
 ### Get user info
 
-`GET users/self`
+```http
+GET users/self
+```
 
 #### Example response
 ```json
@@ -189,7 +191,7 @@ Bearer error="invalid_request", error_description="ACCESS_TOKEN_EXPIRED"
 ### Disconnect application from organization
 An external integration that want to disconnect its connection to an Zettle organization can do so by calling the following endpoint, providing the issued access token for that organization. This can be useful when a user disconnects outside of Zettle, to clean up registered webhooks and remove access for the external integration.
 
-```
+```http
 DELETE /application-connections/self
 Authorization: Bearer <access token>
 ```
