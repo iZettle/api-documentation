@@ -170,7 +170,7 @@ When using an expired or invalid access token in an API request, the resource se
 Bearer error="invalid_request", error_description="ACCESS_TOKEN_EXPIRED"
 ```
 
-> **Note:** Not all services are not currently using the error code `ACCESS_TOKEN_EXPIRED` as the content of the `error_description` field, but rather the clear text value "The access token has expired". This will change over time and eventually all services will use the `ACCESS_TOKEN_EXPIRED`.
+> **Note:** For the value of the `error_description` field, most services use the error code `ACCESS_TOKEN_EXPIRED`. The other services use clear text `The access token has expired`. This will change over time and eventually all services will use the `ACCESS_TOKEN_EXPIRED`.
 
 ## Utility Endpoints
 
