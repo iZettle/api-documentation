@@ -21,7 +21,7 @@ For public integrations, you should implement the authorization code grant as de
 ### Ask the user to authorize the client
 [RFC 6749 section 4.1.1. Authorization Request](https://tools.ietf.org/html/rfc6749#section-4.1.1)
 
-Once the partner is registered and has received a secret and client id (uuid) it can present the user with a link to authorize the partners access to the users data,
+Once the partner is registered and has received a secret and client id (UUID) it can present the user with a link to authorize the partners access to the users data,
 this link is opened up in a web browser:
 ```
 {{URL}}/authorize?response_type=code&client_id=c55de605-48b6-42ef-b69e-cd9d14ded15a&scope=READ:FINANCE%20READ:PURCHASE&redirect_uri=https://httpbin.org/get
