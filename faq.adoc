@@ -97,7 +97,7 @@ Example response
 }
 
 --
-See https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[OAuth] for more info.
+See xref:/authorization.md[OAuth] for more info.
 ****
 ====
 

@@ -55,4 +55,4 @@ When contacting the Integrations team, please provide the following information:
 * Information about affected merchants. That includes:
     * Emails of affected merchants.
     * UUIDs and organisation UUIDs of the affected merchants.
-      To fetch UUIDs and organisation UUIDs, use the `GET users/me` endpoint of the OAuth API. For more information about using the endpoint, see [Get user info](authorization.adoc/#get-user-info).
+      To fetch UUIDs and organisation UUIDs, use the `GET users/me` endpoint of the OAuth API. For more information about using the endpoint, see [Get user info](authorization.md/#get-user-info).

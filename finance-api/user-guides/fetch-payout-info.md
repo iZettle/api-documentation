@@ -12,7 +12,7 @@ If the merchant's configuration has a minimum account balance, then the payout w
 * [Related API reference](#related-api-reference)
 
 ## Prerequisites
-* Make sure that authorisation is set up with the following OAuth scope using [OAuth2 API](../../authorization.adoc):
+* Make sure that authorisation is set up with the following OAuth scope using [OAuth2 API](../../authorization.md):
     * `READ:FINANCE`
 
 ## Fetch the payout information
