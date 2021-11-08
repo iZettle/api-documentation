@@ -97,7 +97,7 @@ Example response
 
 --
 
-For more information on the filter and the endpoint, see xref:/authorization.md[OAuth] for more info.
+For more information on the filter and the endpoint, see xref:/authorization.md[OAuth].
 ****
 ====
 
