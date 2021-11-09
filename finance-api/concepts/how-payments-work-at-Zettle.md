@@ -13,7 +13,7 @@ A merchant's Zettle account handles different status of transactions. After a me
   
    Zettle makes sure that the correct amount of money will be paid out from the merchant's Zettle account to the merchant's bank account or PayPal Wallet for PayPal users. Then the merchant will receive the deposit in the upcoming payout.
    
-> **Note:** The amount of time for the money to be paid out varies depending on the country. Check [Zettle Help Centre](https://www.zettle.com/help/articles/1084784-deposits) for country-specific information.
+> **Note:** The amount of time for the money to be paid out varies depending on the country. For country-specific information, check [Zettle Help Centre](https://www.zettle.com/help/articles/1084784-deposits).
 
 <figure ><img id="Zettle-transaction-flow" src="../images/Zettle-transaction-flow.svg" alt="This diagram shows the previously described transaction flow where Zettle handles payments in three sequential phases." >  <figcaption><b>Figure 1. </b>Zettle transaction flow</figcaption></figure>
 
