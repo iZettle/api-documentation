@@ -11,7 +11,7 @@ Use the Finance API to fetch transactions or transactions of certain types from 
 * [Related API reference](#related-api-reference)
 
 ## Prerequisites
-* Make sure that authorisation is set up with the following OAuth scope using [OAuth2 API](../../authorization.adoc):
+* Make sure that authorisation is set up with the following OAuth scope using [OAuth2 API](../../authorization.md):
     * `READ:FINANCE`
 
 ## Fetch transactions during a specific period
