@@ -13,7 +13,7 @@ Refunds are represented by the same model, but with negative quantity and refund
 === OAuth scope
 - `READ:PURCHASE`
 
-See https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[OAuth2 API] for more information about access tokens.
+See https://github.com/iZettle/api-documentation/blob/master/authorization.md[OAuth2 API] for more information about access tokens.
 
 == Fetch a list of purchases
 Returns a list of purchases for a merchant. Purchases up to three years old are available for fetching.
@@ -233,7 +233,7 @@ Example:
     "giftcardUuid": "290371f0-a8a5-11e5-b862-d6cb9f787e88"
 }
 ----
-Gift card details can be fetched through https://github.com/iZettle/api-documentation/blob/master/giftcard.adoc#get-giftcard-details[Gift Card API]. +
+Gift card details can be fetched through https://github.com/iZettle/api-documentation/blob/master/giftcard.md#get-giftcard-details[Gift Card API]. +
 
 |productUuid|string|Unique ID of product in product library as UUID.
 |name|string|Name of the product sold.
@@ -274,7 +274,7 @@ See section <<Discounts>> for more information.
 |===
 |Name|Type |Description
 
-|uuid|string|Unique ID of the payment as UUID. Can be linked to transactions in https://github.com/iZettle/api-documentation/blob/master/finance.adoc#fetch-account-transactions[Finance API].
+|uuid|string|Unique ID of the payment as UUID. Can be linked to transactions in https://github.com/iZettle/api-documentation/blob/master/finance-api/user-guides/fetch-account-transactions.md[Finance API].
 |type|string|Payment type used when making a purchase. See <<Payment_types>> for more information.
 |gratuityAmount|integer|Corresponds to the tipping amount in the purchase. This
 feature is not available in all supported by Zettle countries. When the `gratuityAmount` is set, the
