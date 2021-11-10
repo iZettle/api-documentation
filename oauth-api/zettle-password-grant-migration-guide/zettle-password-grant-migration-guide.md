@@ -26,6 +26,8 @@ To use this approach, the merchant using the integration needs to provide you wi
      A deep link provided by the integrator and shared with the merchant
    
    * [Option 2: Create the API Key by accessing my.zettle.com](#option-2-create-the-api-key-by-accessing-myzettlecom).
+   
+     The merchant accesses the API Key page at my.zettle.com.
      
 >**Tip:** Share the screenshots with the merchant if needed. 
 
