@@ -32,7 +32,7 @@ You can delete existing subscriptions that are no longer needed.
 
 1. Send a `DELETE` request to delete a subscription. In the request, `subscriptionsUuid` is the version 1 UUID that you retrieved in [Step 1: Retrieve the subscription UUID](#step-1-retrieve-the-subscription-uuid).
     ```
-    DELETE /organizations/{organizationUuid}/{subscriptionUuid}
+    DELETE /organizations/{organizationUuid}/subscriptions/{subscriptionUuid}
     ```
        
     Example:
