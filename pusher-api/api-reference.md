@@ -45,7 +45,7 @@ To create or update a subscription to an event, you will need to be authorized w
 
 E.g. you will require the `READ:PURCHASE` scope if you want to subscribe to the `PurchaseCreated` event. See [the list of scopes for supported events](#supported-events).
 
-For more information on how to get authorization for a particular scope, see [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.md).
+For more information on how to get authorization for a particular scope, see [OAuth2 API](../authorization.md).
 
 ## Create a subscription
 
@@ -71,7 +71,7 @@ See example [Create a webhook subscription](#create-a-webhook-subscription).
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
-|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li>Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li>Get it by using the `users/me` endpoint of OAuth2 API. For more information, see [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.md) .</li></ul> 
+|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li>Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li>Get it by using the `users/me` endpoint of OAuth2 API. For more information, see [OAuth2 API](../authorization.md).</li></ul> 
 |uuid |string |query |required | Unique identifier for the subscription as UUID version 1.
 |transportName |string |query |required | The message option used by Pusher API. Currently only `WEBHOOK` is supported. 
 |eventNames |array |query |required | Event names for events that you want to create subscription for. The events are specified in an array. <br/>If you pass an empty array, you will subscribe to all events that the Pusher API supports. In this case, make sure that you have all the corresponding authorization scopes issued. See [the list of scopes](#supported-events).
@@ -127,7 +127,7 @@ See example [Get webhook subscriptions](#get-webhook-subscriptions).
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
-|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li>Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the `users/me` endpoint of OAuth2 API. For more information, see [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.md) .</li></ul>  
+|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li>Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the `users/me` endpoint of OAuth2 API. For more information, see [OAuth2 API](../authorization.md).</li></ul>  
 </details>
 
 
@@ -178,7 +178,7 @@ See example [Update a webhook subscription](#update-a-webhook-subscription).
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
-|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li>Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the `users/me` endpoint of OAuth2 API. For more information, see [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.md) .</li></ul> 
+|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li>Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the `users/me` endpoint of OAuth2 API. For more information, see [OAuth2 API](../authorization.md).</li></ul> 
 |subscriptionUuid |string |path |required |Unique identifier for an existing subscription as UUID version 1.
 |transportName |string |query |optional | The message option used by the Pusher API. E.g. `WEBHOOK`. You need to specify the same option that you used while creating the subscription.
 |eventNames |array |query |optional | Events that you want to update on the existing subscription. The events are specified in an array.
@@ -225,7 +225,7 @@ See example [Delete a webhook subscription](#delete-a-webhook-subscription).
 
 |Name |Type |In |Required/Optional |Description
 |---- |---- |---- |---- |----
-|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li>Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the `users/me` endpoint of OAuth2 API. For more information, see [OAuth2 API](https://github.com/iZettle/api-documentation/blob/master/authorization.md) .</li></ul> 
+|organizationUuid |string |path |required |Unique identifier for your organization. You can use following options to fill in this value: <br/><ul><li>Use `self` as the value. This will retrieve your organizationUuid from the authentication token in the request.</li><li> Get it by using the `users/me` endpoint of OAuth2 API. For more information, see [OAuth2 API](../authorization.md).</li></ul> 
 |subscriptionUuid |string |path |required |Unique identifier for an existing subscription as UUID version 1.
 </details>
 
