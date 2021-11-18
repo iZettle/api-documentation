@@ -1,19 +1,10 @@
-Subscriptions
+Event payloads
 =====================
-With subscriptions, the Pusher API will immediately update you of those events that are triggered on your Zettle Go. So you don't need to pull information from other Zettle Go APIs.
+When an event of your subscription is triggerd, the Pusher API sends `POST` requests with the `payload` field.
 
-* [Understand how events work](#understand-how-events-work)
-    * [Payloads](#payloads)
-* [Plan subscriptions](#plan-subscriptions)
-* [Manage subscriptions](#manage-subscriptions)
-
-## Understand how events work
-The Pusher API provides events for you to listen to certain activities of the Zettle Go app at a working HTTPS endpoint on your server.
-
-After you subscribe to events, when an event is triggered, the Pusher API sends a `POST` request that contains a `payload` field. The field contains event information to the HTTPS endpoint in real time.
-
-### Payloads
-The `payload` field is the response body from other APIs, such as the Inventory API. The Pusher API sends `POST` requests with the `payload` field in the following JSON format:
+The `payload` field is the response body from other APIs, such as the Inventory API. The field contains event information to the HTTPS endpoint in real time.
+ 
+The `payload` field is in the following JSON format:
 
 ```json
 {
@@ -39,8 +30,10 @@ For example, you have a subscription to the `InventoryTrackingStarted` event. Wh
   "timestamp": "2021-04-19T13:17:56.585Z"
 }
 ```
+## Available event payloads
+The following table lists available event payloads.
 
-For more information on event payloads, see the following table.
+> **Note:** As payloads can be updated due to changes of the APIs that provide payloads, you can ignore unknown fields.
 
 <table name="payloadAPITable">
     <thead>
@@ -231,28 +224,3 @@ For more information on event payloads, see the following table.
           </td>
         </tbody>
 </table>
-
-<!-- Ask the team: are the payloads for ApplicationConnectionRemoved, PersonalAssertionDeleted, OrganizationUpdated, and OrganizationFeatureUpdated from the Pusher API? --> 
-> **Note:** As payloads can be updated due to changes of the APIs that provide payloads, you can ignore unknown fields.
-
-
-## Plan subscriptions
-Before subscribing to events, plan which events to use for your use cases.
-
-To get started, you may want to subscribe to the following events:
-
-* To monitor inventory changes in Zettle Point of Sales (POS): `InventoryBalanceChanged`, `InventoryTrackingStarted`, and `InventoryTrackingStopped`
-* To monitor product library changes: `ProductCreated`, `ProductUpdated`, and `ProductDeleted`
-* To monitor purchases: `PurchaseCreated`
-<!-- We can extend this section to be more focused on use cases later on. -->
-
-For more events that you can subscribe, see [Pusher API reference](../api-reference.md).
-
-## Manage subscriptions
-With the Pusher API, you can create, view, update, and delete subscriptions as you need.
-
-* [Create subscriptions](create-subscriptions.md)
-* [View subscriptions](view-subscriptions.md)
-* [Update subscriptions](update-subscriptions.md)
-* [Delete subscriptions](delete-subscriptions.md)
-

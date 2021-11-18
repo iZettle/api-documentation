@@ -53,7 +53,7 @@ Creates a webhook subscription to a specific event.
 
 Once the subscription for an event gets created, the Pusher API will publish data on your service whenever that event occurs.
 
-E.g. You created a subscription for the ProductUpdated event. Whenever a product gets updated in the product library, the ProductUpdated event occurs. Then you will receive event data on the destination server that you have exposed publicly. The event data is a payload for the updated product. See the list of [payloads for all events](user-guides/subscriptions.md#payloadAPITable).
+E.g. You created a subscription for the ProductUpdated event. Whenever a product gets updated in the product library, the ProductUpdated event occurs. Then you will receive event data on the destination server that you have exposed publicly. The event data is a payload for the updated product. See the list of [payloads for all events](concept/event-payloads.md#available-event-payloads).
 
 > **Note:** The Pusher API will push data for an event only once. However, there may be cases where it gets published more than once. You don't need to save the data more than once.
 
@@ -394,7 +394,7 @@ Response
 
 
 ## Related resources
-[Pusher API user guide](user-guides/subscriptions.md)
+[Pusher API user guide](user-guides)
 
 ## Related API reference
 [OAuth2 API Reference](../authorization.md)
