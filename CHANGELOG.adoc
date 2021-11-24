@@ -1,5 +1,26 @@
 = Zettle API changelog
 
+The changelog lists all changes that are made for APIs and API documentation.
+
+Each log entry uses the following tags:
+
+- For API changes and the corresponding documentation changes, the log is tagged with the name of the changes API. For example, `OAuth API`.
+- For documentation changes that are editorial and are not introduced by any API change, the log is tagged with `Editorial changes`.
+
+.**November 24, 2021** `Editorial changes`
+[%collapsible]
+====
+**Improved documentation accessibility**
+
+The improvements include the following:
+
+- Improved image alternative text.
+- Improved link text.
+- Improved readability.
+- Changed some markups.
+- Removed directional words, such as above and below.
+====
+
 .**September 15, 2021** `OAuth API`
 [%collapsible]
 ====
@@ -44,7 +65,7 @@ To be transparent and set expectations right, we've applied a Beta label on any 
 In the meantime, we will work hard to improve the Zettle Developer Platform. An example of the ongoing work is to improve the API documentation.
 ====
 
-.**September 21 2020** `Finance` `Purchase` `Product library` `Image`
+.**September 21 2020** `Finance API` `Purchase API` `Product library API` `Image API`
 [%collapsible]
 ====
 Updated documentation for Finance, Purchase, Product Library, and Image APIs.
