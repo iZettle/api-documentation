@@ -62,7 +62,7 @@ The current state of the API documentation leaves plenty of room for improvement
 
 To be transparent and set expectations right, we've applied a Beta label on any mention of the API documentation.
 
-In the meantime, we will work hard to improve the Zettle Developer Platform. An example of the ongoing work is to improve the API documentation.
+We are currently working to improve the Zettle Developer Platform, including the API documentation.
 ====
 
 .**September 21 2020** `Finance API` `Purchase API` `Product library API` `Image API`
