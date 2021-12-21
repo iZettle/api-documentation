@@ -173,16 +173,16 @@ To verify that events come from Zettle, calculate a signature and compare it wit
 
 2. Compare the newly calculated signature with the value in the HTTP header `X-iZettle-Signature` and take actions accordingly.
 
-## Step 5: Avoid webhook requests timeout
+## Step 5: Prevent webhook requests timeout
 Webhook requests time out 10 seconds after the Pusher API sends the events to the destination URL on your server.
 
-To avoid webhook requests failing, configure your server to handle them as soon as possible. So the destination URL can respond to the Pusher API before the timeout. A best practice is to handle webhook requests in the background.
+To avoid webhook requests failing, configure your server to handle them as soon as possible. So that the destination URL can respond to the Pusher API before the timeout occurs. A best practice is to handle webhook requests in the background.
 
 To handle webhook requests in the background:  
 1. Insert webhooks in a queue.
 2. Process the webkooks from the queue in background workers.
 
->**Tip:** If your server is deployed on a platform as a service (PaaS), such as Amazon Web Services, check whether the PaaS can queue and process webhooks in the background.
+>**Tip:** If your server is deployed on a platform as a service (PaaS) like Amazon Web Services, check whether webhooks can queued and processed in the background.
 
 ## Related task
 * [Delete subscriptions](delete-subscriptions.md)

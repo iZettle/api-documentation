@@ -10,11 +10,10 @@ With subscriptions, the Pusher API will immediately update you of those events t
 ## Understand how subscriptions work
 The Pusher API provides events for you to listen to certain activities of the Zettle Go app at a working HTTPS endpoint on your server.
 
-After you subscribe to events, when an event is triggered, the Pusher API sends the event in a `POST` request to the HTTPS endpoint. The HTTPS endpoint is used as the destination URL. 
+When an event that you have subscribed is triggered, the Pusher API sends the event in a `POST` request to the HTTPS endpoint. The HTTPS endpoint is used as the destination URL. 
 The request contains a `payload` field with event information in real time.
  
  After the Pusher API sends a `POST` request, if the destination URL doesn't return a valid HTTP response within 10 seconds, the request times out.
-
 
 For more information about event payloads, see [event payloads](concept/event-payloads.md).
 
