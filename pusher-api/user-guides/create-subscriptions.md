@@ -7,6 +7,7 @@ Subscribe to events to stay updated of activities that happen on your Zettle Go 
 * [Step 2: Test webhooks](#step-2-test-webhooks)
 * [Step 3: Create a subscription](#step-3-create-a-subscription)
 * [Step 4: Set up verification for events origin](#step-4-set-up-verification-for-events-origin)
+* [Step 5: void webhook requests timeout](#step-5-avoid-webhook-requests-timeout)
 * [Related task](#related-task)
 * [Related API reference](#related-api-reference)
 
@@ -14,7 +15,6 @@ Subscribe to events to stay updated of activities that happen on your Zettle Go 
 * Make sure that authorization is set up using [Authorization OAuth2 API](../../authorization.md).
 * Make sure that you have set up an HTTPS endpoint as the destination URL on your server for receiving event notifications. The endpoint must be publicly accessible and correctly process event payloads. See [event payloads](concept/event-payloads.md).
 * Make sure that you understand the events that are supported by the Pusher API. For events that are supported by the Pusher API, see [Pusher API reference](../api-reference.md#supported-events).
-<!-- to be continued if any -->
 
 ## Step 1: Generate a version 1 UUID
 For every subscription, generate a version 1 Universally Unique Identifier (UUID).
@@ -105,6 +105,7 @@ You can subscribe to one or more events in one subscription request.
       "payload" : { "data" : "payload" }
     }
     ```
+5. Make sure that your destination URL always returns a valid HTTP response, after receiving the events.
 
 ## Step 4: Set up verification for events origin
 After subscriptions are created, you need to set up a mechanism for verifying that events come from Zettle by checking the signature in the events. 
@@ -172,6 +173,16 @@ To verify that events come from Zettle, calculate a signature and compare it wit
 
 2. Compare the newly calculated signature with the value in the HTTP header `X-iZettle-Signature` and take actions accordingly.
 
+## Step 5: Avoid webhook requests timeout
+Webhook requests time out 10 seconds after the Pusher API sends the events to the destination endpoint on your server.
+
+To avoid webhook requests failing, configure your server to handle them as soon as possible. So the destination endpoint can respond to the Pusher API before the timeout. A best practice is to handle webhook requests in the background.
+
+To handle webhook requests in the background:  
+1. Insert webhooks in a queue.
+2. Process the webkooks from the queue in background workers.
+
+>**Tip:** If your server is deployed on a platform as a service (PaaS), such as Amazon Web Services, check whether the PaaS can queue and process webhooks in the background.
 
 ## Related task
 * [Delete subscriptions](delete-subscriptions.md)

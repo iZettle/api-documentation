@@ -6,10 +6,11 @@ With subscriptions, the Pusher API will immediately update you of those events t
 * [Plan subscriptions](#plan-subscriptions)
 * [Manage subscriptions](#manage-subscriptions)
 
+
 ## Understand how subscriptions work
 The Pusher API provides events for you to listen to certain activities of the Zettle Go app at a working HTTPS endpoint on your server.
 
-After you subscribe to events, when an event is triggered, the Pusher API sends a `POST` request that contains a `payload` field. The field contains event information to the HTTPS endpoint in real time.
+After you subscribe to events, when an event is triggered, the Pusher API sends a `POST` request that contains a `payload` field to the HTTPS endpoint. The field contains event information in real time.
 
 For more information about event payloads, see [event payloads](concept/event-payloads.md).
 
@@ -32,4 +33,3 @@ With the Pusher API, you can create, view, update, and delete subscriptions as y
 * [View subscriptions](user-guides/view-subscriptions.md)
 * [Update subscriptions](user-guides/update-subscriptions.md)
 * [Delete subscriptions](user-guides/delete-subscriptions.md)
-
