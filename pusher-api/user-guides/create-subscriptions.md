@@ -176,7 +176,7 @@ To verify that events come from Zettle, calculate a signature and compare it wit
 ## Step 5: Prevent webhook requests timeout
 Webhook requests time out 10 seconds after the Pusher API sends the events to the destination URL on your server.
 
-To avoid webhook requests failing, configure your server to handle them as soon as possible. So that the destination URL can respond to the Pusher API before the timeout occurs. A best practice is to handle webhook requests in the background.
+To avoid webhook requests failing, configure your server to handle them as soon as possible. This way, the destination URL can respond to the Pusher API before the timeout occurs. A best practice is to handle webhook requests in the background.
 
 To handle webhook requests in the background:  
 1. Insert webhooks in a queue.
