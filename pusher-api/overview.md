@@ -12,10 +12,10 @@ The Pusher API provides events for you to listen to certain activities of the Ze
 
 When an event that you have subscribed is triggered, the Pusher API sends the event in a `POST` request to the HTTPS endpoint. The HTTPS endpoint is used as the destination URL. 
 The request contains a `payload` field with event information in real time.
- 
- After the Pusher API sends a `POST` request, if the destination URL doesn't return a valid HTTP response within 10 seconds, the request times out.
 
 For more information about event payloads, see [event payloads](concept/event-payloads.md).
+ 
+ After the Pusher API sends a `POST` request, if the destination URL doesn't return a valid HTTP response within 10 seconds, the request times out. Before the Pusher API deletes the subscription, it re-sends the request to the destination URL according to the [retry policy](troubleshooting.md/#retry-policy).
 
 ## Plan subscriptions
 Before subscribing to events, plan which events to use for your use cases.

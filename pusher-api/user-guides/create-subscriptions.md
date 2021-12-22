@@ -7,7 +7,7 @@ Subscribe to events to stay updated of activities that happen on your Zettle Go 
 * [Step 2: Test webhooks](#step-2-test-webhooks)
 * [Step 3: Create a subscription](#step-3-create-a-subscription)
 * [Step 4: Set up verification for events origin](#step-4-set-up-verification-for-events-origin)
-* [Step 5: Avoid webhook requests timeout](#step-5-avoid-webhook-requests-timeout)
+* [Step 5: Prevent webhook requests timeout](#step-5-prevent-webhook-requests-timeout)
 * [Related task](#related-task)
 * [Related API reference](#related-api-reference)
 
@@ -105,7 +105,7 @@ You can subscribe to one or more events in one subscription request.
       "payload" : { "data" : "payload" }
     }
     ```
-5. Make sure that your destination URL always returns a valid HTTP response, after receiving the events.
+5. Make sure that your destination URL always returns a valid HTTP response, within 10 seconds after receiving the events.
 
 ## Step 4: Set up verification for events origin
 After subscriptions are created, you need to set up a mechanism for verifying that events come from Zettle by checking the signature in the events. 
@@ -180,7 +180,7 @@ To avoid webhook requests failing, configure your server to handle them as soon 
 
 To handle webhook requests in the background:  
 1. Insert webhooks in a queue.
-2. Process the webkooks from the queue in background workers.
+2. Process the webhooks from the queue in background workers.
 
 >**Tip:** If your server is deployed on a platform as a service (PaaS) like Amazon Web Services, check whether webhooks can queued and processed in the background.
 
