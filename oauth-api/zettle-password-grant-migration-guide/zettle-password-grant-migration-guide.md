@@ -16,7 +16,7 @@ Update the integration to use an authentication grant supported by Zettle. You c
 If you have any questions, please contact our service desk by sending an email to our [Integrations team](mailto:api@zettle.com). 
  
 ## Technical details
-Zettle API uses the OAuth 2.0 Authorization Framework. The Assertion grant is recommend to keep your integration private. For more information about the assertion grant and other authentication flows, read more in the [Zettle OAuth2 API documentation](../../authorization.md). 
+Zettle API uses the OAuth 2.0 Authorization Framework. The Assertion grant is recommend to keep your integration secure. For more information about the assertion grant and other authentication flows, read more in the [Zettle OAuth2 API documentation](../../authorization.md). 
 
 ## Assertion grant API Keys
 To use this approach, the merchant using the integration needs to provide you with the API Key. The API key is created at my.zettle.com by the Zettle account owner (merchant). To create the API key, follow the instruction in one of the following options:
