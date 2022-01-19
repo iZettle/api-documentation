@@ -82,12 +82,14 @@ filter instead of `{organizationUuid}`
 ====
 ****
 You can use the `self` path parameter instead of specifying organization UUID in an endpoint.
+
+Example request
 [source]
 --
 GET /organizations/self/accounts/{accountTypeGroup}/balance
 --
 
-Or, you can call the following endpoint to fetch the organization UUID.
+Or, you can fetch the organization UUID by calling the following endpoint.
 [source]
 --
 GET https://oauth.zettle.com/users/self
@@ -101,6 +103,13 @@ Example response
     "organizationUuid": "ab305d54-75b4-431b-adb2-eb6b9e546013"
 }
 
+--
+After fetching the organization UUID, you can specify it in an endpoint.
+
+Example request
+[source]
+--
+GET /organizations/ab305d54-75b4-431b-adb2-eb6b9e546013/accounts/{accountTypeGroup}/balance
 --
 
 For more information on the filter and the endpoint, see xref:/authorization.md[OAuth].
