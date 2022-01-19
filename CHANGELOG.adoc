@@ -12,7 +12,7 @@ Each log entry uses the following tags:
 ====
 **Replaced the deprecated endpoint `users/me` with `users/self`**
 
-The following updates are made for the deprecation:
+The following updates were done for the deprecation:
 
 - The OAuth API endpoint `users/me` is deprecated and replaced by `users/self`.
 - Until `users/me` is removed, all API requests to it will be redirected to `users/self`.
