@@ -81,7 +81,13 @@ filter instead of `{organizationUuid}`
 [%collapsible]
 ====
 ****
-You can use the `self` path parameter instead of specifying organization UUID when calling the APIs. Or, you can call the following endpoint to fetch the organization UUID.
+You can use the `self` path parameter instead of specifying organization UUID in an endpoint.
+[source]
+--
+GET /organizations/self/accounts/{accountTypeGroup}/balance
+--
+
+Or, you can call the following endpoint to fetch the organization UUID.
 [source]
 --
 GET https://oauth.zettle.com/users/self
