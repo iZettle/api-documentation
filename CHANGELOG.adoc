@@ -18,7 +18,7 @@ The following updates were done for the deprecation:
 - Until `users/me` is removed, all API requests to it will be redirected to `users/self`.
 - The API documentation is updated to include `users/self` instead of `users/me`.
 
-> **Note:** The support for the deprecated `users/me` will continue until further notice. Please replace `users/me` to `users/self` in your integration as soon as possible.
+> **Note:** The support for the deprecated `users/me` will continue until further notice. It is recommended to replace `users/me` with `users/self` in your integration as soon as possible.
 ====
 
 .**November 24, 2021** `Editorial changes`
