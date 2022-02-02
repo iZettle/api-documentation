@@ -1,12 +1,12 @@
 Set up authorisation assertion grant
 ===
 
-To build self-hosted apps with APIs, you need to set up authorisation assertion grant for the app using an API key. An API key is a JSON web token (JWT) assertion. 
+To build self-hosted apps with APIs, you need to set up the authorisation assertion grant flow for the app using an API key. An API key is a JSON web token (JWT) assertion. 
 
 * [Prerequisites](#prerequisites)
 * [Step 1: Retrieve an access token from an API key](#step-1-retrieve-an-access-token-from-an-api-key)
 * [Step 2: Generate a new access token from the API key](#step-2-generate-a-new-access-token-from-the-api-key)
-* [Related task](#related-task)
+* [Previous task](#previous-task)
 * [Related API reference](#related-api-reference)
 
 ## Prerequisites
