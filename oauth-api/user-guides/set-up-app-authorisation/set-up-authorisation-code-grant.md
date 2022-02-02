@@ -25,7 +25,7 @@ To access the merchant's Zettle account data, redirect the merchant to the Zettl
 
    Example:
    
-   The following example initiating URL asks the merchant to authorise the app with read and write access to the merchant's product library. 
+   The following example of an initiating URL asks the merchant to authorise the app with read and write access to the merchant's product library. 
    
    Request   
    ```
