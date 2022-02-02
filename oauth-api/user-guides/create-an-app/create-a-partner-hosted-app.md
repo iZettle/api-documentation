@@ -14,7 +14,7 @@ To authorise your app using authorisation code grant, you need to get API creden
 * [Related API reference](#related-api-reference)
 
 ## Prerequisites
-* You have an account for the [Developer Portal](https://developer.zettle.com/). If you don't have an account, [sign up for a developer account](../../../get-started//user-guides/sign-up-for-a-developer-account.md).
+* You have an account for the [Developer Portal](https://developer.zettle.com/). If you don't have an account, [sign up for a developer account](../../../get-started/user-guides/sign-up-for-a-developer-account.md).
 
 ## Get API credentials for a new app
 If you need API credentials for a new app, create a public app in your Dashboard.

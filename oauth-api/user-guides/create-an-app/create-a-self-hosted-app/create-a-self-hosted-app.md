@@ -16,7 +16,7 @@ To authorise your app using assertion grant, you need to ask the merchant (Zettl
 * [Related API reference](#related-api-reference)
 
 ## Prerequisites
-* You have an account for the [Developer Portal](https://developer.zettle.com/). If you don't have an account, [sign up for a developer account](../../../../get-started//user-guides/sign-up-for-a-developer-account.md).
+* You have an account for the [Developer Portal](https://developer.zettle.com/). If you don't have an account, [sign up for a developer account](../../../../get-started/user-guides/sign-up-for-a-developer-account.md).
 
 ## Step 1: Get an API key from a Zettle merchant
 An API key must be created by the Zettle merchant that will use your app.

@@ -10,7 +10,7 @@ To build self-hosted apps with APIs, you need to set up the authorisation assert
 * [Related API reference](#related-api-reference)
 
 ## Prerequisites
-* You have an account for the [Developer Portal](https://developer.zettle.com/). If you don't have an account, [sign up for a developer account](../../../get-started/sign-up-for-a-developer-account.md).
+* You have an account for the [Developer Portal](https://developer.zettle.com/). If you don't have an account, [sign up for a developer account](../../../get-started/user-guides/sign-up-for-a-developer-account.md).
 
 * You have an API key and a client ID for the app. If you don't have any, [create a self-hosted app](../create-an-app/create-a-self-hosted-app).
 

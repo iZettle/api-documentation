@@ -6,12 +6,11 @@ To build partner-hosted apps with APIs, you need to set up the authorisation cod
 * [Step 1: Initiate the authorisation flow in a browser](#step-1-initiate-the-authorisation-flow-in-a-browser)
 * [Step 2: Retrieve access token and refresh token](#step-2-retrieve-access-token-and-refresh-token)
 * [Step 3: Generate a new access token from the refresh token](#step-3-generate-a-new-access-token-from-the-refresh-token)
-* [Step 4: Generate a refresh token](#step-4-generate-a-refresh-token)
-* [Related task](#related-task)
+* [Previous task](#previous-task)
 * [Related API reference](#related-api-reference)
 
 ## Prerequisites
-* You have an account for the [Developer Portal](https://developer.zettle.com/). If you don't have an account, [sign up for a developer account](../../../get-started/sign-up-for-a-developer-account.md).
+* You have an account for the [Developer Portal](https://developer.zettle.com/). If you don't have an account, [sign up for a developer account](../../../get-started/user-guides/sign-up-for-a-developer-account.md).
 * You have credentials for the app. If you don't have any, [create a partner-hosted app](../create-an-app/create-a-partner-hosted-app.md).
 
 ## Step 1: Initiate the authorisation flow in a browser
