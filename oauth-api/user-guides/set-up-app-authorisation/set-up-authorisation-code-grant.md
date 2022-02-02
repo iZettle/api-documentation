@@ -1,6 +1,6 @@
 Set up authorisation code grant
 ===
-To build partner-hosted apps with APIs, you need to set up the authorisation code grant flow using a client ID and client secret.
+To build a partner-hosted app with APIs, you need to set up the authorisation code grant flow for the app using a client ID and client secret.
 
 * [Prerequisites](#prerequisites)
 * [Step 1: Initiate the authorisation flow in a browser](#step-1-initiate-the-authorisation-flow-in-a-browser)
