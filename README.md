@@ -1,6 +1,6 @@
 # Zettle Go API Beta Documentation
 
-Zettle provides APIs for you to integrate Zettle Go with your services.
+Zettle provides APIs for you to integrate Zettle with your services.
 
 > **Note:** The API documentation is currently in the beta phase.
 
@@ -19,7 +19,7 @@ Currently, Zettle provides APIs for the following markets:
 -   Spain
 -   Italy
 
-> **Note:** You can build integrations with Zettle Go APIs only for the supported markets, no matter where you are located.
+> **Note:** You can build integrations with Zettle APIs only for the supported markets, no matter where you are located.
 
 ## APIs
 
@@ -27,7 +27,7 @@ Currently, Zettle provides APIs for the following markets:
 -   [Finance](finance-api/overview.md)
 -   [Purchase](purchase.adoc)
 -   [Product Library](product-library.adoc)
--   [Inventory](inventory.md)
+-   [Inventory](inventory-api/overview.md)
 -   [Image](image.md)
 -   [Pusher](pusher-api/overview.md)
 -   [Giftcard](giftcard.md)
