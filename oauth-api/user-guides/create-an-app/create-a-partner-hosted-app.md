@@ -32,13 +32,13 @@ If you need API credentials for a new app, create a public app in your Dashboard
    
    <img id="download-your-API-credentials" src="../../images/download-your-API-credentials.png" alt="This screenshot shows your API credentials and the Download credentials button." >
    
-   > **Tip:** If you lose the API credentials, you can request a new client secret, as the client ID doesn't change. For how to request a new client secret, see [Request a new client secret for an existing app](#request-a-new-client-secret-for-an-existing-app).
+   > **Tip:** As the client ID doesn't change, if you lose the API credentials, you can [request a new client secret](#request-a-new-client-secret-for-an-existing-app).
 
 ## Request a new client secret for an existing app
 The client ID of an existing app doesn't change. If you need a new client secret for an existing app, request it in your Dashboard.
 
 1. Log in to the [Developer Portal](https://developer.zettle.com/).    
-2. On your Dashboard, choose the app for which you need to request a new secret. The current client secret is hidden. <!-- screesshot. Click or select?-->
+2. On your Dashboard, choose the app for which you need to request a new secret. The current client secret is hidden.
    
    <img id="choose-the-app-that-needs-a-new-client-secret" src="../../images/choose-the-app-that-needs-a-new-client-secret.png" alt="This screenshot shows where you can choose the app that needs a new client secret on your Dashboard." >
    

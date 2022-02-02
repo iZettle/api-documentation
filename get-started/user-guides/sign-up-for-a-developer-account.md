@@ -20,7 +20,7 @@ Before you start to build an app with Zettle, you need to sign up for a Zettle d
 
 ## Next task
 * To build self-hosted apps that are hosted by merchants individually, [create self-hosted apps](../../oauth-api/user-guides/create-an-app/create-a-self-hosted-app).
-* To build partner-hosted apps that are hosted by you as integrator, [create partner-hosted apps](../../oauth-api/user-guides/create-an-app/create-a-partner-hosted-app.md).
+* To build partner-hosted apps that are hosted by you as an integrator, [create partner-hosted apps](../../oauth-api/user-guides/create-an-app/create-a-partner-hosted-app.md).
 
 ## Related API reference
 * None
