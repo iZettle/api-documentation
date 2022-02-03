@@ -38,9 +38,12 @@ All API incidents are recorded in [Incidents](incidents.md).
 
 For common questions about the APIs, see [Frequently Asked Questions](faq.adoc).
 
-## Credentials
+## Get started
+Before you start to build an app with Zettle, you need to [sign up for a Zettle developer account at Zettle Developer Portal](get-started/user-guides/sign-up-for-a-developer-account.md).
 
-Apply for API credentials on [Zettle Developer Portal](https://developer.zettle.com/register).
+When you have a developer account, choose one of the following app types based on your needs:
+* To build a self-hosted app that is hosted by merchants individually, [create a self-hosted app](../../oauth-api/user-guides/create-an-app/create-a-self-hosted-app).
+* To build a partner-hosted app that is hosted by you as an integrator, [create a partner-hosted app](../../oauth-api/user-guides/create-an-app/create-a-partner-hosted-app.md).
 
 ## Get help
 Contact our [Integrations team](mailto:api@zettle.com) for more information. 

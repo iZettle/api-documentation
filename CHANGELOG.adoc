@@ -7,14 +7,19 @@ Each log entry uses the following tags:
 - For API changes and the corresponding documentation changes, the log is tagged with the name of the changes API. For example, `OAuth API`.
 - For documentation changes that are editorial and are not introduced by any API change, the log is tagged with `Editorial changes`.
 
-.**February 3, 2022** `Inventory API`
+.**February 3, 2022** `Inventory API` `OAuth API` `Get started`
 [%collapsible]
 ====
-**Extended documentation with these additions:**
+**Extended Inventory API documentation with these additions:**
 
 - Overview of Inventory API.
 - Concept description - how inventories work.
 - User guides for managing locations, tracking, inventory balances, and low stock levels.
+
+**Added how to get started with Zettle APIs:**
+
+- A user guide for signing up for a developer account.
+- Users guides for setting up authorisation flows.
 ====
 
 .**January 18, 2022** `OAuth API` `Editorial changes`
