@@ -3,7 +3,9 @@ Inventory API overview
 The Inventory service keeps track of stock levels for product variants. The Inventory API is used for example when building integrations between POS systems and e-commerce systems.
 
 ## Getting started
-Register on the Zettle Developer Portal to get API credentials for the app you are building. See [Zettle Developer Portal](https://developer.zettle.com/register). Explore the following sections to get an understanding of how to work with the Inventory API.
+Register on the Zettle Developer Portal to get API credentials for the app you are building. See [Sign up for a Zettle developer account](../get-started/user-guides/sign-up-for-a-developer-account.md). 
+
+Explore the following sections to get an understanding of how to work with the Inventory API.
 
 ## Understanding inventories
 API clients can list current stock levels and update inventory balances for products. The service automatically decreases the stock when a purchase is made with the Zettle POS application. Tracking is based on moving product items between *Locations*. See [How inventories work](concepts/how-inventories-work.md) for concept descriptions.
