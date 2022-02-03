@@ -87,7 +87,7 @@ An access token is valid only for 7200 seconds. When it expires, use the refresh
    Request   
         
    ```
-   curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "grant_type=refresh_token&refresh_token=IZSEC90590831-93a5-4289-ee37-a17824c0fea1&client_secret=IZSECe8b27fdb-faea-46e1-a886-6eded9f84f72}&client_id=6adde977-c34d-4de1-99b2-f6ed3e65431a" https://oauth.zettle.com/token
+   curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "grant_type=refresh_token&refresh_token=IZSEC90590831-93a5-4289-ee37-a17824c0fea1&client_secret=IZSECe8b27fdb-faea-46e1-a886-6eded9f84f72&client_id=6adde977-c34d-4de1-99b2-f6ed3e65431a" https://oauth.zettle.com/token
    ```
    Response         
    ```json
