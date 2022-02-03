@@ -16,9 +16,7 @@ The Inventory API requires the following scopes:
 - `WRITE:PRODUCT`
 
 ## Authorization
-To integrate with Zettle, you need to access merchant data. To gain access, you need to set up authorization for the merchant to grant access to the data.
-
-See [Authorization OAuth API](https://github.com/iZettle/devx-doc-experiment/blob/inventory-create-content/api-documentation/authorization.adoc).
+To integrate with Zettle, you need to access merchant data. To gain access, you need to set up authorization for the merchant to grant access to the data. Depending on the type of app and integration you are building, this can be done in different ways. See [Authorization OAuth API](../../authorization.md).
 
 ## Tracking 
 The Inventory service provides handling and tracking of items in the product library. Sales through the POS system will automatically be tracked and the inventory is updated accordingly. 
