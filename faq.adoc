@@ -2,7 +2,10 @@
 
 
 ====
-If you want to apply to receive access to our APIs, sign up for an account at https://developer.zettle.com/register[Zettle Developer Portal].
+To create apps and work with integrations, sign up for a Zettle developer account at the https://developer.zettle.com/register[Zettle Developer Portal]. To learn more about the different Zettle APIs, see the https://github.com/iZettle/api-documentation/blob/faq-inventory-updates/README.md[developer documentation].
+
+The following sections lists frequently asked questions within different areas.
+
 ====
 
 == General questions
@@ -148,6 +151,68 @@ Clarification examples:
       "imageUrl": "https://image.izettle.com/v2/images/o/Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEnQ.jpeg"
 }
 --
+****
+====
+
+== Inventory
+.*For which markets can I build integrations with Zettle Go APIs?*
+[%collapsible]
+====
+****
+Currently, Zettle provides APIs for the following markets:
+
+-   United Kingdom
+-   Sweden
+-   Brazil
+-   Norway
+-   Denmark
+-   Finland
+-   Germany
+-   Mexico
+-   Netherlands
+-   France
+-   Spain
+-   Italy
+
+> **Note:** You can build integrations with Zettle Go APIs only for the supported markets, no matter where you are located.
+****
+====
+.*What TLS version is supported?*
+[%collapsible]
+====
+****
+We are using TLS 1.2 for the moment.
+****
+====
+.*How do I take payments through the Zettle APIs?*
+[%collapsible]
+====
+****
+It is not possible to take payments through the APIs. However, you can take payments using https://github.com/iZettle/sdk-ios[Zettle Payments SDK for iOS] and https://github.com/iZettle/sdk-android[Zettle Payments SDK for Android].
+****
+====
+.*Do you provide any test or sandbox environment?*
+[%collapsible]
+====
+****
+Unfortunately we do not at this time.
+****
+====
+.*Does it cost anything to use your APIs and is there some restriction on the APIs?*
+[%collapsible]
+====
+****
+No, it is completely free to use our APIs. The only limitation is that some resources might have rate limiting enabled to ensure service stability.
+****
+====
+.*Why do I receive `HTTP 100 Continue` responses sometimes?*
+[%collapsible]
+====
+****
+This is something our framework sends when it has received the request headers and
+indicates that the client should proceed to send the request body. What you can do is investigate
+the reason why your code does this, or you could traverse the headers until
+you find a header with the intended response code. See https://stackoverflow.com/questions/2964687/how-to-handle-100-continue-http-message[example of handling HTTP 100 Continue] and https://stackoverflow.com/questions/14526627/double-http-status-header-on-http-post-to-jersey[ example of handling double HTTP-Status header on HTTP-POST].
 ****
 ====
 
