@@ -3,9 +3,8 @@ Create a self-hosted app
 A self-hosted app is hosted by one or more merchants individually. To authorise, the app uses the authorisation assertion grant.
 
 In an authorisation assertion grant flow, you use a JSON web token (JWT) assertion to request an access token from the authorisation server. The JWT assertion is used as an API key. An API key is created by a merchant (Zettle merchant account owner). It's valid until the merchant revokes it.
-<!-- add assertion grant in glossary -->
 
-To authorise your app using assertion grant, you need to ask the merchant (Zettle merchant account owner) to create an API key at my.zettle.com. You can provide the merchant a deep link that directs them to the API creation page or steps to create an API key.
+To authorise your app using assertion grant, you need to ask the merchant (Zettle merchant account owner) to create an API key at my.zettle.com. You can provide the merchant a link that directs them to the API creation page or steps to create an API key.
 
 > **Note:** If you want to build a partner-hosted app that will be hosted by you as an integrator, [create a partner-hosted app](../create-a-partner-hosted-app.md).
 
@@ -22,7 +21,7 @@ To authorise your app using assertion grant, you need to ask the merchant (Zettl
 An API key must be created by the Zettle merchant that will use your app.
  
 1. Ask the merchant to create an API key in one of the following ways:
-   * Provide the merchant a deep link with pre-populated fields and [the instructions to create an API key with the deep link](create-an-api-key.md#create-an-api-key-with-a-deep-link-from-the-developer).
+   * Provide the merchant a link with pre-populated fields and [the instructions to create an API key with the link](create-an-api-key.md#create-an-api-key-with-a-link-from-the-developer).
       ```
       https://my.zettle.com/apps/api-keys?name=<key-name>&scopes=<scopes>
       ```
