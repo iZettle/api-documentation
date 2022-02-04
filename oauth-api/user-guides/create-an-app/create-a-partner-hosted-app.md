@@ -5,7 +5,7 @@ A partner-hosted app is hosted by you as an integrator. To authorise, the app us
 In an authorisation code grant flow, you use a temporary authorisation code to exchange for an access token from the authorisation server. A temporary authorisation code is generated from the authorisation server using API credentials. API credentials include a client secret and client ID.
 
 To authorise your app using authorisation code grant, you need to get API credentials for the app by creating an app in your Dashboard on the [Developer Portal](https://developer.zettle.com/).
-> **Note:** If you want to build a self-hosted app that will be hosted by merchants, [create a self-hosted app](create-a-self-hosted-app).
+> **Note:** If you want to build a self-hosted app that will be hosted by merchants, [create a self-hosted app](create-a-self-hosted-app/create-a-self-hosted-app.md).
 
 * [Prerequisites](#prerequisites)
 * [Get API credentials for a new app](#get-api-credentials-for-a-new-app)

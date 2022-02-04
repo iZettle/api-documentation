@@ -12,7 +12,7 @@ To build a self-hosted app with APIs, you need to set up the authorisation asser
 ## Prerequisites
 * You have an account for the [Developer Portal](https://developer.zettle.com/). If you don't have an account, [sign up for a developer account](../../../get-started/user-guides/sign-up-for-a-developer-account.md).
 
-* You have an API key and a client ID for the app. If you don't have any, [create a self-hosted app](../create-an-app/create-a-self-hosted-app).
+* You have an API key and a client ID for the app. If you don't have any, [create a self-hosted app](../create-an-app/create-a-self-hosted-app/create-a-self-hosted-app.md).
 
 ## Step 1: Retrieve an access token from an API key
 To retrieve a short-lived access token from the API key, include the API key and the client ID in the following request.
@@ -46,7 +46,7 @@ An access token is valid only for 7200 seconds. Use the same API key to generate
  
 
 ## Previous task
-* [Create a self-hosted app](../create-an-app/create-a-self-hosted-app)
+* [Create a self-hosted app](../create-an-app/create-a-self-hosted-app/create-a-self-hosted-app.md)
 
 ## Related API reference
 * [OAuth2 API Reference](../../../authorization.md)
