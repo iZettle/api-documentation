@@ -36,7 +36,7 @@ If you need API credentials for a new app, create a public app in your Dashboard
 
 ## Request a new client secret for an existing app
 The client ID of an existing app doesn't change. If you need a new client secret for an existing app, request it in your Dashboard.
-> **Note:** After a new client secret is generated, the old client secret will be deactivated. If your app is live and are used by merchants, you will need to [re-initiate the authorisation code grant flow for all the connected merchants](../set-up-app-authorisation/set-up-authorisation-code-grant.md#step-1-initiate-the-authorisation-flow-in-a-browser).
+> **Note:** After a new client secret is requested, the old client secret will be deactivated. If your app is live and are used by merchants, you will need to [re-initiate the authorisation code grant flow for all the connected merchants](../set-up-app-authorisation/set-up-authorisation-code-grant.md#step-1-initiate-the-authorisation-flow-in-a-browser).
 
 1. Log in to the [Developer Portal](https://developer.zettle.com/).    
 2. On your Dashboard, choose the app for which you need to request a new secret. The current client secret is hidden.
