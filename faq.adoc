@@ -166,14 +166,15 @@ An integration between the Inventory service and an e-commerce system ensures th
 [%collapsible]
 ====
 ****
-There are pre-built integrations for Zettle with a number of e-commerce platforms. See e-commerce integrations for a list [LINK]. You can also build your own e-commerce integration with the Zettle APIs. Typical integrations often include the Product Library and Inventory APIs.
+There are pre-built integrations for Zettle with a number of e-commerce platforms. See https://www.zettle.com/gb/integrations/e-commerce[e-commerce integrations for a list]. You can also build your own e-commerce integration with the Zettle APIs. Typical integrations often include the Product Library and Inventory APIs.
+
 ****
 ====
 .*Is it possible to integrate Zettle with my online marketplace?*
 [%collapsible]
 ====
 ****
-There are many possibilities to integrate Zettle with other systems like accounting, e-commerce, and checkout. See Integrations [LINK] for an overview of options. Online stores are typically integrating product libraries and inventories, through the Product Library and Inventory APIs. Using these products and inventories are automatically synchronized with the e-commerce system..
+There are many possibilities to integrate Zettle with other systems like accounting, e-commerce, and checkout. See https://www.zettle.com/gb/integrations[Integrations] for an overview of options. Online stores are typically integrating product libraries and inventories, through the Product Library and Inventory APIs. Using these products and inventories are automatically synchronized with the e-commerce system.
 ****
 ====
 .*How can I upload products or add inventory to POS folders from the API?*
@@ -187,20 +188,20 @@ Currently products and inventory can only be added to POS folders from the Zettl
 [%collapsible]
 ====
 ****
-The Inventory service lets you start tracking of products through the API. After creating a product through the Product Library API, you can immediately start tracking it using the “startTrackingProduct" parameter in POST /organizations/{organizationUuid}/inventory.
+The Inventory service lets you start tracking of products through the API. After creating a product through the Product Library API, you can immediately start tracking it using the `startTrackingProduct` parameter in `POST /organizations/{organizationUuid}/inventory`. See https://github.com/iZettle/api-documentation/blob/master/inventory-api/user-guides/manage-inventory-tracking/enable-tracking.md[Enable tracking].
 ****
 ====
 .*How do I automate inventory updates between Zettle and my 3rd-party web shop?*
 [%collapsible]
 ====
 ****
-There are pre-built integrations available for a number of e-commerce platforms, see e-commerce integrations [LINK]. You can also build your own e- integration using the Product Library and Inventory APIs. This will synchronize inventory updates between Zettle and your web shop. 
+There are pre-built integrations available for a number of e-commerce platforms, see https://www.zettle.com/gb/integrations[e-commerce integrations]. You can also build your own e- integration using the Product Library and Inventory APIs. This will synchronize inventory updates between Zettle and your web shop. 
 ****
 ====
 .*How do I handle frequent inventory updates for Zettle integrations with a web shop?*
 [%collapsible]
 ====
-The Pusher API lets you manage frequent updates by subscribing to specific events triggered by Zettle. Events can for example be changes to product library or inventories. When an event is triggered, a request with event information will be sent in real time. See Pusher API [LINK].
+The Pusher API lets you manage frequent updates by subscribing to specific events triggered by Zettle. Events can for example be changes to product library or inventories. When an event is triggered, a request with event information will be sent in real time. See https://github.com/iZettle/api-documentation/blob/master/pusher-api/overview.md[Pusher API].
 ****
 ====
 == Finance
