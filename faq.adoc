@@ -2,7 +2,7 @@
 
 
 ====
-To create apps and work with integrations, sign up for a Zettle developer account at the https://developer.zettle.com/register[Zettle Developer Portal]. To learn more about the different Zettle APIs, see the https://github.com/iZettle/api-documentation/blob/faq-inventory-updates/README.md[developer documentation].
+To create apps and work with integrations, sign up for a Zettle developer account at the https://developer.zettle.com/register[Zettle Developer Portal]. To learn more about the different Zettle APIs, see the https://github.com/iZettle/api-documentation/blob/master/README.md [API documentation].
 
 The following sections lists frequently asked questions within different areas.
 
@@ -162,11 +162,11 @@ Clarification examples:
 An integration between the Inventory service and an e-commerce system ensures that products and inventory levels are automatically synchronized between the platforms. Integrated merchants can manage in-store and online inventories from one place. They can also compare sales and manage updates for all products. 
 ****
 ====
-.*Which e-commerce integrations are available for Zettle?*
+.*Which e-commerce integrations are available for Zettle merchants?*
 [%collapsible]
 ====
 ****
-There are pre-built integrations for Zettle with a number of e-commerce platforms. See https://www.zettle.com/gb/integrations/e-commerce[e-commerce integrations for a list]. You can also build your own e-commerce integration with the Zettle APIs. Typical integrations often include the Product Library and Inventory APIs.
+There are pre-built integrations for Zettle with a number of e-commerce platforms. See https://www.zettle.com/gb/integrations/e-commerce[e-commerce integrations for a list]. You can also build your own e-commerce integrations with the Zettle APIs. Typical integrations often include the Product Library and Inventory APIs.
 
 ****
 ====
@@ -205,8 +205,8 @@ The Pusher API lets you manage frequent updates by subscribing to specific event
 ****
 ====
 == Finance
-.*How do I get sum of all payments, fees, refunds, invoices?*
+.*How do I get sum of all payments, fees, refunds, and invoices?*
 [%collapsible]
 ====
-Use `includeTransactionType` parameter in query for the relevant transaction type or types. Then traverse the list of transactions returned and sum up the amounts.
+Use `includeTransactionType` parameter in the query for the relevant transaction type or types. Then traverse the list of transactions returned and sum up the amounts.
 ====
