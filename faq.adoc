@@ -155,67 +155,54 @@ Clarification examples:
 ====
 
 == Inventory
-.*For which markets can I build integrations with Zettle Go APIs?*
+.*What does an integration with Inventory typically include?*
 [%collapsible]
 ====
 ****
-Currently, Zettle provides APIs for the following markets:
-
--   United Kingdom
--   Sweden
--   Brazil
--   Norway
--   Denmark
--   Finland
--   Germany
--   Mexico
--   Netherlands
--   France
--   Spain
--   Italy
-
-> **Note:** You can build integrations with Zettle Go APIs only for the supported markets, no matter where you are located.
+An integration between the Inventory service and an e-commerce system ensures that products and inventory levels are automatically synchronized between the platforms. Integrated merchants can manage in-store and online inventories from one place. They can also compare sales and manage updates for all products. 
 ****
 ====
-.*What TLS version is supported?*
+.*Which e-commerce integrations are available for Zettle?*
 [%collapsible]
 ====
 ****
-We are using TLS 1.2 for the moment.
+There are pre-built integrations for Zettle with a number of e-commerce platforms. See e-commerce integrations for a list [LINK]. You can also build your own e-commerce integration with the Zettle APIs. Typical integrations often include the Product Library and Inventory APIs.
 ****
 ====
-.*How do I take payments through the Zettle APIs?*
+.*Is it possible to integrate Zettle with my online marketplace?*
 [%collapsible]
 ====
 ****
-It is not possible to take payments through the APIs. However, you can take payments using https://github.com/iZettle/sdk-ios[Zettle Payments SDK for iOS] and https://github.com/iZettle/sdk-android[Zettle Payments SDK for Android].
+There are many possibilities to integrate Zettle with other systems like accounting, e-commerce, and checkout. See Integrations [LINK] for an overview of options. Online stores are typically integrating product libraries and inventories, through the Product Library and Inventory APIs. Using these products and inventories are automatically synchronized with the e-commerce system..
 ****
 ====
-.*Do you provide any test or sandbox environment?*
+.*How can I upload products or add inventory to POS folders from the API?*
 [%collapsible]
 ====
 ****
-Unfortunately we do not at this time.
+Currently products and inventory can only be added to POS folders from the Zettle user interface. It is not possible to do this from the API.
 ****
 ====
-.*Does it cost anything to use your APIs and is there some restriction on the APIs?*
+.*How can I automatically enable inventory tracking when creating products?*
 [%collapsible]
 ====
 ****
-No, it is completely free to use our APIs. The only limitation is that some resources might have rate limiting enabled to ensure service stability.
+The Inventory service lets you start tracking of products through the API. After creating a product through the Product Library API, you can immediately start tracking it using the “startTrackingProduct" parameter in POST /organizations/{organizationUuid}/inventory.
 ****
 ====
-.*Why do I receive `HTTP 100 Continue` responses sometimes?*
+.*How do I automate inventory updates between Zettle and my 3rd-party web shop?*
 [%collapsible]
 ====
 ****
-This is something our framework sends when it has received the request headers and
-indicates that the client should proceed to send the request body. What you can do is investigate
-the reason why your code does this, or you could traverse the headers until
-you find a header with the intended response code. See https://stackoverflow.com/questions/2964687/how-to-handle-100-continue-http-message[example of handling HTTP 100 Continue] and https://stackoverflow.com/questions/14526627/double-http-status-header-on-http-post-to-jersey[ example of handling double HTTP-Status header on HTTP-POST].
+There are pre-built integrations available for a number of e-commerce platforms, see e-commerce integrations [LINK]. You can also build your own e- integration using the Product Library and Inventory APIs. This will synchronize inventory updates between Zettle and your web shop. 
 ****
 ====
-
+.*How do I handle frequent inventory updates for Zettle integrations with a web shop?*
+[%collapsible]
+====
+The Pusher API lets you manage frequent updates by subscribing to specific events triggered by Zettle. Events can for example be changes to product library or inventories. When an event is triggered, a request with event information will be sent in real time. See Pusher API [LINK].
+****
+====
 == Finance
 .*How do I get sum of all payments, fees, refunds, invoices?*
 [%collapsible]
