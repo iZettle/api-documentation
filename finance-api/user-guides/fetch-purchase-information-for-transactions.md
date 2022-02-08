@@ -1,7 +1,7 @@
 Fetch purchase information for transactions
 ===
 Using the Finance API and the Purchase API, you can fetch purchase information for transactions. The `originatingTransactionUuid` of a transaction in the Finance API corresponds to the `uuid` of `payments` in the Purchase API.  
-> **Note:** Currently, fetching purchase information is available only for transactions that are made with cards, PayPal QRC, and Klarna through Zettle.
+> **Note:** Currently, fetching purchase information is available only for transactions that are made with cards and APM like PayPal QRC through Zettle.
 
 The Finance API records transactions for payment types that are supported by the Purchase API except `IZETTLE_CASH`, `SWISH`, `VIPPS`, `MOBILE_PAY`, `GIFTCARD`, `STORE_CREDIT`, and `IZETTLE_INVOICE`. 
 > **Note:**  If `IZETTLE_INVOICE` is paid with a card, the purchase will be recorded as `CARD_PAYMENT` in the Finance API.
