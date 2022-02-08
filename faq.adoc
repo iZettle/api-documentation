@@ -155,7 +155,7 @@ Clarification examples:
 ====
 
 == Inventory
-.*What does an integration with Inventory typically include?*
+.*What is an integration with Inventory typically used for?*
 [%collapsible]
 ====
 ****
