@@ -16,7 +16,7 @@ The following table shows the payment methods, payment types that are supported 
 |APM |`PayPal QRC`, `KLARNA` |`PAYMENT`, `PAYMENT_FEE` |  
 
 * [Prerequisites](#prerequisites)
-* [Step 1: Find the card transaction UUID with the Finance API](#step-1-find-the-transaction-uuid-with-the-finance-api)
+* [Step 1: Find the transaction UUID with the Finance API](#step-1-find-the-transaction-uuid-with-the-finance-api)
 * [Step 2: Fetch purchase information for transactions with the Purchase API](#step-2-fetch-purchase-information-for-transactions-with-the-purchase-api)
 * [Related task](#related-task)
 * [Related API reference](#related-api-reference)
