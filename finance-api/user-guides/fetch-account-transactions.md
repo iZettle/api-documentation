@@ -11,7 +11,7 @@ Use the Finance API to fetch transactions or transactions of certain types from 
 * [Related API reference](#related-api-reference)
 
 ## Prerequisites
-* Make sure that authorisation is set up with the following OAuth scope using [OAuth2 API](../../authorization.md):
+* Make sure that authorisation is set up with the following OAuth scope using [OAuth2 API](../../authorization.adoc):
     * `READ:FINANCE`
 
 ## Fetch transactions during a specific period
@@ -138,10 +138,10 @@ Send a request where you specify transaction types as you need. See [supported t
    ```
    GET /organizations/self/accounts/liquid/transactions?start={start_date}&end={end_date}&includeTransactionType={includeTransactionType}
    ```
-
-   Example:
+### Fetch card payment fee
+The following example fetches all card payments and the associated card payment fees from the merchant's liquid account from 1 January, 2020 to 31 December, 2020.
    
-   The following example fetches all card payments and the associated card payment fees from the merchant's liquid account from 1 January, 2020 to 31 December, 2020.
+   Example:
    
    Request   
    ```
@@ -170,9 +170,42 @@ Send a request where you specify transaction types as you need. See [supported t
     }
    ```
 
+### Fetch transactions for payout
+The following example fetches all the transactions that are are included in the payout from the merchant's liquid account from 6 September, 2020 to 10 September, 2020.
+   
+   Example:
+   
+   Request   
+   ```
+   {{FINANCE_URL}}/organizations/self/accounts/liquid/transactions?start=2020-09-06&end=2020-09-10&includeTransactionType=PAYOUT
+   ```
+       
+   Response
+
+   ```json
+    {
+        "data": [
+            {
+                "timestamp": "2020-09-10T09:27:28.590+0000",
+                "amount": -7925,
+                "originatorTransactionType": "PAYOUT",
+                "originatingTransactionUuid": "d8550d7a-f347-11ea-9612-3bce5300b9a9"
+            },
+            {
+                "timestamp": "2020-09-07T09:27:33.871+0000",
+                "amount": -5925,
+                "originatorTransactionType": "PAYOUT",
+                "originatingTransactionUuid": "5c3db780-f0ec-11ea-8341-8d3f8a575c00"
+            }
+            ...
+        ]
+    }
+   ```
+
 ## Related task
 * [Fetch account balance](fetch-account-balance.md)
 * [Fetch payout information](fetch-payout-info.md)
+* [Fetch purchase information for transactions](fetch-purchase-information-for-transactions.md)
 * [Fetch a list of purchases](../../purchase.adoc#fetch-a-list-of-purchases)
 
 
