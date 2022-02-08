@@ -98,7 +98,7 @@ Using the value of `originatingTransactionUuid` of a transaction in the Finance 
     /purchases/v2/?startDate=2020-11-19
     ```
 
-2. In the local database, find the purchase by iterating through each purchase's payments list and searching for a payment with the same `uuid` as the transaction's `originatingTransactionUuid` that you saved in [Step 1: Find the card transaction UUID](#step-1-find-the-card-transaction-uuid).
+2. In the local database, find the purchase by iterating through each purchase's payments list and searching for a payment with the same `uuid` as the transaction's `originatingTransactionUuid` that you saved in [Step 1: Find the transaction UUID with the Finance API](#step-1-find-the-transaction-uuid-with-the-finance-api).
 
    > **Tip:** In the response, you can search through all payments in all purchases using a JSONPath `$.purchases[*].payments[*].uuid`.
 
