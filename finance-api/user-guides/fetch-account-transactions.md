@@ -171,7 +171,7 @@ The following example fetches all card payments and the associated card payment 
    ```
 
 ### Fetch transactions for payout
-The following example fetches all the transactions that are are included in the payout from the merchant's liquid account from 6 September, 2020 to 10 September, 2020.
+The following example fetches all the transactions that are are included in the payout from the merchant's liquid account. The transactions are fetched from 6 September, 2020 to 10 September, 2020.
    
    Example:
    

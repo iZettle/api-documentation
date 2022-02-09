@@ -27,7 +27,7 @@ The following table shows the payment methods, payment types that are supported 
     * `READ:PURCHASE`
 
 ## Step 1: Find the transaction UUID with the Finance API
-Currently, fetching purchase information is available only for transactions that are made with cards, PayPal QRC, and Klarna. 
+Currently, fetching purchase information is available only for transactions that are made with cards and APMs like PayPal QRC through Zettle 
 
 Before you can find the transaction UUID, you need to specify the transactions types to fetch all transactions of a specific payment method.   
 
@@ -85,7 +85,7 @@ Using the value of `originatingTransactionUuid` of a transaction in the Finance 
 
 > **Note:** For refunds, a new "refund purchase" record is created with a negative amount instead. It represents a refund of an original purchase. Transactions of the type `CARD_REFUND` in the Finance API refers to this new "refund purchase" instead of the original purchase.
 
-1. Regularly fetch purchases and store them in a local database. For example, every midnight. In the request parameters, set the `startDate` to the last time of fetching purchases.
+1. Fetch purchases regularly, for example every midnight, and store the data in a local database. In the request parameters, set the `startDate` to the last time of fetching purchases.
     
     ```
     GET /purchases/v2?startDate={startDate}
