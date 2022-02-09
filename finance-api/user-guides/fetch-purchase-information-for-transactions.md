@@ -27,7 +27,7 @@ The following table shows the payment methods, payment types that are supported 
     * `READ:PURCHASE`
 
 ## Step 1: Find the transaction UUID with the Finance API
-Currently, fetching purchase information is available only for transactions that are made with cards and APMs like PayPal QRC through Zettle 
+Currently, fetching purchase information is available only for transactions that are made with cards and APMs like PayPal QRC through Zettle. 
 
 Before you can find the transaction UUID, you need to specify the transactions types to fetch all transactions of a specific payment method.   
 
