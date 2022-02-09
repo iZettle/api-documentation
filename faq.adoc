@@ -2,7 +2,7 @@
 
 
 ====
-To create apps and work with integrations, sign up for a Zettle developer account at the https://developer.zettle.com/register[Zettle Developer Portal]. To learn more about the different Zettle APIs, see the https://github.com/iZettle/api-documentation/blob/master/README.md [API documentation].
+To create apps and work with integrations, sign up for a Zettle developer account at the https://developer.zettle.com/register[Zettle Developer Portal]. To learn more about the different Zettle APIs, see the https://github.com/iZettle/api-documentation/blob/master/README.md[API documentation].
 
 The following sections lists frequently asked questions within different areas.
 
