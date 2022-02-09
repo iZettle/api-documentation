@@ -139,7 +139,7 @@ Send a request where you specify transaction types as you need. See [supported t
    GET /organizations/self/accounts/liquid/transactions?start={start_date}&end={end_date}&includeTransactionType={includeTransactionType}
    ```
 ### Fetch card payment fee
-The following example fetches all card payments and the associated card payment fees from the merchant's liquid account from 1 January, 2020 to 31 December, 2020.
+The following example fetches all card payments and associated card payment fees from the merchant's liquid account. The transactions are fetched from 1 January, 2020 to 31 December, 2020.
    
    Example:
    
