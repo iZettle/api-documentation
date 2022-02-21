@@ -8,7 +8,7 @@ Inventory management includes tracking of inventory levels, orders, and sales ac
 `https://inventory.izettle.com`
 
 ### API documentation
-https://inventory.izettle.com/swagger
+https://inventory.izettle.com/swagger/#!
 
 ### OAuth scope
 The Inventory API requires the following scopes:

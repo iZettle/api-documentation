@@ -8,7 +8,7 @@ items in a product library.
 Service endpoint URL: https://products.izettle.com
 
 ### API documentation
-API specification: https://products.izettle.com/swagger
+API specification: https://products.izettle.com/swagger/#!
 
 ### Scopes
 The Product Library API implements the following scopes:
