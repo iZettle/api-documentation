@@ -10,7 +10,7 @@ Each log entry uses the following tags:
 .**February 24, 2022** `Inventory API`
 [%collapsible]
 ====
-**Added low stock alerts**
+**Added support for read/write of low stock alert**
 
 - Added configuration for low stock alerts. If the number of products available is less than the threshold level, the product is added to the low stock view.
 - API documentation updated accordingly.
