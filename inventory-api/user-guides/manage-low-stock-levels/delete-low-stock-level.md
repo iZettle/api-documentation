@@ -1,7 +1,9 @@
 Delete low stock level
 =====
 
-There are two ways to delete custom low stock levels available. One through an explicit `DELETE` call to a single variant. Another is through a `POST` call to delete multiple variants custom low stock levels at the same time.
+There are multiple ways to delete custom low stock configurations. One through an explicit `DELETE` call to a single variant. Another is through a `POST` call to delete multiple variants custom low stock levels at the same time.
+
+If all values of a low stock configuration for a variant are set to their default through an update, the service will also delete the saved configuration. The default values are an unset `lowStockLevel` and a `lowStockAlert` set to `false`. For more information on how to update the configuration, see [Set low stock level](set-low-stock-level.md).
 
 ## Prerequisites
 * The organization UUID for the merchant organization. This is part of the authorization token, see [How inventories work](../../concepts/how-inventories-work.md). 
