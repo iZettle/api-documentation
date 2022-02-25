@@ -7,6 +7,16 @@ Each log entry uses the following tags:
 - For API changes and the corresponding documentation changes, the log is tagged with the name of the changes API. For example, `OAuth API`.
 - For documentation changes that are editorial and are not introduced by any API change, the log is tagged with `Editorial changes`.
 
+.**February 24, 2022** `Inventory API`
+[%collapsible]
+====
+**Added low stock alerts**
+
+- Added configuration for low stock alerts. If the number of products available is less than the threshold level, the product is added to the low stock view.
+- API documentation updated accordingly.
+
+====
+
 .**February 3, 2022** `Inventory API` `OAuth API` `Get started`
 [%collapsible]
 ====
