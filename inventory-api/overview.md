@@ -26,8 +26,9 @@ This area contains endpoints used for managing tracked products, and for retriev
 * [Fetch inventory balance](user-guides/manage-inventory-balances/fetch-inventory-balance.md)
 * [Update inventory balance](user-guides/manage-inventory-balances/update-inventory-balance.md)
 
-### Manage low stock levels
-This functionality is used for defining low stock levels. This is done to ensure merchants have the right inventory balance to meet current demand without having an excess in stock. Through these endpoints you can retrieve and update low stock levels.
+### Manage low stock levels an alerts
+This functionality is used for defining low stock levels and updating the low stock alert settings. This is done to ensure merchants have the right inventory balance to meet current demand without having an excess in stock. Through these endpoints you can retrieve and update the low stock configurations.
+
 * [Set or update low stock level](user-guides/manage-low-stock-levels/set-low-stock-level.md)
 * [Fetch low stock level](user-guides/manage-low-stock-levels/fetch-low-stock-level.md)
 * [Delete low stock level](user-guides/manage-low-stock-levels/delete-low-stock-level.md)
