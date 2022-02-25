@@ -138,7 +138,7 @@ See [Fetch inventory balance](../user-guides/manage-inventory-balances/fetch-inv
 ## Low stock management
 The low stock threshold level is a quantity you can set to help merchants manage the inventory. The low stock level is the minimum amount of inventory a merchant wants to have on hand. When implemented, the merchant will receive an indication that replenishment is needed for a specific product and location.
 
-If stock alerts are enabled for a product, then Zettle clients will also add the product to the low stock view if the number of items available is less than the threshold level.
+If stock alerts are enabled for a product, then clients will also add the product to the low stock view, when the number of items available is less than the threshold level.
 
 **Example:** Set low stock level for a product/variant in a given location UUID.
 ```http
