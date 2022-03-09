@@ -1,4 +1,4 @@
-Fetch payout information v1 (Deprecated)
+Fetch payout information v2
 ===
 Use the Finance API to fetch payout information from a merchant's account. The payout information includes the account balance, currency, payout, periodicity, and remaining discounts. 
 
@@ -21,7 +21,7 @@ You can fetch payout information from a merchant's Zettle account for any given 
 Fetch payout information on a specific day. If you don't specify `at`, you will get the latest payout information by default.
      
    ```
-   GET /organizations/self/payout-info?at={when_to_fetch_payout}
+   GET /v2/payout-info?at={when_to_fetch_payout}
    ```
 
    Example:
@@ -30,7 +30,7 @@ Fetch payout information on a specific day. If you don't specify `at`, you will 
    
    Request   
    ```
-   GET /organizations/self/payout-info?at=2021-06-07
+   GET /v2/payout-info?at=2021-06-07T00:00:00
    ```
    Response   
    ```json
