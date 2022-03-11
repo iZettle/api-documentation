@@ -86,17 +86,17 @@ See [Update inventory balance](../user-guides/manage-inventory-balances/update-i
 
 Using the Zettle Pusher API, your application can get notified about changes to the inventory. You can create a webhook subscribing to inventory-related events. When the event occurs, a notification is sent to the specified notification URL. The notification is a `POST` request with  event details in JSON format.
 
-Inventory balance updates can be the result of either a purchase event, or an explicit update request. Such a request will trigger webhook event notifications for balance updates similar to purchase events.
-
-You can for example create a subscription for the `InventoryBalanceChanged` event. Whenever the inventory gets updated for example through a purchase, the `InventoryBalanceChanged` event occurs. Your application will then receive event data on the destination server. The event data is the payload for the updated inventory. 
-
-See [Pusher API](https://github.com/iZettle/api-documentation/blob/master/pusher-api/overview.md) for more details.
-
 The following events are available for the inventory:
 
 * `InventoryBalanceChanged`.  The product inventory was updated from Zettle POS or the app.
 * `InventoryTrackingStarted`. Tracking of items in the product library was initiated from Zettle POS or the app.
 * `InventoryTrackingStopped`. Tracking of items in the product library was disabled from Zettle POS or the app.
+
+Inventory balance updates can be the result of either a purchase event, or an explicit update request. Such a request will trigger webhook event notifications for balance updates similar to purchase events.
+
+As an example, your app subscribes to the `InventoryBalanceChanged` event. When a purchase happens, your app will receive data from the `InventoryBalanceChanged` event on the destination server. The event data is the payload for the updated inventory.
+
+See [Pusher API](https://github.com/iZettle/api-documentation/blob/master/pusher-api/overview.md) for more details.
 
 The UUID can be used to make it easier for a client to match an API request with the received webhook notification. To do this, the client can pass the desired UUID in the `externalUuid` parameter when sending a balance update request. This parameter will then be passed through. If the update causes notifications to be sent out, the UUID will be included in the webhook event payload.
 
