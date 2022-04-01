@@ -1,4 +1,4 @@
-Fetch account transactions
+Fetch account transactions v2
 ===
 Use the Finance API to fetch transactions or transactions of certain types from a merchant's liquid account during a specific period.
 
@@ -11,7 +11,7 @@ Use the Finance API to fetch transactions or transactions of certain types from 
 * [Related API reference](#related-api-reference)
 
 ## Prerequisites
-* Make sure that authorisation is set up with the following OAuth scope using [OAuth2 API](../../authorization.adoc):
+* Make sure that authorisation is set up with the following OAuth scope using [OAuth2 API](../../authorization.md):
     * `READ:FINANCE`
 
 ## Fetch transactions during a specific period
@@ -21,7 +21,7 @@ When fetching transactions from a merchant's Zettle account during a specific pe
 1. Send a request where you set `limit` as the number of transactions to fetch and `offset` as `0`.
      
    ```
-   GET /organizations/self/accounts/{accountTypeGroup}/transactions?start={start_time}&end={end_time}&limit={limit_value}&offset={offset_value}
+   GET /v2/accounts/{accountTypeGroup}/transactions?start={start_time}&end={end_time}&limit={limit_value}&offset={offset_value}
    ```
 
    Example:
@@ -30,7 +30,7 @@ When fetching transactions from a merchant's Zettle account during a specific pe
    
    Request   
    ```
-   GET /organizations/self/accounts/liquid/transactions?start=2020-01-01&end=2020-07-05&limit=3&offset=0
+   GET /v2/accounts/liquid/transactions?start=2020-01-01T00:00:00&end=2020-07-06T00:00:00&limit=3&offset=0
    ```
    Response         
    ```json
@@ -39,13 +39,13 @@ When fetching transactions from a merchant's Zettle account during a specific pe
                {
                    "timestamp": "2020-07-04T20:16:44.309+0000",
                    "amount": 381,
-                   "originatorTransactionType": "CARD_PAYMENT_FEE_REFUND",
+                   "originatorTransactionType": "PAYMENT_FEE",
                    "originatingTransactionUuid": "30cef6e2-be09-11ea-a8e4-bce028663c34"
                },
                {
                    "timestamp": "2020-07-04T20:16:44.309+0000",
                    "amount": -20610,
-                   "originatorTransactionType": "CARD_REFUND",
+                   "originatorTransactionType": "PAYMENT",
                    "originatingTransactionUuid": "30cef6e2-be09-11ea-a8e4-bce028663c34"
                },
                {
@@ -61,7 +61,7 @@ When fetching transactions from a merchant's Zettle account during a specific pe
 2. Send another request where you keep `limit` the same as in step 1 and increment `offset` with the value of `limit` . 
      
    ```
-   GET /organizations/self/accounts/{accountTypeGroup}/transactions?start={start_time}&end={end_time}&limit={limit_value}&offset={offset_value}
+   GET /v2/accounts/{accountTypeGroup}/transactions?start={start_time}&end={end_time}&limit={limit_value}&offset={offset_value}
    ```
    Example:
       
@@ -70,7 +70,7 @@ When fetching transactions from a merchant's Zettle account during a specific pe
    Request
     
    ```
-   GET /organizations/self/accounts/liquid/transactions?start=2020-01-01&end=2020-07-05&limit=3&offset=3
+   GET /v2/accounts/liquid/transactions?start=2020-01-01T00:00:00&end=2020-07-06T00:00:00&limit=3&offset=3
    ```
    Response
    
@@ -106,7 +106,7 @@ When fetching transactions from a merchant's Zettle account during a specific pe
    
    Request
    ```
-   GET /organizations/self/accounts/liquid/transactions?start=2020-01-01&end=2020-07-05&limit=3&offset=30
+   GET /v2/accounts/liquid/transactions?start=2020-01-01T00:00:00&end=2020-07-06T00:00:00&limit=3&offset=30
    ```
    Response
    
@@ -117,13 +117,13 @@ When fetching transactions from a merchant's Zettle account during a specific pe
             {
                  "timestamp": "2020-01-02T15:16:43.945+0000",
                  "amount": -8867,
-                 "originatorTransactionType": "CARD_PAYMENT_FEE",
+                 "originatorTransactionType": "PAYMENT_FEE",
                  "originatingTransactionUuid": "7428bda0-2d50-11ea-9132-999363d04928"
             },
             {
                   "timestamp": "2020-01-02T15:16:43.945+0000",
                   "amount": 479300,
-                  "originatorTransactionType": "CARD_PAYMENT",
+                  "originatorTransactionType": "PAYMENT",
                   "originatingTransactionUuid": "7428bda0-2d50-11ea-9132-999363d04928"
             }
         ]
@@ -131,21 +131,21 @@ When fetching transactions from a merchant's Zettle account during a specific pe
     ```
 
 ## Fetch transactions of certain types during a specific period
-You can fetch transactions of certain types from a merchant's Zettle account during a specific period. For example, you can fetch all card transactions. The transactions should be fetched from the merchant's liquid account.
+You can fetch transactions of certain types from a merchant's Zettle account during a specific period. For example, you can fetch all payments. The transactions should be fetched from the merchant's liquid account.
 
-Send a request where you specify transaction types as you need. See [supported transaction types](../api-reference.md#supported-transaction-types).
+Send a request where you specify transaction types as you need. See [supported transaction types in Finance API reference V2](../api-reference-v2.yaml).
         
    ```
-   GET /organizations/self/accounts/liquid/transactions?start={start_date}&end={end_date}&includeTransactionType={includeTransactionType}
+   GET /v2/accounts/liquid/transactions?start={start_date}&end={end_date}&includeTransactionType={includeTransactionType}
    ```
 ### Fetch card payment fee
-The following example fetches all card payments and associated card payment fees from the merchant's liquid account. The transactions are fetched from 1 January, 2020 to 31 December, 2020.
+The following example fetches all payments and associated payment fees from the merchant's liquid account. The transactions are fetched from 1 January, 2020 to 31 December, 2020.
    
    Example:
    
    Request   
    ```
-   GET /organizations/self/accounts/liquid/transactions?start=2020-01-01&end=2020-12-31&includeTransactionType=CARD_PAYMENT&includeTransactionType=CARD_PAYMENT_FEE
+   GET /v2/accounts/liquid/transactions?start=2020-01-01T00:00:00&end=2021-01-01T00:00:00&includeTransactionType=PAYMENT&includeTransactionType=PAYMENT_FEE
    ```
        
    Response
@@ -156,13 +156,13 @@ The following example fetches all card payments and associated card payment fees
             {
                 "timestamp": "2020-11-21T04:00:15.704+0000",
                 "amount": -8867,
-                "originatorTransactionType": "CARD_PAYMENT_FEE",
+                "originatorTransactionType": "PAYMENT_FEE",
                 "originatingTransactionUuid": "6820265b-953e-43a7-bb65-abac1ef104bf"
             },
             {
                 "timestamp": "2020-11-21T04:00:15.697+0000",
                 "amount": 479300,
-                "originatorTransactionType": "CARD_PAYMENT",
+                "originatorTransactionType": "PAYMENT",
                 "originatingTransactionUuid": "6820265b-953e-43a7-bb65-abac1ef104bf"
             },
             ...
@@ -177,7 +177,7 @@ The following example fetches all the transactions that are are included in the 
    
    Request   
    ```
-   {{FINANCE_URL}}/organizations/self/accounts/liquid/transactions?start=2020-09-06&end=2020-09-10&includeTransactionType=PAYOUT
+   GET /v2/accounts/liquid/transactions?start=2020-09-06T00:00:00&end=2020-09-11T00:00:00&includeTransactionType=PAYOUT
    ```
        
    Response
@@ -203,12 +203,12 @@ The following example fetches all the transactions that are are included in the 
    ```
 
 ## Related task
-* [Fetch account balance](fetch-account-balance.md)
-* [Fetch payout information](fetch-payout-info.md)
-* [Fetch purchase information for transactions](fetch-purchase-information-for-transactions.md)
+* [Fetch account balance](fetch-account-balance-v2.md)
+* [Fetch payout information](fetch-payout-info-v2.md)
+* [Fetch purchase information for transactions](fetch-purchase-information-for-transactions-v2.md)
 * [Fetch a list of purchases](../../purchase.adoc#fetch-a-list-of-purchases)
 
 
 ## Related API reference
-* [Finance API reference](../api-reference.md)
+* [Finance API reference](../api-reference-v2.yaml)
 * [Purchase API reference](../../purchase.adoc)

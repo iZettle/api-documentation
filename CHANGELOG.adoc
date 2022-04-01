@@ -7,6 +7,17 @@ Each log entry uses the following tags:
 - For API changes and the corresponding documentation changes, the log is tagged with the name of the changes API. For example, `OAuth API`.
 - For documentation changes that are editorial and are not introduced by any API change, the log is tagged with `Editorial changes`.
 
+.**March 31, 2022** `Finance API`
+[%collapsible]
+====
+**Finance API V1 replaced by V2**
+
+A new version V2 of the Finance API is released, which replaces the former version V1. V1 is
+now deprecated but will remain available until 2022-12-31.
+
+For information about how to migrate from V1 to V2 and changes between the versions, see xref:finance-api/finance-api-migration-guide.md[Finance API migration guide].
+====
+
 .**February 24, 2022** `Inventory API`
 [%collapsible]
 ====
@@ -29,7 +40,7 @@ Each log entry uses the following tags:
 **Added how to get started with Zettle APIs:**
 
 - A user guide for signing up for a developer account.
-- Users guides for setting up authorisation flows.
+- User guides for setting up authorisation flows.
 ====
 
 .**January 18, 2022** `OAuth API` `Editorial changes`

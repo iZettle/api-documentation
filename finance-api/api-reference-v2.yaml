@@ -1,0 +1,293 @@
+openapi: "3.1.0"
+info:
+  title: Finance API
+  description: >
+    The Finance API is used to fetch finance-related information that is processed through Zettle. The information
+    includes account balance, all the transactions processed through Zettle, and payout.
+  version: "2.0"
+servers:
+  - url: https://finance.izettle.com/v2
+    description: Prod
+paths:
+  /accounts/{accountTypeGroup}/balance:
+    get:
+      operationId: getBalance
+      summary: Returns the balance in a merchant's preliminary or liquid account at a specific time.
+      parameters:
+        - $ref: '#/components/parameters/accountTypeGroupParam'
+        - name: at
+          in: query
+          description: >
+            Used to fetch account balance at a certain point in time. The time is specified in UTC. If this parameter is
+            used, any transaction after that point will be ignored. If not, the balance of all transactions at the
+            current point in time is returned.
+          required: false
+          schema:
+            type: string
+            format: YYYY-MM-DDThh:mm:ss
+            example: 2022-03-01T12:42:10
+            default: NOW()
+      responses:
+        '200':
+          description: >
+            Returns when the operation is successful. The account balance in the currency's smallest unit.
+            For example, 300 with currency GBP is £3.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalBalance:
+                    type: integer
+                    description: >
+                      The account balance in the currency's smallest unit. For example, 300 with currency GBP is £3.
+                      It can be negative when refunds are greater than sales.
+                    example: 300
+                  currencyId:
+                    description: The currency of the account. For example, GBP.
+                    type: string
+                    example: GBP
+        '400':
+          description: Returns when a required parameter is missing or in a wrong format in the request
+        '401':
+          description: >
+            Returns when one of the following occurs:
+              - The authentication information is missing in the request.
+              - The authentication token has expired.
+              - The authentication token is invalid.
+        '403':
+          description: Returns when the scope being used in the request is incorrect.
+      security:
+        - iZettleOauth:
+            - READ:FINANCE
+  /accounts/{accountTypeGroup}/transactions:
+    get:
+      operationId: getAccountTransactions
+      summary: >
+        Returns all transactions or transactions of certain types from a merchant's preliminary or liquid account during
+        a specific period.
+      parameters:
+        - $ref: '#/components/parameters/accountTypeGroupParam'
+        - name: start
+          in: query
+          description: >
+            The start time in UTC (inclusive) from when the transactions will be fetched.
+          required: true
+          schema:
+            type: string
+            format: YYYY-MM-DDThh:mm:ss
+            example: 2022-03-01T12:42:10
+        - name: end
+          in: query
+          description: >
+            The end time in UTC (exclusive) before when the transactions will be fetched.
+          required: true
+          schema:
+            type: string
+            format: YYYY-MM-DDThh:mm:ss
+            example: 2022-03-01T12:42:10
+        - name: includeTransactionType
+          in: query
+          description: >
+            Specifies the transaction types to fetch. Multiple transaction types can be specified. Available
+            transaction types are:
+              | Transaction type        | Description | Applicable for account type |
+              |-------------------------|-------------|-----------------------------|
+              | ADJUSTMENT              | A bookkeeping adjustment | LIQUID, PRELIMINARY |
+              | ADVANCE                 | The cash advance given by Zettle to a merchant in the liquid account. A cash advance is a type of financing that is offered to merchants based on their sales history. The advance is paid back with monthly down payments. | LIQUID |
+              | ADVANCE_DOWNPAYMENT     | A down payment on a previously paid out cash advance in the liquid account. | LIQUID |
+              | ADVANCE_FEE_DOWNPAYMENT | The netting of a cash advance fee in the liquid account. | LIQUID |
+              | CASHBACK                | Money given to a merchant to retroactively adjust the card payment fee rate. | LIQUID |
+              | FAILED_PAYOUT           | A previous payout transaction failed and was made void. The payout money is returned to the merchant's liquid account. | LIQUID |
+              | FROZEN_FUNDS            | The money that is frozen to cover a chargeback. When the issuing bank initiates a chargeback, the money will be removed from the merchant's liquid account and marked as frozen to cover the chargeback. If the chargeback is later revoked, the money will be returned to the merchant's liquid account with a new and positive transaction of the same type. It effectively makes the initial FROZEN_FUNDS transaction void. | LIQUID |
+              | INVOICE_PAYMENT         | An invoice payment. If an invoice is paid through a card payment, the payment type is PAYMENT.| LIQUID, PRELIMINARY |
+              | INVOICE_PAYMENT_FEE     | An invoice payment fee. If an invoice is paid through a card payment, the payment fee type is PAYMENT_FEE. | LIQUID, PRELIMINARY |
+              | PAYMENT                 | A payment where Zettle handles the funds. This includes any type of payment, such as card payments and other alternative payment methods. In the case of a refund, a transaction of the same type will occur but with the inverted amount. Contains a reference to the payment in the Purchase API. | LIQUID, PRELIMINARY |
+              | PAYMENT_FEE             | The fee for a payment where Zettle handles the funds. The amount is positive in case of a refund. Contains a reference to the payment fee in the Purchase API. | LIQUID, PRELIMINARY |
+              | PAYMENT_PAYOUT          | A payment payout with a negative amount is a transfer of money for a single payment from merchant's liquid account to PayPal Wallet. A payment payout with a positive amount is a transfer of money for a refund from PayPal Wallet to the merchant's liquid account.  | LIQUID |
+              | PAYOUT                  | A payout can be positive or negative.<br>- If the account balance is paid out from the merchant’s liquid account to the merchant’s bank account or to PayPal Wallet for PayPal users, the payout is negative.<br>- If the merchant’s configuration has a minimum account balance, the payout is the liquid account balance minus the minimum account balance. For example, if the account balance is £147 and the minimum account balance is £47, the payout is £100. For PayPal users, if a refund happens, a payout will be made from PayPal Wallet to the liquid account. In this case, the amount is positive."  | LIQUID |
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - ADJUSTMENT
+                - ADVANCE
+                - ADVANCE_DOWNPAYMENT
+                - ADVANCE_FEE_DOWNPAYMENT
+                - CASHBACK
+                - FAILED_PAYOUT
+                - FROZEN_FUNDS
+                - INVOICE_PAYMENT
+                - INVOICE_PAYMENT_FEE
+                - PAYMENT
+                - PAYMENT_FEE
+                - PAYMENT_PAYOUT
+                - PAYOUT
+        - name: limit
+          in: query
+          description: >
+            The maximum number of transactions to return in a response. You must specify limit with any integer greater
+            than 0. To avoid a big dataset in a response, use limit and offset together to set response pagination.
+
+            For example, to return only three transactions at a time from a collection of transactions for a specific
+            period, set limit as 3 and offset as 0 in the first request. Then set limit as 3 and increment offset with
+            3 in the second request and repeat the request until all transactions are fetched.
+          required: false
+          schema:
+            type: integer
+            default: 10000
+            example: 1000
+        - name: offset
+          in: query
+          description: >
+            The number of transactions to skip before beginning to return in a response. You must specify offset with
+            any integer greater than or equal to 0. Use limit and offset together to set pagination on the response to
+            avoid returning a big dataset.
+          required: false
+          schema:
+            type: integer
+            default: 0
+            example: 3
+      responses:
+        '200':
+          description: Returns when the operation is successful.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    timestamp:
+                      type: string
+                      description: >
+                        The time when a transaction is made in the merchant's Zettle account. It's not the timestamp
+                        when a card transaction or a purchase was made. For example, transactions in the merchant's
+                        liquid account may take effect hours after card transactions or purchases take place.
+                      example: 2022-03-01T12:42:10
+                    amount:
+                      type: string
+                      description: >
+                        The amount of money of a transaction in the currency's smallest unit. For example,
+                        300 with currency GBP is £3. Depending on the transaction and the transaction type, the amount
+                        can be negative. One example for this is the PAYMENT transaction type in the case of a refund.
+                      example: 300
+                    originatorTransactionType:
+                      type: string
+                      description: The transaction type.
+                      example: PAYOUT
+                    originatorTransactionUuid:
+                      type: string
+                      description: The identifier of the originating transaction as UUID version 1.
+                      example: 5e8673e4-a52f-11ec-b909-0242ac120002
+        '400':
+          description: Returns when a required parameter is missing or in a wrong format in the request.
+        '401':
+          description: >
+            Returns when one of the following occurs:
+              - The authentication information is missing in the request.
+              - The authentication token has expired.
+              - The authentication token is invalid.
+        '403':
+          description: Returns when the scope being used in the request is incorrect.
+
+      security:
+        - iZettleOauth:
+            - READ:FINANCE
+  /payout-info:
+    get:
+      operationId: getPayoutInfo
+      summary: >
+        Returns payout related information from a merchant's liquid account. A payout is a deposit made to a merchant's
+        bank account or a PayPal Wallet for PayPal users. If the merchant's configuration has a minimum account balance,
+        then the payout will deposit the account balance minus the minimum account balance.
+      parameters:
+        - name: at
+          in: query
+          description: >
+            Used to fetch payouts at a certain point in time. The time is specified in UTC. If this parameter is used,
+            any transaction after that time will be ignored. If not, the account balance at the current point in time is
+            returned.
+          required: false
+          schema:
+            type: string
+            format: YYYY-MM-DDThh:mm:ss
+            example: 2022-03-01T12:42:10
+            default: NOW()
+      responses:
+        '200':
+          description: Returns when the operation is successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalBalance:
+                    type: integer
+                    description: >
+                      The account balance in the currency's smallest unit. For example, 300 with currency GBP is £3.
+                      It can be negative when refunds are greater than sales.
+                    example: 300
+                  currencyId:
+                    description: The currency of the account. For example, GBP.
+                    type: string
+                    example: GBP
+                  nextPayoutAmount:
+                    description: >
+                      The amount of money to be paid out to the merchant in the currency's smallest unit. For
+                      example, 300 with currency GBP is £3.
+                    type: integer
+                    example: 2000
+                  discountRemaining:
+                    description: >
+                      The amount of discounts that remain in merchant's vouchers in the currency's smallest unit.
+                      The vouchers are offered by Zettle. For example, a merchant has a voucher worthy £100 from a
+                      Zettle marketing campaign. For a transaction of £200, Zettle will subtract £2 as transaction fee
+                      on the voucher. Then the merchant will have a remaining discount of £98, which would be
+                      represented as 9800 in the response.
+                    type: integer
+                    example: 9800
+                  periodicity:
+                    description: >
+                      The period between each payout that is set by the merchant. It can be DAILY, WEEKLY or MONTHLY.
+                    type: string
+                    example: DAILY
+        '400':
+          description: Returns when a required parameter is missing or in a wrong format in the request.
+        '401':
+          description: >
+            Returns when one of the following occurs:
+              - The authentication information is missing in the request.
+              - The authentication token has expired.
+              - The authentication token is invalid.
+        '403':
+          description: Returns when the scope being used in the request is incorrect.
+      security:
+        - iZettleOauth:
+            - READ:FINANCE
+
+components:
+  securitySchemes:
+    iZettleOauth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: 'https://oauth.zettle.com/token'
+          scopes:
+            'READ:FINANCE': Reading finance data
+  parameters:
+    accountTypeGroupParam:
+      name: accountTypeGroup
+      in: path
+      description: >
+        The type of a merchant's Zettle account. You can use one of the following account types:
+          - PRELIMINARY account where transactions are to be confirmed.
+          - LIQUID account where transactions are to be paid out to the merchant.
+      required: true
+      schema:
+        type: string
+        enum:
+          - PRELIMINARY
+          - LIQUID

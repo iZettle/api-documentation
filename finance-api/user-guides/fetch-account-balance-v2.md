@@ -1,4 +1,4 @@
-Fetch account balance
+Fetch account balance v2
 ===
 Use the Finance API to fetch the account balance of the merchant's preliminary or liquid account.
 
@@ -15,11 +15,11 @@ Use the Finance API to fetch the account balance of the merchant's preliminary o
 Fetch the balance in one or both of the merchant's preliminary and liquid accounts as follows:
    * To check the balance of transactions that are still being checked by Zettle whether they should be paid out, fetch the preliminary account balance:
      ```
-     GET /organizations/self/accounts/preliminary/balance
+     GET /v2/accounts/preliminary/balance
      ```
    * To check the balance of transactions that are ready to be paid out to the merchant, fetch the liquid account balance:
      ```
-     GET /organizations/self/accounts/liquid/balance
+     GET /v2/accounts/liquid/balance
      ```
 
    Example:
@@ -29,7 +29,7 @@ Fetch the balance in one or both of the merchant's preliminary and liquid accoun
    Request
    
    ```
-   GET /organizations/self/accounts/preliminary/balance
+   GET /v2/accounts/preliminary/balance
    ```
    Response
 
@@ -43,8 +43,8 @@ Fetch the balance in one or both of the merchant's preliminary and liquid accoun
    ```
  
 ## Related task
-* [Fetch account transactions](fetch-account-transactions.md)
-* [Fetch payout information](fetch-payout-info.md)
+* [Fetch account transactions](fetch-account-transactions-v2.md)
+* [Fetch payout information](fetch-payout-info-v2.md)
 
 ## Related API reference
-* [Finance API reference](../api-reference.md)
+* [Finance API reference](../api-reference-v2.yaml)

@@ -1,19 +1,12 @@
-Fetch purchase information for transactions
+Fetch purchase information for transactions v2
 ===
 Using the Finance API and the Purchase API, you can fetch purchase information for transactions. The `originatingTransactionUuid` of a transaction in the Finance API corresponds to the `uuid` of `payments` in the Purchase API.  
 > **Note:** Currently, fetching purchase information is available only for transactions that are made with cards and alternative payment methods (APMs) like PayPal QRC through Zettle.
 
 The Finance API records transactions for payment types that are supported by the Purchase API except `IZETTLE_CASH`, `SWISH`, `VIPPS`, `MOBILE_PAY`, `GIFTCARD`, `STORE_CREDIT`, and `IZETTLE_INVOICE`. 
-> **Note:**  If `IZETTLE_INVOICE` is paid with a card, the purchase will be recorded as `CARD_PAYMENT` in the Finance API.
+ > **Note:**  If `IZETTLE_INVOICE` is paid with a card, the purchase will be recorded as `PAYMENT` in the Finance API.
 
-The following table shows the payment methods, payment types that are supported by the Purchase API, and the corresponding transaction types that are supported by the Finance API. 
-
-|Payment methods |Payment types by the Purchase API |Corresponding transaction type by the Finance API |
-|:---|:--- |:--- 
-|Card payment |`IZETTLE_CARD` |`CARD_PAYMENT`, `CARD_PAYMENT_FEE` |
-|Card payment online |`IZETTLE_CARD_ONLINE` |`CARD_PAYMENT`, `CARD_PAYMENT_FEE` | 
-|Card refund |`IZETTLE_CARD` |`CARD_REFUND`, `CARD_PAYMENT_FEE_REFUND` |
-|APM |`PayPal QRC`, `KLARNA` |`PAYMENT`, `PAYMENT_FEE` |  
+All transactions for supported payment types will have the transaction type `PAYMENT` or `PAYMENT_FEE` in Finance API.
 
 * [Prerequisites](#prerequisites)
 * [Step 1: Find the transaction UUID with the Finance API](#step-1-find-the-transaction-uuid-with-the-finance-api)
@@ -22,7 +15,7 @@ The following table shows the payment methods, payment types that are supported 
 * [Related API reference](#related-api-reference)
 
 ## Prerequisites
-* Make sure that authorisation is set up with the following OAuth scope using [OAuth2 API](../../authorization.adoc):
+* Make sure that authorisation is set up with the following OAuth scope using [OAuth2 API](../../authorization.md):
     * `READ:FINANCE`
     * `READ:PURCHASE`
 
@@ -35,14 +28,14 @@ Before you can find the transaction UUID, you need to specify the transactions t
    > **Tip**: If you plan to look up purchase information for transactions that are ready for payout, specify `accountTypeGroup` as `liquid`.  
 
     ```
-    GET /organizations/self/accounts/{accountTypeGroup}/transactions?start={start}&end={end}&includeTransactionType={includeTransactionType}
+    GET /v2/accounts/{accountTypeGroup}/transactions?start={start}&end={end}&includeTransactionType={includeTransactionType}
     ```
    Example:
    
-   The following example request fetches APM transactions of the merchant's Zettle liquid account.
+   The following example request fetches Payment transactions of the merchant's Zettle liquid account.
    
    ```
-   GET /organizations/self/accounts/liquid/transactions?start=2020-06-01&end=2020-12-31&includeTransactionType=PAYMENT&includeTransactionType=PAYMENT_FEE
+   GET /v2/accounts/liquid/transactions?start=2020-06-01T00:00:00&end=2021-01-01T00:00:00&includeTransactionType=PAYMENT&includeTransactionType=PAYMENT_FEE
    ```
        
    The following example response returns all transactions for payments and payment fees from 1 June, 2020 to 31 December, 2020.
@@ -160,9 +153,9 @@ Using the value of `originatingTransactionUuid` of a transaction in the Finance 
    ```
 
 ## Related task
-* [Fetch account transactions](fetch-account-transactions.md)
+* [Fetch account transactions](fetch-account-transactions-v2.md)
 * [Fetch a list of purchases](../../purchase.adoc#fetch-a-list-of-purchases)
 
 ## Related API reference
-* [Finance API reference](../api-reference.md)
+* [Finance API reference](../api-reference-v2.yaml)
 * [Purchase API reference](../../purchase.adoc)

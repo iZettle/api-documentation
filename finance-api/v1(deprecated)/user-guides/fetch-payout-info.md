@@ -1,4 +1,4 @@
-Fetch payout information
+Fetch payout information v1 (Deprecated)
 ===
 Use the Finance API to fetch payout information from a merchant's account. The payout information includes the account balance, currency, payout, periodicity, and remaining discounts. 
 
@@ -12,7 +12,7 @@ If the merchant's configuration has a minimum account balance, then the payout w
 * [Related API reference](#related-api-reference)
 
 ## Prerequisites
-* Make sure that authorisation is set up with the following OAuth scope using [OAuth2 API](../../authorization.md):
+* Make sure that authorisation is set up with the following OAuth scope using [OAuth2 API](../../../authorization.md):
     * `READ:FINANCE`
 
 ## Fetch the payout information
