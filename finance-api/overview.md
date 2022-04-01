@@ -21,7 +21,7 @@ See [Finance API V2 reference](api-reference-v2.yaml).
 ## Fetch transactions
 Using the Finance API, you can fetch finance-related information as follows:
 
-* [Fetch account balance](v1(deprecated)/user-guides/fetch-account-balance-v2.md)
-* [Fetch account transactions](v1(deprecated)/user-guides/fetch-account-transactions-v2.md)
-* [Fetch payout information](v1(deprecated)/user-guides/fetch-payout-info-v2.md)
-* [Fetch purchase information for transactions](v1(deprecated)/user-guides/fetch-purchase-information-for-transactions-v2.md)
+* [Fetch account balance](user-guides/fetch-account-balance-v2.md)
+* [Fetch account transactions](user-guides/fetch-account-transactions-v2.md)
+* [Fetch payout information](user-guides/fetch-payout-info-v2.md)
+* [Fetch purchase information for transactions](user-guides/fetch-purchase-information-for-transactions-v2.md)
