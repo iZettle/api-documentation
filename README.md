@@ -2,7 +2,9 @@
 
 :warning: **Starting May 9, 2022, this repository is deprecated and will no longer be used to make any documentation updates.** 
 
-**All the API documentation is now available on [Zettle Developer Portal](https://developer.zettle.com).** 
+**All the API documentation is now available on [Zettle Developer Portal](https://developer.zettle.com).**
+ 
+--- 
 
 Zettle provides APIs for you to integrate Zettle with your services.
 
