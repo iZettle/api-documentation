@@ -13,7 +13,7 @@ The Password grant for Zettle integrations is now deprecated and will be removed
 Update the integration to use an authentication grant supported by Zettle. You can find more information in this document and in the [Zettle OAuth2 API documentation](../../authorization.md).
 
 ## Support 
-If you have any questions, please contact our service desk by sending an email to our [Integrations team](mailto:api@zettle.com). 
+If you have any questions, please contact our developer support at [Zettle Developer Portal](https://developer.zettle.com). 
  
 ## Technical details
 Zettle API uses the OAuth 2.0 Authorization Framework. The Assertion grant is recommend to keep your integration secure. For more information about the assertion grant and other authentication flows, read more in the [Zettle OAuth2 API documentation](../../authorization.md). 

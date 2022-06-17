@@ -52,16 +52,4 @@ When you have a developer account, choose one of the following app types based o
 * To build a partner-hosted app that is hosted by you as an integrator, [create a partner-hosted app](oauth-api/user-guides/create-an-app/create-a-partner-hosted-app.md).
 
 ## Get help
-Contact our [Integrations team](mailto:api@zettle.com) for more information. 
-
-When contacting the Integrations team, please provide the following information:
-
-* Description about the issue. That includes:
-    * What's the integration used for?
-    * Which API or APIs are you using?
-    * What went wrong? 
-
-* Information about affected merchants. That includes:
-    * Emails of affected merchants.
-    * UUIDs and organisation UUIDs of the affected merchants.
-      To fetch UUIDs and organisation UUIDs, use the `GET users/self` endpoint of the OAuth API. For more information about using the endpoint, see [Get user info](authorization.md/#get-user-info).
+Contact our developer support at [Zettle Developer Portal](https://developer.zettle.com).

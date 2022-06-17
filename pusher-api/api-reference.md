@@ -90,7 +90,7 @@ See example [Create a webhook subscription](#create-a-webhook-subscription).
 |403 Forbidden | Returned when the scope being used in the request is incorrect. <br/> E.g. If you provide a permission scope of `READ:PRODUCT` while creating a subscription for `PurchaseCreated` then the Pusher API will return 403 in the response.
 |400 Bad Request |Returned when one of the following occurs: <br/><ul><li>The `transportName` or `uuid` is missing in the request.</li><li>A subscription with the `uuid` passed in request already exists.</li><li>The `destination` is not accessible.</li></ul>
 |422 Unprocessable Entity |Returned when one of the following occurs: <br/><ul><li>The `destination` or `contactEmail` is missing in the request.</li><li>The `contactEmail` has an invalid value for email address.</li></ul>
-|500 Internal Server Error|Returned when one of the following occurs: <br/><ul><li>The `destination` responded with a non-successful HTTP response code.</li><li>The Pusher API encountered an internal server error. In case this error persists, contact [support](mailto:api@zettle.com).</li></ul>
+|500 Internal Server Error|Returned when one of the following occurs: <br/><ul><li>The `destination` responded with a non-successful HTTP response code.</li><li>The Pusher API encountered an internal server error. In case this error persists, contact our developer support at [Zettle Developer Portal](https://developer.zettle.com).</li></ul>
 </details>
 
 <details open="true">
@@ -139,7 +139,7 @@ See example [Get webhook subscriptions](#get-webhook-subscriptions).
 |---- |----
 |200 OK| Returned when the Pusher API returns a collection of subscriptions for the client. 
 |401 Unauthorized |Returned when one of the following occurs: <br/><ul><li>The authentication information is missing in the request.</li><li>The authentication token has expired.</li><li>The authentication token is invalid.</li></ul> 
-|500 Internal Server Error| Returned when the Pusher API encounters an internal server error. In case this error persists, contact [support](mailto:api@zettle.com).
+|500 Internal Server Error| Returned when the Pusher API encounters an internal server error. In case this error persists, contact our developer support at [Zettle Developer Portal](https://developer.zettle.com).
 </details>
 
 
@@ -199,7 +199,7 @@ See example [Update a webhook subscription](#update-a-webhook-subscription).
 |405 Method Not Allowed | Returned when the `subscriptionUuid` is missing in the request.
 |400 Bad Request| Returned when the `eventNames` parameter contains events that are not supported by the Pusher API.
 |422 Unprocessable Entity| Returned when one of the following occurs: <br/><ul><li> Returned if the `destination` specified in the request is empty.</li><li>The `destination` value is not a valid HTTPS URL.</li></ul>
-|500 Internal Server Error| Returned when the Pusher API encounters an internal server error. In case this error persists, contact [support](mailto:api@zettle.com).
+|500 Internal Server Error| Returned when the Pusher API encounters an internal server error. In case this error persists, contact our developer support at [Zettle Developer Portal](https://developer.zettle.com).
 </details>
 
 <details open="true">
@@ -239,7 +239,7 @@ See example [Delete a webhook subscription](#delete-a-webhook-subscription).
 |204 No Content| Returned when the Pusher API deletes the subscription successfully.
 |401 Unauthorized |Returned when one of the following occurs: <br/><ul><li>The authentication information is missing in the request.</li><li>The authentication token has expired.</li><li>The authentication token is invalid.</li></ul>
 |404 Not Found|Returned when one of the following occurs: <br/><ul><li>The `subscriptionUuid` is missing in the request.</li><li>A subscription was not found for the `subscriptionUuid` passed in the request</li></ul> 
-|500 Internal Server Error| Returned when the Pusher API encounters an internal server error. In case this error persists, contact [support](mailto:api@zettle.com).
+|500 Internal Server Error| Returned when the Pusher API encounters an internal server error. In case this error persists, contact our developer support at [Zettle Developer Portal](https://developer.zettle.com).
 </details>
 
 <details open="true">

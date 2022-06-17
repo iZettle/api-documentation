@@ -42,5 +42,4 @@ These changes apply to both input parameter `includeTransactionType` and `origin
 and also apply to historical data.
 
 ## Support
-If you have any questions, please contact our service desk by sending an email to our 
-[Integrations team](mailto:api@zettle.com).
+If you have any questions, please contact our developer support at [Zettle Developer Portal](https://developer.zettle.com).

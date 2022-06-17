@@ -1,6 +1,6 @@
 Incidents
 =====================
-If you have questions about any incident, contact our [Integrations team](mailto:api@zettle.com).
+If you have questions about any incident, contact our developer support at [Zettle Developer Portal](https://developer.zettle.com).
 
 ## March 2021
 ### Finance API returned wrong transaction type for transactions made with cards.
