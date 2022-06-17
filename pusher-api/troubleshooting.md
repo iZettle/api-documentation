@@ -78,9 +78,7 @@ This error usually returns when the destination URL is not up and running. Check
     
 3. If you receive the error in a production environment, make sure that the destination URL is up and running.
 
-4. Is HTTP status code 2xx returned?
-    * Yes: The error is fixed.
-    * No: Contact [Integrations team](mailto:api@zettle.com). 
+4. If you get the HTTP status code 2xx, then the error is fixed.
 
 ## Related API reference
 * [Pusher API reference](api-reference.md)
